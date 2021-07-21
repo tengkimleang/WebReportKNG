@@ -117,46 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Administration" xml:space="preserve">
-    <value>Administration</value>
+  <data name="By Category" xml:space="preserve">
+    <value>តាមប្រភេទអាយធឹម</value>
   </data>
-  <data name="Allrightsreserved" xml:space="preserve">
-    <value>All rights reserved.</value>
+  <data name="By Item Group" xml:space="preserve">
+    <value>តាមក្រុមផលិតផល</value>
   </data>
-  <data name="Copyright" xml:space="preserve">
-    <value>Copyright</value>
+  <data name="By Source" xml:space="preserve">
+    <value>តាមផលិតផលប្រទេស</value>
   </data>
-  <data name="Daily Cash Collection" xml:space="preserve">
-    <value>Daily Cash Collection</value>
+  <data name="By Unit" xml:space="preserve">
+    <value>តាមខ្នាត</value>
   </data>
-  <data name="en" xml:space="preserve">
-    <value>English</value>
+  <data name="DateFrom" xml:space="preserve">
+    <value>ថ្ងៃចាប់ផ្ដើម</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Camboida</value>
+  <data name="DateTo" xml:space="preserve">
+    <value>មកដល់ថ្ងៃ</value>
   </data>
-  <data name="km" xml:space="preserve">
-    <value>Khmer</value>
-  </data>
-  <data name="Netsys" xml:space="preserve">
-    <value>Netsys</value>
-  </data>
-  <data name="Permission" xml:space="preserve">
-    <value>Permission</value>
+  <data name="Filter" xml:space="preserve">
+    <value>ប្រត្តិបការយកនិន្ន័យ</value>
   </data>
   <data name="PSI Report" xml:space="preserve">
-    <value>PSI Report</value>
+    <value>របាយការភីអេសអាយ</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>របាយការ</value>
   </data>
   <data name="Reporting" xml:space="preserve">
-    <value>Reporting</value>
-  </data>
-  <data name="SaleReport" xml:space="preserve">
-    <value>Sale Report</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="zh-TW" xml:space="preserve">
-    <value>China</value>
+    <value>របាយការ</value>
   </data>
 </root>

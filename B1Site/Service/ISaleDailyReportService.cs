@@ -18,5 +18,6 @@ namespace B1Site.Service
         Task<List<CusomterIDMaster>> GetCusomterIDMastersAsync();
         Task<List<SourceMaster>> GetSourceMastersAsync();
         Task<List<WarehouseMaster>> GetWarehouseMastersAsync();
+
     }
 }
