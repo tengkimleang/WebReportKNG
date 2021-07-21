@@ -65,6 +65,7 @@ namespace B1Site
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
             services.AddScoped<IDailyCashCollectionService, DailyCashCollectionService>();
             services.AddScoped<IApcashoutService, ApcasoutreportService>();
+            services.AddScoped<IPSIReportService, PSIReportService>();
             #endregion
         }
 
