@@ -64,7 +64,6 @@ namespace B1Site
             #region Add Scope
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
             services.AddScoped<IDailyCashCollectionService, DailyCashCollectionService>();
-            services.AddScoped<ISalesReportbySerialNumberService, SalesReportbySerialNumberService>();
             services.AddScoped<IApcashoutService, ApcasoutreportService>();
             #endregion
         }
