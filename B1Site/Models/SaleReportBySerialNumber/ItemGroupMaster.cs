@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace B1Site.Models.SaleReportBySerialNumber
 {
-    public class SaleSerailReportMaster
+    public class ItemGroupMaster
     {
-        public List<ItemGroupMaster> itemGroupMasters { get; set; }
+        public int Itemgropcode { get; set; }
+        public string ItemGroupName { get; set; }
     }
 }
