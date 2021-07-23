@@ -27,5 +27,14 @@ namespace B1Site.Controllers
                 UnitOfMeasureMasters=await pSIReportService.GetUnitOfMeasureMastersAsync(),
             });
         }
+        #region Method Get Data From Ajax
+        [HttpGet]
+        public async Task<string> GetPSIReportAsync(DateTime datefrom, DateTime dateto,
+                                                            string byItemGroup, string byCategory,
+                                                            string byUnit, string bySource)
+        {
+            return await pSIReportService.GetPSIReportAsync(datefrom, dateto,byItemGroup,byCategory, byUnit, bySource);
+        }
+        #endregion
     }
 }

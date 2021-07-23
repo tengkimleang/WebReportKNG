@@ -10,6 +10,7 @@ namespace B1Site.Service
 {
     public class PSIReportService : IPSIReportService
     {
+        #region Bind Master
         public Task<List<CategoryMaster>> GetCategoryMastersAsync()
         {
             ClsCRUD clsCRUD = new ClsCRUD();
@@ -40,7 +41,6 @@ namespace B1Site.Service
             }
             return Task.FromResult(itemGroupMasters);
         }
-
         public Task<List<SourceMaster>> GetSourceMastersAsync()
         {
             ClsCRUD clsCRUD = new ClsCRUD();
@@ -70,5 +70,37 @@ namespace B1Site.Service
             }
             return Task.FromResult(unitOfMeasureMasters);
         }
+        #endregion
+        #region Get Bind Data Report
+        public Task<string> GetPSIReportAsync(DateTime datefrom, DateTime dateto, string itemgroup, string category, string unit, string source)
+        {
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("EXEC [dbo].[USP_KNG_PSI_Report_V2_WebReport]'" + datefrom.ToString("yyyy-MM-dd") + "','" + dateto.ToString("yyyy-MM-dd") + "','" + itemgroup + "','" + category + "','" + unit + "','" + source + "'");
+            List<PSIReport> pSIReports = new List<PSIReport>();
+            foreach (DataRow a in dt.Rows)
+            {
+                try
+                {
+                    pSIReports.Add(new PSIReport
+                    {
+                        ItemCode = a[0].ToString(),
+                        Source = a[1].ToString(),
+                        Category = a[2].ToString(),
+                        ItemName = a[3].ToString(),
+                        OpenningStock = Convert.ToInt32(a[4].ToString()),
+                        InQty = Convert.ToInt32(a[5].ToString()),
+                        OutQty = Convert.ToInt32(a[6].ToString()),
+                        QtyAdjustment = Convert.ToInt32(a[7].ToString()),
+                        EndingStock = Convert.ToInt32(a[8].ToString()),
+                    });
+                }catch (Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+            }
+           // return Task.FromResult(pSIReports);
+            return Task.FromResult(Utf8Json.JsonSerializer.ToJsonString(pSIReports));
+        }
+        #endregion
     }
 }

@@ -202,7 +202,7 @@
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
-    loadReport(today, today);
+    loadReport(today, today,'','','','');
     $('#btnRunReport').click(function () {
         var datefrom = $('#datefrom').val();
         var dateto = $('#dateto').val();
@@ -212,17 +212,11 @@
         if (dateto == '' || dateto == null) {
             dateto = today;
         }
-        var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySaleEmployee = ifToDo($('#bySaleEmployee'));
         var byCategory = ifToDo($('#byCategory'));
-        var byCustomerClass = ifToDo($('#byCustomerClass'));
-        var byLocation = ifToDo($('#byLocation'));
-        var byInventoryID = ifToDo($('#byInventoryID'));
-        var byCustomerID = ifToDo($('#byCustomerID'));
+        var byItemGroup = ifToDo($('#byItemGroup'));
         var bySource = ifToDo($('#bySource'));
-        var byWarehouse = ifToDo($('#byWarehouse'));
-        loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-            byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
+        var byUnit = ifToDo($('#byUnit'));
+        loadReport(datefrom, dateto, byItemGroup, byCategory, byUnit, bySource);
     });
     function filterData() {
         var datefrom = $('#datefrom').val();
@@ -233,17 +227,11 @@
         if (dateto == '' || dateto == null) {
             dateto = today;
         }
-        var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySaleEmployee = ifToDo($('#bySaleEmployee'));
         var byCategory = ifToDo($('#byCategory'));
-        var byCustomerClass = ifToDo($('#byCustomerClass'));
-        var byLocation = ifToDo($('#byLocation'));
-        var byInventoryID = ifToDo($('#byInventoryID'));
-        var byCustomerID = ifToDo($('#byCustomerID'));
+        var byItemGroup = ifToDo($('#byItemGroup'));
         var bySource = ifToDo($('#bySource'));
-        var byWarehouse = ifToDo($('#byWarehouse'));
-        loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-            byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
+        var byUnit = ifToDo($('#byUnit'));
+        loadReport(datefrom, dateto, byItemGroup, byCategory, byUnit, bySource);
     }
     function ifToDo(condition) {
         if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
@@ -252,8 +240,7 @@
             return condition.val();
         }
     }
-    function loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-        byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse) {
+    function loadReport(datefrom, dateto, byItemGroup, byCategory, byUnit, bySource) {
         var loadPanel = $(".loadpanel").dxLoadPanel({
             shadingColor: "rgba(0,0,0,0.4)",
             position: { of: "#gridContainer" },
@@ -264,20 +251,15 @@
             closeOnOutsideClick: false,
         }).dxLoadPanel("instance");
         $.ajax({
-            url: '@Url.Action("GetSaleDailyReport", "SaleDialyReport")',
+            url: '@Url.Action("GetPSIReport", "PSIReport")',
             type: "GET",
             data: {
                 datefrom: datefrom,
                 dateto: dateto,
                 byItemGroup: byItemGroup,
-                bySaleEmployee: bySaleEmployee,
                 byCategory: byCategory,
-                byCustomerClass: byCustomerClass,
-                byLocation: byLocation,
-                byInventoryID: byInventoryID,
-                byCustomerID: byCustomerID,
+                byUnit: byUnit,
                 bySource: bySource,
-                byWarehouse: byWarehouse
             },
             dataType: "JSON",
             beforeSend: function () {
@@ -285,6 +267,7 @@
             },
             success: function (data) {
                 loadPanel.hide();
+                console.log(data);
                 $("#gridContainer").dxDataGrid({
                     dataSource: data,
                     loadPanel: {
@@ -371,11 +354,11 @@
                     summary: {
                         totalItems: [
                             {
-                                column: "CardCode",
+                                column: "ItemCode",
                                 summaryType: "count"
                             }, {
-                                column: "Price",
-                                displayFormat: "{0}$",
+                                column: "EndingStock",
+                                displayFormat: "{0}Qty",
                                 summaryType: "sum",
                                 format: {
                                     type: "decimal",
@@ -386,85 +369,32 @@
                     },
                     columns: [
                         {
-                            dataField: "InvoiceDate",
-                            caption: "Month"
+                            dataField: "Source",
+                            caption: "Source"
                         },
                         {
-                            dataField: "CardCode",
-                            caption: "Customer Code"
+                            dataField: "Category",
+                            caption: "Category"
                         },
                         {
-                            dataField: "CardName",
-                            caption: "Customer Name"
-                        },
-                        {
-                            dataField: "GroupName",
-                            caption: "Customer Group"
-                        },
-                        {
-                            dataField: "CustomerCategory",
-                            caption: "Customer Category"
-                        },
-                        {
-                            dataField: "Region",
-                            caption: "Region"
-                        },
-                        //{
-                        //    dataField: "InvoiceDate",
-                        //    caption:"InvoiceDate",
-                        //    alignment: "right",
-                        //    dataType: "date",
-                        //    width: 120,
-                        //    calculateFilterExpression: function (value, selectedFilterOperations, target) {
-                        //        if (target === "headerFilter" && value === "weekends") {
-                        //            return [[getOrderDay, "=", 0], "or", [getOrderDay, "=", 6]];
-                        //        }
-                        //        return this.defaultCalculateFilterExpression.apply(this, arguments);
-                        //    },
-                        //    headerFilter: {
-                        //        dataSource: function (data) {
-                        //            data.dataSource.postProcess = function (results) {
-                        //                results.push({
-                        //                    text: "Weekends",
-                        //                    value: "weekends"
-                        //                });
-                        //                return results;
-                        //            };
-                        //        }
-                        //    }
-                        //},
-                        {
-                            dataField: "ItemGroup",
-                            caption: "Item Group"
-                        },
-                        {
-                            dataField: "VendorCode",
-                            caption: "Vendor Code"
-                        },
-                        {
-                            dataField: "Description",
+                            dataField: "ItemName",
                             caption: "Description"
                         },
                         {
-                            dataField: "Qty",
-                            caption: "Q'ty"
+                            dataField: "OpenningStock",
+                            caption: "Beginning Stock"
                         },
                         {
-                            dataField: "Price",
-                            caption: "Total Price",
-                            format: { minimumSignificantDigits: 3, }
+                            dataField: "InQty",
+                            caption: "Purchase"
                         },
                         {
-                            dataField: "TotalDiscount",
-                            caption: "Total Discount"
+                            dataField: "OutQty",
+                            caption: "Sales"
                         },
                         {
-                            dataField: "TotalNetPrice",
-                            caption: "Total Net Price"
-                        },
-                        {
-                            dataField: "SaleEmployee",
-                            caption: "Sale Person"
+                            dataField: "EndingStock",
+                            caption: "End Stock"
                         },
                     ],
                 });
