@@ -67,6 +67,7 @@ namespace B1Site
             services.AddScoped<IApcashoutService, ApcasoutreportService>();
             services.AddScoped<IPSIReportService, PSIReportService>();
             services.AddScoped<ISaleReportbySerialService, SaleReportBySerailService>();
+            services.AddScoped<IInventoryReportBySerialService, InventoryReportBySerialService>();
             #endregion
         }
 
