@@ -50,8 +50,8 @@ namespace B1Site.Controllers
                                                 )
         {
             return await saleReportbySerialService.GetSaleserialreport(datefrom, dateto,
-                                                                        byItemGroup,saleemployee,category,location
-                                                                        ,customerclass,customerid,warhoue,source,Inveteryid);
+                                                                        byItemGroup,saleemployee,category, customerclass
+                                                                        , location,Inveteryid,customerid, source, warhoue);
         }
         #endregion
 

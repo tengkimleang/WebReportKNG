@@ -142,7 +142,7 @@
                         @{
                             foreach (var a in Model.saleemployeeMasters)
                             {
-                                <option value="@a.saleemployeeName">@a.saleemployeeName</option>
+                                <option value="@a.saleemployeecode">@a.saleemployeeName</option>
                             }
                         }
                     </select>
@@ -207,9 +207,9 @@
                     <select type="text" class="input_branch" id="byCustomerID">
                         <option value="0">All CustomerID</option>
                         @{
-                            foreach (var a in Model.customerclassMasters)
+                            foreach (var a in Model.customeridMasters)
                             {
-                                <option value="@a.Customerclasscode">@a.Customerclassname</option>
+                                <option value="@a.customeridcode">@a.customername</option>
                             }
                         }
                     </select>
@@ -233,7 +233,7 @@
                         @{
                             foreach (var a in Model.bywarehouseMasters)
                             {
-                                <option value="@a.warehousecode">@a.warehousecode</option>
+                                <option value="@a.warehousecode">@a.warehousename</option>
                             }
                         }
                     </select>
@@ -256,11 +256,11 @@
 </div>
 
 <script>
+ 
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
-
     today = mm + '/' + dd + '/' + yyyy;
     loadReport(today, today);
     $('#btnRunReport1').click(function () {
@@ -268,7 +268,15 @@
         var dateto = $('#dateto1').val();
         var itemgroup = $('#byItemGroup').val();
         var salemployee = $('#bySaleEmployee').val();
-        loadReport(datefrom, dateto,itemgroup,salemployee);
+        var Category = $('#byCategory').val();
+        var Customerclass = $('#byCustomerClass').val();
+        var Location = $('#byLocation').val();
+        var Inventeryid = $('#byInventoryID').val();
+        var Customerid = $('#byCustomerID').val();
+        var Source = $('#bySource').val();
+        var Warehouse = $('#byWarehouse').val();
+        //alert(Warehouse);
+        loadReport(datefrom, dateto, itemgroup, salemployee, Category, Customerclass, Location,Inventeryid,Customerid,Source,Warehouse);
     });
     filterData();
     function filterData() {
@@ -276,6 +284,13 @@
         var dateto = $('#dateto1').val();
         var itemgroup = $('#byItemGroup').val();
         var salemployee = $('#bySaleEmployee').val();
+        var Category = $('#byCategory').val();
+        var Customerclass = $('#byCustomerClass').val();
+        var Location = $('#byLocation').val();
+        var Inventeryid = $('#byInventoryID').val();
+        var Customerid = $('#byCustomerID').val();
+        var Source = $('#bySource').val();
+        var Warehouse = $('#byWarehouse').val();
         if (datefrom == '' || datefrom==null) {
             datefrom = today;
         }
@@ -288,14 +303,34 @@
         if (salemployee == '' || salemployee == undefined) {
             salemployee = '';
         }
-        loadReport(datefrom, dateto, itemgroup, salemployee);
+        if (Category == '' || Category == undefined) {
+            Category = '';
+        }
+        if (Customerclass == '' || Customerclass == undefined) {
+            Customerclass = '';
+        }
+        if (Location == '' || Location == undefined) {
+            Location = '';
+        }
+        if (Inventeryid == '' || Inventeryid == undefined) {
+            Inventeryid = '';
+        }
+        if (Customerid == '' || Customerid == undefined) {
+            Customerid = '';
+        }
+        if (Source == '' || Source == undefined) {
+            Source = '';
+        }
+        if (Warehouse == '' || Warehouse == undefined) {
+            Warehouse = '';
+        }
+        loadReport(datefrom, dateto, itemgroup, salemployee,Category,Customerclass,Location,Inventeryid,Customerid,Source,Warehouse);
     }
-    function loadReport(datefrom, dateto, itemgroup, salemployee) {
-        alert(salemployee);
+    function loadReport(datefrom, dateto, itemgroup, salemployee,Category,Customerclass,Location,Inventeryid,Customerid,Source,Warehouse) {
         $.ajax({
             url: '@Url.Action("GetSaleserialreport", "SaleReportBySerial")',
             type: "GET",
-            data: { datefrom: datefrom, dateto: dateto, byItemgroup: itemgroup, saleemployee: salemployee, category:""},
+            data: { datefrom: datefrom, dateto: dateto, byItemgroup: itemgroup, saleemployee: salemployee, category: Category, customerclass: Customerclass, location: Location, Inveteryid: Inventeryid, customerid: Customerid, source: Source, warhoue: Warehouse},
             dataType: "JSON",
             beforeSend: function () {
                 //btn_filter.addClass("fa-spinner fa-spin");

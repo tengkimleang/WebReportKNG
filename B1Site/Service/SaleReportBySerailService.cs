@@ -12,12 +12,19 @@ namespace B1Site.Service
     {
 
         #region Binding data
-        public Task<string> GetSaleserialreport(DateTime datefrom, DateTime dateto, string byItemgroup, string bysalemmployee, string bycategory, string bycustomerclass, string byinventerid, string bylocation, string bysoucre, string bycustomerid, string bywarhouse)
+        public Task<string> GetSaleserialreport(DateTime datefrom, DateTime dateto, string byItemgroup, string bysalemmployee, string bycategory, string bycustomerclass, string bylocation, string byinventerid, string bycustomerid, string bysoucre, string bywarhouse)
         {
             ClsCRUD clsCRUD = new ClsCRUD();
             byItemgroup = ((string.IsNullOrEmpty(byItemgroup) || byItemgroup == "0") ? "" : byItemgroup);
             bysalemmployee = ((string.IsNullOrEmpty(bysalemmployee) || bysalemmployee == "0") ? "" : bysalemmployee);
-            var dt = clsCRUD.Getdata("EXEC [USP_SALES_DIALY_REPORT_SERIAL_01_Webreport_With_Serail] '" + datefrom.ToString("yyyy-MM-dd") + "','" + dateto.ToString("yyyy-MM-dd") + "','','" + byItemgroup + "','"+bysalemmployee+"','','','','','',''");
+            bycategory = ((string.IsNullOrEmpty(bycategory) || bycategory == "0") ? "" : bycategory);
+            bycustomerclass = ((string.IsNullOrEmpty(bycustomerclass) || bycustomerclass == "0") ? "" : bycustomerclass);
+            bylocation = ((string.IsNullOrEmpty(bylocation) || bylocation == "0") ? "" : bylocation);
+            byinventerid = ((string.IsNullOrEmpty(byinventerid) || byinventerid == "0") ? "" : byinventerid);
+            bycustomerid = ((string.IsNullOrEmpty(bycustomerid) || bycustomerid == "0") ? "" : bycustomerid);
+            bysoucre = ((string.IsNullOrEmpty(bysoucre) || bysoucre == "0") ? "" : bysoucre);
+            bywarhouse = ((string.IsNullOrEmpty(bywarhouse) || bywarhouse == "0") ? "" : bywarhouse);
+            var dt = clsCRUD.Getdata("EXEC [USP_SALES_DIALY_REPORT_SERIAL_01_Webreport_With_Serail] '" + datefrom.ToString("yyyy-MM-dd") + "','" + dateto.ToString("yyyy-MM-dd") + "','"+byinventerid+"','" + byItemgroup + "','"+bycustomerclass+"','"+bysalemmployee+"','"+bysoucre+"','"+bycategory+"','"+bywarhouse+"','"+bylocation+"','"+bycustomerid+"'");
             List<SaleReportbySerial> salereportbyserialList = new List<SaleReportbySerial>();
             foreach (DataRow a in dt.Rows)
             {
