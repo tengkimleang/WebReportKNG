@@ -55,32 +55,142 @@ namespace B1Site.Service
         #region Binding data MasterViwe
         public Task<List<CategoryMaster>> GetCategeroyMastersAsync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("SELECT '' AS Categoryall UNION ALL SELECT Distinct ItmsGrpNam AS Categoryall FROM OITB WHERE ItmsGrpNam IS NOT NULL ORDER BY Categoryall");
+            List<CategoryMaster> categoryMasters = new List<CategoryMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                try
+                {
+                    categoryMasters.Add(new CategoryMaster
+                    {
+                        Category = a[0].ToString()
+                    });
+                }catch(Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+            }
+            return Task.FromResult(categoryMasters);
         }
 
         public Task<List<ItemsNameMaster>> GetItemsNameMasterAsync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("SELECT Distinct Isnull(ItemName,'') AS ItemName1 from OITM Where SellItem<>'N' and InvntItem<>'N'");
+            List<ItemsNameMaster> itemsNameMasters = new List<ItemsNameMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                try
+                {
+                    itemsNameMasters.Add(new ItemsNameMaster
+                    {
+                        ItemsName = a[0].ToString()
+                    });
+                }
+                catch(Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+                
+            }
+            return Task.FromResult(itemsNameMasters);
         }
 
         public Task<List<ReceipNumberMaster>> GetReceiptNumberMasterAsync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("Select DocNum As Receipt From OPOR Order By DocNum");
+            List<ReceipNumberMaster> receipNumberMasters = new List<ReceipNumberMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                try
+                {
+                    receipNumberMasters.Add(new ReceipNumberMaster
+                    {
+                        ReceipNumber = a[0].ToString()
+                    });
+                }
+                catch (Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+                
+            }
+            return Task.FromResult(receipNumberMasters);
         }
 
         public Task<List<SubCategoryMaster>> GetSubCategoryMasterAsync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("SELECT '' AS SubAll UNION ALL SELECT  Distinct ISNULL(U_Category,'Item No SubCategory') FROM OITM ORDER BY SubAll");
+            List<SubCategoryMaster> subCategoryMasters = new List<SubCategoryMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                try
+                {
+                    subCategoryMasters.Add(new SubCategoryMaster
+                    {
+                        SubCategory = a[0].ToString()
+                    });
+                }
+                catch (Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+               
+            }
+            return Task.FromResult(subCategoryMasters);
         }
 
         public Task<List<VenderNameMaster>> GetVenderNameMasterAsync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("SELECT CardCode,CardCode + ' : ' + CardName AS Vendor FROM OCRD ORDER BY CardCode");
+            List<VenderNameMaster> venderNameMasters = new List<VenderNameMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                try
+                {
+                    venderNameMasters.Add(new VenderNameMaster
+                    {
+                        Vendercode = a[0].ToString(),
+                        Vendername = a[1].ToString()
+
+                    });
+                }
+                catch (Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+               
+            }
+            return Task.FromResult(venderNameMasters);
         }
 
         public Task<List<WarehouseMaster>> GetWarehouseMasterAsync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("SELECT Whscode,Whscode+' : '+ WhsName As Whs FROM OWHS");
+            List<WarehouseMaster> warehouseMasters = new List<WarehouseMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                try
+                {
+                    warehouseMasters.Add(new WarehouseMaster
+                    {
+                        WarehouseCode = a[0].ToString(),
+                        WarehouseName = a[1].ToString()
+
+                    });
+                }
+                catch (Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+                
+            }
+            return Task.FromResult(warehouseMasters);
         }
         #endregion
     }
