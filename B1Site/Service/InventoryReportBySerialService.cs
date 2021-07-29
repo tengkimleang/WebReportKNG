@@ -95,22 +95,29 @@ namespace B1Site.Service
             List<InventoryReportBySerial> inventoryReportBySerials = new List<InventoryReportBySerial>();
             foreach (DataRow a in dt.Rows)
             {
-                inventoryReportBySerials.Add(new InventoryReportBySerial
+                try
                 {
-                    ItemCode = a[0].ToString(),
-                    VenderCode = a[1].ToString(),
-                    ItemGroup = a[2].ToString(),
-                    Category = a[3].ToString(),
-                    SubCategory = a[4].ToString(),
-                    Description = a[5].ToString(),
-                    Year = a[6].ToString(),
-                    Model = a[7].ToString(),
-                    SerailNumber = a[8].ToString(),
-                    Warehouse = a[9].ToString(),
-                    BinLocation = a[10].ToString(),
-                    Shelf = "",
-                    Qty = Convert.ToInt32(a[11].ToString()),
-                });
+                    inventoryReportBySerials.Add(new InventoryReportBySerial
+                    {
+                        ItemCode = a[0].ToString(),
+                        VenderCode = a[1].ToString(),
+                        ItemGroup = a[2].ToString(),
+                        Category = a[3].ToString(),
+                        SubCategory = a[4].ToString(),
+                        Description = a[5].ToString(),
+                        Year = a[6].ToString(),
+                        Model = a[7].ToString(),
+                        SerailNumber = a[8].ToString(),
+                        Warehouse = a[9].ToString(),
+                        BinLocation = a[10].ToString(),
+                        Shelf = "",
+                        Qty = Convert.ToInt32(a[12].ToString()),
+                    });
+                }catch(Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+                
             }
             return Task.FromResult(Utf8Json.JsonSerializer.ToJsonString(inventoryReportBySerials));
         }
