@@ -100,6 +100,7 @@ namespace B1Site
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
             Connection.ConnectionString.constr = Configuration.GetSection("ConnectionStrings").Value.ToString();
+            Connection.ConnectionString.constrWeb = Configuration.GetSection("ConnectionStringsDbWeb").Value.ToString();
         }
     }
 }
