@@ -1,7 +1,7 @@
 ﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
-@model B1Site.Models.PSIReport.MasterViewPSIReport;
+@model B1Site.Models.InventoryReportBySerial.MasterViewInventoryReportBySerial
 @{
-    ViewData["Title"] = "PSI Report";
+    ViewData["Title"] = "Inventory Report By Serial";
 }
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -90,6 +90,7 @@
         margin-bottom: 0px;
         line-height: 20px;
     }
+
     .options {
         padding: 20px;
         margin-top: 20px;
@@ -116,7 +117,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["PSI Report"]</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Inventory Report By Serial"]</a></li>
                     <li class="breadcrumb-item active">@localizer["Reporting"]</li>
                 </ol>
             </div><!-- /.col -->
@@ -126,7 +127,7 @@
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
         <div class="card-header">
-            @localizer["PSI Report"]
+            @localizer["Inventory Report By Serial"]
         </div>
         <div class="card-body">
             <!--Filter-->
@@ -140,11 +141,11 @@
                     <input type="date" class="input_datefrom" id="dateto">
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Category"]</label>
-                    <select type="text" class="input_branch" id="byCategory">
-                        <option value="0">All Category</option>
+                    <label class="lable_branch">@localizer["By Main Group"]</label>
+                    <select type="text" class="input_branch" id="byMainGroup">
+                        <option value="0">All Main Group</option>
                         @{
-                            foreach (var a in Model.CategoryMasters)
+                            foreach (var a in Model.MainGroupMasters)
                             {
                                 <option value="@a.Name">@a.Name</option>
                             }
@@ -152,13 +153,13 @@
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Item Group"]</label>
-                    <select type="text" class="input_branch" id="byItemGroup">
-                        <option value="0">All Item Group</option>
+                    <label class="lable_branch">@localizer["By Model"]</label>
+                    <select type="text" class="input_branch" id="byModel">
+                        <option value="0">All Model</option>
                         @{
-                            foreach (var a in Model.ItemGroupMasters)
+                            foreach (var a in Model.ModelMasters)
                             {
-                                <option value="@a.Code">@a.Name</option>
+                                <option value="@a.Name">@a.Name</option>
                             }
                         }
                     </select>
@@ -169,23 +170,35 @@
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Source"]</label>
-                    <select type="text" class="input_branch" id="bySource">
-                        <option value="0">All Source</option>
+                    <label class="lable_branch">@localizer["By Vendor Code"]</label>
+                    <select type="text" class="input_branch" id="byVendorCode">
+                        <option value="0">All Vendor Code</option>
                         @{
-                            foreach (var a in Model.SourceMasters)
+                            foreach (var a in Model.VendorCodeMasters)
                             {
                                 <option value="@a.Name">@a.Name</option>
                             }
                         }
                     </select>
                 </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Unit"]</label>
-                    <select type="text" class="input_branch" id="byUnit">
-                        <option value="0">All Unit</option>
+                @*<div class="col-md-2">
+                    <label class="lable_branch">@localizer["By Region"]</label>
+                    <select type="text" class="input_branch" id="byRegion">
+                        <option value="0">All Region</option>
                         @{
-                            foreach (var a in Model.UnitOfMeasureMasters)
+                            foreach (var a in Model.RegionMasters)
+                            {
+                                <option value="@a.Name">@a.Name</option>
+                            }
+                        }
+                    </select>
+                </div>*@
+                <div class="col-md-2">
+                    <label class="lable_branch">@localizer["By Warehose ID."]</label>
+                    <select type="text" class="input_branch" id="byWarehoseID">
+                        <option value="0">All Warehose ID.</option>
+                        @{
+                            foreach (var a in Model.WarehouseIDMasters)
                             {
                                 <option value="@a.Name">@a.Name</option>
                             }
@@ -203,12 +216,12 @@
                     <div class="col-12">
                         <div class="demo-container">
                             <div id="gridContainer"></div>
-                            <div class="options">
+                            @*<div class="options">
                                 <div class="caption">Options</div>
                                 <div class="option">
                                     <div id="autoExpand"></div>
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -236,11 +249,11 @@
         if (dateto == '' || dateto == null) {
             dateto = today;
         }
-        var byCategory = ifToDo($('#byCategory'));
-        var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySource = ifToDo($('#bySource'));
-        var byUnit = ifToDo($('#byUnit'));
-        loadReport(datefrom, dateto, byItemGroup, byCategory, byUnit, bySource);
+        var byMainGroup = ifToDo($('#byMainGroup'));
+        var byModel = ifToDo($('#byModel'));
+        var byVendorCode = ifToDo($('#byVendorCode'));
+        var byWarehoseID = ifToDo($('#byWarehoseID'));
+        loadReport(datefrom, dateto, byMainGroup, byModel, byVendorCode, byWarehoseID);
     });
     function filterData() {
         var datefrom = $('#datefrom').val();
@@ -251,11 +264,11 @@
         if (dateto == '' || dateto == null) {
             dateto = today;
         }
-        var byCategory = ifToDo($('#byCategory'));
-        var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySource = ifToDo($('#bySource'));
-        var byUnit = ifToDo($('#byUnit'));
-        loadReport(datefrom, dateto, byItemGroup, byCategory, byUnit, bySource);
+        var byMainGroup = ifToDo($('#byMainGroup'));
+        var byModel = ifToDo($('#byModel'));
+        var byVendorCode = ifToDo($('#byVendorCode'));
+        var byWarehoseID = ifToDo($('#byWarehoseID'));
+        loadReport(datefrom, dateto, byMainGroup, byModel, byVendorCode, byWarehoseID);
     }
     function ifToDo(condition) {
         if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
@@ -265,15 +278,21 @@
         }
     }
     var dataGrid = $("#gridContainer").dxDataGrid().dxDataGrid("instance");
-    $("#autoExpand").dxCheckBox({
-        value: true,
-        text: "Expand All Groups",
-        onValueChanged: function (data) {
-            console.log("hello")
-            dataGrid.option("grouping.autoExpandAll", data.value);
-        }
-    });
-    function loadReport(datefrom, dateto, byItemGroup, byCategory, byUnit, bySource) {
+    //$("#autoExpand").dxCheckBox({
+    //    value: true,
+    //    text: "Expand All Groups",
+    //    onValueChanged: function (data) {
+    //        console.log("hello")
+    //        dataGrid.option("grouping.autoExpandAll", data.value);
+    //    }
+    //});
+    function loadReport(datefrom, dateto, itemgroup, model, vendorcode, warehouse) {
+        console.log(datefrom);
+        console.log(dateto);
+        console.log(itemgroup);
+        console.log(model);
+        console.log(vendorcode);
+        console.log(warehouse);
         var loadPanel = $(".loadpanel").dxLoadPanel({
             shadingColor: "rgba(0,0,0,0.4)",
             position: { of: "#gridContainer" },
@@ -284,15 +303,15 @@
             closeOnOutsideClick: false,
         }).dxLoadPanel("instance");
         $.ajax({
-            url: '@Url.Action("GetPSIReport", "PSIReport")',
+            url: '@Url.Action("GetInventoryReportBySerials", "InventoryReportBySerial")',
             type: "GET",
             data: {
                 datefrom: datefrom,
                 dateto: dateto,
-                byItemGroup: byItemGroup,
-                byCategory: byCategory,
-                byUnit: byUnit,
-                bySource: bySource,
+                itemgroup: itemgroup,
+                model: model,
+                vendorcode: vendorcode,
+                warehouse: warehouse,
             },
             dataType: "JSON",
             beforeSend: function () {
@@ -401,10 +420,10 @@
                     summary: {
                         totalItems: [
                             {
-                                column: "ItemCode",
+                                column: "Qty",
                                 summaryType: "count"
                             }, {
-                                column: "EndingStock",
+                                column: "Qty",
                                 displayFormat: "{0}Qty",
                                 summaryType: "sum",
                                 format: {
@@ -416,47 +435,61 @@
                     },
                     columns: [
                         {
-                            dataField: "Source",
-                            caption: "Source",
-                            groupIndex: 0
+                            dataField: "ItemCode",
+                            caption: "Item Code"
+                        },
+                        {
+                            dataField: "VenderCode",
+                            caption: "Vendor Code"
+                        },
+                        {
+                            dataField: "ItemGroup",
+                            caption: "Item Group"
                         },
                         {
                             dataField: "Category",
-                            caption: "Category",
-                            groupIndex: 1
+                            caption: "Category"
                         },
                         {
-                            dataField: "ItemName",
+                            dataField: "SubCategory",
+                            caption: "Sub-Category"
+                        },
+                        {
+                            dataField: "Description",
                             caption: "Description"
                         },
                         {
-                            dataField: "OpenningStock",
-                            caption: "Beginning Stock"
+                            dataField: "Year",
+                            caption: "Year"
                         },
                         {
-                            dataField: "InQty",
-                            caption: "Purchase"
+                            dataField: "Model",
+                            caption: "Model"
                         },
                         {
-                            dataField: "OutQty",
-                            caption: "Sales"
+                            dataField: "SerailNumber",
+                            caption: "Serial Number"
                         },
                         {
-                            dataField: "EndingStock",
-                            caption: "End Stock"
+                            dataField: "Warehouse",
+                            caption: "Warehouse"
                         },
-                        //{
-                        //    dataField: "Source",
-                        //    groupIndex: 0
-                        //}
-                        //, {
-                        //    dataField: "Category",
-                        //    groupIndex: 1
-                        //}
+                        {
+                            dataField: "Shelf",
+                            caption: "Shelf"
+                        },
+                        {
+                            dataField: "BinLocation",
+                            caption: "Bin Location"
+                        },
+                        {
+                            dataField: "Qty",
+                            caption: "Q'ty"
+                        },
                     ],
                 });
                 //btn_filter.removeClass("fa-spinner fa-spin");
             }
         });
     }
-    </script>
+</script>

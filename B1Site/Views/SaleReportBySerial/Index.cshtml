@@ -135,31 +135,31 @@
                         }
                     </select>
                 </div>
-                @*<div class="col-md-2">
+                <div class="col-md-2">
                     <label class="lable_branch">@localizer["By SaleEmployee"]</label>
                     <select type="text" class="input_branch" id="bySaleEmployee">
                         <option value="0">All Saleemployee</option>
                         @{
-                            foreach (var a in Model.SaleemployeeMasterSerialNumber)
+                            foreach (var a in Model.saleemployeeMasters)
                             {
-                                <option value="@a.Saleemployee">@a.Saleemployee</option>
+                                <option value="@a.saleemployeecode">@a.saleemployeeName</option>
                             }
                         }
                     </select>
-                </div>*@
+                </div>
                 <div class="col-md-4 ">
                     <button class="btn btn-xs btn-kernel" id="btnRunReport1">@localizer["RUN"]</button>
                 </div>
             </div>
-            @*<div class="row">
+            <div class="row">
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Category"]</label>
                     <select type="text" class="input_branch" id="byCategory">
                         <option value="0">All Category</option>
                         @{
-                            foreach (var a in Model.CategoryMaterbySerialNumbers)
+                            foreach (var a in Model.categoryMasters)
                             {
-                                <option value="@a.Category">@a.Category</option>
+                                <option value="@a.CategoryName">@a.CategoryName</option>
                             }
                         }
                     </select>
@@ -169,9 +169,9 @@
                     <select type="text" class="input_branch" id="byCustomerClass">
                         <option value="0">All CustomerClass</option>
                         @{
-                            foreach (var a in Model.CustomerGroupMasterbySerialNumbers)
+                            foreach (var a in Model.customerclassMasters)
                             {
-                                <option value="@a.CustomerGroup">@a.CustomerGroup</option>
+                                <option value="@a.Customerclasscode">@a.Customerclassname</option>
                             }
                         }
                     </select>
@@ -181,9 +181,9 @@
                     <select type="text" class="input_branch" id="byLocation">
                         <option value="0">All Location</option>
                         @{
-                            foreach (var a in Model.LocationbyMasterSerailNumbers)
+                            foreach (var a in Model.locationMasters )
                             {
-                                <option value="@a.Location">@a.Location</option>
+                                <option value="@a.Locationcode">@a.LocationName</option>
                             }
                         }
                     </select>
@@ -193,9 +193,9 @@
                     <select type="text" class="input_branch" id="byInventoryID">
                         <option value="0">All InventeryID</option>
                         @{
-                            foreach (var a in Model.InveteryIDMasterbySerialNumbers)
+                            foreach (var a in Model.inventeryidMasters)
                             {
-                                <option value="@a.Inventery">@a.Inventery</option>
+                                <option value="@a.Inventeryidcode">@a.Inventeryidname</option>
                             }
                         }
                     </select>
@@ -207,9 +207,9 @@
                     <select type="text" class="input_branch" id="byCustomerID">
                         <option value="0">All CustomerID</option>
                         @{
-                            foreach (var a in Model.customerIDMasterSerialbyNumbers)
+                            foreach (var a in Model.customeridMasters)
                             {
-                                <option value="@a.CustomerID">@a.CustomerID</option>
+                                <option value="@a.customeridcode">@a.customername</option>
                             }
                         }
                     </select>
@@ -219,9 +219,9 @@
                     <select type="text" class="input_branch" id="bySource">
                         <option value="0">All Branch</option>
                         @{
-                            foreach (var a in Model.sourceMasterbyserailNumbers)
+                            foreach (var a in Model.sourceMasters)
                             {
-                                <option value="@a.Soucre">@a.Soucre</option>
+                                <option value="@a.sourcename">@a.sourcename</option>
                             }
                         }
                     </select>
@@ -231,14 +231,14 @@
                     <select type="text" class="input_branch" id="byWarehouse">
                         <option value="0">All Warehouse</option>
                         @{
-                            foreach (var a in Model.warehouseMasterbySerailNumbers)
+                            foreach (var a in Model.bywarehouseMasters)
                             {
-                                <option value="@a.Warehouse">@a.Warehouse</option>
+                                <option value="@a.warehousecode">@a.warehousename</option>
                             }
                         }
                     </select>
                 </div>
-            </div>*@
+            </div>
             <!--End Filter-->
             <!--Bind Data to Grid-->
             <div class="container mt-3">
@@ -256,25 +256,41 @@
 </div>
 
 <script>
+ 
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
-
     today = mm + '/' + dd + '/' + yyyy;
     loadReport(today, today);
     $('#btnRunReport1').click(function () {
         var datefrom = $('#datefrom1').val();
         var dateto = $('#dateto1').val();
         var itemgroup = $('#byItemGroup').val();
-       // alert(itemgroup);
-        loadReport(datefrom, dateto,itemgroup);
+        var salemployee = $('#bySaleEmployee').val();
+        var Category = $('#byCategory').val();
+        var Customerclass = $('#byCustomerClass').val();
+        var Location = $('#byLocation').val();
+        var Inventeryid = $('#byInventoryID').val();
+        var Customerid = $('#byCustomerID').val();
+        var Source = $('#bySource').val();
+        var Warehouse = $('#byWarehouse').val();
+        //alert(Warehouse);
+        loadReport(datefrom, dateto, itemgroup, salemployee, Category, Customerclass, Location,Inventeryid,Customerid,Source,Warehouse);
     });
     filterData();
     function filterData() {
         var datefrom = $('#datefrom1').val();
         var dateto = $('#dateto1').val();
         var itemgroup = $('#byItemGroup').val();
+        var salemployee = $('#bySaleEmployee').val();
+        var Category = $('#byCategory').val();
+        var Customerclass = $('#byCustomerClass').val();
+        var Location = $('#byLocation').val();
+        var Inventeryid = $('#byInventoryID').val();
+        var Customerid = $('#byCustomerID').val();
+        var Source = $('#bySource').val();
+        var Warehouse = $('#byWarehouse').val();
         if (datefrom == '' || datefrom==null) {
             datefrom = today;
         }
@@ -284,12 +300,37 @@
         if (itemgroup == '' || itemgroup == undefined) {
             itemgroup = '';
         }
+        if (salemployee == '' || salemployee == undefined) {
+            salemployee = '';
+        }
+        if (Category == '' || Category == undefined) {
+            Category = '';
+        }
+        if (Customerclass == '' || Customerclass == undefined) {
+            Customerclass = '';
+        }
+        if (Location == '' || Location == undefined) {
+            Location = '';
+        }
+        if (Inventeryid == '' || Inventeryid == undefined) {
+            Inventeryid = '';
+        }
+        if (Customerid == '' || Customerid == undefined) {
+            Customerid = '';
+        }
+        if (Source == '' || Source == undefined) {
+            Source = '';
+        }
+        if (Warehouse == '' || Warehouse == undefined) {
+            Warehouse = '';
+        }
+        loadReport(datefrom, dateto, itemgroup, salemployee,Category,Customerclass,Location,Inventeryid,Customerid,Source,Warehouse);
     }
-    function loadReport(datefrom, dateto,itemgroup) {
+    function loadReport(datefrom, dateto, itemgroup, salemployee,Category,Customerclass,Location,Inventeryid,Customerid,Source,Warehouse) {
         $.ajax({
             url: '@Url.Action("GetSaleserialreport", "SaleReportBySerial")',
             type: "GET",
-            data: { datefrom: datefrom, dateto: dateto,byItemgroup:itemgroup},
+            data: { datefrom: datefrom, dateto: dateto, byItemgroup: itemgroup, saleemployee: salemployee, category: Category, customerclass: Customerclass, location: Location, Inveteryid: Inventeryid, customerid: Customerid, source: Source, warhoue: Warehouse},
             dataType: "JSON",
             beforeSend: function () {
                 //btn_filter.addClass("fa-spinner fa-spin");

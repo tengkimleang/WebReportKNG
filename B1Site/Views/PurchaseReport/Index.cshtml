@@ -1,25 +1,23 @@
 ﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
-@model B1Site.Models.PSIReport.MasterViewPSIReport;
+@model B1Site.Models.PurchaseReport.MasterviwePurchaeseReport;
 @{
-    ViewData["Title"] = "PSI Report";
+    ViewData["Title"] = "Home Page";
 }
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <!--Dev-->
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/event.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/supplemental.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/unresolved.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/event.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/supplemental.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/unresolved.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.3/css/dx.common.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.3/css/dx.light.css" />
     <script src="https://cdn3.devexpress.com/jslib/21.1.3/js/dx.all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.14/jspdf.plugin.autotable.min.js"></script>
     <!--End Dev-->
 </head>
 <style>
@@ -90,20 +88,6 @@
         margin-bottom: 0px;
         line-height: 20px;
     }
-    .options {
-        padding: 20px;
-        margin-top: 20px;
-        background-color: rgba(191, 191, 191, 0.15);
-    }
-
-    .caption {
-        font-size: 18px;
-        font-weight: 500;
-    }
-
-    .option {
-        margin-top: 10px;
-    }
 </style>
 <div class="content-header" style="padding-bottom:0px;">
     <div class="widget-loadscreen" style="display: none;">
@@ -116,7 +100,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["PSI Report"]</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["PruchaseReport"]</a></li>
                     <li class="breadcrumb-item active">@localizer["Reporting"]</li>
                 </ol>
             </div><!-- /.col -->
@@ -126,7 +110,7 @@
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
         <div class="card-header">
-            @localizer["PSI Report"]
+            @localizer["PurchaseReport"]
         </div>
         <div class="card-body">
             <!--Filter-->
@@ -140,25 +124,25 @@
                     <input type="date" class="input_datefrom" id="dateto">
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Category"]</label>
-                    <select type="text" class="input_branch" id="byCategory">
-                        <option value="0">All Category</option>
+                    <label class="lable_branch">@localizer["by SubCategory"]</label>
+                    <select type="text" class="input_branch" id="bysubcategory">
+                        <option value="0">All SubCategory</option>
                         @{
-                            foreach (var a in Model.CategoryMasters)
+                            foreach (var a in Model.subCategoryMasters)
                             {
-                                <option value="@a.Name">@a.Name</option>
+                                <option value="@a.SubCategory">@a.SubCategory</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Item Group"]</label>
-                    <select type="text" class="input_branch" id="byItemGroup">
-                        <option value="0">All Item Group</option>
+                    <label class="lable_branch">@localizer["By Category"]</label>
+                    <select type="text" class="input_branch" id="bySaleEmployee">
+                        <option value="0">All Category</option>
                         @{
-                            foreach (var a in Model.ItemGroupMasters)
+                            foreach (var a in Model.categoryMasters)
                             {
-                                <option value="@a.Code">@a.Name</option>
+                                <option value="@a.Category">@a.Category</option>
                             }
                         }
                     </select>
@@ -169,30 +153,92 @@
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Source"]</label>
-                    <select type="text" class="input_branch" id="bySource">
-                        <option value="0">All Source</option>
+                    <label class="lable_branch">@localizer["By Vendername"]</label>
+                    <select type="text" class="input_branch" id="byCategory">
+                        <option value="0">All venderName</option>
                         @{
-                            foreach (var a in Model.SourceMasters)
+                            foreach (var a in Model.venderNameMasters)
                             {
-                                <option value="@a.Name">@a.Name</option>
+                                <option value="@a.Vendercode">@a.Vendername</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Unit"]</label>
-                    <select type="text" class="input_branch" id="byUnit">
-                        <option value="0">All Unit</option>
+                    <label class="lable_branch">@localizer["By Itemsname"]</label>
+                    <select type="text" class="input_branch" id="byCustomerClass">
+                        <option value="0">All ItemsName</option>
                         @{
-                            foreach (var a in Model.UnitOfMeasureMasters)
+                            foreach (var a in Model.itemsNameMasters)
                             {
-                                <option value="@a.Name">@a.Name</option>
+                                <option value="@a.ItemsName">@a.ItemsName</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="lable_branch">@localizer["By RecieptNumber"]</label>
+                    <select type="text" class="input_branch" id="byLocation">
+                        <option value="0">All RecieptNumber</option>
+                        @{
+                            foreach (var a in Model.receipNumberMasters)
+                            {
+                                <option value="@a.ReceipNumber">@a.ReceipNumber</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="lable_branch">@localizer["By Warehouse"]</label>
+                    <select type="text" class="input_branch" id="byInventoryID">
+                        <option value="0">All Warehouse</option>
+                        @{
+                            foreach (var a in Model.warehouseMasters)
+                            {
+                                <option value="@a.WarehouseCode">@a.WarehouseName</option>
                             }
                         }
                     </select>
                 </div>
             </div>
+            <!--<div class="row">
+                <div class="col-md-2">
+                    <label class="lable_branch">@localizer["By CustomerID"]</label>
+                    <select type="text" class="input_branch" id="byCustomerID">
+                        <option value="0">All CustomerID</option>-->
+                        @*@{
+                            foreach (var a in Model.CusomterIDMasters)
+                            {
+                                <option value="@a.Code">@a.Name</option>
+                            }
+                        }*@
+                    <!--</select>
+                </div>
+                <div class="col-md-2">
+                    <label class="lable_branch">@localizer["By Source"]</label>
+                    <select type="text" class="input_branch" id="bySource">
+                        <option value="0">All Source</option>-->
+                        @*@{
+                            foreach (var a in Model.SourceMasters)
+                            {
+                                <option value="@a.Source">@a.Source</option>
+                            }
+                        }*@
+                    <!--</select>
+                </div>
+                <div class="col-md-2">
+                    <label class="lable_branch">@localizer["By Warehouse"]</label>
+                    <select type="text" class="input_branch" id="byWarehouse">
+                        <option value="0">All Warehouse</option>-->
+                        @*@{
+                            foreach (var a in Model.WarehouseMasters)
+                            {
+                                <option value="@a.Code">@a.Name</option>
+                            }
+                        }*@
+                    <!--</select>
+                </div>
+            </div>-->
             <!--End Filter-->
             <!--Load Panel-->
             <div class="loadpanel"></div>
@@ -203,12 +249,6 @@
                     <div class="col-12">
                         <div class="demo-container">
                             <div id="gridContainer"></div>
-                            <div class="options">
-                                <div class="caption">Options</div>
-                                <div class="option">
-                                    <div id="autoExpand"></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -219,28 +259,34 @@
 </div>
 
 <script>
-    window.jsPDF = window.jspdf.jsPDF;
-    applyPlugin(window.jsPDF);
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
-    loadReport(today, today,'','','','');
+    loadReport(today, today);
     $('#btnRunReport').click(function () {
         var datefrom = $('#datefrom').val();
         var dateto = $('#dateto').val();
+       
         if (datefrom == '' || datefrom == null) {
             datefrom = today;
         }
         if (dateto == '' || dateto == null) {
             dateto = today;
         }
-        var byCategory = ifToDo($('#byCategory'));
-        var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySource = ifToDo($('#bySource'));
-        var byUnit = ifToDo($('#byUnit'));
-        loadReport(datefrom, dateto, byItemGroup, byCategory, byUnit, bySource);
+        var subcategory = $('#bysubcategory').val();
+        alert(subcategory);
+        //var byItemGroup = ifToDo($('#byItemGroup'));
+        //var bySaleEmployee = ifToDo($('#bySaleEmployee'));
+        //var byCategory = ifToDo($('#byCategory'));
+        //var byCustomerClass = ifToDo($('#byCustomerClass'));
+        //var byLocation = ifToDo($('#byLocation'));
+        //var byInventoryID = ifToDo($('#byInventoryID'));
+        //var byCustomerID = ifToDo($('#byCustomerID'));
+        //var bySource = ifToDo($('#bySource'));
+        //var byWarehouse = ifToDo($('#byWarehouse'));
+        loadReport(datefrom, dateto,subcategory);
     });
     function filterData() {
         var datefrom = $('#datefrom').val();
@@ -251,11 +297,17 @@
         if (dateto == '' || dateto == null) {
             dateto = today;
         }
-        var byCategory = ifToDo($('#byCategory'));
-        var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySource = ifToDo($('#bySource'));
-        var byUnit = ifToDo($('#byUnit'));
-        loadReport(datefrom, dateto, byItemGroup, byCategory, byUnit, bySource);
+        var subcategory = $('#bysubcategory').val();
+        //var byItemGroup = ifToDo($('#byItemGroup'));
+        //var bySaleEmployee = ifToDo($('#bySaleEmployee'));
+        //var byCategory = ifToDo($('#byCategory'));
+        //var byCustomerClass = ifToDo($('#byCustomerClass'));
+        //var byLocation = ifToDo($('#byLocation'));
+        //var byInventoryID = ifToDo($('#byInventoryID'));
+        //var byCustomerID = ifToDo($('#byCustomerID'));
+        //var bySource = ifToDo($('#bySource'));
+        //var byWarehouse = ifToDo($('#byWarehouse'));
+        loadReport(datefrom, dateto,subcategory);
     }
     function ifToDo(condition) {
         if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
@@ -264,16 +316,7 @@
             return condition.val();
         }
     }
-    var dataGrid = $("#gridContainer").dxDataGrid().dxDataGrid("instance");
-    $("#autoExpand").dxCheckBox({
-        value: true,
-        text: "Expand All Groups",
-        onValueChanged: function (data) {
-            console.log("hello")
-            dataGrid.option("grouping.autoExpandAll", data.value);
-        }
-    });
-    function loadReport(datefrom, dateto, byItemGroup, byCategory, byUnit, bySource) {
+    function loadReport(datefrom, dateto,subcategory) {
         var loadPanel = $(".loadpanel").dxLoadPanel({
             shadingColor: "rgba(0,0,0,0.4)",
             position: { of: "#gridContainer" },
@@ -284,15 +327,11 @@
             closeOnOutsideClick: false,
         }).dxLoadPanel("instance");
         $.ajax({
-            url: '@Url.Action("GetPSIReport", "PSIReport")',
+            url: '@Url.Action("GetPruchaseReports", "PurchaseReport")',
             type: "GET",
             data: {
                 datefrom: datefrom,
-                dateto: dateto,
-                byItemGroup: byItemGroup,
-                byCategory: byCategory,
-                byUnit: byUnit,
-                bySource: bySource,
+                dateto: dateto
             },
             dataType: "JSON",
             beforeSend: function () {
@@ -300,7 +339,6 @@
             },
             success: function (data) {
                 loadPanel.hide();
-                console.log(data);
                 $("#gridContainer").dxDataGrid({
                     dataSource: data,
                     loadPanel: {
@@ -334,20 +372,12 @@
                         allowedPageSizes: [5, 10, 20, 50, 100],
                         showInfo: true
                     },
-                    grouping: {
-                        contextMenuEnabled: true,
-                        autoExpandAll: true,
-                    },
                     groupPanel: {
-                        visible: true,
-                        allowColumnDragging: false,
-                        expandMode: "rowClick",
-                        autoExpandAll: true,
-                        allowCollapsing: false,
+                        visible: false
                     },
                     onExporting: function (e) {
                         var workbook = new ExcelJS.Workbook();
-                        var worksheet = workbook.addWorksheet('PSI Report');
+                        var worksheet = workbook.addWorksheet('SaleReport');
 
                         DevExpress.excelExporter.exportDataGrid({
                             component: e.component,
@@ -355,7 +385,7 @@
                             autoFilterEnabled: true
                         }).then(function () {
                             workbook.xlsx.writeBuffer().then(function (buffer) {
-                                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'PSIReport.xlsx');
+                                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'SaleDailyReport.xlsx');
                             });
                         });
                         e.cancel = true;
@@ -385,13 +415,7 @@
                                 options: {
                                     icon: "fas fa-file-pdf",
                                     onClick: function () {
-                                        const doc = new jsPDF();
-                                        DevExpress.pdfExporter.exportDataGrid({
-                                            jsPDFDocument: doc,
-                                            component: dataGrid
-                                        }).then(function () {
-                                            doc.save('PSIReport_' + today+'.pdf');
-                                        });
+                                        printPdf();
                                     }
                                 },
                                 title: 'Export to PDF'
@@ -401,11 +425,11 @@
                     summary: {
                         totalItems: [
                             {
-                                column: "ItemCode",
+                                column: "CardCode",
                                 summaryType: "count"
                             }, {
-                                column: "EndingStock",
-                                displayFormat: "{0}Qty",
+                                column: "Price",
+                                displayFormat: "{0}$",
                                 summaryType: "sum",
                                 format: {
                                     type: "decimal",
@@ -416,47 +440,102 @@
                     },
                     columns: [
                         {
-                            dataField: "Source",
-                            caption: "Source",
-                            groupIndex: 0
+                            dataField: "PoNum",
+                            caption: "PoNum"
                         },
                         {
-                            dataField: "Category",
-                            caption: "Category",
-                            groupIndex: 1
+                            dataField: "DocNum",
+                            caption: "DocNum"
                         },
                         {
-                            dataField: "ItemName",
-                            caption: "Description"
+                            dataField: "GoodsReceiptDate",
+                            caption: "GoodsReceiptDate"
                         },
                         {
-                            dataField: "OpenningStock",
-                            caption: "Beginning Stock"
+                            dataField: "ItemGroup",
+                            caption: "ItemGroup"
                         },
                         {
-                            dataField: "InQty",
-                            caption: "Purchase"
+                            dataField: "ItemCode",
+                            caption: "ItemCode"
                         },
                         {
-                            dataField: "OutQty",
-                            caption: "Sales"
-                        },
-                        {
-                            dataField: "EndingStock",
-                            caption: "End Stock"
+                            dataField: "U_vendercode1",
+                            caption: "U_vendercode1"
                         },
                         //{
-                        //    dataField: "Source",
-                        //    groupIndex: 0
-                        //}
-                        //, {
-                        //    dataField: "Category",
-                        //    groupIndex: 1
-                        //}
+                        //    dataField: "InvoiceDate",
+                        //    caption:"InvoiceDate",
+                        //    alignment: "right",
+                        //    dataType: "date",
+                        //    width: 120,
+                        //    calculateFilterExpression: function (value, selectedFilterOperations, target) {
+                        //        if (target === "headerFilter" && value === "weekends") {
+                        //            return [[getOrderDay, "=", 0], "or", [getOrderDay, "=", 6]];
+                        //        }
+                        //        return this.defaultCalculateFilterExpression.apply(this, arguments);
+                        //    },
+                        //    headerFilter: {
+                        //        dataSource: function (data) {
+                        //            data.dataSource.postProcess = function (results) {
+                        //                results.push({
+                        //                    text: "Weekends",
+                        //                    value: "weekends"
+                        //                });
+                        //                return results;
+                        //            };
+                        //        }
+                        //    }
+                        //},
+                        {
+                            dataField: "ItemsName",
+                            caption: "ItemsName"
+                        },
+                        {
+                            dataField: "CustomerRefNo",
+                            caption: "CustomerRefNo"
+                        },
+                        {
+                            dataField: "Quality",
+                            caption: "Quality"
+                        },
+                        {
+                            dataField: "TotalItemsWidthCost",
+                            caption: "TotalItemsWidthCost"
+                        },
+                        {
+                            dataField: "FreightInsurance",
+                            caption: "FreightInsurance",
+                            format: { minimumSignificantDigits: 3, }
+                        },
+                        {
+                            dataField: "Custom",
+                            caption: "Custom"
+                        },
+                        {
+                            dataField: "ClearanceTransportaion",
+                            caption: "ClearanceTransportaion"
+                        },
+                        {
+                            dataField: "other",
+                            caption: "other"
+                        },
+                        {
+                            dataField: "TotalCost",
+                            caption: "TotalCost"
+                        },
+                        {
+                            dataField: "UnitCost",
+                            caption: "UnitCost"
+                        },
+                        {
+                            dataField: "WSprice",
+                            caption: "WSprice"
+                        },
                     ],
                 });
                 //btn_filter.removeClass("fa-spinner fa-spin");
             }
         });
     }
-    </script>
+</script>
