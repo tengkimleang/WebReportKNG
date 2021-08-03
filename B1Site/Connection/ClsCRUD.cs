@@ -1,7 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,7 +9,6 @@ namespace B1Site.Connection
 {
     public class ClsCRUD
     {
-
         public DataTable Getdata(String sql)
         {
             DataTable tb = new DataTable();
@@ -27,6 +24,7 @@ namespace B1Site.Connection
             return tb;
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         internal object Getdata(object p1, object p2)
         {
@@ -38,10 +36,12 @@ namespace B1Site.Connection
             throw new NotImplementedException();
 =======
         public DataTable GetdataWebDb(string sql,string type)
+=======
+        public DataTable GetdataWebDb(string sql)
+>>>>>>> parent of 58a55fb (Add Login)
         {
-
             DataTable tb = new DataTable();
-            SqlDataAdapter dtp = new SqlDataAdapter(sql, ConnectionString.constrDb);
+            SqlDataAdapter dtp = new SqlDataAdapter(sql, ConnectionString.constrWeb);
             try
             {
                 dtp.Fill(tb);

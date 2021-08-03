@@ -2,23 +2,28 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
-    "iis": {
-      "applicationUrl": "http://localhost/B1Site",
-      "sslPort": 0
-    },
     "iisExpress": {
+<<<<<<< HEAD
 <<<<<<< HEAD
       "applicationUrl": "http://localhost:1099",
 =======
       "applicationUrl": "http://localhost:1060/",
 >>>>>>> 58a55fb7e8c8d589bd0ecb1632900c7926e284f9
+=======
+      "applicationUrl": "http://localhost:1058/",
+>>>>>>> parent of 58a55fb (Add Login)
       "sslPort": 0
+=======
+      "applicationUrl": "http://localhost:1059/",
+      "sslPort": 44333
+>>>>>>> 16416fc19a822524584917e6814b48250d182324
     }
   },
   "profiles": {
     "Start": {
       "commandName": "IISExpress",
       "launchBrowser": true,
+<<<<<<< HEAD
 <<<<<<< HEAD
       "environmentVariables": {
         "Key": "Value"
@@ -42,6 +47,9 @@
       "nativeDebugging": false,
       "jsWebView2Debugging": false
 >>>>>>> 58a55fb7e8c8d589bd0ecb1632900c7926e284f9
+=======
+      "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 6, position 0."
+>>>>>>> parent of 58a55fb (Add Login)
     }
   }
 }
