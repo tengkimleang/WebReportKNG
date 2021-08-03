@@ -99,7 +99,7 @@ namespace B1Site
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Login}/{id?}");
             });
             Connection.ConnectionString.constr = Configuration.GetSection("ConnectionStrings").Value.ToString();
             Connection.ConnectionString.constrWeb = Configuration.GetSection("ConnectionStringsDbWeb").Value.ToString();
