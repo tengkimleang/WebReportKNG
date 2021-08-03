@@ -63,7 +63,11 @@ namespace B1Site
             #endregion
             #region Add Scope
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
+<<<<<<< HEAD
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
+=======
+            services.AddScoped<IARAgedOutstandingService, ARAgedOutstandingService>();
+>>>>>>> 8271a240799b346d1193712c96e9b6f896886d53
             services.AddScoped<IDailyCashCollectionService, DailyCashCollectionService>();
             services.AddScoped<IARAgedOutstandingService, ARAgedOutstandingService>();
             services.AddScoped<IApcashoutService, ApcasoutreportService>();
@@ -100,10 +104,11 @@ namespace B1Site
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Login}/{id?}");
             });
             Connection.ConnectionString.constr = Configuration.GetSection("ConnectionStrings").Value.ToString();
             Connection.ConnectionString.constrWeb = Configuration.GetSection("ConnectionStringsDbWeb").Value.ToString();
+            Connection.ConnectionString.constrDb = Configuration.GetSection("ConnectionStringsDbSAP").Value.ToString();
         }
     }
 }

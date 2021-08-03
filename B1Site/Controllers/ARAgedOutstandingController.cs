@@ -29,7 +29,7 @@ namespace B1Site.Controllers
                 { 
                     customerClassMasters = await aRAgedOutstandingService.GetCustomerClassMastersAsync(),
                     customerNameMasters = await aRAgedOutstandingService.GetCustomerNameMastersAsync(), 
-                    creditControlMasters = await aRAgedOutstandingService.CreditControlMastersAsync(),
+                    creditControlMasters = await aRAgedOutstandingService.GetCreditControlMastersAsync(),
                     regionMasters = await aRAgedOutstandingService.GetRegionMastersAsync(),
                     saleEmployeeMasters = await aRAgedOutstandingService.GetSaleEmployeeMastersAsync()
             });
@@ -42,9 +42,10 @@ namespace B1Site.Controllers
                                                           string customername, string region,
                                                           string saleemployee)
         {
-            return await aRAgedOutstandingService.GetAragedoutstandingsAsync(datefrom, dateto,creditcontroll,
-                                                                             customerclass,customername,
-                                                                             region,saleemployee);
+            //return await aRAgedOutstandingService.GetAragedoutstandingsAsync(datefrom, dateto,creditcontroll,
+            //                                                                 customerclass,customername,
+            //                                                                 region,saleemployee);
+            return "";
                                                            
         }
         #endregion

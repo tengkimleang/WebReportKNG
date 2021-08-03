@@ -12,9 +12,9 @@ namespace B1Site.Controllers
 {
     public class DailyCashCollectioncontroller : Controller
     {
-        private readonly IARAgedOutstandingService dailyCashCollectionService;
+        private readonly IDailyCashCollectionService dailyCashCollectionService;
         #region Constructor
-        public DailyCashCollectioncontroller(IARAgedOutstandingService dailyCashCollectionService)
+        public DailyCashCollectioncontroller(IDailyCashCollectionService dailyCashCollectionService)
         {
             this.dailyCashCollectionService = dailyCashCollectionService;
         }
@@ -24,8 +24,8 @@ namespace B1Site.Controllers
         {
             return View(new MasterVeiwDailyCashCollection
             {
-                customerIDMasters =await dailyCashCollectionService.GetCustomerIDMastersAsync()
-            }); ;
+                customerIDMasters =await dailyCashCollectionService.GetCustomerIDMastersAsync(),
+            });
         }
         #endregion
         #region Bind data to report
