@@ -12,9 +12,9 @@ namespace B1Site.Controllers
 {
     public class DailyCashCollectioncontroller : Controller
     {
-        private readonly IDailyCashCollectionService dailyCashCollectionService;
+        private readonly IARAgedOutstandingService dailyCashCollectionService;
         #region Constructor
-        public DailyCashCollectioncontroller(IDailyCashCollectionService dailyCashCollectionService)
+        public DailyCashCollectioncontroller(IARAgedOutstandingService dailyCashCollectionService)
         {
             this.dailyCashCollectionService = dailyCashCollectionService;
         }

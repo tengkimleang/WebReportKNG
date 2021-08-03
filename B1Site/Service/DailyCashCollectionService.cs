@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace B1Site.Service
 {
-    public class DailyCashCollectionService : IDailyCashCollectionService
+    public class DailyCashCollectionService : IDailyCashCollection
     {
         #region Bind master data
         public Task<List<CustomerIDMaster>> GetCustomerIDMastersAsync()

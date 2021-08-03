@@ -23,5 +23,15 @@ namespace B1Site.Connection
             }
             return tb;
         }
+
+        internal object Getdata(object p1, object p2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal object Getdata(object p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
