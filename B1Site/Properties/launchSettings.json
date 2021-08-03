@@ -7,7 +7,11 @@
       "sslPort": 0
     },
     "iisExpress": {
+<<<<<<< HEAD
       "applicationUrl": "http://localhost:1038/",
+=======
+      "applicationUrl": "http://localhost:1060/",
+>>>>>>> 58a55fb7e8c8d589bd0ecb1632900c7926e284f9
       "sslPort": 0
     }
   },
@@ -15,7 +19,18 @@
     "Start": {
       "commandName": "IISExpress",
       "launchBrowser": true,
+      "nativeDebugging": false,
       "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 6, position 0."
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sqlDebugging": false,
+      "nativeDebugging": false,
+      "jsWebView2Debugging": false
     }
   }
 }
