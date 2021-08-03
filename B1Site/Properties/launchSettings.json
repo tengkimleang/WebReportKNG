@@ -8,10 +8,7 @@
     },
     "iisExpress": {
 <<<<<<< HEAD
-      "applicationUrl": "http://localhost:1038/",
-=======
-      "applicationUrl": "http://localhost:1060/",
->>>>>>> 58a55fb7e8c8d589bd0ecb1632900c7926e284f9
+      "applicationUrl": "http://localhost:1058/",
       "sslPort": 0
     }
   },
