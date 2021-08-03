@@ -9,6 +9,6 @@ namespace B1Site.Service
     public interface IHomeService
     {
         Task<List<CompanyDatabase>> GetCompanyDatabasesAsync();
-        Task<Login> GetLoginsAsync(string user,string passsword);
+        Task<Login> GetLoginsAsync(string user, string passsword);
     }
 }

@@ -26,9 +26,9 @@ namespace B1Site.Service
             return Task.FromResult(companyDatabases);
         }
 
-        public Task<Login> GetLoginsAsync(string user,string password)
+        public Task<Login> GetLoginsAsync(string user, string password)
         {
-            if (user == "admin" && password=="admin")
+            if (user == "admin" && password == "admin")
             {
                 return Task.FromResult(new Login
                 {

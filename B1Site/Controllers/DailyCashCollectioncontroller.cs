@@ -24,8 +24,8 @@ namespace B1Site.Controllers
         {
             return View(new MasterVeiwDailyCashCollection
             {
-                customerIDMasters =await dailyCashCollectionService.GetCustomerIDMastersAsync()
-            }); ;
+                customerIDMasters =await dailyCashCollectionService.GetCustomerIDMastersAsync(),
+            });
         }
         #endregion
         #region Bind data to report

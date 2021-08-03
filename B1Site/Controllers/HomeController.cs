@@ -20,7 +20,7 @@ namespace B1Site.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IHomeService homeService;
 
-        public HomeController(ILogger<HomeController> logger,IHomeService homeService)
+        public HomeController(ILogger<HomeController> logger, IHomeService homeService)
         {
             _logger = logger;
             this.homeService = homeService;
@@ -38,16 +38,18 @@ namespace B1Site.Controllers
             //    return RedirectToAction("Login", "Home");
             //}
         }
-        public async Task<IActionResult> GetLoginAdminAsync(string userName, string passWord,string databaseSAP)
+
+        public async Task<IActionResult> GetLoginAdminAsync(string userName, string passWord, string databaseSAP)
         {
-            Connection.ConnectionString.constr = "Data Source=.;Initial Catalog="+ databaseSAP + ";User Id=sa;Password=SA@webBI$rv01";
+            Connection.ConnectionString.constr = "Data Source=.;Initial Catalog=" + databaseSAP + ";User Id=sa;Password=SA@webBI$rv01";
             return Ok(await homeService.GetLoginsAsync(userName, passWord));
+
         }
         public async Task<IActionResult> LoginAsync()
         {
             return View(new MasterViewHome
             {
-                CompanyDatabases =await homeService.GetCompanyDatabasesAsync()
+                CompanyDatabases = await homeService.GetCompanyDatabasesAsync()
             }); ;
         }
         public IActionResult CultureManagment(string culture,string returnUrl)

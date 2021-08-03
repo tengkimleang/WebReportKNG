@@ -66,8 +66,8 @@
                                             <div class="form-group">
                                                 <label for="password" class="">Select Company</label>
                                                 <select type="text" class="is-untouched is-pristine av-valid form-control" id="databaseSAP">
-                                                    @{ 
-                                                        foreach(var a in Model.CompanyDatabases)
+                                                    @{
+                                                        foreach (var a in Model.CompanyDatabases)
                                                         {
                                                             <option value="@a.DataBaseName">@a.DataBaseName</option>
                                                         }
@@ -106,7 +106,7 @@
             } else {
                 event.preventDefault();
                 $.ajax({
-                    url: '@Url.Action("GetLoginAdmin", "Home")',
+                        url: '@Url.Action("GetLoginAdmin", "Home")',
                     type: 'GET',
                     dataType: 'JSON',
                     data: { userName: $('#Username').val(), password: $('#Password').val(), databaseSAP: $('#databaseSAP').val()},
@@ -117,7 +117,7 @@
                             alert("login failed");
                         }
                     }
-                });
+                    });
             }
             forms.classList.add('was-validated');
         }, false)
