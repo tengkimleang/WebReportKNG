@@ -63,22 +63,15 @@ namespace B1Site
             #endregion
             #region Add Scope
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
-<<<<<<< HEAD
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
-            services.AddScoped<IARAgedOutstandingService, DailyCashCollectionService>();
-            services.AddScoped<IARAgedOutstandingService, ARAgedOutstandingService>();
-=======
             services.AddScoped<IDailyCashCollectionService, DailyCashCollectionService>();
+            services.AddScoped<IARAgedOutstandingService, ARAgedOutstandingService>();
             services.AddScoped<IApcashoutService, ApcasoutreportService>();
             services.AddScoped<IPSIReportService, PSIReportService>();
             services.AddScoped<ISaleReportbySerialService, SaleReportBySerailService>();
             services.AddScoped<IInventoryReportBySerialService, InventoryReportBySerialService>();
             services.AddScoped<IPurchaseReportService, PurchaseReportService>();
-<<<<<<< HEAD
             services.AddScoped<IHomeService, HomeService>();
->>>>>>> 58a55fb7e8c8d589bd0ecb1632900c7926e284f9
-=======
->>>>>>> parent of 58a55fb (Add Login)
             #endregion
         }
 

@@ -91,13 +91,13 @@ namespace B1Site.Service
         }
         #endregion
         #region Bind Data to Report
-        public Task<string> GetArAgedOutstandingsAsync(DateTime agingdate, string customerclass,
-                                                       string creditcontrol, string customername,
-                                                       string salemployee, string region)
-        {
-            ClsCRUD clsCRUD = new ClsCRUD();
-            var dt = clsCRUD.Getdata("EXEC[Customer_Aging_V2] '" + agingdate.ToString("yyyy-MM-dd") + "','" + customerclass +"','"
-        }
+        //public Task<string> GetArAgedOutstandingsAsync(DateTime agingdate, string customerclass,
+        //                                               string creditcontrol, string customername,
+        //                                               string salemployee, string region)
+        //{
+        //    ClsCRUD clsCRUD = new ClsCRUD();
+        //    var dt = clsCRUD.Getdata("EXEC[Customer_Aging_V2] '" + agingdate.ToString("yyyy-MM-dd") + "','" + customerclass +"','"
+        //}
         #endregion
     }
 }
