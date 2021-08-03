@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace B1Site.Service
 {
-    public interface IDailyCashCollection
+    public interface IDailyCashCollectionService
     {
         Task<List<CustomerIDMaster>> GetCustomerIDMastersAsync();
         Task<string> GetDailyCashCollectionsAsync(DateTime datefrom,DateTime dateto,string CustomerID);
