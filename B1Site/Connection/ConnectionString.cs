@@ -9,5 +9,6 @@ namespace B1Site.Connection
     {
         public static string constr { get; set; }
         public static string constrWeb { get; set; }
+        public static string constrDb { get; set; }
     }
 }

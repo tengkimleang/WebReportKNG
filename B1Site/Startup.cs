@@ -22,7 +22,6 @@ namespace B1Site
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -69,6 +68,7 @@ namespace B1Site
             services.AddScoped<ISaleReportbySerialService, SaleReportBySerailService>();
             services.AddScoped<IInventoryReportBySerialService, InventoryReportBySerialService>();
             services.AddScoped<IPurchaseReportService, PurchaseReportService>();
+            services.AddScoped<IHomeService, HomeService>();
             #endregion
         }
 
@@ -97,10 +97,11 @@ namespace B1Site
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Login}/{id?}");
             });
-            Connection.ConnectionString.constr = Configuration.GetSection("ConnectionStrings").Value.ToString();
+            //Connection.ConnectionString.constr = Configuration.GetSection("ConnectionStrings").Value.ToString();
             Connection.ConnectionString.constrWeb = Configuration.GetSection("ConnectionStringsDbWeb").Value.ToString();
+            Connection.ConnectionString.constrDb = Configuration.GetSection("ConnectionStringsDbSAP").Value.ToString();
         }
     }
 }
