@@ -137,7 +137,7 @@
                 </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Category"]</label>
-                    <select type="text" class="input_branch" id="bySaleEmployee">
+                    <select type="text" class="input_branch" id="byCategory">
                         <option value="0">All Category</option>
                         @{
                             foreach (var a in Model.categoryMasters)
@@ -154,7 +154,7 @@
             <div class="row">
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Vendername"]</label>
-                    <select type="text" class="input_branch" id="byCategory">
+                    <select type="text" class="input_branch" id="byVendername">
                         <option value="0">All venderName</option>
                         @{
                             foreach (var a in Model.venderNameMasters)
@@ -166,7 +166,7 @@
                 </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Itemsname"]</label>
-                    <select type="text" class="input_branch" id="byCustomerClass">
+                    <select type="text" class="input_branch" id="byItemsname">
                         <option value="0">All ItemsName</option>
                         @{
                             foreach (var a in Model.itemsNameMasters)
@@ -178,7 +178,7 @@
                 </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By RecieptNumber"]</label>
-                    <select type="text" class="input_branch" id="byLocation">
+                    <select type="text" class="input_branch" id="byRecieptnumber">
                         <option value="0">All RecieptNumber</option>
                         @{
                             foreach (var a in Model.receipNumberMasters)
@@ -190,7 +190,7 @@
                 </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Warehouse"]</label>
-                    <select type="text" class="input_branch" id="byInventoryID">
+                    <select type="text" class="input_branch" id="byWarehouse">
                         <option value="0">All Warehouse</option>
                         @{
                             foreach (var a in Model.warehouseMasters)
@@ -276,17 +276,12 @@
             dateto = today;
         }
         var subcategory = $('#bysubcategory').val();
-        alert(subcategory);
-        //var byItemGroup = ifToDo($('#byItemGroup'));
-        //var bySaleEmployee = ifToDo($('#bySaleEmployee'));
-        //var byCategory = ifToDo($('#byCategory'));
-        //var byCustomerClass = ifToDo($('#byCustomerClass'));
-        //var byLocation = ifToDo($('#byLocation'));
-        //var byInventoryID = ifToDo($('#byInventoryID'));
-        //var byCustomerID = ifToDo($('#byCustomerID'));
-        //var bySource = ifToDo($('#bySource'));
-        //var byWarehouse = ifToDo($('#byWarehouse'));
-        loadReport(datefrom, dateto,subcategory);
+        var category = $('#byCategory').val();
+        var vendername = $('#byVendername').val();
+        var itemsname = $('#byItemsname').val();
+        var recieptnumber = $('#byRecieptnumber').val();
+        var warehouse = $('#byWarehouse').val();
+        loadReport(datefrom, dateto,subcategory,category,vendername,itemsname,recieptnumber,warehouse);
     });
     function filterData() {
         var datefrom = $('#datefrom').val();
@@ -298,16 +293,12 @@
             dateto = today;
         }
         var subcategory = $('#bysubcategory').val();
-        //var byItemGroup = ifToDo($('#byItemGroup'));
-        //var bySaleEmployee = ifToDo($('#bySaleEmployee'));
-        //var byCategory = ifToDo($('#byCategory'));
-        //var byCustomerClass = ifToDo($('#byCustomerClass'));
-        //var byLocation = ifToDo($('#byLocation'));
-        //var byInventoryID = ifToDo($('#byInventoryID'));
-        //var byCustomerID = ifToDo($('#byCustomerID'));
-        //var bySource = ifToDo($('#bySource'));
-        //var byWarehouse = ifToDo($('#byWarehouse'));
-        loadReport(datefrom, dateto,subcategory);
+        var category = $('#byCategory').val();
+        var vendername = $('#byVendername').val();
+        var itemsname = $('#byItemsname').val();
+        var recieptnumber = $('#byRecieptnumber').val();
+        var warehouse = $('#byWarehouse').val();
+        loadReport(datefrom, dateto,subcategory,category,vendername,itemsname,recieptnumber,warehouse);
     }
     function ifToDo(condition) {
         if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
@@ -316,7 +307,7 @@
             return condition.val();
         }
     }
-    function loadReport(datefrom, dateto,subcategory) {
+    function loadReport(datefrom, dateto,subcategory,category,vendername,itemsname,recieptnumber,warhouse) {
         var loadPanel = $(".loadpanel").dxLoadPanel({
             shadingColor: "rgba(0,0,0,0.4)",
             position: { of: "#gridContainer" },
@@ -331,7 +322,13 @@
             type: "GET",
             data: {
                 datefrom: datefrom,
-                dateto: dateto
+                dateto: dateto,
+                bysubcategory: subcategory,
+                byCategory: category,
+                byVendername: vendername,
+                byItemsName: itemsname,
+                byReceiptnumber: recieptnumber,
+                bywarehouse:warhouse
             },
             dataType: "JSON",
             beforeSend: function () {
