@@ -3,24 +3,26 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-<<<<<<< HEAD
-      "applicationUrl": "http://localhost:32384/",
+      "applicationUrl": "http://localhost:1060/",
       "sslPort": 0
-=======
-      "applicationUrl": "http://localhost:28955/",
-      "sslPort": 44316
->>>>>>> 1c406c6e3d43d23fc11e9b6d2ab24036a257d7d3
     }
   },
   "profiles": {
     "Start": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-<<<<<<< HEAD
-      "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 10, position 0."
-=======
+      "nativeDebugging": false,
       "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 6, position 0."
->>>>>>> 1c406c6e3d43d23fc11e9b6d2ab24036a257d7d3
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sqlDebugging": false,
+      "nativeDebugging": false,
+      "jsWebView2Debugging": false
     }
   }
 }
