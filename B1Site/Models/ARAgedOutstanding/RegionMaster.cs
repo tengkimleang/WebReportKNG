@@ -7,6 +7,7 @@ namespace B1Site.Models.ARAgedOutstanding
 {
     public class RegionMaster
     {
-        public string Region { get; set; } = null!;
+        public string RegionCode { get; set; } = null!;
+        public string RegionName { get; set; } = null!;
     }
 }

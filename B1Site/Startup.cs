@@ -63,13 +63,9 @@ namespace B1Site
             #endregion
             #region Add Scope
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
-<<<<<<< HEAD
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
-            services.AddScoped<IARAgedOutstandingService, DailyCashCollectionService>();
             services.AddScoped<IARAgedOutstandingService, ARAgedOutstandingService>();
-=======
             services.AddScoped<IDailyCashCollectionService, DailyCashCollectionService>();
-            services.AddScoped<IARAgedOutstandingService, ARAgedOutstandingService>();
             services.AddScoped<IApcashoutService, ApcasoutreportService>();
             services.AddScoped<IPSIReportService, PSIReportService>();
             services.AddScoped<ISaleReportbySerialService, SaleReportBySerailService>();

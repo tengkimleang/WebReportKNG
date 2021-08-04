@@ -25,28 +25,26 @@ namespace B1Site.Controllers
         #region Return View
         public async Task<IActionResult> Index()
         {
-            return View(new MasterVeiwARAgedOutstanding
-                { 
+            return View( new MasterVeiwARAgedOutstanding
+                {
                     customerClassMasters = await aRAgedOutstandingService.GetCustomerClassMastersAsync(),
                     customerNameMasters = await aRAgedOutstandingService.GetCustomerNameMastersAsync(), 
                     creditControlMasters = await aRAgedOutstandingService.GetCreditControlMastersAsync(),
                     regionMasters = await aRAgedOutstandingService.GetRegionMastersAsync(),
                     saleEmployeeMasters = await aRAgedOutstandingService.GetSaleEmployeeMastersAsync()
-            });
+            }
+        );
         }
         #endregion
         #region Method Get Data From Ajax
         [HttpGet]
-        public async Task<string> GetAragedoutstandingsAsync(DateTime datefrom, DateTime dateto,
-                                                          string creditcontroll, string customerclass,
-                                                          string customername, string region,
-                                                          string saleemployee)
+        public async Task<string> GetARAgedoutstandingsAsync(DateTime agingdate, string customerclass,
+                                                       string creditcontrol, string customername,
+                                                       string saleemployee, string region)
         {
-            //return await aRAgedOutstandingService.GetAragedoutstandingsAsync(datefrom, dateto,creditcontroll,
-            //                                                                 customerclass,customername,
-            //                                                                 region,saleemployee);
-            return "";
-                                                           
+            return await aRAgedOutstandingService.GetARAgedOutstandingsAsync(agingdate,creditcontrol,
+                                                                             customerclass, customername,
+                                                                             region, saleemployee);                                                  
         }
         #endregion
         #region Method Post Data From Ajax
