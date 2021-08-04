@@ -15,7 +15,13 @@ namespace B1Site.Service
         public Task<string> GetPurchaeReportAsync(DateTime datefrom, DateTime dateto, string bysubcategory, string bycategory, string byvendername, string byitemsname, string byreceiptnumber, string byWarehouse)
         {
             ClsCRUD clsCRUD = new ClsCRUD();
-            var dt = clsCRUD.Getdata("EXEC [USP_Purchase_Report] '"+datefrom.ToString("yyyy-MM-dd")+"','"+dateto.ToString("yyyy-MM-dd")+"','','','','','',''");
+            bysubcategory = ((string.IsNullOrEmpty(bysubcategory) || bysubcategory == "0") ? "" : bysubcategory);
+            bycategory = ((string.IsNullOrEmpty(bycategory) || bycategory == "0") ? "" : bycategory);
+            byvendername = ((string.IsNullOrEmpty(byvendername) || byvendername == "0") ? "" : byvendername);
+            byitemsname = ((string.IsNullOrEmpty(byitemsname) || byitemsname == "0") ? "" : byitemsname);
+            byreceiptnumber = ((string.IsNullOrEmpty(byreceiptnumber) || byreceiptnumber == "0") ? "" : byreceiptnumber);
+            byWarehouse = ((string.IsNullOrEmpty(byWarehouse) || byWarehouse == "0") ? "" : byWarehouse);
+            var dt = clsCRUD.Getdata("EXEC [USP_Purchase_Report_WebReport] '" + datefrom.ToString("yyyy-MM-dd")+"','"+dateto.ToString("yyyy-MM-dd")+"','"+byvendername+"','"+byWarehouse+"','"+byreceiptnumber+"','"+bycategory+"','"+bysubcategory+"','"+byitemsname+"'");
             List<PurchaseReport> PurchaseReportList = new List<PurchaseReport>();
             foreach (DataRow a in dt.Rows)
             {
