@@ -17,15 +17,29 @@ namespace B1Site.Controllers
 {
     public class HomeController : Controller
     {
+        #region Global Varraible
         private readonly ILogger<HomeController> _logger;
         private readonly IHomeService homeService;
-
+        #endregion
+        #region Init Constructor of HomeController
         public HomeController(ILogger<HomeController> logger, IHomeService homeService)
         {
             _logger = logger;
             this.homeService = homeService;
         }
-
+        #endregion
+        #region View
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+        public async Task<IActionResult> LoginAsync()
+        {
+            return View(new MasterViewHome
+            {
+                CompanyDatabases = await homeService.GetCompanyDatabasesAsync()
+            }); ;
+        }
         public IActionResult Index()
         {
             return View();
@@ -38,35 +52,32 @@ namespace B1Site.Controllers
             //    return RedirectToAction("Login", "Home");
             //}
         }
-
+        public IActionResult Administrator()
+        {
+            return View();
+        }
+        #endregion
+        #region Ajax Post and Get
         public async Task<IActionResult> GetLoginAdminAsync(string userName, string passWord, string databaseSAP)
         {
-            Connection.ConnectionString.constr = "Data Source=.;Initial Catalog=" + databaseSAP + ";User Id=sa;Password=SA@webBI$rv01";
+            ConnectionString.constr = $"Data Source={ConnectionString.DataSource};Initial Catalog={databaseSAP};User Id={ConnectionString.UserName};Password={ConnectionString.PassWord}";
             return Ok(await homeService.GetLoginsAsync(userName, passWord));
-
         }
-        public async Task<IActionResult> LoginAsync()
-        {
-            return View(new MasterViewHome
-            {
-                CompanyDatabases = await homeService.GetCompanyDatabasesAsync()
-            }); ;
-        }
+        #endregion
+        #region Add Language
         public IActionResult CultureManagment(string culture,string returnUrl)
         {
             Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
                 new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
             return LocalRedirect(returnUrl);
         }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+        #endregion
+        #region When Error
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        #endregion
     }
 }
