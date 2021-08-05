@@ -35,7 +35,7 @@ namespace B1Site.Service
             {
                 CustomerID = "";
             }
-            var dt = clsCRUD.Getdata("EXEC [USP_Daily_Cash_Collection_Webreport] '" + datefrom.ToString("yyyy-MM-dd") + "','" + dateto.ToString("yyyy-MM-dd") + "','"+CustomerID+"'");
+            var dt = clsCRUD.Getdata("EXEC [USP_Daily_Cash_Collection_WebReport] '" + datefrom.ToString("yyyy-MM-dd") + "','" + dateto.ToString("yyyy-MM-dd") + "','"+CustomerID+"'");
             List<DailyCashCollection> dailyCashCollectionList = new List<DailyCashCollection>();
             foreach (DataRow a in dt.Rows)
             {

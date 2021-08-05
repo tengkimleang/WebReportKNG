@@ -1,3 +1,4 @@
+using B1Site.Connection;
 using B1Site.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -63,9 +64,9 @@ namespace B1Site
             #endregion
             #region Add Scope
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
+            services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
             services.AddScoped<IARAgedOutstandingService, ARAgedOutstandingService>();
             services.AddScoped<IDailyCashCollectionService, DailyCashCollectionService>();
-            services.AddScoped<IARAgedOutstandingService, ARAgedOutstandingService>();
             services.AddScoped<IApcashoutService, ApcasoutreportService>();
             services.AddScoped<IPSIReportService, PSIReportService>();
             services.AddScoped<ISaleReportbySerialService, SaleReportBySerailService>();
@@ -102,9 +103,13 @@ namespace B1Site
                     name: "default",
                     pattern: "{controller=Home}/{action=Login}/{id?}");
             });
-            Connection.ConnectionString.constr = Configuration.GetSection("ConnectionStrings").Value.ToString();
-            Connection.ConnectionString.constrWeb = Configuration.GetSection("ConnectionStringsDbWeb").Value.ToString();
-            Connection.ConnectionString.constrDb = Configuration.GetSection("ConnectionStringsDbSAP").Value.ToString();
+            #region Init Constructor Of Connection String
+            _ = new ConnectionString(Configuration.GetSection("ConnectionStringsDbWeb").Value.ToString()
+                               , Configuration.GetSection("ConnectionStringsDbSAP").Value.ToString()
+                               , Configuration.GetSection("ConnectionStrings:DataSource").Value.ToString()
+                               , Configuration.GetSection("ConnectionStrings:UserName").Value.ToString()
+                               , Configuration.GetSection("ConnectionStrings:Password").Value.ToString());
+            #endregion
         }
     }
 }

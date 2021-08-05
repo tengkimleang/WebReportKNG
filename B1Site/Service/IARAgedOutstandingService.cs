@@ -8,12 +8,14 @@ namespace B1Site.Service
 {
     public interface IARAgedOutstandingService
     {
-        //Task<string> GetArAgedOutstandingsAsync(DateTime agingdate, string customerclass, string creditcontrol,
-        //                                        string customername, string salemployee, string region);
+        Task<string> GetARAgedOutstandingsAsync(DateTime agingdate, string customerclass, string creditcontrol,
+                                                string customername, string salemployee, string region);
         Task<List<CustomerNameMaster>> GetCustomerNameMastersAsync();
         Task<List<SaleEmployeeMaster>> GetSaleEmployeeMastersAsync();
         Task<List<CustomerClassMaster>> GetCustomerClassMastersAsync();
         Task<List<CreditControlMaster>> GetCreditControlMastersAsync();
         Task<List<RegionMaster>> GetRegionMastersAsync();
+       // Task<string> GetARAgedoutstandingsAsync(DateTime agingdate, string creditcontrol, string customerclass, string customername, string region, string saleemployee);
+        //Task<string> GetARAgedoutstandingsAsync(DateTime agingdate, string creditcontrol, string customerclass, string customername, string region, string saleemployee);
     }
 }

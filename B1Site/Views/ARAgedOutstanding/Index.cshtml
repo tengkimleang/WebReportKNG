@@ -19,6 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
     <!--End Dev-->
+    <link href="~/css/ARAgedOutstanding.css" rel="stylesheet" />
 </head>
 <style>
     .widget-loadscreen {
@@ -47,7 +48,7 @@
     }
 
     .btn-kernel, .btn-primary {
-        margin-top: 32px;
+        margin-top: 0px;
         margin-right: 9%;
         float: right;
     }
@@ -80,7 +81,7 @@
         border-radius: 3px;
     }
 
-    .lable_branch, .lable_datefrom, .lable_dateto, .lable_user {
+    .lable_branch, .lable_datefrom, .lable_user {
         font-family: Arial;
         font-size: 12px;
         font-weight: 700;
@@ -119,101 +120,99 @@
             <div class="row" style="margin-top:2%;">
                 <div class="col-6">
                     <div class="mb-4 row">
-                        <label for="lable_datefrom" class="col-sm-3" style="margin-left:5%">@localizer["Aging Date :"]</label>
-                        <div class="col-sm-6">
-                            <input type="date" class="input_datefrom" id="datefromaraged">
+                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 agingDate font">@localizer["Aging Date :"]</label>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <input type="date" class="input_datefrom" id="agingdate">
                         </div>
                     </div>
                     @*<div class="row">*@
-              
-                    <div class="mb-4 row">
-                        <label for="lable_customerid" class="col-sm-3" style="margin-left:5%">@localizer["Customer Name :"]</label>
-                        <div class="col-sm-6">
-                            <select type="" class="input_branch" id="CustomerName">
-                                <option value="0">All Customer Name</option>
-                                @{
-                                    foreach (var a in Model.customerNameMasters)
-                                    {
-                                        <option value="@a.CustomerNameCode">@a.CustomerNameCode</option>
-                                        <option value="@a.CustomerNameName">@a.CustomerNameName</option>
-
-                                    }
+                <div class="mb-4 row">
+                    <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 customerName font">@localizer["CustomerName :"]</label>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <select type="text" class="input_branch" id="byCustomerID">
+                            <option value="0">All CustomerID</option>
+                            @{
+                                foreach (var a in Model.customerNameMasters)
+                                {
+                                    <option value="@a.CustomerNameCode">@a.CustomerNameName</option>
                                 }
-                            </select>
-                        </div>
+                            }
+                        </select>
+                        @*<select type="text" class="input_branch" id="customernamearAged1">
+                            <option value="0">All Customer Name</option>
+                            @{
+                                foreach (var a in Model.customerNameMasters)
+                                {
+                                    <option value="@a.CustomerNameCode">@a.CustomerNameName</option>
+
+                                }
+                            }
+                        </select>*@
                     </div>
+                </div>
                     <div class="mb-4 row">
-                        <label for="lable_customerid" class="col-sm-3" style="margin-left:5%">@localizer["Credit Control :"]</label>
-                        <div class="col-sm-6">
-                            <select type="" class="input_branch" id="CreditControl">
-                                <option value="0">All Credi Control</option>
+                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 creditControl font">@localizer["Credit Control :"]</label>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <select type="" class="input_branch" id="creditconrolaraged">
+                                <option value="0">All Credit Control</option>
                                 @{
                                     foreach (var a in Model.creditControlMasters)
                                     {
                                         <option value="@a.CreditControl">@a.CreditControl</option>
-
                                     }
                                 }
                             </select>
                         </div>
                     </div>
-
-
                 </div>
                 <div class="col-6">
                     <div class="mb-4 row">
-                        <label for="lable_customerid" class="col-sm-3" style="margin-left:10%">@localizer["Customer Class :"]</label>
-                        <div class="col-sm-6">
-                            <select type="" class="input_branch" id="CustomerClass">
+                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 customerClass font">@localizer["Customer Class :"]</label>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <select type="" class="input_branch" id="customerclassaraged">
                                 <option value="0">All Customer Class</option>
                                 @{
                                     foreach (var a in Model.customerClassMasters)
                                     {
-                                        <option value="@a.CustomerClassCode">@a.CustomerClassCode</option>
-                                        <option value="@a.CustomerClassName">@a.CustomerClassName</option>
-
+                                        <option value="@a.CustomerClassCode">@a.CustomerClassName</option>
                                     }
                                 }
                             </select>
                         </div>
                     </div>
                     <div class="mb-4 row">
-                        <label for="lable_customerid" class="col-sm-3" style="margin-left:10%">@localizer["Sale Employee :"]</label>
-                        <div class="col-sm-6">
-                            <select type="" class="input_branch" id="SaleEmployee">
-                                <option value="0">All SaleEmployee</option>
+                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 saleMargin font">@localizer["Sale Employee :"]</label>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <select type="" class="input_branch" id="saleemployeearaged">
+                                <option value="0">All Sale Employee</option>
                                 @{
                                     foreach (var a in Model.saleEmployeeMasters)
                                     {
-                                        <option value="@a.SaleEmployeeCode">@a.SaleEmployeeName</option>
-
+                                        <option value="@a.SaleEmployeeCode">@a.SaleEmployeeName</option>                         
                                     }
                                 }
                             </select>
                         </div>
                     </div>
-
                     <div class="mb-4 row">
-                        <label for="lable_customerid" class="col-sm-3" style="margin-left:10%">@localizer["Region :"]</label>
-                        <div class="col-sm-6">
-                            <select type="" class="input_branch" id="Region">
+                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 region font">@localizer["Region :"]</label>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <select type="" class="input_branch" id="regionaraged">
                                 <option value="0">All Region</option>
                                 @{
                                     foreach (var a in Model.regionMasters)
                                     {
-                                        <option value="@a.Region">@a.Region</option>
-
+                                        <option value="@a.RegionCode">@a.RegionName</option>
                                     }
                                 }
                             </select>
                         </div>
                     </div>
-
                     <div class="mb-3 row">
                         @*<label for="lable_datefrom" class="col-sm-2">@localizer["DateTo"]</label>
-            <div class="col-sm-6">
-                <input type="date" class="input_datefrom" id="datetodailycash">
-            </div>*@
+                            <div class="col-sm-6">
+                                <input type="date" class="input_datefrom" id="datetodailycash">
+                            </div>*@
                     </div>
                     <div class="mr-2">
                         <button class="btn btn-xs btn-kernel" id="btnRunReportARAged" style="float:right;margin-right:20%">@localizer["Filter"]</button>
@@ -230,67 +229,6 @@
                             <option value="@a.ItemGroup">@a.ItemGroup</option>
                         }
                     }*@
-                <!--</select>
-                </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By SaleEmployee"]</label>
-                    <select type="text" class="input_branch" id="bySaleEmployee">
-                        <option value="0">All Branch</option>
-                        <option value="1">KHMER EDI</option>
-                        <option value="2">Branch2</option>
-                    </select>
-                </div>-->
-                @*<div class="row">
-                        <div class="col-md-2">
-                            <label class="lable_branch">@localizer["By Category"]</label>
-                            <select type="text" class="input_branch" id="byCategory">
-                                <option value="0">All Branch</option>
-                                <option value="1">KHMER EDI</option>
-                                <option value="2">Branch2</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="lable_branch">@localizer["By CustomerClass"]</label>
-                            <select type="text" class="input_branch" id="byCustomerClass">
-                                <option value="0">All Branch</option>
-                                <option value="1">KHMER EDI</option>
-                                <option value="2">Branch2</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="lable_branch">@localizer["By Location"]</label>
-                            <select type="text" class="input_branch" id="byLocation">
-                                <option value="0">All Branch</option>
-                                <option value="1">KHMER EDI</option>
-                                <option value="2">Branch2</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="lable_branch">@localizer["By InventoryID"]</label>
-                            <select type="text" class="input_branch" id="byInventoryID">
-                                <option value="0">All Branch</option>
-                                <option value="1">KHMER EDI</option>
-                                <option value="2">Branch2</option>
-                            </select>
-                        </div>
-                    </div>*@
-
-                @*<div class="col-md-2">
-                        <label class="lable_branch">@localizer["By Source"]</label>
-                        <select type="text" class="input_branch" id="bySource">
-                            <option value="0">All Branch</option>
-                            <option value="1">KHMER EDI</option>
-                            <option value="2">Branch2</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label class="lable_branch">@localizer["By Warehouse"]</label>
-                        <select type="text" class="input_branch" id="byWarehouse">
-                            <option value="0">All Branch</option>
-                            <option value="1">KHMER EDI</option>
-                            <option value="2">Branch2</option>
-                        </select>
-                    </div>*@
             </div>
             <!--End Filter-->
             <!--Bind Data to Grid-->
@@ -315,42 +253,41 @@
     var yyyy = today.getFullYear();
 
     today = mm + '/' + dd + '/' + yyyy;
-    loadReport(today, today);
+    filterData();
     $('#btnRunReportARAged').click(function () {
-        var datefrom = $('#datefromaraged').val();
-        var dateto = $('#datetoaraged').val();
-        var CustomerName = $('CustomerName').val();
-        var CreditControl = $('CreditControl').val();
-        var CustomerClass = $('CustomerClass').val();
-        var SaleEmployee = $('SaleEmployee').val();
-        var Region = $('Region').val();
-        loadReport(datefrom, dateto, CustomerName,CreditControl,CustomerClass,SaleEmployee,Region);
+        var agingdate = $('#agingdate').val();
+        var customername = ifToDo($('#byCustomerID'));
+        var creditcontrol = ifToDo($('#creditconrolaraged'));
+        var customerclass = ifToDo($('#customerclassaraged'));
+        var saleemployee = ifToDo($('#saleemployeearaged'));
+        var region = ifToDo($('#regionaraged'));
+        loadReport(agingdate,customername,creditcontrol,customerclass,saleemployee,region);
     });
-    function filterData(button) {
-        var datefrom = $('#datefromaraged').val();
-        var dateto = $('#datetoaraged').val();
-        var CustomerName = $('CustomerName').val();
-        var CreditControl = $('CreditControl').val();
-        var CustomerClass = $('CustomerClass').val();
-        var SaleEmployee = $('SaleEmployee').val();
-        var Region = $('Region').val();
-        if (datefrom == '' || datefrom==null) {
-            datefrom = today;
-        }
-        if (dateto == '' || dateto == null) {
-            dateto = today;
-        }
-        loadReport(datefrom, dateto, CustomerName, CreditControl, CustomerClass, SaleEmployee, Region);
+    function filterData() {
+        var agingdate = today;
+        var customername = ifToDo($('#byCustomerID'));
+        var creditcontrol = ifToDo($('#creditconrolaraged'));
+        var customerclass = ifToDo($('#customerclassaraged'));
+        var saleemployee = ifToDo($('#saleemployeearaged'));
+        var region = ifToDo($('#regionaraged'));
+        loadReport(agingdate,customername, creditcontrol, customerclass, saleemployee, region);
     }
-    function loadReport(datefrom, dateto, CustomerName, CreditControl, CustomerClass, SaleEmployee, Region) {
-        //let btn_filter = $(button).children("i.fa-search");
+    function ifToDo(condition) {
+        if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
+            return "";
+        } else {
+            return condition.val();
+        }
+    }
+    function loadReport(agingdate, customername, creditcontrol, customerclass, saleemployee, region) {
+        console.log(saleemployee);
         $.ajax({
-            url: '@Url.Action("GetARAgedOutstanding", "ARAgedOutstanding")',
+            url: '@Url.Action("GetARAgedoutstandings", "ARAgedOutstanding")',
             type: "GET",
             data: {
-                datefrom: datefrom, dateto: dateto, CustomerName: CustomerName, CreditControl: CreditControl,
-                    CustomerClass: CustomerClass, SaleEmployee : SaleEmployee, Region: Region
-                    },
+                    agingdate:agingdate, customerclass:customerclass, creditcontrol:creditcontrol, customername:customername,
+                    saleemployee: saleemployee, region: region
+            },
             dataType: "JSON",
             beforeSend: function () {
                 //btn_filter.addClass("fa-spinner fa-spin");
@@ -459,7 +396,7 @@
                             },
                             {
                                 dataField: "SalePerson",
-                                caption: "SalePerson ID"
+                                caption: "SalePerson"
                             },
                             {
                                 dataField: "SysInvoice",
