@@ -42,9 +42,9 @@ namespace B1Site.Controllers
                                                        string creditcontrol, string customername,
                                                        string saleemployee, string region)
         {
-            return await aRAgedOutstandingService.GetARAgedOutstandingsAsync(agingdate,creditcontrol,
-                                                                             customerclass, customername,
-                                                                             region, saleemployee);                                                  
+            return await aRAgedOutstandingService.GetARAgedOutstandingsAsync(agingdate, customerclass,
+                                                                             creditcontrol, customername,
+                                                                             saleemployee, region);                                                  
         }
         #endregion
         #region Method Post Data From Ajax

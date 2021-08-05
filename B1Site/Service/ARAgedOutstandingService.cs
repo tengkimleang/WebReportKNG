@@ -30,7 +30,7 @@ namespace B1Site.Service
         public Task<List<CreditControlMaster>> GetCreditControlMastersAsync()
         {
             ClsCRUD clsCRUD = new ClsCRUD();
-            var dt = clsCRUD.Getdata("select U_CreditControl AS CreditControl from OCRD");
+            var dt = clsCRUD.Getdata("select distinct U_CreditControl AS CreditControl from OCRD where U_CreditControl IS NOT NULL");
             List<CreditControlMaster> creditControlMasters = new List<CreditControlMaster>();
             foreach(DataRow a in dt.Rows)
             {
@@ -60,7 +60,7 @@ namespace B1Site.Service
         public Task<List<RegionMaster>> GetRegionMastersAsync()
         {
             ClsCRUD clsCRUD = new ClsCRUD();
-            var dt = clsCRUD.Getdata("SELECT Code,CAST(Code AS NVARCHAR) +' : '+Name AS 'Region' FROM OCST");
+            var dt = clsCRUD.Getdata("SELECT Name,CAST(Code AS NVARCHAR) +' : '+Name AS 'Region'FROM OCST WHERE Country='KH'");
             List<RegionMaster> regionMasters = new List<RegionMaster>();
             foreach(DataRow a in dt.Rows)
             {
@@ -93,7 +93,7 @@ namespace B1Site.Service
         public Task<string> GetARAgedOutstandingsAsync(DateTime agingdate, string customerclass, string creditcontrol, string customername, string salemployee, string region)
         {
             ClsCRUD clsCRUD = new ClsCRUD();
-            var dt = clsCRUD.Getdata("EXEC [Customer_Aging_V2]  '" + agingdate.ToString("yyyy-MM-dd") +
+            var dt = clsCRUD.Getdata("EXEC [Customer_Aging_V2_WebReport]  '" + agingdate.ToString("yyyy-MM-dd") +
                                         "','" + customerclass + "','" + customername + "','" +
                                         creditcontrol + "','" + salemployee + "','" + region + "'");
             List<ARAgedOutstanding> aRAgedOutstandings = new List<ARAgedOutstanding>();
@@ -113,7 +113,7 @@ namespace B1Site.Service
                         SysInvoice = a[7].ToString(),
                         DO = a[8].ToString(),
                         Invoice = a[9].ToString(),
-                        INVDATE = Convert.ToDateTime(a[1].ToString()).ToString("yyyy-MM-dd"),
+                        INVDATE = Convert.ToDateTime(a[10].ToString()).ToString("yyyy-MM-dd"),
                         Term = a[11].ToString(),
                         Aged = a[12].ToString(),
                         Balance = a[13].ToString(),
@@ -121,13 +121,13 @@ namespace B1Site.Service
                         ThirtyFirst_To_Sixty = a[15].ToString(),
                         SixtyFirst_To_Ninety = a[16].ToString(),
                         NinetyFirst_To_OneHundredTwenty = a[17].ToString(),
-                        OneHundred_TwentyFirst_Till = a[17].ToString(),
-                        ItemGroup = a[17].ToString(),
-                        Model = a[17].ToString(),
-                        DocTotal = a[17].ToString(),
-                        GroupCode = a[17].ToString(),
-                        SlpCode = a[17].ToString(),
-                        Reconsum = a[17].ToString(),
+                        OneHundred_TwentyFirst_Till = a[18].ToString(),
+                        ItemGroup = a[19].ToString(),
+                        Model = a[20].ToString(),
+                        DocTotal = a[21].ToString(),
+                        GroupCode = a[22].ToString(),
+                        SlpCode = a[23].ToString(),
+                        Reconsum = a[24].ToString(),
                     });
                 }
                 catch (Exception ex)
