@@ -26,6 +26,23 @@ namespace B1Site.Service
             return Task.FromResult(companyDatabases);
         }
 
+        public Task<List<LanguageTypeDatabase>> GetLanguageTypeDatabasesAsync()
+        {
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("SELECT * FROM Tb_LanguageType WHERE active=1");
+            List<LanguageTypeDatabase> languageTypeDatabases = new List<LanguageTypeDatabase>();
+            foreach (DataRow a in dt.Rows)
+            {
+                languageTypeDatabases.Add(new LanguageTypeDatabase
+                {
+                    ID=a[0].ToString(),
+                    Name=a[1].ToString(),
+                    Active=true,
+                });
+            }
+            return Task.FromResult(languageTypeDatabases);
+        }
+
         public Task<Login> GetLoginsAsync(string user, string password)
         {
             if (user == "admin" && password == "admin")
@@ -46,6 +63,11 @@ namespace B1Site.Service
                     Password = "",
                 });
             }
+        }
+
+        public Task<List<ReportDatabase>> GetReportDatabasesAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

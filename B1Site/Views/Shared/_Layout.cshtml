@@ -190,7 +190,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a asp-action="Index" asp-controller="SaleDialyReport" class="nav-link">
+                                    <a asp-action="Index" asp-controller="SaleDialyReport" class="nav-link active">
                                         <p>@localizer["SaleReport"]</p>
                                     </a>
                                 </li>
@@ -226,7 +226,6 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a asp-action="Index" asp-controller="InventoryReportBySerial" class="nav-link">
-                                        @*<i class="far fa-circle nav-icon"></i>*@
                                         <p>@localizer["Inventory  Report By Serial"]</p>
                                     </a>
                                 </li>
@@ -234,8 +233,14 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a asp-action="Index" asp-controller="PurchaseReport" class="nav-link">
-                                        @*<i class="far fa-circle nav-icon"></i>*@
                                         <p>@localizer["Purchase Report"]</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-action="Index" asp-controller="InventoryReport" class="nav-link">
+                                        <p>@localizer["Invetery Report"]</p>
                                     </a>
                                 </li>
                             </ul>
@@ -252,6 +257,7 @@
                                     <a asp-action="Index" asp-controller="FinaceSaelReport" class="nav-link">
                                         @*<i class="far fa-circle nav-icon"></i>*@
                                         <p>@localizer["Finace Sale Report"]</p>
+
                                     </a>
                                 </li>
                             </ul>
@@ -261,7 +267,6 @@
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     @localizer["Permission"]
-                                    @*<span class="right badge badge-danger">New</span>*@
                                 </p>
                             </a>
                         </li>

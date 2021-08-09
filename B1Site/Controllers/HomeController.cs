@@ -20,12 +20,14 @@ namespace B1Site.Controllers
         #region Global Varraible
         private readonly ILogger<HomeController> _logger;
         private readonly IHomeService homeService;
+        private readonly IHttpContextAccessor httpContextAccessor;
         #endregion
         #region Init Constructor of HomeController
-        public HomeController(ILogger<HomeController> logger, IHomeService homeService)
+        public HomeController(ILogger<HomeController> logger, IHomeService homeService, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             this.homeService = homeService;
+            this.httpContextAccessor = httpContextAccessor;
         }
         #endregion
         #region View
@@ -67,8 +69,10 @@ namespace B1Site.Controllers
         #region Add Language
         public IActionResult CultureManagment(string culture,string returnUrl)
         {
-            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,culture.ToString(),//CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture))
                 new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
+            var cookieSetHeader = httpContextAccessor.HttpContext.Response.GetTypedHeaders().SetCookie;
+            var setCookie = Uri.UnescapeDataString(cookieSetHeader.FirstOrDefault(x => x.Name == ".AspNetCore.Culture").Value.ToString());
             return LocalRedirect(returnUrl);
         }
         #endregion
