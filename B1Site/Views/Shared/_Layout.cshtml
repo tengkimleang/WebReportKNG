@@ -128,7 +128,7 @@
                             <!-- Message End -->
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
+                        <a asp-action="Login" asp-controller="Home" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
                                 <div class="media-body">
@@ -173,7 +173,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a asp-action="Administrator" asp-controller="Home" class="nav-link">
                                 <i class="fas fa-users-cog"></i>
                                 <p>
                                     @localizer["Administration"]
@@ -190,7 +190,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a asp-action="Index" asp-controller="SaleDialyReport" class="nav-link">
+                                    <a asp-action="Index" asp-controller="SaleDialyReport" class="nav-link active">
                                         <p>@localizer["SaleReport"]</p>
                                     </a>
                                 </li>
@@ -226,16 +226,36 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a asp-action="Index" asp-controller="InventoryReportBySerial" class="nav-link">
-                                        @*<i class="far fa-circle nav-icon"></i>*@
                                         <p>@localizer["Inventory  Report By Serial"]</p>
                                     </a>
                                 </li>
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
+<<<<<<< HEAD
                                     <a asp-action="Index" asp-controller="InventoryReport" class="nav-link">
                                         @*<i class="far fa-circle nav-icon"></i>*@
                                         <p>@localizer["Inventory  Report"]</p>
+=======
+                                    <a asp-action="Index" asp-controller="PurchaseReport" class="nav-link">
+                                        <p>@localizer["Purchase Report"]</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-action="Index" asp-controller="ARAgedOutstanding"  class="nav-link">
+                                        @*<i class="far fa-circle nav-icon"></i>*@
+                                        <p>@localizer["AR Aged Outstanding"]</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-action="Index" asp-controller="FinaceSaelReport" class="nav-link">
+                                        @*<i class="far fa-circle nav-icon"></i>*@
+                                        <p>@localizer["Finace Sale Report"]</p>
+>>>>>>> e7061912e1fe41c4195b6b4c3440bad9e9702b71
                                     </a>
                                 </li>
                             </ul>
@@ -245,7 +265,6 @@
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     @localizer["Permission"]
-                                    @*<span class="right badge badge-danger">New</span>*@
                                 </p>
                             </a>
                         </li>

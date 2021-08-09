@@ -1,3 +1,4 @@
+using B1Site.Connection;
 using B1Site.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -63,12 +64,19 @@ namespace B1Site
             #endregion
             #region Add Scope
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
+            services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
+            services.AddScoped<IARAgedOutstandingService, ARAgedOutstandingService>();
             services.AddScoped<IDailyCashCollectionService, DailyCashCollectionService>();
             services.AddScoped<IApcashoutService, ApcasoutreportService>();
             services.AddScoped<IPSIReportService, PSIReportService>();
             services.AddScoped<ISaleReportbySerialService, SaleReportBySerailService>();
             services.AddScoped<IInventoryReportBySerialService, InventoryReportBySerialService>();
+<<<<<<< HEAD
             services.AddScoped<IInventoryReportService, InventoryReportService>();
+=======
+            services.AddScoped<IPurchaseReportService, PurchaseReportService>();
+            services.AddScoped<IHomeService, HomeService>();
+>>>>>>> e7061912e1fe41c4195b6b4c3440bad9e9702b71
             #endregion
         }
 
@@ -97,9 +105,15 @@ namespace B1Site
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Login}/{id?}");
             });
-            Connection.ConnectionString.constr = Configuration.GetSection("ConnectionStrings").Value.ToString();
+            #region Init Constructor Of Connection String
+            _ = new ConnectionString(Configuration.GetSection("ConnectionStringsDbWeb").Value.ToString()
+                               , Configuration.GetSection("ConnectionStringsDbSAP").Value.ToString()
+                               , Configuration.GetSection("ConnectionStrings:DataSource").Value.ToString()
+                               , Configuration.GetSection("ConnectionStrings:UserName").Value.ToString()
+                               , Configuration.GetSection("ConnectionStrings:Password").Value.ToString());
+            #endregion
         }
     }
 }

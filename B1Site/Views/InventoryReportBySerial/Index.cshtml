@@ -249,11 +249,11 @@
         if (dateto == '' || dateto == null) {
             dateto = today;
         }
-        var byCategory = ifToDo($('#byCategory'));
-        var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySource = ifToDo($('#bySource'));
-        var byUnit = ifToDo($('#byUnit'));
-        loadReport(datefrom, dateto, byItemGroup, byCategory, byUnit, bySource);
+        var byMainGroup = ifToDo($('#byMainGroup'));
+        var byModel = ifToDo($('#byModel'));
+        var byVendorCode = ifToDo($('#byVendorCode'));
+        var byWarehoseID = ifToDo($('#byWarehoseID'));
+        loadReport(datefrom, dateto, byMainGroup, byModel, byVendorCode, byWarehoseID);
     });
     function filterData() {
         var datefrom = $('#datefrom').val();
@@ -264,11 +264,11 @@
         if (dateto == '' || dateto == null) {
             dateto = today;
         }
-        var byCategory = ifToDo($('#byCategory'));
-        var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySource = ifToDo($('#bySource'));
-        var byUnit = ifToDo($('#byUnit'));
-        loadReport(datefrom, dateto, byItemGroup, byCategory, byUnit, bySource);
+        var byMainGroup = ifToDo($('#byMainGroup'));
+        var byModel = ifToDo($('#byModel'));
+        var byVendorCode = ifToDo($('#byVendorCode'));
+        var byWarehoseID = ifToDo($('#byWarehoseID'));
+        loadReport(datefrom, dateto, byMainGroup, byModel, byVendorCode, byWarehoseID);
     }
     function ifToDo(condition) {
         if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
@@ -286,7 +286,13 @@
     //        dataGrid.option("grouping.autoExpandAll", data.value);
     //    }
     //});
-    function loadReport(datefrom, dateto, byItemGroup, byCategory, byUnit, bySource) {
+    function loadReport(datefrom, dateto, itemgroup, model, vendorcode, warehouse) {
+        console.log(datefrom);
+        console.log(dateto);
+        console.log(itemgroup);
+        console.log(model);
+        console.log(vendorcode);
+        console.log(warehouse);
         var loadPanel = $(".loadpanel").dxLoadPanel({
             shadingColor: "rgba(0,0,0,0.4)",
             position: { of: "#gridContainer" },
@@ -297,15 +303,15 @@
             closeOnOutsideClick: false,
         }).dxLoadPanel("instance");
         $.ajax({
-            url: '@Url.Action("GetPSIReport", "PSIReport")',
+            url: '@Url.Action("GetInventoryReportBySerials", "InventoryReportBySerial")',
             type: "GET",
             data: {
                 datefrom: datefrom,
                 dateto: dateto,
-                byItemGroup: byItemGroup,
-                byCategory: byCategory,
-                byUnit: byUnit,
-                bySource: bySource,
+                itemgroup: itemgroup,
+                model: model,
+                vendorcode: vendorcode,
+                warehouse: warehouse,
             },
             dataType: "JSON",
             beforeSend: function () {
@@ -414,10 +420,10 @@
                     summary: {
                         totalItems: [
                             {
-                                column: "ItemCode",
+                                column: "Qty",
                                 summaryType: "count"
                             }, {
-                                column: "EndingStock",
+                                column: "Qty",
                                 displayFormat: "{0}Qty",
                                 summaryType: "sum",
                                 format: {
@@ -429,33 +435,57 @@
                     },
                     columns: [
                         {
-                            dataField: "Source",
-                            caption: "Source"
+                            dataField: "ItemCode",
+                            caption: "Item Code"
+                        },
+                        {
+                            dataField: "VenderCode",
+                            caption: "Vendor Code"
+                        },
+                        {
+                            dataField: "ItemGroup",
+                            caption: "Item Group"
                         },
                         {
                             dataField: "Category",
                             caption: "Category"
                         },
                         {
-                            dataField: "ItemName",
+                            dataField: "SubCategory",
+                            caption: "Sub-Category"
+                        },
+                        {
+                            dataField: "Description",
                             caption: "Description"
                         },
                         {
-                            dataField: "OpenningStock",
-                            caption: "Beginning Stock"
+                            dataField: "Year",
+                            caption: "Year"
                         },
                         {
-                            dataField: "InQty",
-                            caption: "Purchase"
+                            dataField: "Model",
+                            caption: "Model"
                         },
                         {
-                            dataField: "OutQty",
-                            caption: "Sales"
+                            dataField: "SerailNumber",
+                            caption: "Serial Number"
                         },
                         {
-                            dataField: "EndingStock",
-                            caption: "End Stock"
-                        }
+                            dataField: "Warehouse",
+                            caption: "Warehouse"
+                        },
+                        {
+                            dataField: "Shelf",
+                            caption: "Shelf"
+                        },
+                        {
+                            dataField: "BinLocation",
+                            caption: "Bin Location"
+                        },
+                        {
+                            dataField: "Qty",
+                            caption: "Q'ty"
+                        },
                     ],
                 });
                 //btn_filter.removeClass("fa-spinner fa-spin");
