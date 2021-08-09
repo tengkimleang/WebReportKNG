@@ -101,12 +101,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">@localizer["FinalSaleReport"]</h1>
+                <h1 class="m-0">@localizer["Final Sale Report"]</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["FinalSaleReport"]</a></li>
-                    <li class="breadcrumb-item active">@localizer["FinalSaleReport"]</li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Final Sale Report"]</a></li>
+                    <li class="breadcrumb-item active">@localizer["Final Sale Report"]</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -115,17 +115,17 @@
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
         <div class="card-header">
-            @localizer["FinalSaleReport"]
+            @localizer["Final SaleR eport"]
         </div>
         <div class="card-body">
             <!--Filter-->
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateFrom"]</label>
+                    <label class="lable_datefrom">@localizer["Date From"]</label>
                     <input type="date" class="input_datefrom" id="datefrom">
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateTo"]</label>
+                    <label class="lable_datefrom">@localizer["Date To"]</label>
                     <input type="date" class="input_datefrom" id="dateto">
                 </div>
                 <div class="col-md-2">
@@ -288,6 +288,7 @@
         var byCustomerID = ifToDo($('#byCustomerID'));
         var bySource = ifToDo($('#bySource'));
         var byWarehouse = ifToDo($('#byWarehouse'));
+        alert(datefrom);
         loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
             byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
     });
@@ -331,7 +332,7 @@
             closeOnOutsideClick: false,
         }).dxLoadPanel("instance");
         $.ajax({
-            url: '@Url.Action("GetSaleDailyReport", "SaleDialyReport")',
+            url: '@Url.Action("GetFinaceReports", "FinaceSaelReport")',
             type: "GET",
             data: {
                 datefrom: datefrom,
@@ -453,28 +454,28 @@
                     },
                     columns: [
                         {
-                            dataField: "InvoiceDate",
-                            caption: "Month"
+                            dataField: "Cardcode",
+                            caption: "CardCode "
                         },
                         {
-                            dataField: "CardCode",
+                            dataField: "CustomerCode",
                             caption: "Customer Code"
                         },
                         {
-                            dataField: "CardName",
-                            caption: "Customer Name"
+                            dataField: "CarName",
+                            caption: "CardName"
                         },
                         {
-                            dataField: "GroupName",
+                            dataField: "CustomerGroup",
                             caption: "Customer Group"
                         },
                         {
-                            dataField: "CustomerCategory",
-                            caption: "Customer Category"
+                            dataField: "CustomerGrade",
+                            caption: "Customer Grade"
                         },
                         {
-                            dataField: "Region",
-                            caption: "Region"
+                            dataField: "Stae",
+                            caption: "Stae"
                         },
                         //{
                         //    dataField: "InvoiceDate",
@@ -501,37 +502,141 @@
                         //    }
                         //},
                         {
-                            dataField: "ItemGroup",
-                            caption: "Item Group"
+                            dataField: "Saler",
+                            caption: "Saler"
                         },
                         {
-                            dataField: "VendorCode",
-                            caption: "Vendor Code"
+                            dataField: "SONo",
+                            caption: "SONo"
                         },
                         {
-                            dataField: "Description",
-                            caption: "Description"
+                            dataField: "DONo",
+                            caption: "DONo"
                         },
                         {
-                            dataField: "Qty",
-                            caption: "Q'ty"
+                            dataField: "InvNo",
+                            caption: "InvNo"
                         },
                         {
-                            dataField: "Price",
-                            caption: "Total Price",
+                            dataField: "InvDate ",
+                            caption: "Inv Date ",
                             format: { minimumSignificantDigits: 3, }
                         },
                         {
-                            dataField: "TotalDiscount",
-                            caption: "Total Discount"
+                            dataField: "Status",
+                            caption: "Status"
                         },
                         {
-                            dataField: "TotalNetPrice",
-                            caption: "Total Net Price"
+                            dataField: "Group",
+                            caption: "Group"
                         },
                         {
-                            dataField: "SaleEmployee",
-                            caption: "Sale Person"
+                            dataField: "Product",
+                            caption: "Product"
+                        },
+                        {
+                            dataField: "InventeryId",
+                            caption: "Inventery Id"
+                        },
+                        {
+                            dataField: "VenderCode",
+                            caption: "Vender Code"
+                        },
+                        {
+                            dataField: "ItemsName",
+                            caption: "Items Name"
+                        },
+                        {
+                            dataField: "U_Source",
+                            caption: "U_Source "
+                        },
+                        {
+                            dataField: "SubCategory",
+                            caption: "Sub Category"
+                        },
+                        {
+                            dataField: "U_SubCategory",
+                            caption: "U_Sub Category"
+                        },
+                        {
+                            dataField: "U_Movement",
+                            caption: "U_Movement"
+                        },
+                        {
+                            dataField: "U_Condition",
+                            caption: "U_Condition"
+                        },
+                        {
+                            dataField: "U_Model",
+                            caption: "U_Model"
+                        },
+                        {
+                            dataField: "U_Year",
+                            caption: "U_Year"
+                        },
+                        {
+                            dataField: "Location",
+                            caption: "Location"
+                        },
+                        {
+                            dataField: "Deparment",
+                            caption: "Deparment"
+                        },
+                        {
+                            dataField: "Promotion",
+                            caption: "Promotion"
+                        },
+                        {
+                            dataField: "Warranly",
+                            caption: "Warranly"
+                        },
+                        {
+                            dataField: "whs",
+                            caption: "whs"
+                        },
+                        {
+                            dataField: "Price",
+                            caption: "Price"
+                        },
+                        {
+                            dataField: "DisAmount",
+                            caption: "Dis Amount"
+                        },
+                        {
+                            dataField: "Quanlity",
+                            caption: "Quanlity"
+                        },
+                        {
+                            dataField: "TotalAmount",
+                            caption: "Total Amount"
+                        },
+                        {
+                            dataField: "TotalDiscountAmount",
+                            caption: "Total DiscountAmount"
+                        },
+                        {
+                            dataField: "NetAmount",
+                            caption: "Net Amount"
+                        },
+                        {
+                            dataField: "COGSAmount",
+                            caption: "COGS Amount"
+                        },
+                        {
+                            dataField: "GrossProfit",
+                            caption: "Gross Profit"
+                        },
+                        {
+                            dataField: "Margin",
+                            caption: "Margin"
+                        },
+                        {
+                            dataField: "InvntryUom",
+                            caption: "Invntry Uom"
+                        },
+                        {
+                            dataField: "ItemsGroupforSV",
+                            caption: "Items GroupforSV"
                         },
                     ],
                 });

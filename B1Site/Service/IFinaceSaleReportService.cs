@@ -8,12 +8,12 @@ namespace B1Site.Service
    public  interface IFinaceSaleReportService
     {
         Task<string> GetFinalceSaleReportAsync(DateTime datefrom,DateTime dateto,string byitemsgroup,string bycategory,string bysaleempoyee,string byMeasure,string itemscode,string customerid,string source);
-        Task<List<ItemsGropMaster>> ItemsGropMaster();
-        Task<List<CategoryMaster>> categoryMasters();
-        Task<List<SaleemployeeMaster>> SaleemployeeMasters();
-        Task<List<MeasureMaster>> measureMasters();
-        Task<List<ItemsCodeMaster>> ItemsCodeMasters();
-        Task<List<CustomerIDMaster>> customerIDMasters();
-        Task<List<SourceMaster>> SourceMasters();
+        Task<List<ItemsGropMaster>> GetItemsGropMasterAsync();
+        Task<List<CategoryMaster>> GetcategoryMastersAsync();
+        Task<List<SaleemployeeMaster>> GetSaleemployeeMastersAync();
+        Task<List<MeasureMaster>> GetmeasureMastersAync();
+        Task<List<ItemsCodeMaster>> GetItemsCodeMastersAync();
+        Task<List<CustomerIDMaster>> GetcustomerIDMastersAync();
+        Task<List<SourceMaster>> GetSourceMastersAync();
     }
 }

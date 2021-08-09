@@ -10,12 +10,12 @@ namespace B1Site.Service
 {
     public class FanaceSaleReportService : IFinaceSaleReportService
     {
-        public Task<List<CategoryMaster>> categoryMasters()
+        public Task<List<CategoryMaster>> GetcategoryMastersAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<CustomerIDMaster>> customerIDMasters()
+        public Task<List<CustomerIDMaster>> GetcustomerIDMastersAync()
         {
             throw new NotImplementedException();
         }
@@ -31,20 +31,6 @@ namespace B1Site.Service
                 {
                     FinaceSaleReportList.Add(new FinaceSaleReport
                     {
-                        //InvoiceDate = Convert.ToDateTime(a[0].ToString()).ToString("MMM"),
-                        //CardCode = a[1].ToString(),
-                        //CardName = a[2].ToString(),
-                        //GroupName = a[3].ToString(),
-                        //CustomerCategory = a[4].ToString(),
-                        //Region = a[5].ToString(),
-                        //ItemGroup = a[6].ToString(),
-                        //VendorCode = a[7].ToString(),
-                        //Description = a[8].ToString(),
-                        //Qty = Convert.ToInt32(a[9]),
-                        //Price = Convert.ToDouble(a[10].ToString()),
-                        //TotalDiscount = Convert.ToDouble(a[11].ToString()),
-                        //TotalNetPrice = Convert.ToDouble(a[12].ToString()),
-                        //SaleEmployee = a[13].ToString(),
                         Cardcode = a[0].ToString(),
                         CarName = a[1].ToString(),
                         CustomerGroup = a[2].ToString(),
@@ -94,27 +80,27 @@ namespace B1Site.Service
             return Task.FromResult(Utf8Json.JsonSerializer.ToJsonString(FinaceSaleReportList));
         }
 
-        public Task<List<ItemsCodeMaster>> ItemsCodeMasters()
+        public Task<List<ItemsCodeMaster>> GetItemsCodeMastersAync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ItemsGropMaster>> ItemsGropMaster()
+        public Task<List<ItemsGropMaster>> GetItemsGropMasterAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<MeasureMaster>> measureMasters()
+        public Task<List<MeasureMaster>> GetmeasureMastersAync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<SaleemployeeMaster>> SaleemployeeMasters()
+        public Task<List<SaleemployeeMaster>> GetSaleemployeeMastersAync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<SourceMaster>> SourceMasters()
+        public Task<List<SourceMaster>> GetSourceMastersAync()
         {
             throw new NotImplementedException();
         }
