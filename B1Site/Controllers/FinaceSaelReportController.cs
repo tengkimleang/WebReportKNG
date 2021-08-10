@@ -22,16 +22,16 @@ namespace B1Site.Controllers
         #region ReturnViwe
         public async Task<IActionResult> Index()
         {
-            return View( //new MasterViweFanceSaleReport { 
+            return View( new MasterViweFanceSaleReport { 
 
-            //itemsGropMasters = await finaceSaleReportService.GetItemsGropMasterAsync(),
-            //categoryMasters = await finaceSaleReportService.GetcategoryMastersAsync(),
-            //saleemployeeMasters = await finaceSaleReportService.GetSaleemployeeMastersAync(),
-            //measureMasters = await finaceSaleReportService.GetmeasureMastersAync(),
-            //itemsCodeMasters = await finaceSaleReportService.GetItemsCodeMastersAync(),
-            //customerIDMasters = await finaceSaleReportService.GetcustomerIDMastersAync(),
-            //sourceMasters = await finaceSaleReportService.GetSourceMastersAync()
-           //}
+            itemsGropMasters = await finaceSaleReportService.GetItemsGropMasterAsync(),
+            categoryMasters = await finaceSaleReportService.GetcategoryMastersAsync(),
+            saleemployeeMasters = await finaceSaleReportService.GetSaleemployeeMastersAync(),
+            measureMasters = await finaceSaleReportService.GetmeasureMastersAync(),
+            itemsCodeMasters = await finaceSaleReportService.GetItemsCodeMastersAync(),
+            customerIDMasters = await finaceSaleReportService.GetcustomerIDMastersAync(),
+            sourceMasters = await finaceSaleReportService.GetSourceMastersAync()
+           }
                                         
              );
         }
