@@ -74,6 +74,7 @@ namespace B1Site
             services.AddScoped<IInventoryReportService, InventoryReportService>();
             services.AddScoped<IPurchaseReportService, PurchaseReportService>();
             services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<IFinaceSaleReportService, FanaceSaleReportService>();
             #endregion
         }
 
