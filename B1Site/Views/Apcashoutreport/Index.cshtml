@@ -100,7 +100,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["ApReportCashout"]</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Ap Report Cash out"]</a></li>
                     <li class="breadcrumb-item active">@localizer["Reporting"]</li>
                 </ol>
             </div><!-- /.col -->
@@ -109,22 +109,22 @@
 </div>
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
-        <div class="card-header">
-            @localizer["ApReportCashout"]
+        <div class="card-header" style="background-color:antiquewhite;">
+            @localizer["Ap Report Cash out"]
         </div>
-        <div class="card-body">
+        <div class="card-body" style="background-color:lightblue;">
             <!--Filter-->
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateFrom"]</label>
+                    <label class="lable_datefrom">@localizer["Date From"]</label>
                     <input type="date" class="input_datefrom" id="datefromapcashout">
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateTo"]</label>
+                    <label class="lable_datefrom">@localizer["Date To"]</label>
                     <input type="date" class="input_datefrom" id="datetoapcashout">
                 </div>
                 <!--<div class="col-md-2">
-                    <label class="lable_branch">@localizer["ByItemGroup"]</label>
+                    <label class="lable_branch">@localizer["By ItemGroup"]</label>
                     <select type="text" class="input_branch" id="byItemGroup">
                         <option value="0">All ItemGroup</option>-->
                 @*@{
@@ -343,27 +343,27 @@
                     columns: [
                         {
                             dataField: "Apdocnum",
-                            caption: "Apdocnum"
+                            caption: "Ap DocNum"
                         },
                         {
                             dataField: "AocumentDate",
-                            caption: "DocumentDate"
+                            caption: "Document Date"
                         },
                         {
                             dataField: "PaymentDoc",
-                            caption: "PaymentDoc"
+                            caption: "Payment Docnum"
                         },
                         {
                             dataField: "PaidDate",
-                            caption: "PaidDate"
+                            caption: "Paid Date"
                         },
                         {
                             dataField: "VendorName",
-                            caption: "VendorName"
+                            caption: "Vendor Name"
                         },
                         {
                             dataField: "NameVendorissueCheck",
-                            caption: "NameVendorissueCheck"
+                            caption: "Name Vendor issue Check"
                         },
                         //{
                         //    dataField: "invoiceDate",
@@ -391,11 +391,11 @@
                         //},
                         {
                             dataField: "InternalDocument",
-                            caption: "InternalDocument"
+                            caption: "Internal Document"
                         },
                         {
                             dataField: "ExternalDocument",
-                            caption: "ExternalDocument"
+                            caption: "External Document"
                         },
                         {
                             dataField: "Glaccount",
@@ -403,7 +403,7 @@
                         },
                         {
                             dataField: "GlaccountName",
-                            caption: "GlaccountName"
+                            caption: "G/L Account No"
                         },
                         {
                             dataField: "Decription",
@@ -419,19 +419,19 @@
                         },
                         {
                             dataField: "ProductName",
-                            caption: "roductName"
+                            caption: "Product Name"
                         },
                         {
                             dataField: "PaymentMethod",
-                            caption: "PaymentMethod"
+                            caption: "Payment Method"
                         },
                         {
                             dataField: "CheckNo",
-                            caption: "CheckNo"
+                            caption: "Cheque No"
                         },
                         {
                             dataField: "BankName",
-                            caption: "BankName"
+                            caption: "Bank Name"
                         },
                         {
                             dataField: "Cash",

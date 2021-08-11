@@ -100,7 +100,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["SaleDailyReportbySerailNumber"]</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Sale DailyReport by SerailNumber"]</a></li>
                     <li class="breadcrumb-item active">@localizer["Reporting"]</li>
                 </ol>
             </div><!-- /.col -->
@@ -109,22 +109,22 @@
 </div>
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
-        <div class="card-header">
-            @localizer["SalesReportbySerialNumber"]
+        <div class="card-header" style="background-color:antiquewhite;">
+            @localizer["SalesReport by SerialNumber"]
         </div>
-        <div class="card-body">
+        <div class="card-body" style="background-color:lightblue;">
             <!--Filter-->
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateFrom"]</label>
+                    <label class="lable_datefrom">@localizer["Date From"]</label>
                     <input type="date" class="input_datefrom" id="datefrom1">
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateTo"]</label>
+                    <label class="lable_datefrom">@localizer["Date To"]</label>
                     <input type="date" class="input_datefrom" id="dateto1">
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["ByItemGroup"]</label>
+                    <label class="lable_branch">@localizer["By Item Group"]</label>
                     <select type="text" class="input_branch" id="byItemGroup">
                         <option value="0">All ItemGroup</option>
                         @{
@@ -136,7 +136,7 @@
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By SaleEmployee"]</label>
+                    <label class="lable_branch">@localizer["By Sale Employee"]</label>
                     <select type="text" class="input_branch" id="bySaleEmployee">
                         <option value="0">All Saleemployee</option>
                         @{
@@ -447,15 +447,15 @@
                         },
                         {
                             dataField: "Invoice",
-                            caption: "Invoice"
+                            caption: "Invoice #"
                         },
                         {
                             dataField: "Cardcode",
-                            caption: "Cardcode"
+                            caption: "Customer Code"
                         },
                         {
                             dataField: "CardName",
-                            caption: "CardName"
+                            caption: "Customer Name"
                         },
                         {
                             dataField: "GroupName",
@@ -463,7 +463,7 @@
                         },
                         {
                             dataField: "ItmsGroup",
-                            caption: "ItmsGroup"
+                            caption: "Items Group"
                         },
                         {
                             dataField: "Vendorcode",
@@ -488,7 +488,7 @@
                         },
                         {
                             dataField: "Intrserail",
-                            caption: "Intrserail"
+                            caption: "Serial No"
                         },
                         {
                             dataField: "Price",
@@ -496,7 +496,7 @@
                         },
                         {
                             dataField: "Saleemployee",
-                            caption: "Saleemployee"
+                            caption: "Sale Employee"
                         },
                     ],
                 });
