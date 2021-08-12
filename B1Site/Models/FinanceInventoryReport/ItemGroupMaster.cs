@@ -7,6 +7,6 @@ namespace B1Site.Models.FinanceInventoryReport
 {
     public class ItemGroupMaster
     {
-        public string ItemCode { get; set; } = null!;
+        public string ItemGroup { get; set; } = null!;
     }
 }

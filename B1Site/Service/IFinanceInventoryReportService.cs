@@ -6,7 +6,7 @@ using B1Site.Models.FinanceInventoryReport;
 
 namespace B1Site.Service
 {
-    interface IFinanceInventoryReportService
+    public interface IFinanceInventoryReportService
     {
         Task<List<CategoryMaster>> GetCategoryMastersAsync();
         Task<List<ItemGroupMaster>> GetItemCodeMastersAsyc();
