@@ -100,7 +100,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["PruchaseReport"]</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Pruchase Report"]</a></li>
                     <li class="breadcrumb-item active">@localizer["Reporting"]</li>
                 </ol>
             </div><!-- /.col -->
@@ -109,18 +109,18 @@
 </div>
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
-        <div class="card-header">
-            @localizer["PurchaseReport"]
+        <div class="card-header" style="background-color:antiquewhite;">
+            @localizer["Purchase Report"]
         </div>
-        <div class="card-body">
+        <div class="card-body" style="background-color:lightblue;">
             <!--Filter-->
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateFrom"]</label>
+                    <label class="lable_datefrom">@localizer["Date From"]</label>
                     <input type="date" class="input_datefrom" id="datefrom">
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateTo"]</label>
+                    <label class="lable_datefrom">@localizer["Date To"]</label>
                     <input type="date" class="input_datefrom" id="dateto">
                 </div>
                 <div class="col-md-2">
@@ -268,7 +268,6 @@
     $('#btnRunReport').click(function () {
         var datefrom = $('#datefrom').val();
         var dateto = $('#dateto').val();
-       
         if (datefrom == '' || datefrom == null) {
             datefrom = today;
         }
@@ -438,23 +437,23 @@
                     columns: [
                         {
                             dataField: "PoNum",
-                            caption: "PoNum"
+                            caption: "Po #"
                         },
                         {
                             dataField: "DocNum",
-                            caption: "DocNum"
+                            caption: "Good Po Num"
                         },
                         {
                             dataField: "GoodsReceiptDate",
-                            caption: "GoodsReceiptDate"
+                            caption: "Good Receipt Date"
                         },
                         {
                             dataField: "ItemGroup",
-                            caption: "ItemGroup"
+                            caption: "Items Group"
                         },
                         {
                             dataField: "ItemCode",
-                            caption: "ItemCode"
+                            caption: "Items Code"
                         },
                         {
                             dataField: "U_vendercode1",
@@ -486,11 +485,11 @@
                         //},
                         {
                             dataField: "ItemsName",
-                            caption: "ItemsName"
+                            caption: "Items Name"
                         },
                         {
                             dataField: "CustomerRefNo",
-                            caption: "CustomerRefNo"
+                            caption: "Customer Ref No"
                         },
                         {
                             dataField: "Quality",
@@ -498,11 +497,11 @@
                         },
                         {
                             dataField: "TotalItemsWidthCost",
-                            caption: "TotalItemsWidthCost"
+                            caption: "Total Items WidthCost"
                         },
                         {
                             dataField: "FreightInsurance",
-                            caption: "FreightInsurance",
+                            caption: "Freight Insurance",
                             format: { minimumSignificantDigits: 3, }
                         },
                         {
@@ -511,7 +510,7 @@
                         },
                         {
                             dataField: "ClearanceTransportaion",
-                            caption: "ClearanceTransportaion"
+                            caption: "Clearance Transportaion"
                         },
                         {
                             dataField: "other",
@@ -519,15 +518,15 @@
                         },
                         {
                             dataField: "TotalCost",
-                            caption: "TotalCost"
+                            caption: "Total Cost"
                         },
                         {
                             dataField: "UnitCost",
-                            caption: "UnitCost"
+                            caption: "Unit Cost"
                         },
                         {
                             dataField: "WSprice",
-                            caption: "WSprice"
+                            caption: "WS Price"
                         },
                     ],
                 });

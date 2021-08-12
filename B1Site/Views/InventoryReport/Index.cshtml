@@ -1,5 +1,13 @@
-﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
-@model B1Site.Models.SaleReportBySerialNumber.SaleSerailReportMaster;
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model B1Site.Models.InventoryReport.MasterViewInventoryReport;
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -100,7 +108,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Sale DailyReport by SerailNumber"]</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["InventoryReport"]</a></li>
                     <li class="breadcrumb-item active">@localizer["Reporting"]</li>
                 </ol>
             </div><!-- /.col -->
@@ -110,45 +118,45 @@
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
         <div class="card-header" style="background-color:antiquewhite;">
-            @localizer["SalesReport by SerialNumber"]
+            @localizer["InventoryReport"]
         </div>
         <div class="card-body" style="background-color:lightblue;">
             <!--Filter-->
             <div class="row">
                 <div class="col-md-2">
                     <label class="lable_datefrom">@localizer["Date From"]</label>
-                    <input type="date" class="input_datefrom" id="datefrom1">
+                    <input type="date" class="input_datefrom" id="datefrominv">
                 </div>
                 <div class="col-md-2">
                     <label class="lable_datefrom">@localizer["Date To"]</label>
-                    <input type="date" class="input_datefrom" id="dateto1">
+                    <input type="date" class="input_datefrom" id="datetoinv">
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Item Group"]</label>
-                    <select type="text" class="input_branch" id="byItemGroup">
-                        <option value="0">All ItemGroup</option>
+                    <label class="lable_branch">@localizer["By Item Code"]</label>
+                    <select type="text" class="input_branch" id="byItemCode">
+                        <option value="0">All ItemCode</option>
                         @{
-                            foreach (var a in Model.itemGroupMasters)
+                            foreach (var a in Model.ItemCodeMasters)
                             {
-                                <option value="@a.ItemGroupName">@a.ItemGroupName</option>
+                                <option value="@a.ItemCode">@a.ItemCode</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Sale Employee"]</label>
-                    <select type="text" class="input_branch" id="bySaleEmployee">
-                        <option value="0">All Saleemployee</option>
+                    <label class="lable_branch">@localizer["By Main Group"]</label>
+                    <select type="text" class="input_branch" id="byMainGroup">
+                        <option value="0">All MainGroup</option>
                         @{
-                            foreach (var a in Model.saleemployeeMasters)
+                            foreach (var a in Model.MainGroupMasters)
                             {
-                                <option value="@a.saleemployeecode">@a.saleemployeeName</option>
+                                <option value="@a.MainGroup">@a.MainGroup</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="col-md-4 ">
-                    <button class="btn btn-xs btn-kernel" id="btnRunReport1">@localizer["RUN"]</button>
+                    <button class="btn btn-xs btn-kernel" id="btnruninventory">@localizer["Filter"]</button>
                 </div>
             </div>
             <div class="row">
@@ -157,59 +165,21 @@
                     <select type="text" class="input_branch" id="byCategory">
                         <option value="0">All Category</option>
                         @{
-                            foreach (var a in Model.categoryMasters)
+                            foreach (var a in Model.CategoryMasters)
                             {
-                                <option value="@a.CategoryName">@a.CategoryName</option>
+                                <option value="@a.Category">@a.Category</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By CustomerClass"]</label>
-                    <select type="text" class="input_branch" id="byCustomerClass">
-                        <option value="0">All CustomerClass</option>
+                    <label class="lable_branch">@localizer["By Sub Category"]</label>
+                    <select type="text" class="input_branch" id="bySub-Category">
+                        <option value="0">ALL SubCategory</option>
                         @{
-                            foreach (var a in Model.customerclassMasters)
+                            foreach (var a in Model.SubCategoryMasters)
                             {
-                                <option value="@a.Customerclasscode">@a.Customerclassname</option>
-                            }
-                        }
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Location"]</label>
-                    <select type="text" class="input_branch" id="byLocation">
-                        <option value="0">All Location</option>
-                        @{
-                            foreach (var a in Model.locationMasters )
-                            {
-                                <option value="@a.Locationcode">@a.LocationName</option>
-                            }
-                        }
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By InventoryID"]</label>
-                    <select type="text" class="input_branch" id="byInventoryID">
-                        <option value="0">All InventeryID</option>
-                        @{
-                            foreach (var a in Model.inventeryidMasters)
-                            {
-                                <option value="@a.Inventeryidcode">@a.Inventeryidname</option>
-                            }
-                        }
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By CustomerID"]</label>
-                    <select type="text" class="input_branch" id="byCustomerID">
-                        <option value="0">All CustomerID</option>
-                        @{
-                            foreach (var a in Model.customeridMasters)
-                            {
-                                <option value="@a.customeridcode">@a.customername</option>
+                                <option value="@a.SubCategory"> @a.SubCategory</option>
                             }
                         }
                     </select>
@@ -217,24 +187,40 @@
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Source"]</label>
                     <select type="text" class="input_branch" id="bySource">
-                        <option value="0">All Branch</option>
+                        <option value="0"> All Source</option>
                         @{
-                            foreach (var a in Model.sourceMasters)
+                            foreach (var a in Model.SourceMasters)
                             {
-                                <option value="@a.sourcename">@a.sourcename</option>
+                                <option value="@a.Source"> @a.Source</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Warehouse"]</label>
-                    <select type="text" class="input_branch" id="byWarehouse">
+                    <label class="lable_branch">@localizer["By Measure"]</label>
+                    <select type="text" class="input_branch" id="byMeasure">
+                        <option value="0"> All Measure</option>
+                        @{
+                            foreach (var a in Model.MeasureMasters)
+                            {
+                                <option value="@a.Measure">@a.Measure</option>
+                            }
+
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="lable_branch">@localizer["By Warehouse ID"]</label>
+                    <select type="text" class="input_branch" id="byWarehouseID">
                         <option value="0">All Warehouse</option>
                         @{
-                            foreach (var a in Model.bywarehouseMasters)
+                            foreach (var a in Model.WarehouseMasters)
                             {
-                                <option value="@a.warehousecode">@a.warehousename</option>
+                                <option value="@a.Warehouse">@a.Warehouse</option>
                             }
+
                         }
                     </select>
                 </div>
@@ -256,81 +242,73 @@
 </div>
 
 <script>
- 
+
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
+
     today = mm + '/' + dd + '/' + yyyy;
     loadReport(today, today);
-    $('#btnRunReport1').click(function () {
-        var datefrom = $('#datefrom1').val();
-        var dateto = $('#dateto1').val();
-        var itemgroup = $('#byItemGroup').val();
-        var salemployee = $('#bySaleEmployee').val();
-        var Category = $('#byCategory').val();
-        var Customerclass = $('#byCustomerClass').val();
-        var Location = $('#byLocation').val();
-        var Inventeryid = $('#byInventoryID').val();
-        var Customerid = $('#byCustomerID').val();
-        var Source = $('#bySource').val();
-        var Warehouse = $('#byWarehouse').val();
-        //alert(Warehouse);
-        loadReport(datefrom, dateto, itemgroup, salemployee, Category, Customerclass, Location,Inventeryid,Customerid,Source,Warehouse);
+    $('#btnruninventory').click(function () {
+        var datefrom = $('#datefrominv').val();
+        var dateto = $('#datetoinv').val();
+        var itemcode = $('#byItemCode').val();
+        var mainGroup = $('#byMainGroup').val();
+        var category = $('#byCategory').val();
+        var SubCategory = $('#bySub-Category').val();
+        var source = $('#bySource').val();
+        var measure = $('#byMeasure').val();
+        var warehouse = $('#byWarehouseID').val();
+        loadReport(datefrom, dateto, itemcode, mainGroup, category, SubCategory, source, measure, warehouse);
+       // alert("Report Run Success");
+        //alert(warehouse);
     });
-    filterData();
-    function filterData() {
-        var datefrom = $('#datefrom1').val();
-        var dateto = $('#dateto1').val();
-        var itemgroup = $('#byItemGroup').val();
-        var salemployee = $('#bySaleEmployee').val();
-        var Category = $('#byCategory').val();
-        var Customerclass = $('#byCustomerClass').val();
-        var Location = $('#byLocation').val();
-        var Inventeryid = $('#byInventoryID').val();
-        var Customerid = $('#byCustomerID').val();
-        var Source = $('#bySource').val();
-        var Warehouse = $('#byWarehouse').val();
+    function filterData(button) {
+        var datefrom = $('#datefrominv').val();
+        var dateto = $('#datetoinv').val();
+        var itemcode = $('#byItemCode').val();
+        var mainGroup = $('#byMainGroup').val();
+        var category = $('#byCategory').val();
+        var subCategory = $('#bySub-Category').val();
+        var source = $('#bySource').val();
+        var measure = $('#byMeasure').val();
+        var warehouse = $('#byWarehouseID').val();
         if (datefrom == '' || datefrom==null) {
             datefrom = today;
         }
         if (dateto == '' || dateto == null) {
             dateto = today;
         }
-        if (itemgroup == '' || itemgroup == undefined) {
-            itemgroup = '';
+        if (itemcode == 0 || itemcode == undefined){
+            itemcode==''
         }
-        if (salemployee == '' || salemployee == undefined) {
-            salemployee = '';
+        if (mainGroup == 0 || mainGroup == undefined) {
+            mainGroup==''
         }
-        if (Category == '' || Category == undefined) {
-            Category = '';
+        if (category == 0 || category == undefined) {
+            category == ''
         }
-        if (Customerclass == '' || Customerclass == undefined) {
-            Customerclass = '';
+        if (subCategory == 0 || subCategory == undefined) {
+            subCategory == ''
         }
-        if (Location == '' || Location == undefined) {
-            Location = '';
+        if (source == 0 || source == undefined) {
+            source == ''
         }
-        if (Inventeryid == '' || Inventeryid == undefined) {
-            Inventeryid = '';
+        if (measure == 0 || measure == undefined) {
+            measure == ''
         }
-        if (Customerid == '' || Customerid == undefined) {
-            Customerid = '';
+        if (warehouse == 0 || warehouse == undefined) {
+            warehouse == ''
         }
-        if (Source == '' || Source == undefined) {
-            Source = '';
-        }
-        if (Warehouse == '' || Warehouse == undefined) {
-            Warehouse = '';
-        }
-        loadReport(datefrom, dateto, itemgroup, salemployee,Category,Customerclass,Location,Inventeryid,Customerid,Source,Warehouse);
+        loadReport(datefrom, dateto, itemcode, mainGroup, category,subCategory,source, measure,warehouse);
     }
-    function loadReport(datefrom, dateto, itemgroup, salemployee,Category,Customerclass,Location,Inventeryid,Customerid,Source,Warehouse) {
+    function loadReport(datefrom, dateto, itemcode, mainGroup, category, subCategory, source, measure, warehouse) {
+        //let btn_filter = $(button).children("i.fa-search");
         $.ajax({
-            url: '@Url.Action("GetSaleserialreport", "SaleReportBySerial")',
+            url: '@Url.Action("GetInventoryReport", "InventoryReport")',
             type: "GET",
-            data: { datefrom: datefrom, dateto: dateto, byItemgroup: itemgroup, saleemployee: salemployee, category: Category, customerclass: Customerclass, location: Location, Inveteryid: Inventeryid, customerid: Customerid, source: Source, warhoue: Warehouse},
+            data: { datefrom: datefrom, dateto: dateto, itemcode: itemcode, mainGroups: mainGroup, categorys: category, subcategorys: subCategory, sources: source, measures: measure, warehouses:warehouse},
             dataType: "JSON",
             beforeSend: function () {
                 //btn_filter.addClass("fa-spinner fa-spin");
@@ -355,7 +333,7 @@
                     },
                     onExporting: function (e) {
                         var workbook = new ExcelJS.Workbook();
-                        var worksheet = workbook.addWorksheet('SaleReport');
+                        var worksheet = workbook.addWorksheet('InventoryReport');
 
                         DevExpress.excelExporter.exportDataGrid({
                             component: e.component,
@@ -363,7 +341,7 @@
                             autoFilterEnabled: true
                         }).then(function () {
                             workbook.xlsx.writeBuffer().then(function (buffer) {
-                                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'SaleDailyReport.xlsx');
+                                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'SInventoryReport.xlsx');
                             });
                         });
                         e.cancel = true;
@@ -401,102 +379,144 @@
                         );
                     },
                     summary: {
-                        totalItems: [
+                        totalItems: [{
+                            column: "ItemCode",
+                            summaryType: "count"
+                        },
                             {
-                                column: "Cardcode",
-                                summaryType: "count"
-                            },
-                            {
-                                column: "Price",
-                                summaryType: "sum"
-                            },
-                            {
-                                column: "qulity",
+                                column: "QTY",
                                 summaryType: "sum"
                             }
                         ]
                     },
                     columns: [
                         {
-                            dataField: "InvoiceDate",
-                            caption: "InvoiceDate",
-                            alignment: "right",
-                            dataType: "date",
-                            width: 120,
-                            calculateFilterExpression: function (value, selectedFilterOperations, target) {
-                                if (target === "headerFilter" && value === "weekends") {
-                                    return [[getOrderDay, "=", 0], "or", [getOrderDay, "=", 6]];
-                                }
-                                return this.defaultCalculateFilterExpression.apply(this, arguments);
-                            },
-                            headerFilter: {
-                                dataSource: function (data) {
-                                    data.dataSource.postProcess = function (results) {
-                                        results.push({
-                                            text: "Weekends",
-                                            value: "weekends"
-                                        });
-                                        return results;
-                                    };
-                                }
-                            }
+                            dataField: "Row",
+                            caption: "No"
                         },
                         {
-                            dataField: "SysiNvoice",
-                            caption: "SysiNvoice"
+                            dataField: "Group",
+                            caption: "Group"
                         },
                         {
-                            dataField: "Invoice",
-                            caption: "Invoice #"
+                            dataField: "ItemCode",
+                            caption: "Item Code"
                         },
                         {
-                            dataField: "Cardcode",
-                            caption: "Customer Code"
+                            dataField: "vendorCode1",
+                            caption: "Vendor Code1"
                         },
                         {
-                            dataField: "CardName",
-                            caption: "Customer Name"
+                            dataField: "description",
+                            caption: "Description"
                         },
                         {
-                            dataField: "GroupName",
-                            caption: "GroupName"
+                            dataField: "Category",
+                            caption: "Category"
                         },
                         {
-                            dataField: "ItmsGroup",
-                            caption: "Items Group"
+                            dataField: "SubCategory",
+                            caption: "Sub Category"
                         },
                         {
-                            dataField: "Vendorcode",
-                            caption: "Vendorcode"
+                            dataField: "Movement",
+                            caption: "Movement"
                         },
                         {
-                            dataField: "Decritions",
-                            caption: "Decritions"
-                        },
-
-                        {
-                            dataField: "OrcName",
-                            caption: "OrcName"
+                            dataField: "RetailPrice",
+                            caption: "Retail Price"
                         },
                         {
-                            dataField: "U_Color",
-                            caption: "U_Color"
+                            dataField: "WholeSale",
+                            caption: "Whole Sale"
                         },
                         {
-                            dataField: "Qulity",
-                            caption: "Qulity"
+                            dataField: "QTY",
+                            caption: "QTY"
                         },
                         {
-                            dataField: "Intrserail",
-                            caption: "Serial No"
+                            dataField: "Kng13",
+                            caption: "KNG 13"
                         },
                         {
-                            dataField: "Price",
-                            caption: "Price"
+                            dataField: "Kng14",
+                            caption: "KNG 14"
                         },
                         {
-                            dataField: "Saleemployee",
-                            caption: "Sale Employee"
+                            dataField: "Kng15",
+                            caption: "KNG 15"
+                        },
+                        {
+                            dataField: "Kng2",
+                            caption: "KNG 2"
+                        },
+                        {
+                            dataField: "Kngw5",
+                            caption: "KNG5"
+                        },
+                        {
+                            dataField: "Kngw3",
+                            caption: "KNGW 3"
+                        },
+                        {
+                            dataField: "Kng8",
+                            caption: "KNG8"
+                        },
+                        {
+                            dataField: "Kng9",
+                            caption: "KNG 9"
+                        },
+                        {
+                            dataField: "Kngfz1",
+                            caption: "KNGFZ1"
+                        },
+                        {
+                            dataField: "Kngfz2",
+                            caption: "KNGZ2"
+                        },
+                        {
+                            dataField: "Kngfz3",
+                            caption: "KNGZ3"
+                        },
+                        {
+                            dataField: "Kngfz4",
+                            caption: "KNGZ4"
+                        },
+                        {
+                            dataField: "Kngfz5",
+                            caption: "KNGZ5"
+                        },
+                        {
+                            dataField: "Kngfz6",
+                            caption: "KNGZ6"
+                        },
+                        {
+                            dataField: "Kngfz7",
+                            caption: "KNGFZ7"
+                        },
+                        {
+                            dataField: "Kngfz8",
+                            caption: "KNGFZ8"
+                        },
+                        {
+                            dataField: "Kngfz9",
+                            caption: "KNGFZ9"
+                        },
+                        {
+                            dataField: "Kngw1",
+                            caption: "KNGW1"
+                        },
+                        {
+                            dataField: "Kngw4",
+                            caption: "KNGW4"
+                        },
+                        {
+                            dataField: "Kngw5",
+                            caption: "KNGW5"
+                        },
+                        {
+                            dataField: "Kngw6",
+                            caption: "KNGW6"
                         },
                     ],
                 });
@@ -505,3 +525,8 @@
         });
     }
 </script>
+
+
+
+
+
