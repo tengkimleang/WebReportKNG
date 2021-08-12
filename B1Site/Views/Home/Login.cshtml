@@ -20,7 +20,7 @@
     </style>
 </head>
 
-<body data-topbar="dark" data-layout="horizontal" data-sidebar-size="" data-layout-size="fluid" data-layout-scrollable="false" style="background-color: rgb(6, 52, 83);">
+<body data-topbar="dark" data-layout="horizontal" data-sidebar-size="" data-layout-size="fluid" data-layout-scrollable="false" style="background-color:#E8F0FE;">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
         <!-- <div class="home-btn d-none d-sm-block"><a class="text-dark" href="/">asdasd</a></div> -->
@@ -84,7 +84,7 @@
                             </div>
                         </div>
                         <div class="mt-1 mt-sm-4 text-center" style="color: white;">
-                            <p>© 2021 Copy Right<i class="mdi mdi-heart text-danger"></i> by Netsys</p>
+                            <p>© 2021 Copy Right<i class="mdi mdi-heart text-danger"></i> by Kong Noung Group.,Co Ltd</p>
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,13 @@
             }
             forms.classList.add('was-validated');
         }, false)
-    });
+        });
+        if (event.altKey == true && event.keyCode == 0) { alert("ALT + F4 being pressed"); }
+        function handleWindowClose() {
+            if ((window.event.clientX < 0) || (window.event.clientY < 0)) {
+                event.returnValue = "If you have made any changes to the fields without clicking the Save button, your changes will be lost.";
+            }
+        }
     </script>
 </body>
 </html>
