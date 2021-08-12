@@ -12,8 +12,8 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace B1Site
 {
@@ -61,6 +61,9 @@ namespace B1Site
                 option.IdleTimeout = TimeSpan.FromMinutes(30)
             );
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            #endregion
+            #region Add Cookies
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             #endregion
             #region Add Scope
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
