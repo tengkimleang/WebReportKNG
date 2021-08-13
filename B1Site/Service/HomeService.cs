@@ -29,7 +29,7 @@ namespace B1Site.Service
         public Task<List<LanguageTypeDatabase>> GetLanguageTypeDatabasesAsync()
         {
             ClsCRUD clsCRUD = new ClsCRUD();
-            var dt = clsCRUD.GetdataWebDb("SELECT * FROM Tb_LanguageType WHERE active=1", "WebDb");
+            var dt = clsCRUD.Getdata("SELECT * FROM Tb_LanguageType WHERE active=1");
             List<LanguageTypeDatabase> languageTypeDatabases = new List<LanguageTypeDatabase>();
             foreach (DataRow a in dt.Rows)
             {
@@ -67,29 +67,7 @@ namespace B1Site.Service
 
         public Task<List<ReportDatabase>> GetReportDatabasesAsync()
         {
-            ClsCRUD clsCRUD = new ClsCRUD();
-            var dt = clsCRUD.GetdataWebDb("SELECT * FROM Tb_Report WHERE Active=1", "WebDb");
-            List<ReportDatabase> reportDatabases = new List<ReportDatabase>();
-            foreach (DataRow a in dt.Rows)
-            {
-                try
-                {
-                    reportDatabases.Add(new ReportDatabase
-                    {
-                        ID = Convert.ToInt32(a[0].ToString()),
-                        Action = a[1].ToString(),
-                        Controller = a[2].ToString(),
-                        Language = a[3].ToString(),
-                        LanguageType = a[4].ToString(),
-                        ByOrder = Convert.ToInt32(a[5].ToString()),
-                    });
-                }
-                catch(Exception ex)
-                {
-                    var e1 = ex.Message;
-                }
-            }
-            return Task.FromResult(reportDatabases);
+            throw new NotImplementedException();
         }
     }
 }

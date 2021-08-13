@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/unresolved.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.3/css/dx.common.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.3/css/dx.light.css" />
-    <script src="https://cdn3.devexpress.com/jslib/21.1.5/js/dx.all.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/21.1.3/js/dx.all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
@@ -193,6 +193,7 @@
     var ordersStore = new DevExpress.data.CustomStore({
         key: "OrderID",
         load: function () {
+<<<<<<< HEAD
             return sendRequest('@Url.Action("GetReportDatabase", "Home")');
         },
         insert: function (values) {
@@ -200,6 +201,15 @@
                 values: JSON.stringify(values)
             });
         },
+=======
+            return sendRequest(URL + "/Orders");
+        },
+        insert: function (values) {
+            return sendRequest(URL + "/InsertOrder", "POST", {
+                values: JSON.stringify(values)
+            });
+        },
+>>>>>>> parent of 71f8f67 (Add New HomeController Feature)
         update: function (key, values) {
             return sendRequest(URL + "/UpdateOrder", "PUT", {
                 key: key,
@@ -212,6 +222,7 @@
             });
         }
     });
+<<<<<<< HEAD
 
     function sendRequest(url, method, data) {
         var d = $.Deferred();
@@ -259,9 +270,12 @@
                 return data;
             }
         });
+=======
+    function loadData(Url) {
+>>>>>>> parent of 71f8f67 (Add New HomeController Feature)
 
     }
-    loadReport();
+
     function loadReport() {
         var loadPanel = $(".loadpanel").dxLoadPanel({
             shadingColor: "rgba(0,0,0,0.4)",
@@ -274,8 +288,13 @@
         }).dxLoadPanel("instance");
         $(function () {
             $("#gridContainer").dxDataGrid({
+<<<<<<< HEAD
                 dataSource: ordersStore,
                 repaintChangesOnly: true,
+=======
+                dataSource: employees,
+                keyExpr: "ID",
+>>>>>>> parent of 71f8f67 (Add New HomeController Feature)
                 loadPanel: {
                         enabled: true
                 },
@@ -300,6 +319,7 @@
                     {
                         dataField: "Language",
                     }, {
+<<<<<<< HEAD
                         dataField: "LanguageType",
                         caption: "LangType",
                         //lookup: {
@@ -307,6 +327,29 @@
                         //    displayExpr: "Name",
                         //    valueExpr: "ID"
                         //}
+=======
+                        dataField: "StateID",
+                        caption: "State",
+                        width: 125,
+                        lookup: {
+                            dataSource: states,
+                            displayExpr: "Name",
+                            valueExpr: "ID"
+                        }
+                    }, {
+                        dataField: "BirthDate",
+                        dataType: "date"
+                    }, {
+                        dataField: "Notes",
+                        visible: false,
+                        formItem: {
+                            colSpan: 2,
+                            editorType: "dxTextArea",
+                            editorOptions: {
+                                height: 100
+                            }
+                        }
+>>>>>>> parent of 71f8f67 (Add New HomeController Feature)
                     }
                     //, {
                     //    dataField: "ByOrder",
@@ -314,6 +357,18 @@
                     //}
                 ]
             });
+        });
+
+        $.ajax({
+            url: '@Url.Action("GetSaleDailyReport", "SaleDialyReport")',
+            type: "GET",
+            dataType: "JSON",
+            beforeSend: function () {
+                loadPanel.show();
+            },
+            success: function (data) {
+                console.log(data);
+            }
         });
     }
 </script>

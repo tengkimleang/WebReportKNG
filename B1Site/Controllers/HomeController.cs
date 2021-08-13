@@ -2,8 +2,6 @@
 using B1Site.Models;
 using B1Site.Models.Home;
 using B1Site.Service;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +11,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace B1Site.Controllers
@@ -24,8 +21,6 @@ namespace B1Site.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IHomeService homeService;
         private readonly IHttpContextAccessor httpContextAccessor;
-        [System.ComponentModel.Browsable(false)]
-        public event System.ComponentModel.CancelEventHandler Closing;
         #endregion
         #region Init Constructor of HomeController
         public HomeController(ILogger<HomeController> logger, IHomeService homeService, IHttpContextAccessor httpContextAccessor)
@@ -68,26 +63,7 @@ namespace B1Site.Controllers
         public async Task<IActionResult> GetLoginAdminAsync(string userName, string passWord, string databaseSAP)
         {
             ConnectionString.constr = $"Data Source={ConnectionString.DataSource};Initial Catalog={databaseSAP};User Id={ConnectionString.UserName};Password={ConnectionString.PassWord}";
-            #region ClaimsPrincipal
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, userName),
-	            //...more claims if needed
-            };
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(identity);
-            var properties = new AuthenticationProperties
-            {
-                IsPersistent = false,
-                ExpiresUtc = DateTime.UtcNow.AddDays(1)
-            };
-            await HttpContext.SignInAsync(principal, properties);
-            #endregion
             return Ok(await homeService.GetLoginsAsync(userName, passWord));
-        }
-        public async Task<IActionResult> GetReportDatabaseAsync()
-        {
-            return Ok(await homeService.GetReportDatabasesAsync());
         }
         #endregion
         #region Add Language
@@ -107,6 +83,5 @@ namespace B1Site.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         #endregion
-
     }
 }

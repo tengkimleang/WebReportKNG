@@ -26,16 +26,7 @@ namespace B1Site.Connection
         public DataTable GetdataWebDb(string sql,string type)
         {
             DataTable tb = new DataTable();
-            string db = "";
-            if (type == "WebDb")
-            {
-                db = ConnectionString.constrWeb;
-            }
-            else
-            {
-                db = ConnectionString.constrDb;
-            }
-            SqlDataAdapter dtp = new SqlDataAdapter(sql, db);
+            SqlDataAdapter dtp = new SqlDataAdapter(sql, ConnectionString.constrDb);
             try
             {
                 dtp.Fill(tb);

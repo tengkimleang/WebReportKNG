@@ -121,13 +121,7 @@
             }
             forms.classList.add('was-validated');
         }, false)
-        });
-        if (event.altKey == true && event.keyCode == 0) { alert("ALT + F4 being pressed"); }
-        function handleWindowClose() {
-            if ((window.event.clientX < 0) || (window.event.clientY < 0)) {
-                event.returnValue = "If you have made any changes to the fields without clicking the Save button, your changes will be lost.";
-            }
-        }
+    });
     </script>
 </body>
 </html>
