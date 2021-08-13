@@ -13,7 +13,7 @@
   },
   "profiles": {
     "Start": {
-      "commandName": "Project",
+      "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -30,6 +30,10 @@
       "sqlDebugging": false,
       "nativeDebugging": false,
       "jsWebView2Debugging": false
+    },
+    "Kimleang": {
+      "commandName": "IIS",
+      "launchBrowser": true
     }
   }
 }

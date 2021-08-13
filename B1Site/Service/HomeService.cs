@@ -37,7 +37,7 @@ namespace B1Site.Service
                 {
                     ID=a[0].ToString(),
                     Name=a[1].ToString(),
-                    Active=true,
+                    //Active=true,
                 });
             }
             return Task.FromResult(languageTypeDatabases);

@@ -89,6 +89,15 @@ namespace B1Site.Controllers
         {
             return Ok(await homeService.GetReportDatabasesAsync());
         }
+        public async Task<IActionResult> GetLanguageTypeDatabasesAsync() 
+        {
+            return Json(await homeService.GetLanguageTypeDatabasesAsync());
+        }
+        [HttpPost]
+        public async Task<IActionResult> PostTo(ReportDatabase reportDatabase)
+        {
+            return Json("Ok");
+        }
         #endregion
         #region Add Language
         public IActionResult CultureManagment(string culture,string returnUrl)
