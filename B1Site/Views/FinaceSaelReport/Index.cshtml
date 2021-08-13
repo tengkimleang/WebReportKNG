@@ -4,7 +4,7 @@
 @{
 }
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
-@model B1Site.Models.FinalSaleReport.MasterViweFanceSaleReport;
+@model B1Site.Models.SaleDailyReport.MasterViewSaleDailyReport;
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -12,6 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!--Dev-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/event.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/supplemental.min.js"></script>
@@ -100,12 +101,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">@localizer["Finance Sale Report"]</h1>
+                <h1 class="m-0">@localizer["Final Sale Report"]</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Finance Sale Report"]</a></li>
-                    <li class="breadcrumb-item active">@localizer["Finance Sale Report"]</li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Final Sale Report"]</a></li>
+                    <li class="breadcrumb-item active">@localizer["Final Sale Report"]</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -113,10 +114,10 @@
 </div>
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
-        <div class="card-header" style="background-color:antiquewhite;">
-            @localizer["Finance SaleR eport"]
+        <div class="card-header">
+            @localizer["Final SaleR eport"]
         </div>
-        <div class="card-body" style="background-color:lightblue;">
+        <div class="card-body">
             <!--Filter-->
             <div class="row">
                 <div class="col-md-2">
@@ -131,24 +132,24 @@
                     <label class="lable_branch">@localizer["By ItemGroup"]</label>
                     <select type="text" class="input_branch" id="byItemGroup">
                         <option value="0">All ItemGroupss</option>
-                        @{
-                            foreach (var a in Model.itemsCodeMasters)
+                        @*@{
+                            foreach (var a in Model.ItemGroupMasters)
                             {
-                                <option value="@a.Itemscode">@a.ItemsName</option>
+                                <option value="@a.ItemGroup">@a.ItemGroup</option>
                             }
-                        }
+                        }*@
                     </select>
                 </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Category"]</label>
-                    <select type="text" class="input_branch" id="byCategory">
+                    <select type="text" class="input_branch" id="bySaleEmployee">
                         <option value="0">All SaleEmployee</option>
-                        @{
-                            foreach (var a in Model.categoryMasters)
+                        @*@{
+                            foreach (var a in Model.SaleEmployeeMasters)
                             {
-                                <option value="@a.Category">@a.Category</option>
+                                <option value="@a.Code">@a.SaleEmployee</option>
                             }
-                        }
+                        }*@
                     </select>
                 </div>
                 <div class="col-md-4 ">
@@ -158,64 +159,64 @@
             <div class="row">
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By SaleEmployee"]</label>
-                    <select type="text" class="input_branch" id="BySaleemployee">
+                    <select type="text" class="input_branch" id="byCategory">
                         <option value="0">All Category</option>
-                        @{
-                            foreach (var a in Model.saleemployeeMasters)
+                        @*@{
+                            foreach (var a in Model.CategoryMasters)
                             {
-                                <option value="@a.SaleEmployeeCode">@a.SaleeEmployeeName</option>
+                                <option value="@a.Category">@a.Category</option>
                             }
-                        }
+                        }*@
                     </select>
                 </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Measure"]</label>
-                    <select type="text" class="input_branch" id="byMeasure">
+                    <select type="text" class="input_branch" id="byCustomerClass">
                         <option value="0">All CustomerClass</option>
-                        @{
-                            foreach (var a in Model.measureMasters)
+                        @*@{
+                            foreach (var a in Model.CustomerClassMasters)
                             {
-                                <option value="@a.MeasureName">@a.MeasureName</option>
+                                <option value="@a.Code">@a.Name</option>
                             }
-                        }
+                        }*@
                     </select>
                 </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Itemcode"]</label>
-                    <select type="text" class="input_branch" id="byItemcode">
+                    <select type="text" class="input_branch" id="byLocation">
                         <option value="0">All Location</option>
-                        @{
-                            foreach (var a in Model.itemsCodeMasters)
+                        @*@{
+                            foreach (var a in Model.LocationMasters)
                             {
-                                <option value="@a.Itemscode">@a.ItemsName</option>
+                                <option value="@a.Code">@a.Name</option>
                             }
-                        }
+                        }*@
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By CustomerID"]</label>
-                    <select type="text" class="input_branch" id="byCustomerid">
+                    <label class="lable_branch">@localizer["By Customerid"]</label>
+                    <select type="text" class="input_branch" id="byInventoryID">
                         <option value="0">All InventoryID</option>
-                        @{
-                            foreach (var a in Model.customerIDMasters)
+                        @*@{
+                            foreach (var a in Model.InventoryIDMasters)
                             {
-                                <option value="@a.CustomerCode">@a.CustomerName</option>
+                                <option value="@a.Code">@a.Name</option>
                             }
-                        }
+                        }*@
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Source"]</label>
-                    <select type="text" class="input_branch" id="bySource">
+                    <label class="lable_branch">@localizer["Source"]</label>
+                    <select type="text" class="input_branch" id="byCustomerID">
                         <option value="0">All CustomerID</option>
-                        @{
-                            foreach (var a in Model.sourceMasters)
+                        @*@{
+                            foreach (var a in Model.CusomterIDMasters)
                             {
-                                <option value="@a.SourceName">@a.SourceName</option>
+                                <option value="@a.Code">@a.Name</option>
                             }
-                        }
+                        }*@
                     </select>
                 </div>
                 <!--<div class="col-md-2">
@@ -279,14 +280,17 @@
             dateto = today;
         }
         var byItemGroup = ifToDo($('#byItemGroup'));
+        var bySaleEmployee = ifToDo($('#bySaleEmployee'));
         var byCategory = ifToDo($('#byCategory'));
-        var BySaleemployee = ifToDo($('#BySaleemployee'));
-        var bymeasure = ifToDo($('#byMeasure'));
-        var byItemcode = ifToDo($('#byItemcode'));
-        var bycuostmerid = ifToDo($('#byCustomerid'));
-        var bysource = ifToDo($('#bySource'));
-        //alert(byItemGroup);
-        loadReport(datefrom, dateto,byItemGroup,byCategory,BySaleemployee,bymeasure,byItemcode,bycuostmerid,bysource);
+        var byCustomerClass = ifToDo($('#byCustomerClass'));
+        var byLocation = ifToDo($('#byLocation'));
+        var byInventoryID = ifToDo($('#byInventoryID'));
+        var byCustomerID = ifToDo($('#byCustomerID'));
+        var bySource = ifToDo($('#bySource'));
+        var byWarehouse = ifToDo($('#byWarehouse'));
+        alert(datefrom);
+        loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
+            byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
     });
     function filterData() {
         var datefrom = $('#datefrom').val();
@@ -298,13 +302,16 @@
             dateto = today;
         }
         var byItemGroup = ifToDo($('#byItemGroup'));
+        var bySaleEmployee = ifToDo($('#bySaleEmployee'));
         var byCategory = ifToDo($('#byCategory'));
-        var BySaleemployee = ifToDo($('#BySaleemployee'));
-        var bymeasure = ifToDo($('#byMeasure'));
-        var byItemcode = ifToDo($('#byItemcode'));
-        var bycuostmerid = ifToDo($('#byCustomerid'));
-        var bysource = ifToDo($('#bySource'));
-        loadReport(datefrom, dateto,byItemGroup,byCategory,BySaleemployee,bymeasure,byItemcode,bycuostmerid,bysource);
+        var byCustomerClass = ifToDo($('#byCustomerClass'));
+        var byLocation = ifToDo($('#byLocation'));
+        var byInventoryID = ifToDo($('#byInventoryID'));
+        var byCustomerID = ifToDo($('#byCustomerID'));
+        var bySource = ifToDo($('#bySource'));
+        var byWarehouse = ifToDo($('#byWarehouse'));
+        loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
+            byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
     }
     function ifToDo(condition) {
         if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
@@ -313,7 +320,8 @@
             return condition.val();
         }
     }
-    function loadReport(datefrom, dateto,byItemsGroup,byCategroy,bysaleemployee,bymeasure,byItemcode,bycustomerid,bysource) {
+    function loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
+        byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse) {
         var loadPanel = $(".loadpanel").dxLoadPanel({
             shadingColor: "rgba(0,0,0,0.4)",
             position: { of: "#gridContainer" },
@@ -329,13 +337,15 @@
             data: {
                 datefrom: datefrom,
                 dateto: dateto,
-                itemgroup: byItemsGroup,
-                categroy: byCategroy,
-                saleemployee: bysaleemployee,
-                Measure: bymeasure,
-                itemcode: byItemcode,
-                customerid: bycustomerid,
-                source: bysource
+                byItemGroup: byItemGroup,
+                bySaleEmployee: bySaleEmployee,
+                byCategory: byCategory,
+                byCustomerClass: byCustomerClass,
+                byLocation: byLocation,
+                byInventoryID: byInventoryID,
+                byCustomerID: byCustomerID,
+                bySource: bySource,
+                byWarehouse: byWarehouse
             },
             dataType: "JSON",
             beforeSend: function () {
@@ -445,7 +455,7 @@
                     columns: [
                         {
                             dataField: "Cardcode",
-                            caption: "Customer ID"
+                            caption: "CardCode "
                         },
                         {
                             dataField: "CustomerCode",
@@ -453,7 +463,7 @@
                         },
                         {
                             dataField: "CarName",
-                            caption: "Customer Name"
+                            caption: "CardName"
                         },
                         {
                             dataField: "CustomerGroup",
@@ -465,7 +475,7 @@
                         },
                         {
                             dataField: "Stae",
-                            caption: "Region/Sate"
+                            caption: "Stae"
                         },
                         //{
                         //    dataField: "InvoiceDate",
@@ -493,19 +503,19 @@
                         //},
                         {
                             dataField: "Saler",
-                            caption: "Sale Employee"
+                            caption: "Saler"
                         },
                         {
                             dataField: "SONo",
-                            caption: "SO#"
+                            caption: "SONo"
                         },
                         {
                             dataField: "DONo",
-                            caption: "DoNum"
+                            caption: "DONo"
                         },
                         {
                             dataField: "InvNo",
-                            caption: "Invoice#"
+                            caption: "InvNo"
                         },
                         {
                             dataField: "InvDate ",
@@ -538,7 +548,7 @@
                         },
                         {
                             dataField: "U_Source",
-                            caption: "Source "
+                            caption: "U_Source "
                         },
                         {
                             dataField: "SubCategory",
@@ -550,19 +560,19 @@
                         },
                         {
                             dataField: "U_Movement",
-                            caption: "Movement"
+                            caption: "U_Movement"
                         },
                         {
                             dataField: "U_Condition",
-                            caption: "Condition"
+                            caption: "U_Condition"
                         },
                         {
                             dataField: "U_Model",
-                            caption: "Model"
+                            caption: "U_Model"
                         },
                         {
                             dataField: "U_Year",
-                            caption: "Year"
+                            caption: "U_Year"
                         },
                         {
                             dataField: "Location",
@@ -582,7 +592,7 @@
                         },
                         {
                             dataField: "whs",
-                            caption: "Warehouse"
+                            caption: "whs"
                         },
                         {
                             dataField: "Price",
