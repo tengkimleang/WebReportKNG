@@ -125,7 +125,7 @@
                     <input type="date" class="input_datefrom" id="datetofin">
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Item Group"]</label>
+                    <label class="lable_branch">@localizer["By Item Code"]</label>
                     <select type="text" class="input_branch" id="byItemGroupfin">
                         <option value="0">All ItemCode</option>
                         @{
@@ -371,17 +371,17 @@
                                 }
                             );
                         },
-                        //summary: {
-                        //    totalItems: [{
-                        //        column: "ItemCode",
-                        //        summaryType: "count"
-                        //    },
-                        //        {
-                        //            column: "QTY",
-                        //            summaryType: "sum"
-                        //        }
-                        //    ]
-                        //},
+                        summary: {
+                            totalItems: [{
+                                column: "ItemCode",
+                                summaryType: "count"
+                            },
+                                {
+                                column: "QTY",
+                                summaryType: "sum"
+                            }
+                            ]
+                        },
                         columns: [
                             {
                                 dataField: "Row",

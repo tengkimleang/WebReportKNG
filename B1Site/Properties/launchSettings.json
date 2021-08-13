@@ -1,23 +1,19 @@
 {
   "iisSettings": {
     "windowsAuthentication": false,
-    "anonymousAuthentication": false,
+    "anonymousAuthentication": true,
     "iis": {
       "applicationUrl": "http://localhost/B1Site",
       "sslPort": 0
     },
     "iisExpress": {
-      "applicationUrl": "http://localhost:1066/",
-      "sslPort": 44343
+      "applicationUrl": "http://localhost:1067/",
+      "sslPort": 44345
     }
   },
   "profiles": {
     "B1Site": {
-      "commandName": "IIS",
-      "launchBrowser": true
-    },
-    "Start": {
-      "commandName": "IISExpress",
+      "commandName": "Project",
       "launchBrowser": true
     }
   }

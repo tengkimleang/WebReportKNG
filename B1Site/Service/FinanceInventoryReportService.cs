@@ -36,7 +36,7 @@ namespace B1Site.Service
                 measures = ((string.IsNullOrEmpty(measures) || measures == "0") ? "" : measures);
                 warehouses = ((string.IsNullOrEmpty(warehouses) || warehouses == "0") ? "" : warehouses);
                 ClsCRUD clsCRUD = new ClsCRUD();
-                var dt = clsCRUD.Getdata("EXEC [USP_InventoryCost_Report] '" + datefrominv.ToString("yyyy-MM-dd") + "','" + datetoinv.ToString("yyyy-MM-dd") + "','" + categorys + "','" + itemGroups + "','" + mainGroups + "','" + sources + "','" + measures + "','" + warehouses + "','" + subcategorys + "',''");
+                var dt = clsCRUD.Getdata("EXEC [USP_InventoryCost_Report] '" + datefrominv.ToString("yyyy-MM-dd") + "','" + datetoinv.ToString("yyyy-MM-dd") + "','" + subcategorys + "','" + itemGroups + "','','" + mainGroups + "','" + categorys + "','" + sources + "','" + measures + "','" + warehouses + "'");
                 List<FinanceInventoryReport> InventoryReportlist = new List<FinanceInventoryReport>();
                 foreach (DataRow a in dt.Rows)
                 {
@@ -59,8 +59,7 @@ namespace B1Site.Service
                         Cost = a[15].ToString(),
                         PostingDate = a[16].ToString(),
                         Age = a[17].ToString(),
-                        WhareHouse =a[18].ToString()                      
-                        
+                        WhareHouse =a[18].ToString()                                        
                     });
                 }
                 return Task.FromResult(Utf8Json.JsonSerializer.ToJsonString(InventoryReportlist));
