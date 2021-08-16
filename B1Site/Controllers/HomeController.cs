@@ -91,12 +91,18 @@ namespace B1Site.Controllers
         }
         public async Task<IActionResult> GetLanguageTypeDatabasesAsync() 
         {
-            return Json(await homeService.GetLanguageTypeDatabasesAsync());
+            return Ok(await homeService.GetLanguageTypeDatabasesAsync());
         }
         [HttpPost]
         public async Task<IActionResult> PostTo(ReportDatabase reportDatabase)
         {
-            return Json("Ok");
+            if (await homeService.PostReportDatabasesAsync(reportDatabase)==true)
+            {
+                return Ok("Success"); 
+            } else 
+            {  
+                return BadRequest("Failed"); 
+            }
         }
         #endregion
         #region Add Language

@@ -12,5 +12,6 @@ namespace B1Site.Service
         Task<Login> GetLoginsAsync(string user, string passsword);
         Task<List<ReportDatabase>> GetReportDatabasesAsync();
         Task<List<LanguageTypeDatabase>> GetLanguageTypeDatabasesAsync();
+        Task<bool> PostReportDatabasesAsync(ReportDatabase reportDatabase);
     }
 }

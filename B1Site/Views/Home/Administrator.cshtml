@@ -218,8 +218,6 @@
         var d = $.Deferred();
 
         method = method || "GET";
-
-        logRequest(method, url, data);
         $.ajax(url, {
             method: method || "GET",
             data: data,
@@ -231,18 +229,6 @@
             d.reject(xhr.responseJSON ? xhr.responseJSON.Message : xhr.statusText);
         });
         return d.promise();
-    }
-
-    function logRequest(method, url, data) {
-        var args = Object.keys(data || {}).map(function (key) {
-            return key + "=" + data[key];
-        }).join(" ");
-
-        var logList = $("#requests ul"),
-            time = DevExpress.localization.formatDate(new Date(), "HH:mm:ss"),
-            newItem = $("<li>").text([time, method, url.slice(URL.length), args].join(" "));
-
-        logList.prepend(newItem);
     }
     var lookupDataSource = {
         store: new DevExpress.data.CustomStore({
@@ -309,7 +295,8 @@
                     {
                         dataField: "id",
                         caption: "Index",
-                        dataType: "int"
+                        dataType: "int",
+                        allowEditing: false
                     },
                     {
                         dataField: "action",

@@ -91,5 +91,19 @@ namespace B1Site.Service
             }
             return Task.FromResult(reportDatabases);
         }
+
+        public Task<bool> PostReportDatabasesAsync(ReportDatabase reportDatabase)
+        {
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.GetdataWebDb("INSERT INTO Tb_Report(Action,Controller,Language,LanguageType,ByOrder,Active) VALUES('"+reportDatabase.Action+"','"+reportDatabase.Controller+"',N'"+reportDatabase.Language+"','"+reportDatabase.LanguageType+"','"+reportDatabase.ByOrder+ "',1)SELECT SCOPE_IDENTITY();", "WebDb");
+            if(dt!=null)
+            {
+                return Task.FromResult(false);
+            }
+            else
+            {
+                return Task.FromResult(true);
+            }
+        }
     }
 }

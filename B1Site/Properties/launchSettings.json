@@ -7,16 +7,6 @@
       "sslPort": 0
     },
     "iisExpress": {
-<<<<<<< HEAD
-      "applicationUrl": "http://localhost:1067/",
-      "sslPort": 44345
-    }
-  },
-  "profiles": {
-    "B1Site": {
-      "commandName": "Project",
-      "launchBrowser": true
-=======
       "applicationUrl": "http://localhost:1069/",
       "sslPort": 44364
     }
@@ -40,6 +30,10 @@
       "sqlDebugging": false,
       "nativeDebugging": false,
       "jsWebView2Debugging": false
+    },
+    "Kimleang": {
+      "commandName": "IISExpress",
+      "launchBrowser": true
     }
   }
 }

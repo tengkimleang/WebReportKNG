@@ -43,6 +43,7 @@ namespace B1Site.Connection
             catch (Exception ex)
             {
                 ex.Message.ToString();
+                tb = null;
             }
             return tb;
         }
