@@ -7,6 +7,16 @@
       "sslPort": 0
     },
     "iisExpress": {
+<<<<<<< HEAD
+      "applicationUrl": "http://localhost:1067/",
+      "sslPort": 44345
+    }
+  },
+  "profiles": {
+    "B1Site": {
+      "commandName": "Project",
+      "launchBrowser": true
+=======
       "applicationUrl": "http://localhost:1069/",
       "sslPort": 44364
     }
@@ -30,10 +40,14 @@
       "sqlDebugging": false,
       "nativeDebugging": false,
       "jsWebView2Debugging": false
+<<<<<<< HEAD
     },
     "Kimleang": {
       "commandName": "IIS",
       "launchBrowser": true
+=======
+>>>>>>> a3b42007b513c27e4dbd80e3e2233818114caad0
+>>>>>>> 949fd5f1cbea767bc7a2eeaa53e60d86ad227cb3
     }
   }
 }
