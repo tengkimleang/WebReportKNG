@@ -22,7 +22,7 @@ namespace B1Site.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            return View(new MasterViewInventoryReport {
+            return View(new MasterViewFinanceInventoryReport {
                 MainGroupMasters=await inventoryReportService.GetMainGroupMastersAsyc(),
                 CategoryMasters=await inventoryReportService.GetCategoryMastersAsync(),
                 ItemCodeMasters=await inventoryReportService.GetItemCodeMastersAsyc(),

@@ -7,8 +7,23 @@
       "sslPort": 0
     },
     "iisExpress": {
+<<<<<<< HEAD
       "applicationUrl": "http://localhost:1068/",
       "sslPort": 0
+=======
+<<<<<<< HEAD
+      "applicationUrl": "http://localhost:1067/",
+      "sslPort": 44345
+    }
+  },
+  "profiles": {
+    "B1Site": {
+      "commandName": "Project",
+      "launchBrowser": true
+=======
+      "applicationUrl": "http://localhost:1069/",
+      "sslPort": 44364
+>>>>>>> 949fd5f1cbea767bc7a2eeaa53e60d86ad227cb3
     }
   },
   "profiles": {
@@ -19,7 +34,18 @@
     },
     "Sountitya": {
       "commandName": "IISExpress",
+<<<<<<< HEAD
       "launchBrowser": true
+=======
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sqlDebugging": false,
+      "nativeDebugging": false,
+      "jsWebView2Debugging": false
+>>>>>>> a3b42007b513c27e4dbd80e3e2233818114caad0
+>>>>>>> 949fd5f1cbea767bc7a2eeaa53e60d86ad227cb3
     }
   }
 }
