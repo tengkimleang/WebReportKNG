@@ -7,34 +7,19 @@
       "sslPort": 0
     },
     "iisExpress": {
-<<<<<<< HEAD
-      "applicationUrl": "http://localhost:1065/",
-      "sslPort": 44307
-=======
-      "applicationUrl": "http://localhost:1069/",
-      "sslPort": 44364
->>>>>>> a3b42007b513c27e4dbd80e3e2233818114caad0
+      "applicationUrl": "http://localhost:1068/",
+      "sslPort": 0
     }
   },
   "profiles": {
     "Start": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "nativeDebugging": false,
-      "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 6, position 0."
-    },
-    "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "sqlDebugging": false,
-      "nativeDebugging": false,
-      "jsWebView2Debugging": false
+      "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 10, position 0."
+    },
+    "Sountitya": {
+      "commandName": "IISExpress",
+      "launchBrowser": true
     }
   }
 }
