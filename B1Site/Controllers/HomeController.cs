@@ -94,7 +94,7 @@ namespace B1Site.Controllers
             return Ok(await homeService.GetLanguageTypeDatabasesAsync());
         }
         [HttpPost]
-        public async Task<IActionResult> PostTo(ReportDatabase reportDatabase)
+        public async Task<IActionResult> PostReportDatabasesAsync(ReportDatabase reportDatabase)
         {
             if (await homeService.PostReportDatabasesAsync(reportDatabase)==true)
             {
@@ -102,6 +102,30 @@ namespace B1Site.Controllers
             } else 
             {  
                 return BadRequest("Failed"); 
+            }
+        }
+        [HttpPut]
+        public async Task<IActionResult> PutReportDatabasesAsync(ReportDatabase reportDatabase)
+        {
+            if (await homeService.PutReportDatabasesAsync(reportDatabase) == true)
+            {
+                return Ok("Success");
+            }
+            else
+            {
+                return BadRequest("Failed");
+            }
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteReportDatabasesAsync(string id)
+        {
+            if (await homeService.DeleteReportDatabasesAsync(id) == true)
+            {
+                return Ok("Success");
+            }
+            else
+            {
+                return BadRequest("Failed");
             }
         }
         #endregion

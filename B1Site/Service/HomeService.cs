@@ -98,11 +98,57 @@ namespace B1Site.Service
             var dt = clsCRUD.GetdataWebDb("INSERT INTO Tb_Report(Action,Controller,Language,LanguageType,ByOrder,Active) VALUES('"+reportDatabase.Action+"','"+reportDatabase.Controller+"',N'"+reportDatabase.Language+"','"+reportDatabase.LanguageType+"','"+reportDatabase.ByOrder+ "',1)SELECT SCOPE_IDENTITY();", "WebDb");
             if(dt!=null)
             {
-                return Task.FromResult(false);
+                return Task.FromResult(true);
             }
             else
             {
+                return Task.FromResult(false);
+            }
+        }
+        private string returnFiled(string value,string field)
+        {
+            if (value != "" && value!="0" && value!=null)
+            {
+                return field;
+            }
+            else
+            {
+                return "";
+            }
+        }
+        public Task<bool> PutReportDatabasesAsync(ReportDatabase reportDatabase)
+        {
+            ClsCRUD clsCRUD = new ClsCRUD();
+            string field = "";
+            #region Add Field
+            field = field + returnFiled(reportDatabase.Action, "Action='" + reportDatabase.Action + "',");
+            field = field + returnFiled(reportDatabase.Controller, "Controller='" + reportDatabase.Controller + "',");
+            field = field + returnFiled(reportDatabase.Language, "Language=N'"+reportDatabase.Language+ "',");
+            field = field + returnFiled(reportDatabase.LanguageType, "LanguageType='"+reportDatabase.LanguageType+"',");
+            field = field + returnFiled(reportDatabase.ByOrder.ToString(), "ByOrder='"+reportDatabase.ByOrder+"'");
+            #endregion
+            var dt = clsCRUD.GetdataWebDb("UPDATE Tb_Report SET "+field+" WHERE ID='"+reportDatabase.ID+"'", "WebDb") ;
+            if (dt != null)
+            {
                 return Task.FromResult(true);
+            }
+            else
+            {
+                return Task.FromResult(false);
+            }
+        }
+
+        public Task<bool> DeleteReportDatabasesAsync(string id)
+        {
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.GetdataWebDb("UPDATE Tb_Report SET Active=0 WHERE ID="+id, "WebDb");
+            if (dt != null)
+            {
+                return Task.FromResult(true);
+            }
+            else
+            {
+                return Task.FromResult(false);
             }
         }
     }
