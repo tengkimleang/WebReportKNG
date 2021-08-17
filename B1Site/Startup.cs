@@ -73,6 +73,7 @@ namespace B1Site
             services.AddScoped<IInventoryReportBySerialService, InventoryReportBySerialService>();
             services.AddScoped<IPurchaseReportService, PurchaseReportService>();
             services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<ICustomerStatementService, CustomerStatementServices>();
             #endregion
         }
 

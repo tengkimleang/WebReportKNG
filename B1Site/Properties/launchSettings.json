@@ -4,7 +4,7 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:1060/",
-      "sslPort": 0
+      "sslPort": 44372
     }
   },
   "profiles": {
@@ -23,6 +23,9 @@
       "sqlDebugging": false,
       "nativeDebugging": false,
       "jsWebView2Debugging": false
+    },
+    "Tey": {
+      "commandName": "IISExpress"
     }
   }
 }
