@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="By Category" xml:space="preserve">
+    <value>By Category</value>
+  </data>
+  <data name="By CustomerClass" xml:space="preserve">
+    <value>By CustomerClass</value>
+  </data>
+  <data name="By CustomerID" xml:space="preserve">
+    <value>By CustomerID</value>
+  </data>
+  <data name="By InventoryID" xml:space="preserve">
+    <value>By InventoryID</value>
+  </data>
+  <data name="By Location" xml:space="preserve">
+    <value>By Location</value>
+  </data>
+  <data name="By SaleEmployee" xml:space="preserve">
+    <value>By SaleEmployee</value>
+  </data>
+  <data name="By Source" xml:space="preserve">
+    <value>By Source</value>
+  </data>
+  <data name="By Warehouse" xml:space="preserve">
+    <value>By Warehouse</value>
+  </data>
   <data name="ByItemGroup" xml:space="preserve">
     <value>ByItemGroup</value>
   </data>
@@ -128,6 +152,15 @@
   </data>
   <data name="Report" xml:space="preserve">
     <value>Report</value>
+  </data>
+  <data name="Reporting" xml:space="preserve">
+    <value>Reporting</value>
+  </data>
+  <data name="RUN" xml:space="preserve">
+    <value>RUN</value>
+  </data>
+  <data name="SaleDailyReportbySerailNumber" xml:space="preserve">
+    <value>SaleDailyReportbySerailNumber</value>
   </data>
   <data name="SalesReportbySerialNumber" xml:space="preserve">
     <value>SalesReportbySerialNumber</value>

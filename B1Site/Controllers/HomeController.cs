@@ -132,7 +132,7 @@ namespace B1Site.Controllers
         #region Add Language
         public IActionResult CultureManagment(string culture,string returnUrl)
         {
-            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),//culture.ToString()
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)), //culture.ToString(),
                 new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
             var cookieSetHeader = httpContextAccessor.HttpContext.Response.GetTypedHeaders().SetCookie;
             var setCookie = Uri.UnescapeDataString(cookieSetHeader.FirstOrDefault(x => x.Name == ".AspNetCore.Culture").Value.ToString());

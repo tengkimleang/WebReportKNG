@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="By Category" xml:space="preserve">
+    <value>按類別</value>
+  </data>
+  <data name="By CustomerClass" xml:space="preserve">
+    <value>按客戶類別</value>
+  </data>
+  <data name="By CustomerID" xml:space="preserve">
+    <value>按客戶 ID</value>
+  </data>
+  <data name="By InventoryID" xml:space="preserve">
+    <value>按庫存ID</value>
+  </data>
+  <data name="By Location" xml:space="preserve">
+    <value>按位置</value>
+  </data>
+  <data name="By SaleEmployee" xml:space="preserve">
+    <value>由銷售員工</value>
+  </data>
+  <data name="By Source" xml:space="preserve">
+    <value>按来源</value>
+  </data>
+  <data name="By Warehouse" xml:space="preserve">
+    <value>按仓库</value>
+  </data>
   <data name="ByItemGroup" xml:space="preserve">
     <value>按项目组</value>
   </data>
@@ -128,6 +152,15 @@
   </data>
   <data name="Report" xml:space="preserve">
     <value>报告</value>
+  </data>
+  <data name="Reporting" xml:space="preserve">
+    <value>报告</value>
+  </data>
+  <data name="RUN" xml:space="preserve">
+    <value>跑步</value>
+  </data>
+  <data name="SaleDailyReportbySerailNumber" xml:space="preserve">
+    <value>销售报告按序列号</value>
   </data>
   <data name="SalesReportbySerialNumber" xml:space="preserve">
     <value>销售报告按序列号</value>

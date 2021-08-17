@@ -118,51 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="By Category" xml:space="preserve">
-    <value>តាមប្រភេទ</value>
+    <value>By Category</value>
   </data>
-  <data name="By CustomerClass" xml:space="preserve">
-    <value>ដោយក្រុមអតិថិជន</value>
+  <data name="By Itemsname" xml:space="preserve">
+    <value>By Itemsname</value>
   </data>
-  <data name="By CustomerID" xml:space="preserve">
-    <value>ដោយអតិថិជនអាយឌី</value>
+  <data name="By RecieptNumber" xml:space="preserve">
+    <value>By RecieptNumber</value>
   </data>
-  <data name="By InventoryID" xml:space="preserve">
-    <value>ដោយ InventoryID</value>
+  <data name="by SubCategory" xml:space="preserve">
+    <value>by SubCategory</value>
   </data>
-  <data name="By Location" xml:space="preserve">
-    <value>តាមទីតាំង</value>
-  </data>
-  <data name="By SaleEmployee" xml:space="preserve">
-    <value>ដោយបុគ្គលិកលក់</value>
-  </data>
-  <data name="By Source" xml:space="preserve">
-    <value>ដោយប្រភព</value>
+  <data name="By Vendername" xml:space="preserve">
+    <value>By Vendername</value>
   </data>
   <data name="By Warehouse" xml:space="preserve">
-    <value>ដោយឃ្លាំង</value>
+    <value>By Warehouse</value>
   </data>
-  <data name="ByItemGroup" xml:space="preserve">
-    <value>តាមItemsGroup</value>
+  <data name="Date From" xml:space="preserve">
+    <value>Date From</value>
   </data>
-  <data name="DateFrom" xml:space="preserve">
-    <value>ថ្ងៃចាប់ផ្តើម</value>
+  <data name="Date To" xml:space="preserve">
+    <value>Date To</value>
   </data>
-  <data name="DateTo" xml:space="preserve">
-    <value>ថ្ងៃបញ្ចាប់</value>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Pruchase Report" xml:space="preserve">
+    <value>Pruchase Report</value>
   </data>
   <data name="Report" xml:space="preserve">
-    <value>របាយការណ៏</value>
+    <value>Report</value>
   </data>
   <data name="Reporting" xml:space="preserve">
-    <value>របាយការណ៏</value>
-  </data>
-  <data name="RUN" xml:space="preserve">
-    <value>ដំណើរការ</value>
-  </data>
-  <data name="SaleDailyReportbySerailNumber" xml:space="preserve">
-    <value>របាយការណ៏លក់សំរាប់សើរាល</value>
-  </data>
-  <data name="SalesReportbySerialNumber" xml:space="preserve">
-    <value>របាយការណ៏លក់សំរាប់សើរាល</value>
+    <value>Reporting</value>
   </data>
 </root>
