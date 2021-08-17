@@ -12,8 +12,8 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace B1Site
 {
@@ -62,6 +62,9 @@ namespace B1Site
             );
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             #endregion
+            #region Add Cookies
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            #endregion
             #region Add Scope
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
@@ -71,9 +74,19 @@ namespace B1Site
             services.AddScoped<IPSIReportService, PSIReportService>();
             services.AddScoped<ISaleReportbySerialService, SaleReportBySerailService>();
             services.AddScoped<IInventoryReportBySerialService, InventoryReportBySerialService>();
+            services.AddScoped<IInventoryReportService, InventoryReportService>();
             services.AddScoped<IPurchaseReportService, PurchaseReportService>();
             services.AddScoped<IHomeService, HomeService>();
+<<<<<<< HEAD
             services.AddScoped<ICustomerStatementService, CustomerStatementServices>();
+=======
+            services.AddScoped<IFinaceSaleReportService, FanaceSaleReportService>();
+<<<<<<< HEAD
+            services.AddScoped<IExspenReportService, ExspenReprotService>();
+=======
+            services.AddScoped<IFinanceInventoryReportService, FinanceInventoryReportService>();
+>>>>>>> 949fd5f1cbea767bc7a2eeaa53e60d86ad227cb3
+>>>>>>> 6e1814f5ec7c905e70f350ccdbc9dc991e83333b
             #endregion
         }
 
