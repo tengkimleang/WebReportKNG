@@ -1,6 +1,7 @@
 ﻿using B1Site.Connection;
 using B1Site.Models;
 using B1Site.Models.Home;
+using B1Site.Models.Share;
 using B1Site.Service;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -146,6 +147,5 @@ namespace B1Site.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         #endregion
-
     }
 }

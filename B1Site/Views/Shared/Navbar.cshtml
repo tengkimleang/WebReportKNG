@@ -1,0 +1,51 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model List<B1Site.Models.Share.Menu>;
+@{
+    ViewData["Title"] = "Home Page";
+    List<B1Site.Models.Share.Menu> menus = new List<B1Site.Models.Share.Menu>();
+    putData();
+    void putData()
+    {
+        var cookieSetHeader = HttpContextAccessor.HttpContext.Request.Cookies;
+        var setCookie = Uri.UnescapeDataString(cookieSetHeader.FirstOrDefault(x => x.Key == ".AspNetCore.Culture").Value.ToString());
+        string[] arr = setCookie.Split("|");
+        arr = arr[0].Split("=");
+        setCookie = arr[1].ToString();
+        if (setCookie == "")
+        {
+            setCookie = "en";
+        }
+        B1Site.Connection.ClsCRUD clsCRUD = new B1Site.Connection.ClsCRUD();
+        var dt = clsCRUD.GetdataWebDb("SELECT * FROM Tb_Report WHERE Active=1 AND LanguageType='"+setCookie+"'", "WebDb");
+        foreach (System.Data.DataRow a in dt.Rows)
+        {
+            try
+            {
+                menus.Add(new B1Site.Models.Share.Menu
+                {
+                    Name = a[3].ToString()
+                });
+            }
+            catch (Exception ex)
+            {
+                var e1 = ex.Message;
+            }
+        }
+    }
+}
+
+@foreach (var a in menus)
+{
+    <ul class="nav nav-treeview">
+        <li class="nav-item" style="background-color:#E8F0FE;border-radius: 4px;">
+            <a asp-action="Index" asp-controller="SaleDialyReport" class="nav-link">
+                @*active*@
+                <i class="fas fa-chart-area"></i>&nbsp;
+                <p style="color: black; font-family:'Roboto';">
+                    <B>@a.Name</B>
+                </p>
+            </a>
+        </li>
+    </ul>
+}

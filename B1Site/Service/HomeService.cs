@@ -116,6 +116,10 @@ namespace B1Site.Service
                 return "";
             }
         }
+        private string Left(string input, int count)
+        {
+            return input.Substring(0, Math.Min(input.Length, count));
+        }
         public Task<bool> PutReportDatabasesAsync(ReportDatabase reportDatabase)
         {
             ClsCRUD clsCRUD = new ClsCRUD();
@@ -125,9 +129,9 @@ namespace B1Site.Service
             field = field + returnFiled(reportDatabase.Controller, "Controller='" + reportDatabase.Controller + "',");
             field = field + returnFiled(reportDatabase.Language, "Language=N'"+reportDatabase.Language+ "',");
             field = field + returnFiled(reportDatabase.LanguageType, "LanguageType='"+reportDatabase.LanguageType+"',");
-            field = field + returnFiled(reportDatabase.ByOrder.ToString(), "ByOrder='"+reportDatabase.ByOrder+"'");
+            field = field + returnFiled(reportDatabase.ByOrder.ToString(), "ByOrder='"+reportDatabase.ByOrder+"',");
             #endregion
-            var dt = clsCRUD.GetdataWebDb("UPDATE Tb_Report SET "+field+" WHERE ID='"+reportDatabase.ID+"'", "WebDb") ;
+            var dt = clsCRUD.GetdataWebDb("UPDATE Tb_Report SET "+ Left(field,field.Length-1) + " WHERE ID='"+reportDatabase.ID+"'", "WebDb") ;
             if (dt != null)
             {
                 return Task.FromResult(true);
