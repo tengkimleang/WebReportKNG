@@ -1,8 +1,6 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-}
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @model B1Site.Models.FinalSaleReport.MasterViweFanceSaleReport;
 @{
@@ -12,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!--Dev-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/event.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/supplemental.min.js"></script>
@@ -113,10 +112,10 @@
 </div>
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
-        <div class="card-header" style="background-color:antiquewhite;">
-            @localizer["Finance SaleR eport"]
+        <div class="card-header">
+            @localizer["Final Sale Report"]
         </div>
-        <div class="card-body" style="background-color:lightblue;">
+        <div class="card-body">
             <!--Filter-->
             <div class="row">
                 <div class="col-md-2">
@@ -140,20 +139,13 @@
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Category"]</label>
-<<<<<<< HEAD
-                    <select type="text" class="input_branch" id="bySaleEmployee">
+                    <label class="lable_branch">@localizer["By Saleemployee"]</label>
+                    <select type="text" class="input_branch" id="bySaleemployee">
                         <option value="0">All Category</option>
-                        @*@{
-                            foreach (var a in Model.SaleEmployeeMasters)
-=======
-                    <select type="text" class="input_branch" id="byCategory">
-                        <option value="0">All SaleEmployee</option>
                         @{
-                            foreach (var a in Model.categoryMasters)
->>>>>>> parent of eb91793 (Revert "FinalSaleReport")
+                            foreach (var a in Model.saleemployeeMasters)
                             {
-                                <option value="@a.Category">@a.Category</option>
+                                <option value="@a.SaleEmployeeCode">@a.SaleeEmployeeName</option>
                             }
                         }
                     </select>
@@ -164,37 +156,23 @@
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By SaleEmployee"]</label>
-<<<<<<< HEAD
+                    <label class="lable_branch">@localizer["By Category"]</label>
                     <select type="text" class="input_branch" id="byCategory">
                         <option value="0">All SaleEmployee</option>
-                        @*@{
-                            foreach (var a in Model.CategoryMasters)
-=======
-                    <select type="text" class="input_branch" id="BySaleemployee">
-                        <option value="0">All Category</option>
                         @{
-                            foreach (var a in Model.saleemployeeMasters)
->>>>>>> parent of eb91793 (Revert "FinalSaleReport")
+                            foreach (var a in Model.categoryMasters)
                             {
-                                <option value="@a.SaleEmployeeCode">@a.SaleeEmployeeName</option>
+                                <option value="@a.Category">@a.Category</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Measure"]</label>
-<<<<<<< HEAD
-                    <select type="text" class="input_branch" id="byCustomerClass">
-                        <option value="0">All Measure</option>
-                        @*@{
-                            foreach (var a in Model.CustomerClassMasters)
-=======
                     <select type="text" class="input_branch" id="byMeasure">
-                        <option value="0">All CustomerClass</option>
+                        <option value="0">All SaleEmployee</option>
                         @{
                             foreach (var a in Model.measureMasters)
->>>>>>> parent of eb91793 (Revert "FinalSaleReport")
                             {
                                 <option value="@a.MeasureName">@a.MeasureName</option>
                             }
@@ -202,40 +180,13 @@
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Itemcode"]</label>
-<<<<<<< HEAD
-                    <select type="text" class="input_branch" id="byLocation">
-                        <option value="0">All Itemcode</option>
-                        @*@{
-                            foreach (var a in Model.LocationMasters)
-=======
-                    <select type="text" class="input_branch" id="byItemcode">
-                        <option value="0">All Location</option>
+                    <label class="lable_branch">@localizer["By Customer ID"]</label>
+                    <select type="text" class="input_branch" id="bycustomerid">
+                        <option value="0">All Customer ID</option>
                         @{
                             foreach (var a in Model.itemsCodeMasters)
->>>>>>> parent of eb91793 (Revert "FinalSaleReport")
                             {
                                 <option value="@a.Itemscode">@a.ItemsName</option>
-                            }
-                        }
-                    </select>
-                </div>
-                <div class="col-md-2">
-<<<<<<< HEAD
-                    <label class="lable_branch">@localizer["By Customer ID"]</label>
-                    <select type="text" class="input_branch" id="byInventoryID">
-                        <option value="0">All Customer ID</option>
-                        @*@{
-                            foreach (var a in Model.InventoryIDMasters)
-=======
-                    <label class="lable_branch">@localizer["By CustomerID"]</label>
-                    <select type="text" class="input_branch" id="byCustomerid">
-                        <option value="0">All InventoryID</option>
-                        @{
-                            foreach (var a in Model.customerIDMasters)
->>>>>>> parent of eb91793 (Revert "FinalSaleReport")
-                            {
-                                <option value="@a.CustomerCode">@a.CustomerName</option>
                             }
                         }
                     </select>
@@ -243,49 +194,17 @@
             </div>
             <div class="row">
                 <div class="col-md-2">
-<<<<<<< HEAD
                     <label class="lable_branch">@localizer["Source"]</label>
-                    <select type="text" class="input_branch" id="byCustomerID">
-                        <option value="0">All Source</option>
-                        @*@{
-                            foreach (var a in Model.CusomterIDMasters)
-=======
-                    <label class="lable_branch">@localizer["By Source"]</label>
                     <select type="text" class="input_branch" id="bySource">
-                        <option value="0">All CustomerID</option>
+                        <option value="0">All Source</option>
                         @{
                             foreach (var a in Model.sourceMasters)
->>>>>>> parent of eb91793 (Revert "FinalSaleReport")
                             {
                                 <option value="@a.SourceName">@a.SourceName</option>
                             }
                         }
                     </select>
                 </div>
-                <!--<div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Source"]</label>
-                    <select type="text" class="input_branch" id="bySource">
-                        <option value="0">All Source</option>-->
-                        @*@{
-                            foreach (var a in Model.SourceMasters)
-                            {
-                                <option value="@a.Source">@a.Source</option>
-                            }
-                        }*@
-                    <!--</select>
-                </div>-->
-                <!--<div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Warehouse"]</label>
-                    <select type="text" class="input_branch" id="byWarehouse">
-                        <option value="0">All Warehouse</option>-->
-                        @*@{
-                            foreach (var a in Model.WarehouseMasters)
-                            {
-                                <option value="@a.Code">@a.Name</option>
-                            }
-                        }*@
-                    <!--</select>
-                </div>-->
             </div>
             <!--End Filter-->
             <!--Load Panel-->
@@ -323,26 +242,14 @@
             dateto = today;
         }
         var byItemGroup = ifToDo($('#byItemGroup'));
+        var bySaleEmployee = ifToDo($('#bySaleemployee'));
         var byCategory = ifToDo($('#byCategory'));
-<<<<<<< HEAD
-        var byCustomerClass = ifToDo($('#byCustomerClass'));
-        var byLocation = ifToDo($('#byLocation'));
-        var byInventoryID = ifToDo($('#byInventoryID'));
-        var byCustomerID = ifToDo($('#byCustomerID'));
+        var byInventoryID = ifToDo($('#byMeasure'));
+        var byCustomerID = ifToDo($('#bycustomerid'));
         var bySource = ifToDo($('#bySource'));
-        var byWarehouse = ifToDo($('#byWarehouse'));
       //  alert(datefrom);
         loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-            byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
-=======
-        var BySaleemployee = ifToDo($('#BySaleemployee'));
-        var bymeasure = ifToDo($('#byMeasure'));
-        var byItemcode = ifToDo($('#byItemcode'));
-        var bycuostmerid = ifToDo($('#byCustomerid'));
-        var bysource = ifToDo($('#bySource'));
-        //alert(byItemGroup);
-        loadReport(datefrom, dateto,byItemGroup,byCategory,BySaleemployee,bymeasure,byItemcode,bycuostmerid,bysource);
->>>>>>> parent of eb91793 (Revert "FinalSaleReport")
+             byInventoryID, byCustomerID, bySource);
     });
     function filterData() {
         var datefrom = $('#datefrom').val();
@@ -354,13 +261,13 @@
             dateto = today;
         }
         var byItemGroup = ifToDo($('#byItemGroup'));
+        var bySaleEmployee = ifToDo($('#bySaleemployee'));
         var byCategory = ifToDo($('#byCategory'));
-        var BySaleemployee = ifToDo($('#BySaleemployee'));
-        var bymeasure = ifToDo($('#byMeasure'));
-        var byItemcode = ifToDo($('#byItemcode'));
-        var bycuostmerid = ifToDo($('#byCustomerid'));
-        var bysource = ifToDo($('#bySource'));
-        loadReport(datefrom, dateto,byItemGroup,byCategory,BySaleemployee,bymeasure,byItemcode,bycuostmerid,bysource);
+        var byInventoryID = ifToDo($('#byMeasure'));
+        var byCustomerID = ifToDo($('#bycustomerid'));
+        var bySource = ifToDo($('#bySource'));
+        loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
+              byInventoryID, byCustomerID, bySource);
     }
     function ifToDo(condition) {
         if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
@@ -369,7 +276,8 @@
             return condition.val();
         }
     }
-    function loadReport(datefrom, dateto,byItemsGroup,byCategroy,bysaleemployee,bymeasure,byItemcode,bycustomerid,bysource) {
+    function loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
+         byInventoryID, byCustomerID, bySource, byWarehouse) {
         var loadPanel = $(".loadpanel").dxLoadPanel({
             shadingColor: "rgba(0,0,0,0.4)",
             position: { of: "#gridContainer" },
@@ -385,13 +293,13 @@
             data: {
                 datefrom: datefrom,
                 dateto: dateto,
-                itemgroup: byItemsGroup,
-                categroy: byCategroy,
-                saleemployee: bysaleemployee,
-                Measure: bymeasure,
-                itemcode: byItemcode,
-                customerid: bycustomerid,
-                source: bysource
+                byItemGroup: byItemGroup,
+                bySaleEmployee: bySaleEmployee,
+                byCategory: byCategory,
+                byInventoryID: byInventoryID,
+                byCustomerID: byCustomerID,
+                bySource: bySource,
+                byWarehouse: byWarehouse
             },
             dataType: "JSON",
             beforeSend: function () {
@@ -501,7 +409,7 @@
                     columns: [
                         {
                             dataField: "Cardcode",
-                            caption: "Customer ID"
+                            caption: "CardCode "
                         },
                         {
                             dataField: "CustomerCode",
@@ -509,7 +417,7 @@
                         },
                         {
                             dataField: "CarName",
-                            caption: "Customer Name"
+                            caption: "CardName"
                         },
                         {
                             dataField: "CustomerGroup",
@@ -521,7 +429,7 @@
                         },
                         {
                             dataField: "Stae",
-                            caption: "Region/Sate"
+                            caption: "Stae"
                         },
                         //{
                         //    dataField: "InvoiceDate",
@@ -549,19 +457,19 @@
                         //},
                         {
                             dataField: "Saler",
-                            caption: "Sale Employee"
+                            caption: "Saler"
                         },
                         {
                             dataField: "SONo",
-                            caption: "SO#"
+                            caption: "SONo"
                         },
                         {
                             dataField: "DONo",
-                            caption: "DoNum"
+                            caption: "DONo"
                         },
                         {
                             dataField: "InvNo",
-                            caption: "Invoice#"
+                            caption: "InvNo"
                         },
                         {
                             dataField: "InvDate ",
@@ -594,7 +502,7 @@
                         },
                         {
                             dataField: "U_Source",
-                            caption: "Source "
+                            caption: "U_Source "
                         },
                         {
                             dataField: "SubCategory",
@@ -606,19 +514,19 @@
                         },
                         {
                             dataField: "U_Movement",
-                            caption: "Movement"
+                            caption: "U_Movement"
                         },
                         {
                             dataField: "U_Condition",
-                            caption: "Condition"
+                            caption: "U_Condition"
                         },
                         {
                             dataField: "U_Model",
-                            caption: "Model"
+                            caption: "U_Model"
                         },
                         {
                             dataField: "U_Year",
-                            caption: "Year"
+                            caption: "U_Year"
                         },
                         {
                             dataField: "Location",
@@ -638,7 +546,7 @@
                         },
                         {
                             dataField: "whs",
-                            caption: "Warehouse"
+                            caption: "whs"
                         },
                         {
                             dataField: "Price",

@@ -98,9 +98,12 @@ namespace B1Site.Service
             var dt = clsCRUD.GetdataWebDb("INSERT INTO Tb_Report(Action,Controller,Language,LanguageType,ByOrder,Active) VALUES('"+reportDatabase.Action+"','"+reportDatabase.Controller+"',N'"+reportDatabase.Language+"','"+reportDatabase.LanguageType+"','"+reportDatabase.ByOrder+ "',1)SELECT SCOPE_IDENTITY();", "WebDb");
             if(dt!=null)
             {
+                return Task.FromResult(true);
+            }
+            else
+            {
                 return Task.FromResult(false);
             }
-<<<<<<< HEAD
         }
         private string returnFiled(string value,string field)
         {
@@ -133,8 +136,6 @@ namespace B1Site.Service
             {
                 return Task.FromResult(true);
             }
-=======
->>>>>>> parent of 5634f98 (Add New Feature HomeController 17-8-21-4:56PM)
             else
             {
                 return Task.FromResult(true);

@@ -13,7 +13,7 @@
   },
   "profiles": {
     "Start": {
-      "commandName": "IISExpress",
+      "commandName": "Project",
       "launchBrowser": true,
       "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 10, position 0."
     },
