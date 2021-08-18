@@ -1,5 +1,5 @@
-﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
-@inject Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> locOptions
+﻿@inject Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> locOptions
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
     var culture = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>();
     var cultureList = locOptions.Value.SupportedUICultures.Select(x => new SelectListItem { Value = x.Name, Text = x.Name }).ToList();
@@ -200,76 +200,76 @@
                             </a>
                             <partial name="Navbar" />
                             @*<ul class="nav nav-treeview">
-                                <li class="nav-item" style="background-color:#E8F0FE;border-radius: 4px;">
-                                    <a asp-action="Index" asp-controller="SaleDialyReport" class="nav-link active">
-                                        <i class="fas fa-chart-area"></i>&nbsp;
-                                        <p style="color: black; font-family:'Roboto';">
-                                            <B>@localizer["SaleReport"]</B>
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>*@
+                                    <li class="nav-item" style="background-color:#E8F0FE;border-radius: 4px;">
+                                        <a asp-action="Index" asp-controller="SaleDialyReport" class="nav-link active">
+                                            <i class="fas fa-chart-area"></i>&nbsp;
+                                            <p style="color: black; font-family:'Roboto';">
+                                                <B>@localizer["SaleReport"]</B>
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>*@
                             @*<ul class="nav nav-treeview">
-                                <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
-                                    <a asp-action="Index" asp-controller="DailyCashCollection" class="nav-link">
-                                        <i class="fas fa-chart-area"></i>&nbsp;
-                                        <p style="color: black; font-family:'Roboto';">
-                                            <B>@localizer["Daily Cash Collection"]</B>
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>*@
+                                    <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
+                                        <a asp-action="Index" asp-controller="DailyCashCollection" class="nav-link">
+                                            <i class="fas fa-chart-area"></i>&nbsp;
+                                            <p style="color: black; font-family:'Roboto';">
+                                                <B>@localizer["Daily Cash Collection"]</B>
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>*@
                             @*<ul class="nav nav-treeview">
-                                <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
-                                    <a asp-action="Index" asp-controller="Apcashoutreport" class="nav-link">
-                                        <i class="fas fa-chart-area"></i>&nbsp;
-                                        <p style="color: black; font-family:'Roboto';">
-                                            <B>@localizer["AP Cash Out Report"]</B>
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>*@
+                                    <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
+                                        <a asp-action="Index" asp-controller="Apcashoutreport" class="nav-link">
+                                            <i class="fas fa-chart-area"></i>&nbsp;
+                                            <p style="color: black; font-family:'Roboto';">
+                                                <B>@localizer["AP Cash Out Report"]</B>
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>*@
                             @*<ul class="nav nav-treeview">
-                                <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
-                                    <a asp-action="Index" asp-controller="PSIReport" class="nav-link">
-                                        <i class="fas fa-chart-area"></i>&nbsp;
-                                        <p style="color: black; font-family:'Roboto';">
-                                            <B>@localizer["PSI Report"]</B>
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>*@
+                                    <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
+                                        <a asp-action="Index" asp-controller="PSIReport" class="nav-link">
+                                            <i class="fas fa-chart-area"></i>&nbsp;
+                                            <p style="color: black; font-family:'Roboto';">
+                                                <B>@localizer["PSI Report"]</B>
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>*@
                             @*<ul class="nav nav-treeview">
-                                <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
-                                    <a asp-action="Index" asp-controller="SaleReportBySerial" class="nav-link">
-                                        <i class="fas fa-chart-area"></i>&nbsp;
-                                        <p style="color: black; font-family:'Roboto';">
-                                            <B>@localizer["Sale By Serial"]</B>
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>*@
+                                    <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
+                                        <a asp-action="Index" asp-controller="SaleReportBySerial" class="nav-link">
+                                            <i class="fas fa-chart-area"></i>&nbsp;
+                                            <p style="color: black; font-family:'Roboto';">
+                                                <B>@localizer["Sale By Serial"]</B>
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>*@
                             @*<ul class="nav nav-treeview">
-                                <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
-                                    <a asp-action="Index" asp-controller="InventoryReportBySerial" class="nav-link">
-                                        <i class="fas fa-chart-area"></i>&nbsp;
-                                        <p style="color: black; font-family:'Roboto';">
-                                            <B>@localizer["Inventory  Report By Serial"]</B>
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>*@
+                                    <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
+                                        <a asp-action="Index" asp-controller="InventoryReportBySerial" class="nav-link">
+                                            <i class="fas fa-chart-area"></i>&nbsp;
+                                            <p style="color: black; font-family:'Roboto';">
+                                                <B>@localizer["Inventory  Report By Serial"]</B>
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>*@
                             @*<ul class="nav nav-treeview">
-                                <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
-                                    <a asp-action="Index" asp-controller="PurchaseReport" class="nav-link">
-                                        <i class="fas fa-chart-area"></i>&nbsp;
-                                        <p style="color: black; font-family:'Roboto';">
-                                            <B>@localizer["Purchase Report"]</B>
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>*@
-                            <ul class="nav nav-treeview">
+                                    <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
+                                        <a asp-action="Index" asp-controller="PurchaseReport" class="nav-link">
+                                            <i class="fas fa-chart-area"></i>&nbsp;
+                                            <p style="color: black; font-family:'Roboto';">
+                                                <B>@localizer["Purchase Report"]</B>
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>*@
+                            @*<ul class="nav nav-treeview">
                                 <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
                                     <a asp-action="Index" asp-controller="InventoryReport" class="nav-link">
                                         <i class="fas fa-chart-area"></i>&nbsp;
@@ -340,7 +340,7 @@
                                         <p>@localizer["ItemProfitAndLost"]</p>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>*@
                         </li>
                         <li class="nav-item">
                             <a href="pages/widgets.html" class="nav-link active">

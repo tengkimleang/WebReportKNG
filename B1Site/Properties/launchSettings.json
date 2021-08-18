@@ -9,9 +9,13 @@
   },
   "profiles": {
     "Start": {
-      "commandName": "Project",
+      "commandName": "IISExpress",
       "launchBrowser": true,
-      "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 6, position 0."
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 6, position 0.",
+      "jsWebView2Debugging": false
     }
   }
 }
