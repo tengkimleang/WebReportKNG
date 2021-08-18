@@ -7,26 +7,8 @@
       "sslPort": 0
     },
     "iisExpress": {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-      "applicationUrl": "http://localhost:1068/",
-      "sslPort": 0
-=======
-<<<<<<< HEAD
-      "applicationUrl": "http://localhost:1067/",
-      "sslPort": 44345
-    }
-  },
-  "profiles": {
-    "B1Site": {
-      "commandName": "Project",
-      "launchBrowser": true
-=======
->>>>>>> 34c5a0c0c7ca1c2012e25a8f4967b040bead935c
-      "applicationUrl": "http://localhost:1069/",
-      "sslPort": 44364
->>>>>>> 949fd5f1cbea767bc7a2eeaa53e60d86ad227cb3
+      "applicationUrl": "http://localhost:1393/",
+      "sslPort": 44397
     }
   },
   "profiles": {
@@ -35,27 +17,8 @@
       "launchBrowser": true,
       "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 10, position 0."
     },
-    "Sountitya": {
-      "commandName": "IISExpress",
-<<<<<<< HEAD
-      "launchBrowser": true
-=======
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "sqlDebugging": false,
-      "nativeDebugging": false,
-      "jsWebView2Debugging": false
-<<<<<<< HEAD
-    },
-    "Kimleang": {
-      "commandName": "IISExpress",
-      "launchBrowser": true
-=======
->>>>>>> a3b42007b513c27e4dbd80e3e2233818114caad0
->>>>>>> 949fd5f1cbea767bc7a2eeaa53e60d86ad227cb3
->>>>>>> 34c5a0c0c7ca1c2012e25a8f4967b040bead935c
+    "Tengkimleang": {
+      "commandName": "IISExpress"
     }
   }
 }
