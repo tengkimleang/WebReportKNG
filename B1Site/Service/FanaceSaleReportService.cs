@@ -12,18 +12,47 @@ namespace B1Site.Service
     {
         public Task<List<CategoryMaster>> GetcategoryMastersAsync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("SELECT DISTINCT ISNULL(OITB.ItmsGrpNam,'') AS Category FROM OITM LEFT JOIN OITB ON OITM.ItmsGrpCod=OITB.ItmsGrpCod ORDER BY ISNULL(OITB.ItmsGrpNam,'')");
+            List<CategoryMaster> CategoryMasterlist = new List<CategoryMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                CategoryMasterlist.Add(new CategoryMaster
+                {
+                    Category = a[0].ToString(),
+                });
+            }
+            return Task.FromResult(CategoryMasterlist);
         }
 
         public Task<List<CustomerIDMaster>> GetcustomerIDMastersAync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("SELECT CardCode,CardCode+' : '+ CardName AS CustomerID FROM OCRD");
+            List<CustomerIDMaster> CustomerIDMasterlist = new List<CustomerIDMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                CustomerIDMasterlist.Add(new CustomerIDMaster
+                {
+                    CustomerCode = a[0].ToString(),
+                    CustomerName = a[1].ToString()
+
+                });
+            }
+            return Task.FromResult(CustomerIDMasterlist);
         }
 
         public Task<string> GetFinalceSaleReportAsync(DateTime datefrom, DateTime dateto, string byitemsgroup, string bycategory, string bysaleempoyee, string byMeasure, string itemscode, string customerid, string source)
         {
+            byitemsgroup = ((string.IsNullOrEmpty(byitemsgroup) || byitemsgroup == "0") ? "" : byitemsgroup);
+            bycategory = ((string.IsNullOrEmpty(bycategory) || bycategory == "0") ? "" : bycategory);
+            bysaleempoyee = ((string.IsNullOrEmpty(bysaleempoyee) || bysaleempoyee == "0") ? "" : bysaleempoyee);
+            byMeasure = ((string.IsNullOrEmpty(byMeasure) || byMeasure == "0") ? "" : byMeasure);
+            itemscode = ((string.IsNullOrEmpty(itemscode) || itemscode == "0") ? "" : itemscode);
+            customerid = ((string.IsNullOrEmpty(customerid) || customerid == "0") ? "" : customerid);
+            source = ((string.IsNullOrEmpty(source) || source == "0") ? "" : source);
             ClsCRUD clsCRUD = new ClsCRUD();
-            var dt = clsCRUD.Getdata("EXEC dbo.[USP_Item_Profit_And_Lost_NEW_V1_WebReport] '"+datefrom.ToString("yyyy-MM-dd")+"','"+dateto.ToString("yyyy-MM-dd")+"','','','','','','','','customers'");
+            var dt = clsCRUD.Getdata("EXEC dbo.[USP_Item_Profit_And_Lost_NEW_V1_WebReport] '"+datefrom.ToString("yyyy-MM-dd")+"','"+dateto.ToString("yyyy-MM-dd")+"','"+byitemsgroup+"','"+ bysaleempoyee +"','"+bycategory+"','"+byMeasure+"','"+itemscode+"','"+customerid+"','"+source+"','customers'");
             List<FinaceSaleReport> FinaceSaleReportList = new List<FinaceSaleReport>();
             foreach (DataRow a in dt.Rows)
             {
@@ -82,27 +111,82 @@ namespace B1Site.Service
 
         public Task<List<ItemsCodeMaster>> GetItemsCodeMastersAync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("SELECT ItemCode,ItemCode + ' : ' + ItemName AS InventoryID FROM OITM WHERE ItemType='I' ORDER BY ItemCode");
+            List<ItemsCodeMaster> ItemsCodeMasterlist = new List<ItemsCodeMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                ItemsCodeMasterlist.Add(new ItemsCodeMaster
+                {
+                    Itemscode = a[0].ToString(),
+                    ItemsName = a[1].ToString()
+
+                });
+            }
+            return Task.FromResult(ItemsCodeMasterlist);
         }
 
         public Task<List<ItemsGropMaster>> GetItemsGropMasterAsync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("SELECT ItmsGrpCod,RTRIM(CONVERT(NVARCHAR(100),ItmsGrpCod) + ' - '+ ItmsGrpNam) AS 'ItemGroup' FROM OITB ORDER BY ItmsGrpCod");
+            List<ItemsGropMaster> itemsGropMasterslist = new List<ItemsGropMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                itemsGropMasterslist.Add(new ItemsGropMaster
+                {
+                    ItemsGroupCode = a[0].ToString(),
+                    ItemsGoupName = a[1].ToString()
+
+                });
+            }
+            return Task.FromResult(itemsGropMasterslist);
         }
 
         public Task<List<MeasureMaster>> GetmeasureMastersAync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("Select Distinct InvntryUOM As Unit From OITM Where InvntryUom Is Not Null order by InvntryUom ASC");
+            List<MeasureMaster> MeasureMasterlist = new List<MeasureMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                MeasureMasterlist.Add(new MeasureMaster
+                {
+                    MeasureName = a[0].ToString()
+                });
+            }
+            return Task.FromResult(MeasureMasterlist);
         }
 
         public Task<List<SaleemployeeMaster>> GetSaleemployeeMastersAync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("SELECT SlpCode,Cast(SlpCode As varchar(100))+' : '+SlpName AS SaleMan FROM OSLP WHERE SlpCode > 0");
+            List<SaleemployeeMaster> SaleeemployeeMasterlist = new List<SaleemployeeMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                SaleeemployeeMasterlist.Add(new SaleemployeeMaster
+                {
+                    SaleEmployeeCode = Convert.ToInt32(a[0].ToString()),
+                    SaleeEmployeeName = a[1].ToString()
+                });
+            }
+            return Task.FromResult(SaleeemployeeMasterlist);
         }
 
         public Task<List<SourceMaster>> GetSourceMastersAync()
         {
-            throw new NotImplementedException();
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.Getdata("SELECT DISTINCT ISNULL(U_Source,'') AS Source  FROM OITM ORDER BY ISNULL(U_Source,'')");
+            List<SourceMaster> SourceMasterlist = new List<SourceMaster>();
+            foreach (DataRow a in dt.Rows)
+            {
+                SourceMasterlist.Add(new SourceMaster
+                {
+                  SourceName = a[0].ToString()
+                });
+            }
+            return Task.FromResult(SourceMasterlist);
         }
     }
 }
