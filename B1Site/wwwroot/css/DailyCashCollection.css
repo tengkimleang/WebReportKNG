@@ -1,24 +1,17 @@
 ﻿/* Extra large devices (large desktops, 1200px and up) */
 
 @media (min-width: 1200px) {
-    .agingDate {
+    .dateFrom {
         Margin-left: 10%;
     }
-    .customerName {
+
+    .dateTo {
         Margin-left: 10%;
     }
-    .creditControl {
+    .customerID {
         Margin-left: 10%;
     }
-    .customerClass {
-        Margin-left: 10%;
-    }
-    .saleMargin {
-        margin-left: 10%;
-    }
-    .region {
-        Margin-left: 10%;
-    }
+
     .font {
         Font-size: 15px;
     }
@@ -28,27 +21,14 @@
 /* Large devices (desktops, 992px and up) */
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    .agingDate {
+    .dateFrom {
         Margin-left: 10%;
     }
 
-    .customerName {
+    .dateTo {
         Margin-left: 10%;
     }
-
-    .creditControl {
-        Margin-left: 10%;
-    }
-
-    .customerClass {
-        Margin-left: 10%;
-    }
-
-    .saleMargin {
-        margin-left: 10%;
-    }
-
-    .region {
+    .customerID {
         Margin-left: 10%;
     }
 
@@ -61,29 +41,17 @@
 /* Medium devices (tablets, 768px and up) */
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-    .agingDate {
-        Margin-left: 9%;
+    .dateFrom {
+        Margin-left: 10%;
     }
 
-    .customerName {
-        Margin-left: 9%;
+    .dateTo {
+        Margin-left: 10%;
+    }
+    .customerID {
+        Margin-left: 10%;
     }
 
-    .creditControl {
-        Margin-left: 9%;
-    }
-
-    .customerClass {
-        Margin-left: 9%;
-    }
-
-    .saleMargin {
-        margin-left: 9%;
-    }
-
-    .region {
-        Margin-left: 9%;
-    }
 
     .font {
         Font-size: 15px;
@@ -93,34 +61,21 @@
 /* Small devices (landscape phone, 576ox and up) */
 
 @media (min-width: 576px) and (max-width:767.98px) {
-    .agingDate {
+    .dateFrom {
         Margin-left: 0px;
     }
 
-    .customerName {
+    .dateTo {
         Margin-left: 0px;
     }
 
-    .creditControl {
-        Margin-left: 0px;
-    }
-
-    .customerClass {
-        Margin-left: 0px;
-    }
-
-    .saleMargin {
-        margin-left: 0px;
-    }
-
-    .region {
-        Margin-left: 0px;
+    .customerID {
+        Margin-left: 10%;
     }
 
     .font {
         Font-size: 15px;
     }
-
 }
 
 

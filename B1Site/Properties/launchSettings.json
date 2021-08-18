@@ -2,71 +2,18 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
-    "iis": {
-      "applicationUrl": "http://localhost/B1Site",
-      "sslPort": 0
-    },
     "iisExpress": {
-<<<<<<< HEAD
-      "applicationUrl": "http://localhost:1060/",
-      "sslPort": 44372
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-      "applicationUrl": "http://localhost:1068/",
-      "sslPort": 0
-=======
-<<<<<<< HEAD
-      "applicationUrl": "http://localhost:1067/",
-      "sslPort": 44345
-    }
-  },
-  "profiles": {
-    "B1Site": {
-      "commandName": "Project",
-      "launchBrowser": true
-=======
->>>>>>> 34c5a0c0c7ca1c2012e25a8f4967b040bead935c
-      "applicationUrl": "http://localhost:1069/",
-      "sslPort": 44364
->>>>>>> 949fd5f1cbea767bc7a2eeaa53e60d86ad227cb3
->>>>>>> 6e1814f5ec7c905e70f350ccdbc9dc991e83333b
+      "applicationUrl": "http://localhost:27389/",
+      "sslPort": 44317
     }
   },
   "profiles": {
     "Start": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 10, position 0."
-    },
-    "Sountitya": {
-      "commandName": "IISExpress",
-<<<<<<< HEAD
-      "launchBrowser": true
-=======
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "sqlDebugging": false,
+      "sqlDebugging": true,
       "nativeDebugging": false,
-      "jsWebView2Debugging": false
-<<<<<<< HEAD
-    },
-    "Tey": {
-      "commandName": "IISExpress"
-=======
-<<<<<<< HEAD
-    },
-    "Kimleang": {
-      "commandName": "IISExpress",
-      "launchBrowser": true
-=======
->>>>>>> a3b42007b513c27e4dbd80e3e2233818114caad0
->>>>>>> 949fd5f1cbea767bc7a2eeaa53e60d86ad227cb3
->>>>>>> 34c5a0c0c7ca1c2012e25a8f4967b040bead935c
->>>>>>> 6e1814f5ec7c905e70f350ccdbc9dc991e83333b
+      "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 10, position 0."
     }
   }
 }

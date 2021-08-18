@@ -13,7 +13,7 @@ namespace B1Site.Controllers
     {
         private readonly IApcashoutService apcashoutService;
 
-        #region Constuter
+        #region Constucter
         public ApcashoutreportController(IApcashoutService apcashoutService)
         {
             this.apcashoutService = apcashoutService;

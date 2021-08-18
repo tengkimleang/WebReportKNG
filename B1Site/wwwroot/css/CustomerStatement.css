@@ -4,21 +4,12 @@
     .agingDate {
         Margin-left: 10%;
     }
-    .customerName {
+
+    .customer {
         Margin-left: 10%;
     }
-    .creditControl {
-        Margin-left: 10%;
-    }
-    .customerClass {
-        Margin-left: 10%;
-    }
-    .saleMargin {
-        margin-left: 10%;
-    }
-    .region {
-        Margin-left: 10%;
-    }
+
+  
     .font {
         Font-size: 15px;
     }
@@ -32,23 +23,7 @@
         Margin-left: 10%;
     }
 
-    .customerName {
-        Margin-left: 10%;
-    }
-
-    .creditControl {
-        Margin-left: 10%;
-    }
-
-    .customerClass {
-        Margin-left: 10%;
-    }
-
-    .saleMargin {
-        margin-left: 10%;
-    }
-
-    .region {
+    .customer {
         Margin-left: 10%;
     }
 
@@ -62,27 +37,11 @@
 
 @media (min-width: 768px) and (max-width: 991.98px) {
     .agingDate {
-        Margin-left: 9%;
+        Margin-left: 10%;
     }
 
-    .customerName {
-        Margin-left: 9%;
-    }
-
-    .creditControl {
-        Margin-left: 9%;
-    }
-
-    .customerClass {
-        Margin-left: 9%;
-    }
-
-    .saleMargin {
-        margin-left: 9%;
-    }
-
-    .region {
-        Margin-left: 9%;
+    .customer {
+        Margin-left: 10%;
     }
 
     .font {
@@ -97,30 +56,14 @@
         Margin-left: 0px;
     }
 
-    .customerName {
+    .customer {
         Margin-left: 0px;
     }
 
-    .creditControl {
-        Margin-left: 0px;
-    }
-
-    .customerClass {
-        Margin-left: 0px;
-    }
-
-    .saleMargin {
-        margin-left: 0px;
-    }
-
-    .region {
-        Margin-left: 0px;
-    }
-
+   
     .font {
         Font-size: 15px;
     }
-
 }
 
 
