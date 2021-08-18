@@ -55,7 +55,6 @@ namespace B1Site.Service
             }
             return Task.FromResult(CustomerIDMasterlist);
         }
-
         public Task<string> GetFinalceSaleReportAsync(DateTime datefrom, DateTime dateto, string byitemsgroup, string bycategory, string bysaleempoyee, string byMeasure, string itemscode, string customerid, string source)
         {
             byitemsgroup = ((string.IsNullOrEmpty(byitemsgroup) || byitemsgroup == "0") ? "" : byitemsgroup);
@@ -218,7 +217,7 @@ namespace B1Site.Service
         public Task<List<SourceMaster>> GetSourceMastersAync()
         {
             ClsCRUD clsCRUD = new ClsCRUD();
-            var dt = clsCRUD.Getdata("SELECT DISTINCT ISNULL(U_Source,'') AS Source  FROM OITM ORDER BY ISNULL(U_Source,'')");
+            var dt = clsCRUD.Getdata("SELECT DISTINCT ISNULL(U_Source,'') AS Source  FROM OITM Where U_Source<>'-'and U_Source<>'' ORDER BY ISNULL(U_Source,'')");
             List<SourceMaster> SourceMasterlist = new List<SourceMaster>();
             foreach (DataRow a in dt.Rows)
             {

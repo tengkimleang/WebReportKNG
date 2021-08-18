@@ -113,7 +113,7 @@
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
         <div class="card-header">
-            @localizer["Final SaleR eport"]
+            @localizer["Final Sale Report"]
         </div>
         <div class="card-body">
             <!--Filter-->
@@ -139,8 +139,8 @@
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Category"]</label>
-                    <select type="text" class="input_branch" id="bySaleEmployee">
+                    <label class="lable_branch">@localizer["By Saleemployee"]</label>
+                    <select type="text" class="input_branch" id="bySaleemployee">
                         <option value="0">All Category</option>
                         @{
                             foreach (var a in Model.saleemployeeMasters)
@@ -156,7 +156,7 @@
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By SaleEmployee"]</label>
+                    <label class="lable_branch">@localizer["By Category"]</label>
                     <select type="text" class="input_branch" id="byCategory">
                         <option value="0">All SaleEmployee</option>
                         @{
@@ -167,58 +167,44 @@
                         }
                     </select>
                 </div>
-                
-                
+                <div class="col-md-2">
+                    <label class="lable_branch">@localizer["By Measure"]</label>
+                    <select type="text" class="input_branch" id="byMeasure">
+                        <option value="0">All SaleEmployee</option>
+                        @{
+                            foreach (var a in Model.measureMasters)
+                            {
+                                <option value="@a.MeasureName">@a.MeasureName</option>
+                            }
+                        }
+                    </select>
+                </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Customer ID"]</label>
-                    <select type="text" class="input_branch" id="byInventoryID">
+                    <select type="text" class="input_branch" id="bycustomerid">
                         <option value="0">All Customer ID</option>
-                       @{
+                        @{
                             foreach (var a in Model.itemsCodeMasters)
                             {
                                 <option value="@a.Itemscode">@a.ItemsName</option>
                             }
-                        } 
+                        }
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["Source"]</label>
-                    <select type="text" class="input_branch" id="byCustomerID">
+                    <select type="text" class="input_branch" id="bySource">
                         <option value="0">All Source</option>
                         @{
-                            foreach (var a in Model.customerIDMasters)
+                            foreach (var a in Model.sourceMasters)
                             {
-                                <option value="@a.CustomerCode">@a.CustomerName</option>
+                                <option value="@a.SourceName">@a.SourceName</option>
                             }
                         }
                     </select>
                 </div>
-                <!--<div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Source"]</label>
-                    <select type="text" class="input_branch" id="bySource">
-                        <option value="0">All Source</option>-->
-                        @*@{
-                            foreach (var a in Model.SourceMasters)
-                            {
-                                <option value="@a.Source">@a.Source</option>
-                            }
-                        }*@
-                    <!--</select>
-                </div>-->
-                <!--<div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Warehouse"]</label>
-                    <select type="text" class="input_branch" id="byWarehouse">
-                        <option value="0">All Warehouse</option>-->
-                        @*@{
-                            foreach (var a in Model.WarehouseMasters)
-                            {
-                                <option value="@a.Code">@a.Name</option>
-                            }
-                        }*@
-                    <!--</select>
-                </div>-->
             </div>
             <!--End Filter-->
             <!--Load Panel-->
@@ -256,17 +242,14 @@
             dateto = today;
         }
         var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySaleEmployee = ifToDo($('#bySaleEmployee'));
+        var bySaleEmployee = ifToDo($('#bySaleemployee'));
         var byCategory = ifToDo($('#byCategory'));
-        var byCustomerClass = ifToDo($('#byCustomerClass'));
-        var byLocation = ifToDo($('#byLocation'));
-        var byInventoryID = ifToDo($('#byInventoryID'));
-        var byCustomerID = ifToDo($('#byCustomerID'));
+        var byInventoryID = ifToDo($('#byMeasure'));
+        var byCustomerID = ifToDo($('#bycustomerid'));
         var bySource = ifToDo($('#bySource'));
-        var byWarehouse = ifToDo($('#byWarehouse'));
       //  alert(datefrom);
         loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-            byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
+             byInventoryID, byCustomerID, bySource);
     });
     function filterData() {
         var datefrom = $('#datefrom').val();
@@ -278,16 +261,13 @@
             dateto = today;
         }
         var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySaleEmployee = ifToDo($('#bySaleEmployee'));
+        var bySaleEmployee = ifToDo($('#bySaleemployee'));
         var byCategory = ifToDo($('#byCategory'));
-        var byCustomerClass = ifToDo($('#byCustomerClass'));
-        var byLocation = ifToDo($('#byLocation'));
-        var byInventoryID = ifToDo($('#byInventoryID'));
-        var byCustomerID = ifToDo($('#byCustomerID'));
+        var byInventoryID = ifToDo($('#byMeasure'));
+        var byCustomerID = ifToDo($('#bycustomerid'));
         var bySource = ifToDo($('#bySource'));
-        var byWarehouse = ifToDo($('#byWarehouse'));
         loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-            byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
+              byInventoryID, byCustomerID, bySource);
     }
     function ifToDo(condition) {
         if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
@@ -297,7 +277,7 @@
         }
     }
     function loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-        byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse) {
+         byInventoryID, byCustomerID, bySource, byWarehouse) {
         var loadPanel = $(".loadpanel").dxLoadPanel({
             shadingColor: "rgba(0,0,0,0.4)",
             position: { of: "#gridContainer" },
@@ -316,8 +296,6 @@
                 byItemGroup: byItemGroup,
                 bySaleEmployee: bySaleEmployee,
                 byCategory: byCategory,
-                byCustomerClass: byCustomerClass,
-                byLocation: byLocation,
                 byInventoryID: byInventoryID,
                 byCustomerID: byCustomerID,
                 bySource: bySource,
