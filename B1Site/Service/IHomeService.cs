@@ -13,7 +13,5 @@ namespace B1Site.Service
         Task<List<ReportDatabase>> GetReportDatabasesAsync();
         Task<List<LanguageTypeDatabase>> GetLanguageTypeDatabasesAsync();
         Task<bool> PostReportDatabasesAsync(ReportDatabase reportDatabase);
-        Task<bool> PutReportDatabasesAsync(ReportDatabase reportDatabase);
-        Task<bool> DeleteReportDatabasesAsync(string id);
     }
 }

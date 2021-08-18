@@ -138,21 +138,7 @@ namespace B1Site.Service
             }
             else
             {
-                return Task.FromResult(false);
-            }
-        }
-
-        public Task<bool> DeleteReportDatabasesAsync(string id)
-        {
-            ClsCRUD clsCRUD = new ClsCRUD();
-            var dt = clsCRUD.GetdataWebDb("UPDATE Tb_Report SET Active=0 WHERE ID="+id, "WebDb");
-            if (dt != null)
-            {
                 return Task.FromResult(true);
-            }
-            else
-            {
-                return Task.FromResult(false);
             }
         }
     }

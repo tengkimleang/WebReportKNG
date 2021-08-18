@@ -27,7 +27,6 @@ namespace B1Site.Service
                 {
                     var ex1 = ex.Message;
                 }
-               
             }
             return Task.FromResult(CategoryMasterlist);
         }
@@ -51,7 +50,6 @@ namespace B1Site.Service
                 {
                     var ex1 = ex.Message;
                 }
-                
             }
             return Task.FromResult(CustomerIDMasterlist);
         }
@@ -165,7 +163,6 @@ namespace B1Site.Service
                 {
                     var a1 = ex.Message;
                 }
-                
             }
             return Task.FromResult(itemsGropMasterslist);
         }
@@ -209,7 +206,6 @@ namespace B1Site.Service
                 {
                     var a1 = ex.Message;
                 }
-                
             }
             return Task.FromResult(SaleeemployeeMasterlist);
         }
@@ -231,7 +227,6 @@ namespace B1Site.Service
                 {
                     var a1 = ex.Message;
                 }
-                
             }
             return Task.FromResult(SourceMasterlist);
         }
