@@ -8,5 +8,7 @@ namespace B1Site.Models.Share
     public class Menu
     {
         public string Name { get; set; }
+        public string Action { get; set; }
+        public string Controller { get; set; }
     }
 }
