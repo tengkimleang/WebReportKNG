@@ -1,10 +1,8 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-}
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
-@model B1Site.Models.SaleDailyReport.MasterViewSaleDailyReport;
+@model B1Site.Models.FinalSaleReport.MasterViweFanceSaleReport;
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -132,24 +130,24 @@
                     <label class="lable_branch">@localizer["By ItemGroup"]</label>
                     <select type="text" class="input_branch" id="byItemGroup">
                         <option value="0">All ItemGroupss</option>
-                        @*@{
-                            foreach (var a in Model.ItemGroupMasters)
+                        @{
+                            foreach (var a in Model.itemsCodeMasters)
                             {
-                                <option value="@a.ItemGroup">@a.ItemGroup</option>
+                                <option value="@a.Itemscode">@a.ItemsName</option>
                             }
-                        }*@
+                        }
                     </select>
                 </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Category"]</label>
                     <select type="text" class="input_branch" id="bySaleEmployee">
                         <option value="0">All Category</option>
-                        @*@{
-                            foreach (var a in Model.SaleEmployeeMasters)
+                        @{
+                            foreach (var a in Model.saleemployeeMasters)
                             {
-                                <option value="@a.Code">@a.SaleEmployee</option>
+                                <option value="@a.SaleEmployeeCode">@a.SaleeEmployeeName</option>
                             }
-                        }*@
+                        }
                     </select>
                 </div>
                 <div class="col-md-4 ">
@@ -161,48 +159,26 @@
                     <label class="lable_branch">@localizer["By SaleEmployee"]</label>
                     <select type="text" class="input_branch" id="byCategory">
                         <option value="0">All SaleEmployee</option>
-                        @*@{
-                            foreach (var a in Model.CategoryMasters)
+                        @{
+                            foreach (var a in Model.categoryMasters)
                             {
                                 <option value="@a.Category">@a.Category</option>
                             }
-                        }*@
+                        }
                     </select>
                 </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Measure"]</label>
-                    <select type="text" class="input_branch" id="byCustomerClass">
-                        <option value="0">All Measure</option>
-                        @*@{
-                            foreach (var a in Model.CustomerClassMasters)
-                            {
-                                <option value="@a.Code">@a.Name</option>
-                            }
-                        }*@
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Itemcode"]</label>
-                    <select type="text" class="input_branch" id="byLocation">
-                        <option value="0">All Itemcode</option>
-                        @*@{
-                            foreach (var a in Model.LocationMasters)
-                            {
-                                <option value="@a.Code">@a.Name</option>
-                            }
-                        }*@
-                    </select>
-                </div>
+                
+                
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Customer ID"]</label>
                     <select type="text" class="input_branch" id="byInventoryID">
                         <option value="0">All Customer ID</option>
-                        @*@{
-                            foreach (var a in Model.InventoryIDMasters)
+                       @{
+                            foreach (var a in Model.itemsCodeMasters)
                             {
-                                <option value="@a.Code">@a.Name</option>
+                                <option value="@a.Itemscode">@a.ItemsName</option>
                             }
-                        }*@
+                        } 
                     </select>
                 </div>
             </div>
@@ -211,12 +187,12 @@
                     <label class="lable_branch">@localizer["Source"]</label>
                     <select type="text" class="input_branch" id="byCustomerID">
                         <option value="0">All Source</option>
-                        @*@{
-                            foreach (var a in Model.CusomterIDMasters)
+                        @{
+                            foreach (var a in Model.customerIDMasters)
                             {
-                                <option value="@a.Code">@a.Name</option>
+                                <option value="@a.CustomerCode">@a.CustomerName</option>
                             }
-                        }*@
+                        }
                     </select>
                 </div>
                 <!--<div class="col-md-2">
