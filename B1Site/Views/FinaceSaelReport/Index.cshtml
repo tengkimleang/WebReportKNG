@@ -163,7 +163,6 @@
                                 <option value="@a.Category">@a.Category</option>
                             }
                         }
-<<<<<<< HEAD
                     </select>
                 </div>
                 <div class="col-md-2">
@@ -176,8 +175,6 @@
                                 <option value="@a.MeasureName">@a.MeasureName</option>
                             }
                         }
-=======
->>>>>>> 31cab3d1cba445bf909eca6a4450549741612525
                     </select>
                 </div>
                 
@@ -186,20 +183,12 @@
                     <label class="lable_branch">@localizer["By Customer ID"]</label>
                     <select type="text" class="input_branch" id="bycustomerid">
                         <option value="0">All Customer ID</option>
-<<<<<<< HEAD
-                        @{
-=======
                        @{
->>>>>>> 31cab3d1cba445bf909eca6a4450549741612525
                             foreach (var a in Model.itemsCodeMasters)
                             {
                                 <option value="@a.Itemscode">@a.ItemsName</option>
                             }
-<<<<<<< HEAD
                         }
-=======
-                        } 
->>>>>>> 31cab3d1cba445bf909eca6a4450549741612525
                     </select>
                 </div>
             </div>
@@ -209,15 +198,9 @@
                     <select type="text" class="input_branch" id="bySource">
                         <option value="0">All Source</option>
                         @{
-<<<<<<< HEAD
-                            foreach (var a in Model.sourceMasters)
-                            {
-                                <option value="@a.SourceName">@a.SourceName</option>
-=======
                             foreach (var a in Model.customerIDMasters)
                             {
                                 <option value="@a.CustomerCode">@a.CustomerName</option>
->>>>>>> 31cab3d1cba445bf909eca6a4450549741612525
                             }
                         }
                     </select>
