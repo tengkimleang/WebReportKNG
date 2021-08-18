@@ -78,6 +78,7 @@ namespace B1Site
             services.AddScoped<IInventoryReportService, InventoryReportService>();
             services.AddScoped<IPurchaseReportService, PurchaseReportService>();
             services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<ICustomerStatementService, CustomerStatementServices>();
             services.AddScoped<IFinaceSaleReportService, FanaceSaleReportService>();
             services.AddScoped<IExspenReportService, ExspenReprotService>();
             services.AddScoped<IFinanceInventoryReportService, FinanceInventoryReportService>();

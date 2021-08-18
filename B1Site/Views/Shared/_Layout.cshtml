@@ -198,7 +198,7 @@
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <partial name="Navbar" />
+                            @*<partial name="Navbar" />*@
                             @*<ul class="nav nav-treeview">
                                 <li class="nav-item" style="background-color:#E8F0FE;border-radius: 4px;">
                                     <a asp-action="Index" asp-controller="SaleDialyReport" class="nav-link active">
@@ -312,10 +312,23 @@
                                 </li>
                             </ul>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
+                                <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
+                                    <a asp-action="Index" asp-controller="ARAgedOutstanding" class="nav-link">
+                                        <i class="fas fa-chart-area"></i>&nbsp;
+                                        <p style="color: black; font-family:'Roboto';">
+                                            <B>@localizer["A/R Aged Outstanding"]</B>
+                                        </p>
+
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
                                     <a asp-action="Index" asp-controller="FinanceInventoryReport" class="nav-link">
-                                        @*<i class="far fa-circle nav-icon"></i>*@
-                                        <p>@localizer["Finance Inventory Report"]</p>
+                                        <i class="fas fa-chart-area"></i>&nbsp;
+                                        <p style="color: black; font-family:'Roboto';">
+                                            <B>@localizer["Finance Inventory Report"]</B>
+                                        </p>
 
                                     </a>
                                 </li>

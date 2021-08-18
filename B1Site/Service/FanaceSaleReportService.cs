@@ -17,10 +17,24 @@ namespace B1Site.Service
             List<CategoryMaster> CategoryMasterlist = new List<CategoryMaster>();
             foreach (DataRow a in dt.Rows)
             {
+<<<<<<< HEAD
                 CategoryMasterlist.Add(new CategoryMaster
                 {
                     Category = a[0].ToString(),
                 });
+=======
+                try
+                {
+                    CategoryMasterlist.Add(new CategoryMaster
+                    {
+                        Category = a[0].ToString(),
+                    });
+                }catch(Exception ex)
+                {
+                    var ex1 = ex.Message;
+                }
+               
+>>>>>>> 31cab3d1cba445bf909eca6a4450549741612525
             }
             return Task.FromResult(CategoryMasterlist);
         }
@@ -32,12 +46,28 @@ namespace B1Site.Service
             List<CustomerIDMaster> CustomerIDMasterlist = new List<CustomerIDMaster>();
             foreach (DataRow a in dt.Rows)
             {
+<<<<<<< HEAD
                 CustomerIDMasterlist.Add(new CustomerIDMaster
                 {
                     CustomerCode = a[0].ToString(),
                     CustomerName = a[1].ToString()
 
                 });
+=======
+                try
+                {
+                    CustomerIDMasterlist.Add(new CustomerIDMaster
+                    {
+                        CustomerCode = a[0].ToString(),
+                        CustomerName = a[1].ToString()
+
+                    });
+                }catch(Exception ex)
+                {
+                    var ex1 = ex.Message;
+                }
+                
+>>>>>>> 31cab3d1cba445bf909eca6a4450549741612525
             }
             return Task.FromResult(CustomerIDMasterlist);
         }
@@ -116,12 +146,27 @@ namespace B1Site.Service
             List<ItemsCodeMaster> ItemsCodeMasterlist = new List<ItemsCodeMaster>();
             foreach (DataRow a in dt.Rows)
             {
+<<<<<<< HEAD
                 ItemsCodeMasterlist.Add(new ItemsCodeMaster
                 {
                     Itemscode = a[0].ToString(),
                     ItemsName = a[1].ToString()
 
                 });
+=======
+                try
+                {
+                    ItemsCodeMasterlist.Add(new ItemsCodeMaster
+                    {
+                        Itemscode = a[0].ToString(),
+                        ItemsName = a[1].ToString()
+
+                    });
+                }catch(Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+>>>>>>> 31cab3d1cba445bf909eca6a4450549741612525
             }
             return Task.FromResult(ItemsCodeMasterlist);
         }
@@ -133,12 +178,29 @@ namespace B1Site.Service
             List<ItemsGropMaster> itemsGropMasterslist = new List<ItemsGropMaster>();
             foreach (DataRow a in dt.Rows)
             {
+<<<<<<< HEAD
                 itemsGropMasterslist.Add(new ItemsGropMaster
                 {
                     ItemsGroupCode = a[0].ToString(),
                     ItemsGoupName = a[1].ToString()
 
                 });
+=======
+                try
+                {
+                    itemsGropMasterslist.Add(new ItemsGropMaster
+                    {
+                        ItemsGroupCode = a[0].ToString(),
+                        ItemsGoupName = a[1].ToString()
+
+                    });
+                }
+                catch(Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+                
+>>>>>>> 31cab3d1cba445bf909eca6a4450549741612525
             }
             return Task.FromResult(itemsGropMasterslist);
         }
@@ -150,10 +212,23 @@ namespace B1Site.Service
             List<MeasureMaster> MeasureMasterlist = new List<MeasureMaster>();
             foreach (DataRow a in dt.Rows)
             {
+<<<<<<< HEAD
                 MeasureMasterlist.Add(new MeasureMaster
                 {
                     MeasureName = a[0].ToString()
                 });
+=======
+                try
+                {
+                    MeasureMasterlist.Add(new MeasureMaster
+                    {
+                        MeasureName = a[0].ToString()
+                    });
+                }catch(Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+>>>>>>> 31cab3d1cba445bf909eca6a4450549741612525
             }
             return Task.FromResult(MeasureMasterlist);
         }
@@ -165,11 +240,26 @@ namespace B1Site.Service
             List<SaleemployeeMaster> SaleeemployeeMasterlist = new List<SaleemployeeMaster>();
             foreach (DataRow a in dt.Rows)
             {
+<<<<<<< HEAD
                 SaleeemployeeMasterlist.Add(new SaleemployeeMaster
                 {
                     SaleEmployeeCode = Convert.ToInt32(a[0].ToString()),
                     SaleeEmployeeName = a[1].ToString()
                 });
+=======
+                try
+                {
+                    SaleeemployeeMasterlist.Add(new SaleemployeeMaster
+                    {
+                        SaleEmployeeCode = Convert.ToInt32(a[0].ToString()),
+                        SaleeEmployeeName = a[1].ToString()
+                    });
+                }catch(Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+                
+>>>>>>> 31cab3d1cba445bf909eca6a4450549741612525
             }
             return Task.FromResult(SaleeemployeeMasterlist);
         }
@@ -181,10 +271,24 @@ namespace B1Site.Service
             List<SourceMaster> SourceMasterlist = new List<SourceMaster>();
             foreach (DataRow a in dt.Rows)
             {
+<<<<<<< HEAD
                 SourceMasterlist.Add(new SourceMaster
                 {
                   SourceName = a[0].ToString()
                 });
+=======
+                try
+                {
+                    SourceMasterlist.Add(new SourceMaster
+                    {
+                        SourceName = a[0].ToString()
+                    });
+                }catch(Exception ex)
+                {
+                    var a1 = ex.Message;
+                }
+                
+>>>>>>> 31cab3d1cba445bf909eca6a4450549741612525
             }
             return Task.FromResult(SourceMasterlist);
         }
