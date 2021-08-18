@@ -67,6 +67,7 @@ namespace B1Site
             #endregion
             #region Add Scope
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
+            services.AddScoped<IItemProfitAndLostService, ItemProfitAndLostService>();
             services.AddScoped<ISaleDailyReportService, SaleDailyReportService>();
             services.AddScoped<IARAgedOutstandingService, ARAgedOutstandingService>();
             services.AddScoped<IDailyCashCollectionService, DailyCashCollectionService>();
