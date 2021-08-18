@@ -1,0 +1,503 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model B1Site.Models.ARAgedOutstanding.MasterVeiwARAgedOutstanding;
+@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!--Dev-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/event.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/supplemental.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/unresolved.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.3/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.3/css/dx.light.css" />
+    <script src="https://cdn3.devexpress.com/jslib/21.1.3/js/dx.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+    <!--End Dev-->
+    <link href="~/css/ARAgedOutstanding.css" rel="stylesheet" />
+</head>
+<style>
+    .widget-loadscreen {
+        position: absolute;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        z-index: 99;
+        background: rgba(0,0,0,0.15);
+    }
+
+    .btn.btn-kernel {
+        font-size: 18px;
+        font-family: Arial;
+        background-color: #f2e8c5;
+        border: 0px;
+        color: black;
+    }
+
+    .btn-kernel, .btn-primary {
+        margin-top: 0px;
+        margin-right: 9%;
+        float: right;
+    }
+
+    .btn {
+        display: inline-block;
+        height: auto;
+        padding: 0 0px;
+        min-height: 25px;
+    }
+
+    .btn {
+        padding: 7px;
+        min-width: 50px;
+    }
+
+    .input_datefrom, .input_dateto, .input_user, .input_branch {
+        -webkit-transition: all 0.30s ease-in-out;
+        -moz-transition: all 0.30s ease-in-out;
+        -o-transition: all 0.30s ease-in-out;
+        outline: none;
+        padding: 3px 0px 3px 3px;
+        margin: 5px 1px 3px 0px;
+        border: 1px solid #DDDDDD;
+        width: 100%;
+        min-width: 100%;
+        height: 34px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        border-radius: 3px;
+    }
+
+    .lable_branch, .lable_datefrom, .lable_user {
+        font-family: Arial;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    label {
+        margin-bottom: 0px;
+        line-height: 20px;
+    }
+</style>
+<div class="content-header" style="padding-bottom:0px;">
+    <div class="widget-loadscreen" style="display: none;">
+        <img src="~/image/loading.gif">
+    </div>
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@localizer["Report"]</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["AR Aged Outstanding"]</a></li>
+                    <li class="breadcrumb-item active">@localizer["Reporting"]</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="container-fluid" style="padding: 15px;">
+    <div class="card">
+        <div class="card-header" style="background-color:antiquewhite;">
+            <h2>@localizer["AR Aged Outstanding"]</h2>
+        </div>
+        <div class="card-body" style="background-color:lightblue;">
+            <!--Filter-->
+            <div class="row" style="margin-top:2%;">
+                <div class="col-6">
+                    <div class="mb-4 row">
+                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 agingDate font">@localizer["Aging Date :"]</label>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <input type="date" class="input_datefrom" id="agingdate">
+                        </div>
+                    </div>
+                    @*<div class="row">*@
+                <div class="mb-4 row">
+                    <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 customerName font">@localizer["CustomerName :"]</label>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <select type="text" class="input_branch" id="byCustomerID">
+                            <option value="0">All CustomerID</option>
+                            @{
+                                foreach (var a in Model.customerNameMasters)
+                                {
+                                    <option value="@a.CustomerNameCode">@a.CustomerNameName</option>
+                                }
+                            }
+                        </select>
+                        @*<select type="text" class="input_branch" id="customernamearAged1">
+                            <option value="0">All Customer Name</option>
+                            @{
+                                foreach (var a in Model.customerNameMasters)
+                                {
+                                    <option value="@a.CustomerNameCode">@a.CustomerNameName</option>
+
+                                }
+                            }
+                        </select>*@
+                    </div>
+                </div>
+                    <div class="mb-4 row">
+                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 creditControl font">@localizer["Credit Control :"]</label>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <select type="" class="input_branch" id="creditconrolaraged">
+                                <option value="0">All Credit Control</option>
+                                @{
+                                    foreach (var a in Model.creditControlMasters)
+                                    {
+                                        <option value="@a.CreditControl">@a.CreditControl</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-4 row">
+                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 customerClass font">@localizer["Customer Class :"]</label>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <select type="" class="input_branch" id="customerclassaraged">
+                                <option value="0">All Customer Class</option>
+                                @{
+                                    foreach (var a in Model.customerClassMasters)
+                                    {
+                                        <option value="@a.CustomerClassCode">@a.CustomerClassName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-4 row">
+                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 saleMargin font">@localizer["Sale Employee :"]</label>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <select type="" class="input_branch" id="saleemployeearaged">
+                                <option value="0">All Sale Employee</option>
+                                @{
+                                    foreach (var a in Model.saleEmployeeMasters)
+                                    {
+                                        <option value="@a.SaleEmployeeCode">@a.SaleEmployeeName</option>                         
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-4 row">
+                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 region font">@localizer["Region :"]</label>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <select type="" class="input_branch" id="regionaraged">
+                                <option value="0">All Region</option>
+                                @{
+                                    foreach (var a in Model.regionMasters)
+                                    {
+                                        <option value="@a.RegionCode">@a.RegionName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        @*<label for="lable_datefrom" class="col-sm-2">@localizer["DateTo"]</label>
+                            <div class="col-sm-6">
+                                <input type="date" class="input_datefrom" id="datetodailycash">
+                            </div>*@
+                    </div>
+                    <div class="mr-2">
+                        <button class="btn btn-xs btn-kernel" id="btnRunReportARAged" style="float:right;margin-right:20%">@localizer["Filter"]</button>
+                    </div>
+                </div>
+
+                <!--<div class="col-md-2">
+                <label class="lable_branch">@localizer["ByItemGroup"]</label>
+                <select type="text" class="input_branch" id="byItemGroup">
+                    <option value="0">All ItemGroup</option>-->
+                @*@{
+                        foreach (var a in Model.ItemGroupMasters)
+                        {
+                            <option value="@a.ItemGroup">@a.ItemGroup</option>
+                        }
+                    }*@
+            </div>
+            <!--End Filter-->
+            <!--Bind Data to Grid-->
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="demo-container">
+                            <div id="gridContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Bind Data to Grid-->
+        </div>
+    </div>
+</div>
+
+<script>
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+    filterData();
+    $('#btnRunReportARAged').click(function () {
+        var agingdate = $('#agingdate').val();
+        var customername = ifToDo($('#byCustomerID'));
+        var creditcontrol = ifToDo($('#creditconrolaraged'));
+        var customerclass = ifToDo($('#customerclassaraged'));
+        var saleemployee = ifToDo($('#saleemployeearaged'));
+        var region = ifToDo($('#regionaraged'));
+        loadReport(agingdate,customername,creditcontrol,customerclass,saleemployee,region);
+    });
+    function filterData() {
+        var agingdate = today;
+        var customername = ifToDo($('#byCustomerID'));
+        var creditcontrol = ifToDo($('#creditconrolaraged'));
+        var customerclass = ifToDo($('#customerclassaraged'));
+        var saleemployee = ifToDo($('#saleemployeearaged'));
+        var region = ifToDo($('#regionaraged'));
+        loadReport(agingdate,customername, creditcontrol, customerclass, saleemployee, region);
+    }
+    function ifToDo(condition) {
+        if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
+            return "";
+        } else {
+            return condition.val();
+        }
+    }
+    function loadReport(agingdate, customername, creditcontrol, customerclass, saleemployee, region) {
+        console.log(saleemployee);
+        $.ajax({
+            url: '@Url.Action("GetARAgedoutstandings", "ARAgedOutstanding")',
+            type: "GET",
+            data: {
+                    agingdate:agingdate, customerclass:customerclass, creditcontrol:creditcontrol, customername:customername,
+                    saleemployee: saleemployee, region: region
+            },
+            dataType: "JSON",
+            beforeSend: function () {
+                //btn_filter.addClass("fa-spinner fa-spin");
+            },
+            success: function (data) {
+                $("#gridContainer").dxDataGrid({
+                    dataSource: data,
+                    columnAutoWidth: true,
+                    filterRow: {
+                        visible: true,
+                        applyFilter: "auto"
+                    },
+                    headerFilter: {
+                        visible: true
+                    },
+                    showBorders: true,
+                    scrolling: {
+                        columnRenderingMode: "virtual"
+                    },
+                    export: {
+                        enabled: true,
+                    },
+                    onExporting: function (e) {
+                        var workbook = new ExcelJS.Workbook();
+                        var worksheet = workbook.addWorksheet('AR Aged OutStanding');
+
+                        DevExpress.excelExporter.exportDataGrid({
+                            component: e.component,
+                            worksheet: worksheet,
+                            autoFilterEnabled: true
+                        }).then(function () {
+                            workbook.xlsx.writeBuffer().then(function (buffer) {
+                                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'AR Aged OutStanding.xlsx');
+                            });
+                        });
+                        e.cancel = true;
+                    },
+                    onToolbarPreparing: function (e) {
+                        var dataGrid = e.component;
+                        e.toolbarOptions.items.unshift({
+                            location: "before",
+                            template: function () {
+                                return
+                            }
+                        },
+                            {
+                                location: "after",
+                                widget: "dxButton",
+                                options: {
+                                    icon: "refresh",
+                                    onClick: function () {
+                                        dataGrid.refresh();
+                                        filterData();
+                                    }
+                                }
+                            },
+                            {
+                                location: "after",
+                                widget: "dxButton",
+                                options: {
+                                    icon: "fas fa-file-pdf",
+                                    onClick: function () {
+                                        printPdf();
+                                    }
+                                },
+                                title: 'Export to PDF'
+                            }
+                        );
+                    },
+                    summary: {
+                        totalItems: [{
+                            column: "cardCode",
+                            summaryType: "count"
+                        }, {
+                            column: "price",
+                            summaryType: "sum"
+                        }
+                        ]
+                    },
+                    columns: [
+                        {
+                            dataField: "Row",
+                            caption: "Row"
+                        },
+
+                        {
+                             dataField: "CardCode",
+                                caption: "CardCode"
+                        },
+
+                            {
+                                dataField: "CardName",
+                                caption: "CardName"
+                            },
+                            {
+                                dataField: "Region",
+                                caption: "Region"
+                            },
+                            {
+                                dataField: "GroupName",
+                                caption: "GroupName"
+                            },
+                            {
+                                dataField: "Doc",
+                                caption: "Doc"
+                            },
+                            {
+                                dataField: "SalePerson",
+                                caption: "SalePerson"
+                            },
+                            {
+                                dataField: "SysInvoice",
+                                caption: "SysInvoice"
+                            },
+                            {
+                                dataField: "DO",
+                                caption: "DO"
+                            },
+                            {
+                                dataField: "Invoice",
+                                caption: "Invoice"
+                            },
+                            {
+                            dataField: "INVDATE",
+                            caption:"INVDATE",
+                            //alignment: "right",
+                            dataType: "date",
+                            //width: 120,
+                            calculateFilterExpression: function (value, selectedFilterOperations, target) {
+                                if (target === "headerFilter" && value === "weekends") {
+                                    return [[getOrderDay, "=", 0], "or", [getOrderDay, "=", 6]];
+                                }
+                                return this.defaultCalculateFilterExpression.apply(this, arguments);
+                            },
+
+                            headerFilter: {
+                                dataSource: function (data) {
+                                    data.dataSource.postProcess = function (results) {
+                                        results.push({
+                                            text: "Weekends",
+                                            value: "weekends"
+                                        });
+                                        return results;
+                                    };
+
+                                }
+                            }
+
+                            },
+                            {
+                                dataField: "Term",
+                                caption: "Term"
+                            },
+                            {
+                                dataField: "Aged",
+                                caption: "Aged"
+                            },
+                            {
+                                dataField: "Balance",
+                                caption: "Balance"
+                            },
+                            {
+                                dataField: "Current",
+                                caption: "Current"
+                            },
+                            {
+                                dataField: "ThirtyFirst_To_Sixty",
+                                caption: "ThirtyFirst_To_Sixty"
+                            },
+                            {
+                                dataField: "SixtyFirst_To_Ninety",
+                                caption: "SixtyFirst_To_Ninety"
+                            },
+                            {
+                                dataField: "NinetyFirst_To_OneHundredTwenty",
+                                caption: "NinetyFirst_To_OneHundredTwenty"
+                            },
+                            {
+                                dataField: "OneHundred_TwentyFirst_Till",
+                                caption: "OneHundred_TwentyFirst_Till"
+                            },
+                            {
+                                dataField: "ItemGroup",
+                                caption: "ItemGroup"
+                            },
+                            {
+                                dataField: "Model",
+                                caption: "Model"
+                            },
+                            {
+                                dataField: "DocTotal",
+                                caption: "DocTotal"
+                            },
+                            {
+                                dataField: "GroupCode",
+                                caption: "GroupCode"
+                            },
+                            {
+                                dataField: "SlpCode",
+                                caption: "SlpCode"
+                            },
+                            {
+                                dataField: "Reconsum",
+                                caption: "Reconsum"
+                            },
+                    ],
+
+                });
+                //btn_filter.removeClass("fa-spinner fa-spin");
+            }
+        });
+    }
+</script>

@@ -126,6 +126,9 @@
   <data name="Copyright" xml:space="preserve">
     <value>រក្សាសិទ្ធដោយ</value>
   </data>
+  <data name="Daily Cash Collection" xml:space="preserve">
+    <value>របាយការប្រមូលប្រាក់ប្រចាំថ្ងៃ</value>
+  </data>
   <data name="en" xml:space="preserve">
     <value>English</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="Permission" xml:space="preserve">
     <value>កំណត់សិទ្ធអ្នកប្រើប្រាស់</value>
+  </data>
+  <data name="PSI Report" xml:space="preserve">
+    <value>របាយការភីអេសអាយ</value>
   </data>
   <data name="Reporting" xml:space="preserve">
     <value>របាយការណ៍</value>

@@ -1,0 +1,460 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model B1Site.Models.DailyCashCollection.MasterVeiwDailyCashCollection;
+@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!--Dev-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/event.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/supplemental.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/unresolved.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.3/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.3/css/dx.light.css" />
+    <script src="https://cdn3.devexpress.com/jslib/21.1.3/js/dx.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+    <!--End Dev-->
+</head>
+<style>
+    .widget-loadscreen {
+        position: absolute;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        z-index: 99;
+        background: rgba(0,0,0,0.15);
+    }
+
+    .btn.btn-kernel {
+        font-size: 12px;
+        font-family: Arial;
+        background-color: #f2e8c5;
+        border: 0px;
+        color: black;
+        
+    }
+
+    .btn-kernel, .btn-primary {
+        margin-top: 32px;
+        margin-right: 9%;
+        float:right;
+    }
+
+    .btn {
+        display: inline-block;
+        height: auto;
+        padding: 0 0px;
+        min-height: 25px;
+    }
+
+    .btn {
+        padding: 7px;
+        min-width: 50px;
+    }
+
+    .input_datefrom, .input_dateto, .input_user, .input_branch {
+        -webkit-transition: all 0.30s ease-in-out;
+        -moz-transition: all 0.30s ease-in-out;
+        -o-transition: all 0.30s ease-in-out;
+        outline: none;
+        padding: 3px 0px 3px 3px;
+        margin: 5px 1px 3px 0px;
+        border: 1px solid #DDDDDD;
+        width: 100%;
+        min-width: 100%;
+        height: 34px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        border-radius: 3px;
+    }
+
+    .lable_branch, .lable_datefrom, .lable_dateto, .lable_user {
+        font-family: Arial;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    label {
+        margin-bottom: 0px;
+        line-height: 20px;
+    }
+</style>
+<div class="content-header" style="padding-bottom:0px;">
+    <div class="widget-loadscreen" style="display: none;">
+        <img src="~/image/loading.gif">
+    </div>
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@localizer["Report"]</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Daily Cash Collection"]</a></li>
+                    <li class="breadcrumb-item active">@localizer["Reporting"]</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="container-fluid" style="padding: 15px;">
+    <div class="card">
+        <div class="card-header" style="background-color:#0000001A;">
+            <h2>@localizer["Daily Cash Collection"]</h2>
+        </div>
+        <div class="card-body" style="background-color:lightblue;">
+            <!--Filter-->
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-4 row">
+                        <label for="lable_datefrom" class="col-sm-3" style="margin-left:10%">@localizer["DateFrom :"]</label>
+                        <div class="col-sm-6">
+                            <input type="date" class="input_datefrom" id="datefromdailycash">
+                        </div>
+                    </div>
+                    @*<div class="row">*@
+                    <div class="mb-4 row">
+                        <label for="lable_customerid" class="col-sm-3" style="margin-left:10%">@localizer["CustomerID :"]</label>
+                        <div class="col-sm-6">
+                            <select type="" class="input_branch" id="Customerdailycash">
+                                <option value="0">All Customer</option>
+                                @{
+                                    foreach (var a in Model.customerIDMasters)
+                                    {
+                                        <option value="@a.CardCode">@a.CustomerID</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-4 row">
+                        <label for="lable_datefrom" class="col-sm-3">@localizer["DateTo :"]</label>
+                        <div class="col-sm-6">
+                            <input type="date" class="input_datefrom" id="datetodailycash">
+                        </div>
+                    </div>
+                    <div class="mr-2" >
+                        <button class="btn btn-xs btn-kernel" id="btnRunReportDailyCash" style="float:right;margin-right:33%">@localizer["Filter"]</button>
+                    </div>
+                </div>
+              
+                <!--<div class="col-md-2">
+    <label class="lable_branch">@localizer["ByItemGroup"]</label>
+    <select type="text" class="input_branch" id="byItemGroup">
+        <option value="0">All ItemGroup</option>-->
+                @*@{
+            foreach (var a in Model.ItemGroupMasters)
+            {
+                <option value="@a.ItemGroup">@a.ItemGroup</option>
+            }
+        }*@
+                <!--</select>
+    </div>
+    <div class="col-md-2">
+        <label class="lable_branch">@localizer["By SaleEmployee"]</label>
+        <select type="text" class="input_branch" id="bySaleEmployee">
+            <option value="0">All Branch</option>
+            <option value="1">KHMER EDI</option>
+            <option value="2">Branch2</option>
+        </select>
+    </div>-->
+                @*<div class="row">
+            <div class="col-md-2">
+                <label class="lable_branch">@localizer["By Category"]</label>
+                <select type="text" class="input_branch" id="byCategory">
+                    <option value="0">All Branch</option>
+                    <option value="1">KHMER EDI</option>
+                    <option value="2">Branch2</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="lable_branch">@localizer["By CustomerClass"]</label>
+                <select type="text" class="input_branch" id="byCustomerClass">
+                    <option value="0">All Branch</option>
+                    <option value="1">KHMER EDI</option>
+                    <option value="2">Branch2</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="lable_branch">@localizer["By Location"]</label>
+                <select type="text" class="input_branch" id="byLocation">
+                    <option value="0">All Branch</option>
+                    <option value="1">KHMER EDI</option>
+                    <option value="2">Branch2</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="lable_branch">@localizer["By InventoryID"]</label>
+                <select type="text" class="input_branch" id="byInventoryID">
+                    <option value="0">All Branch</option>
+                    <option value="1">KHMER EDI</option>
+                    <option value="2">Branch2</option>
+                </select>
+            </div>
+        </div>*@
+
+                @*<div class="col-md-2">
+            <label class="lable_branch">@localizer["By Source"]</label>
+            <select type="text" class="input_branch" id="bySource">
+                <option value="0">All Branch</option>
+                <option value="1">KHMER EDI</option>
+                <option value="2">Branch2</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label class="lable_branch">@localizer["By Warehouse"]</label>
+            <select type="text" class="input_branch" id="byWarehouse">
+                <option value="0">All Branch</option>
+                <option value="1">KHMER EDI</option>
+                <option value="2">Branch2</option>
+            </select>
+        </div>*@
+            </div>
+            <!--End Filter-->
+            <!--Bind Data to Grid-->
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="demo-container">
+                            <div id="gridContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Bind Data to Grid-->
+        </div>
+    </div>
+</div>
+
+<script>
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+    loadReport(today, today);
+    $('#btnRunReportDailyCash').click(function () {
+        var datefrom = $('#datefromdailycash').val();
+        var dateto = $('#datetodailycash').val();
+        var CustomerID = $('#Customerdailycash').val();
+        loadReport(datefrom, dateto, CustomerID);
+    });
+    function filterData(button) {
+        var datefrom = $('#datefromdailycash').val();
+        var dateto = $('#datetodailycash').val();
+        var CustomerID = $('CustomerID').val();
+        if (datefrom == '' || datefrom==null) {
+            datefrom = today;
+        }
+        if (dateto == '' || dateto == null) {
+            dateto = today;
+        }
+        loadReport(datefrom, dateto, CustomerID);
+    }
+    function loadReport(datefrom, dateto, CustomerID) {
+        //let btn_filter = $(button).children("i.fa-search");
+        $.ajax({
+            url: '@Url.Action("GetDailyCashCollection", "DailyCashCollection")',
+            type: "GET",
+            data: { datefrom: datefrom, dateto: dateto, customerID: CustomerID },
+            dataType: "JSON",
+            beforeSend: function () {
+                //btn_filter.addClass("fa-spinner fa-spin");
+            },
+            success: function (data) {
+                console.log(data)
+                $("#gridContainer").dxDataGrid({
+                    dataSource: data,
+                    columnAutoWidth: true,
+                    filterRow: {
+                        visible: true,
+                        applyFilter: "auto"
+                    },
+                    headerFilter: {
+                        visible: true
+                    },
+                    showBorders: true,
+                    scrolling: {
+                        columnRenderingMode: "virtual"
+                    },
+                    export: {
+                        enabled: true,
+                    },
+                    onExporting: function (e) {
+                        var workbook = new ExcelJS.Workbook();
+                        var worksheet = workbook.addWorksheet('DailyCahCollection');
+
+                        DevExpress.excelExporter.exportDataGrid({
+                            component: e.component,
+                            worksheet: worksheet,
+                            autoFilterEnabled: true
+                        }).then(function () {
+                            workbook.xlsx.writeBuffer().then(function (buffer) {
+                                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Daily Cash Collection.xlsx');
+                            });
+                        });
+                        e.cancel = true;
+                    },
+                    onToolbarPreparing: function (e) {
+                        var dataGrid = e.component;
+                        e.toolbarOptions.items.unshift({
+                            location: "before",
+                            template: function () {
+                                return
+                            }
+                        },
+                            {
+                                location: "after",
+                                widget: "dxButton",
+                                options: {
+                                    icon: "refresh",
+                                    onClick: function () {
+                                        dataGrid.refresh();
+                                        filterData();
+                                    }
+                                }
+                            },
+                            {
+                                location: "after",
+                                widget: "dxButton",
+                                options: {
+                                    icon: "fas fa-file-pdf",
+                                    onClick: function () {
+                                        printPdf();
+                                    }
+                                },
+                                title: 'Export to PDF'
+                            }
+                        );
+                    },
+                    summary: {
+                        totalItems: [{
+                            column: "CardCode",
+                            summaryType: "count"
+                        }, {
+                            column: "Price",
+                            summaryType: "sum"
+                        }
+                        ]
+                    },
+                    columns: [
+                        {
+                            dataField: "Receipt",
+                            caption: "Receipt"
+                        },
+                        {
+                            dataField: "ReceivedDate",
+                            caption:"ReceivedDate",
+                            //alignment: "right",
+                            dataType: "date",
+                            //width: 120,
+                            calculateFilterExpression: function (value, selectedFilterOperations, target) {
+                                if (target === "headerFilter" && value === "weekends") {
+                                    return [[getOrderDay, "=", 0], "or", [getOrderDay, "=", 6]];
+                                }
+                                return this.defaultCalculateFilterExpression.apply(this, arguments);
+                            },
+
+                            headerFilter: {
+                                dataSource: function (data) {
+                                    data.dataSource.postProcess = function (results) {
+                                        results.push({
+                                            text: "Weekends",
+                                            value: "weekends"
+                                        });
+                                        return results;
+                                    };
+
+                                }
+                            }
+
+                            },
+                            {
+                                dataField: "CustomerReceived",
+                                caption: "Customer Received"
+                            },
+                        
+                            {
+                                dataField: "SysInvoice",
+                                caption: "Sys Invoice"
+                            },
+                            {
+                                dataField: "CustomerRef",
+                                caption: "Customer Ref"
+                            },
+                            {
+                                dataField: "Type",
+                                caption: "Type"
+                            },
+                            {
+                                dataField: "Status",
+                                caption: "Status"
+                            },
+                            {
+                                dataField: "CustomerID",
+                                caption: "Customer ID"
+                            },
+                            {
+                                dataField: "CustomerName",
+                                caption: "CustomerName"
+                            },
+                            {
+                                dataField: "location",
+                                caption: "Location"
+                            },
+                            {
+                                dataField: "CustomerClass",
+                                caption: "Customer Class"
+                            },
+                            {
+                                dataField: "Region",
+                                caption: "Region"
+                            },
+                            {
+                                dataField: "PaymentMethod",
+                                caption: "Payment Method"
+                            },
+                            {
+                                dataField: "CashAccountDescription",
+                                caption: "Cash Account Description"
+                            },
+                            {
+                                dataField: "CollectedAmount",
+                                caption: "CollectedAmount"
+                            },
+                            {
+                                dataField: "ServiceCharge",
+                                caption: "Service Charge"
+                            },
+                            {
+                                dataField: "TotalAmount",
+                                caption: "Total Amount"
+                            },
+                            {
+                                dataField: "Product",
+                                caption: "Product"
+                            },
+                    ],
+
+                });
+                //btn_filter.removeClass("fa-spinner fa-spin");
+            }
+        });
+    }
+</script>

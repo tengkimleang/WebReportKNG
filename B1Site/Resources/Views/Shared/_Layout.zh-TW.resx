@@ -126,6 +126,9 @@
   <data name="Copyright" xml:space="preserve">
     <value>版权</value>
   </data>
+  <data name="Daily Cash Collection" xml:space="preserve">
+    <value>每日收款報告</value>
+  </data>
   <data name="en" xml:space="preserve">
     <value>English</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="Permission" xml:space="preserve">
     <value>允许</value>
+  </data>
+  <data name="PSI Report" xml:space="preserve">
+    <value>磷秒一世報告</value>
   </data>
   <data name="Reporting" xml:space="preserve">
     <value>报告</value>

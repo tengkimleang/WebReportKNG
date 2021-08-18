@@ -23,5 +23,29 @@ namespace B1Site.Connection
             }
             return tb;
         }
+        public DataTable GetdataWebDb(string sql,string type)
+        {
+            DataTable tb = new DataTable();
+            string db = "";
+            if (type == "WebDb")
+            {
+                db = ConnectionString.constrWeb;
+            }
+            else
+            {
+                db = ConnectionString.constrDb;
+            }
+            SqlDataAdapter dtp = new SqlDataAdapter(sql, db);
+            try
+            {
+                dtp.Fill(tb);
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+                tb = null;
+            }
+            return tb;
+        }
     }
 }
