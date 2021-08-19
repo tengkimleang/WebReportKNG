@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    Dev
+    <!--Dev-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/event.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/supplemental.min.js"></script>
@@ -19,7 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
-    End Dev
+    <!--End Dev-->
 </head>
 <style>
     .widget-loadscreen {
@@ -98,15 +98,15 @@
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0">@localizer["Finance Sale Report"]</h1>
-            </div> /.col 
+            </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Finance Sale Report"]</a></li>
                     <li class="breadcrumb-item active">@localizer["Finance Sale Report"]</li>
                 </ol>
-            </div> /.col 
-        </div> /.row 
-    </div> /.container-fluid 
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
 </div>
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
@@ -114,7 +114,7 @@
             @localizer["Final Sale Report"]
         </div>
         <div class="card-body">
-            Filter
+            <!--Filter-->
             <div class="row">
                 <div class="col-md-2">
                     <label class="lable_datefrom">@localizer["Date From"]</label>
@@ -127,26 +127,26 @@
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By ItemGroup"]</label>
                     <select type="text" class="input_branch" id="byItemGroup">
-                        <option value="0">All ItemGroupss</option>-->
-                        @*@{
+                        <option value="0">All ItemGroupss</option>
+                        @{
                             foreach (var a in Model.itemsCodeMasters)
                             {
                                 <option value="@a.Itemscode">@a.ItemsName</option>
                             }
-                        }*@
-                    <!--</select>
+                        }
+                    </select>
                 </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Saleemployee"]</label>
                     <select type="text" class="input_branch" id="bySaleemployee">
-                        <option value="0">All Category</option>-->
-                        @*@{
+                        <option value="0">All Category</option>
+                        @{
                             foreach (var a in Model.saleemployeeMasters)
                             {
                                 <option value="@a.SaleEmployeeCode">@a.SaleeEmployeeName</option>
                             }
-                        }*@
-                    <!--</select>
+                        }
+                    </select>
                 </div>
                 <div class="col-md-4 ">
                     <button class="btn btn-xs btn-kernel" id="btnRunReport">@localizer["Filter"]</button>
@@ -156,14 +156,14 @@
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Category"]</label>
                     <select type="text" class="input_branch" id="byCategory">
-                        <option value="0">All SaleEmployee</option>-->
-                        @*@{
+                        <option value="0">All SaleEmployee</option>
+                        @{
                             foreach (var a in Model.categoryMasters)
                             {
                                 <option value="@a.Category">@a.Category</option>
                             }
-                        }*@
-                    <!--</select>
+                        }
+                    </select>
                 </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Measure"]</label>
@@ -177,38 +177,40 @@
                         }
                     </select>
                 </div>
+                
+                
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Customer ID"]</label>
                     <select type="text" class="input_branch" id="bycustomerid">
-                        <option value="0">All Customer ID</option>-->
-                        @*@{
+                        <option value="0">All Customer ID</option>
+                       @{
                             foreach (var a in Model.itemsCodeMasters)
                             {
                                 <option value="@a.Itemscode">@a.ItemsName</option>
                             }
-                        }*@
-                    <!--</select>
+                        }
+                    </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["Source"]</label>
                     <select type="text" class="input_branch" id="bySource">
-                        <option value="0">All Source</option>-->
-                        @*@{
-                            foreach (var a in Model.sourceMasters)
+                        <option value="0">All Source</option>
+                        @{
+                            foreach (var a in Model.customerIDMasters)
                             {
-                                <option value="@a.SourceName">@a.SourceName</option>
+                                <option value="@a.CustomerCode">@a.CustomerName</option>
                             }
-                        }*@
-                    <!--</select>
+                        }
+                    </select>
                 </div>
             </div>
-            End Filter
-            Load Panel
+            <!--End Filter-->
+            <!--Load Panel-->
             <div class="loadpanel"></div>
-            End Load Panel
-            Bind Data to Grid
+            <!--End Load Panel-->
+            <!--Bind Data to Grid-->
             <div class="container mt-3">
                 <div class="row">
                     <div class="col-12">
@@ -218,6 +220,7 @@
                     </div>
                 </div>
             </div>
+            <!--End Bind Data to Grid-->
         </div>
     </div>
 </div>
@@ -244,7 +247,7 @@
         var byInventoryID = ifToDo($('#byMeasure'));
         var byCustomerID = ifToDo($('#bycustomerid'));
         var bySource = ifToDo($('#bySource'));
-      //  alert(datefrom);
+        alert(byItemGroup);
         loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
              byInventoryID, byCustomerID, bySource);
     });
@@ -596,6 +599,3 @@
         });
     }
 </script>
-
-<p>Hello world</p>-->
-<p>hell</p>

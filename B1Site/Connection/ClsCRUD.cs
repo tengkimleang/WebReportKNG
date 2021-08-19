@@ -13,6 +13,7 @@ namespace B1Site.Connection
         {
             DataTable tb = new DataTable();
             SqlDataAdapter dtp = new SqlDataAdapter(sql, ConnectionString.constr);
+            dtp.SelectCommand.CommandTimeout = 280;
             try
             {
                 dtp.Fill(tb);
