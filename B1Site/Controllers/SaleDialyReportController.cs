@@ -25,6 +25,7 @@ namespace B1Site.Controllers
         #region Return View
         public async Task<IActionResult> Index()
         {
+            ViewBag.DisA = "active";
             return View(new MasterViewSaleDailyReport
             {
                 ItemGroupMasters= await saleDailyReportService.GetItemGroupMasterAsync(),

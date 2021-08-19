@@ -141,5 +141,54 @@ namespace B1Site.Service
                 return Task.FromResult(true);
             }
         }
+
+        public Task<bool> DeleteReportDatabasesAsync(string id)
+        {
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.GetdataWebDb("UPDATE Tb_Report SET Active=0 WHERE ID=" + id, "WebDb");
+            if (dt != null)
+            {
+                return Task.FromResult(true);
+            }
+            else
+            {
+                return Task.FromResult(false);
+            }
+        }
+
+        public Task<List<User>> GetUsersAsync()
+        {
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.GetdataWebDb("SELECT * FROM Tb_User WHERE Active=1", "WebDb");
+            List<User> users = new List<User>();
+            foreach (DataRow a in dt.Rows)
+            {
+                try
+                {
+                    users.Add(new User
+                    {
+                        UserID = Convert.ToInt32(a[0].ToString()),
+                        UserName = a[1].ToString(),
+                        PassWord = a[2].ToString(),
+                        FirstName = a[4].ToString(),
+                        LastName = a[5].ToString(),
+                        DateOfBirth = a[6].ToString(),
+                        PlaceOfBirth=a[7].ToString(),
+                        Address=a[8].ToString(),
+                        Phone=a[9].ToString(),
+                        Image=a[10].ToString(),
+                        Position=a[11].ToString(),
+                        Department=a[12].ToString(),
+                        Email=a[13].ToString(),
+                        Active=a[14].ToString()
+                    });
+                }
+                catch (Exception ex)
+                {
+                    var e1 = ex.Message;
+                }
+            }
+            return Task.FromResult(users);
+        }
     }
 }

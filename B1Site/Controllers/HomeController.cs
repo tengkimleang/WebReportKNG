@@ -48,6 +48,11 @@ namespace B1Site.Controllers
                 CompanyDatabases = await homeService.GetCompanyDatabasesAsync()
             }); ;
         }
+        public IActionResult UserList()
+        {
+
+            return View();
+        }
         public IActionResult Index()
         {
             return View();
@@ -60,9 +65,9 @@ namespace B1Site.Controllers
             //    return RedirectToAction("Login", "Home");
             //}
         }
-        public IActionResult Administrator()
+        public async Task<IActionResult> AdministratorAsync()
         {
-            return View();
+            return View(await homeService.GetUsersAsync());
         }
         #endregion
         #region Ajax Post and Get
@@ -95,14 +100,39 @@ namespace B1Site.Controllers
             return Ok(await homeService.GetLanguageTypeDatabasesAsync());
         }
         [HttpPost]
-        public async Task<IActionResult> PostTo(ReportDatabase reportDatabase)
+        public async Task<IActionResult> PostReportDatabasesAsync(ReportDatabase reportDatabase)
         {
-            if (await homeService.PostReportDatabasesAsync(reportDatabase)==true)
+            if (await homeService.PostReportDatabasesAsync(reportDatabase) == true)
             {
-                return Ok("Success"); 
-            } else 
-            {  
-                return BadRequest("Failed"); 
+                return Ok("Success");
+            }
+            else
+            {
+                return BadRequest("Failed");
+            }
+        }
+        [HttpPut]
+        public async Task<IActionResult> PutReportDatabasesAsync(ReportDatabase reportDatabase)
+        {
+            if (await homeService.PutReportDatabasesAsync(reportDatabase) == true)
+            {
+                return Ok("Success");
+            }
+            else
+            {
+                return BadRequest("Failed");
+            }
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteReportDatabasesAsync(string id)
+        {
+            if (await homeService.DeleteReportDatabasesAsync(id) == true)
+            {
+                return Ok("Success");
+            }
+            else
+            {
+                return BadRequest("Failed");
             }
         }
         #endregion
