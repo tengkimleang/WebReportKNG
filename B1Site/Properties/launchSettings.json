@@ -2,9 +2,13 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/B1Site",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:25591/",
-      "sslPort": 0
+      "sslPort": 44341
     }
   },
   "profiles": {
@@ -12,6 +16,13 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "ErrorString": "Invalid property identifier character: <. Path 'profiles.Start.launchBrowser', line 14, position 0."
+    },
+    "tengkimleang": {
+      "commandName": "IIS",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }
