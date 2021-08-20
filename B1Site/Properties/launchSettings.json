@@ -18,7 +18,7 @@
       "ErrorString": "Invalid property identifier character: <. Path 'profiles.Start.launchBrowser', line 14, position 0."
     },
     "tengkimleang": {
-      "commandName": "IIS",
+      "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
