@@ -1,4 +1,5 @@
-﻿@model List<B1Site.Models.Home.User>;
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model List<B1Site.Models.Home.User>;
 @{
     ViewData["Title"] = "UserList";
 }
@@ -16,21 +17,46 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
     <!--End Dev-->
 </head>
+<div class="content-header" style="padding-bottom:0px;">
+    <div class="widget-loadscreen" style="display: none;">
+        <img src="~/image/loading.gif">
+    </div>
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@localizer["List User"]</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-action="UserList" asp-controller="Home">@localizer["List User"]</a></li>
+                    <li class="breadcrumb-item active">@localizer["User"]</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
 <!--Load Panel-->
 <div class="loadpanel"></div>
 <!--End Load Panel-->
 <!--Bind Data to Grid-->
-<div class="container mt-3">
-    <div class="row">
-        <div class="col-12">
-            <div class="demo-container">
-                <div id="gridContainer"></div>
+<div class="container">
+    <div class="card">
+        <div class="card-body" style="padding: 10px 5px 10px 5px;">
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="demo-container">
+                            <div id="gridContainer"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <!--End Bind Data to Grid-->
 <script>
+    loadReport();
     function loadReport() {
         var loadPanel = $(".loadpanel").dxLoadPanel({
             shadingColor: "rgba(0,0,0,0.4)",
@@ -41,165 +67,81 @@
             shading: false,
             closeOnOutsideClick: false,
         }).dxLoadPanel("instance");
-        console.log(@Html.Raw(Model));
-        //$("#gridContainer").dxDataGrid({
-                //    dataSource: data,
-                //    loadPanel: {
-                //        enabled: true
-                //    },
-                //    hoverStateEnabled: true,
-                //    allowColumnResizing: true,
-                //    columnResizingMode: "nextColumn",
-                //    columnMinWidth: 50,
-                //    columnAutoWidth: true,
-                //    columnAutoWidth: true,
-                //    filterRow: {
-                //        visible: true,
-                //        applyFilter: "auto"
-                //    },
-                //    headerFilter: {
-                //        visible: true
-                //    },
-                //    showBorders: true,
-                //    scrolling: {
-                //        columnRenderingMode: "virtual"
-                //    },
-                //    export: {
-                //        enabled: true,
-                //    },
-                //    paging: {
-                //        pageSize: 10
-                //    },
-                //    pager: {
-                //        showPageSizeSelector: true,
-                //        allowedPageSizes: [5, 10, 20, 50, 100],
-                //        showInfo: true
-                //    },
-                //    groupPanel: {
-                //        visible: false
-                //    },
-                //    onExporting: function (e) {
-                //        var workbook = new ExcelJS.Workbook();
-                //        var worksheet = workbook.addWorksheet('SaleReport');
+        console.log(JSON.parse('@Html.Raw(Json.Serialize(Model))'));
+        $("#gridContainer").dxDataGrid({
+                    dataSource: JSON.parse('@Html.Raw(Json.Serialize(Model))'),
+                    loadPanel: {
+                        enabled: true
+                    },
+                    hoverStateEnabled: true,
+                    allowColumnResizing: true,
+                    columnResizingMode: "nextColumn",
+                    columnMinWidth: 50,
+                    columnAutoWidth: true,
+                    columnAutoWidth: true,
+                    showBorders: true,
+                    scrolling: {
+                        columnRenderingMode: "virtual"
+                    },
+                    //export: {
+                    //    enabled: true,
+                    //},
+                    paging: {
+                        pageSize: 10
+                    },
+                    pager: {
+                        showPageSizeSelector: true,
+                        allowedPageSizes: [5, 10, 20, 50, 100],
+                        showInfo: true
+                    },
+                    searchPanel: {
+                        visible: true,
+                        highlightCaseSensitive: true
+                    },
+                    groupPanel: {
+                        visible: false
+                    },
+                    columns: [
+                        {
+                            dataField: "userID",
+                            caption: "User ID"
+                        },
+                        {
+                            dataField: "userName",
+                            caption: "User Name"
+                        },
+                        {
+                            dataField: "firstName",
+                            caption: "First Name"
+                        },
+                        {
+                            dataField: "lastName",
+                            caption: "Last Name"
+                        },
+                        {
+                    dataField: "department",
+                    caption: "Department"
+                },
+                {
+                    dataField: "phone",
+                    caption: "Phone"
+                },
+            ],
+            onToolbarPreparing: function (e) {
+                var dataGrid = e.component;
 
-                //        DevExpress.excelExporter.exportDataGrid({
-                //            component: e.component,
-                //            worksheet: worksheet,
-                //            autoFilterEnabled: true
-                //        }).then(function () {
-                //            workbook.xlsx.writeBuffer().then(function (buffer) {
-                //                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'SaleDailyReport.xlsx');
-                //            });
-                //        });
-                //        e.cancel = true;
-                //    },
-                //    onToolbarPreparing: function (e) {
-                //        var dataGrid = e.component;
-                //        e.toolbarOptions.items.unshift({
-                //            location: "before",
-                //            template: function () {
-                //                return
-                //            }
-                //        },
-                //            {
-                //                location: "after",
-                //                widget: "dxButton",
-                //                options: {
-                //                    icon: "refresh",
-                //                    onClick: function () {
-                //                        dataGrid.refresh();
-                //                        filterData();
-                //                    }
-                //                }
-                //            },
-                //            {
-                //                location: "after",
-                //                widget: "dxButton",
-                //                options: {
-                //                    icon: "fas fa-file-pdf",
-                //                    onClick: function () {
-                //                        printPdf();
-                //                    }
-                //                },
-                //                title: 'Export to PDF'
-                //            }
-                //        );
-                //    },
-                //    summary: {
-                //        totalItems: [
-                //            {
-                //                column: "CardCode",
-                //                summaryType: "count"
-                //            }, {
-                //                column: "Price",
-                //                displayFormat: "{0}$",
-                //                summaryType: "sum",
-                //                format: {
-                //                    type: "decimal",
-                //                    precision: 3
-                //                }
-                //            }
-                //        ]
-                //    },
-                //    columns: [
-                //        {
-                //            dataField: "InvoiceDate",
-                //            caption: "Month"
-                //        },
-                //        {
-                //            dataField: "CardCode",
-                //            caption: "Customer Code"
-                //        },
-                //        {
-                //            dataField: "CardName",
-                //            caption: "Customer Name"
-                //        },
-                //        {
-                //            dataField: "GroupName",
-                //            caption: "Customer Group"
-                //        },
-                //        {
-                //            dataField: "CustomerCategory",
-                //            caption: "Customer Category"
-                //        },
-                //        {
-                //            dataField: "Region",
-                //            caption: "Region"
-                //        },
-                //        {
-                //            dataField: "ItemGroup",
-                //            caption: "Item Group"
-                //        },
-                //        {
-                //            dataField: "VendorCode",
-                //            caption: "Vendor Code"
-                //        },
-                //        {
-                //            dataField: "Description",
-                //            caption: "Description"
-                //        },
-                //        {
-                //            dataField: "Qty",
-                //            caption: "Q'ty"
-                //        },
-                //        {
-                //            dataField: "Price",
-                //            caption: "Total Price",
-                //            format: { minimumSignificantDigits: 3, }
-                //        },
-                //        {
-                //            dataField: "TotalDiscount",
-                //            caption: "Total Discount"
-                //        },
-                //        {
-                //            dataField: "TotalNetPrice",
-                //            caption: "Total Net Price"
-                //        },
-                //        {
-                //            dataField: "SaleEmployee",
-                //            caption: "Sale Person"
-                //        },
-                //    ],
-                //});
+                e.toolbarOptions.items.unshift({
+                    location: "before",
+                    widget: "dxButton",
+                    options: {
+                        text: "Create New",
+                        width: 136,
+                        onClick: function (e) {
+                            window.location.href = '@Url.Action("CreateUser", "Home")';
+                        }
+                    }
+                });
+            }
+                });
     }
 </script>
