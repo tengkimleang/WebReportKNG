@@ -170,7 +170,7 @@ namespace B1Site.Service
         public Task<List<MeasureMaster>> GetmeasureMastersAync()
         {
             ClsCRUD clsCRUD = new ClsCRUD();
-            var dt = clsCRUD.Getdata("Select Distinct InvntryUOM As Unit From OITM Where InvntryUom Is Not Null And InvntryUom<>'' order by InvntryUom ASC");
+            var dt = clsCRUD.Getdata("SELECT DISTINCT ISNULL(U_Source,'') AS Source  FROM OITM Where U_Source<>'' ORDER BY ISNULL(U_Source,'')");
             List<MeasureMaster> MeasureMasterlist = new List<MeasureMaster>();
             foreach (DataRow a in dt.Rows)
             {

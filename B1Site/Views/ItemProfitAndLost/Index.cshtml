@@ -238,7 +238,7 @@
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
-    alert($('#byItemGroup').val());
+ /*   alert($('#byItemGroup').val());*/
     loadReport(today, today);
     $('#btnRunReport').click(function () {
         var datefrom = $('#datefrom').val();
@@ -249,7 +249,6 @@
         if (dateto == '' || dateto == null) {
             dateto = today;
         }
-
         var byItemGroup = ifToDo($('#byItemGroup'));
         var bySaleEmployee = ifToDo($('#bySaleMan'));
         var byCategory = ifToDo($('#byCategory'));
@@ -448,64 +447,138 @@
                             dataField: "Region",
                             caption: "Region"
                         },
-                        
-                        //{
-                        //    dataField: "InvoiceDate",
-                        //    caption:"InvoiceDate",
-                        //    alignment: "right",
-                        //    dataType: "date",
-                        //    width: 120,
-                        //    calculateFilterExpression: function (value, selectedFilterOperations, target) {
-                        //        if (target === "headerFilter" && value === "weekends") {
-                        //            return [[getOrderDay, "=", 0], "or", [getOrderDay, "=", 6]];
-                        //        }
-                        //        return this.defaultCalculateFilterExpression.apply(this, arguments);
-                        //    },
-                        //    headerFilter: {
-                        //        dataSource: function (data) {
-                        //            data.dataSource.postProcess = function (results) {
-                        //                results.push({
-                        //                    text: "Weekends",
-                        //                    value: "weekends"
-                        //                });
-                        //                return results;
-                        //            };
-                        //        }
-                        //    }
-                        //},
-                        //{
-                        //    dataField: "ItemGroup",
-                        //    caption: "Item Group"
-                        //},
-                        //{
-                        //    dataField: "VendorCode",
-                        //    caption: "Vendor Code"
-                        //},
-                        //{
-                        //    dataField: "Description",
-                        //    caption: "Description"
-                        //},
-                        //{
-                        //    dataField: "Qty",
-                        //    caption: "Q'ty"
-                        //},
-                        //{
-                        //    dataField: "Price",
-                        //    caption: "Total Price",
-                        //    format: { minimumSignificantDigits: 3, }
-                        //},
-                        //{
-                        //    dataField: "TotalDiscount",
-                        //    caption: "Total Discount"
-                        //},
-                        //{
-                        //    dataField: "TotalNetPrice",
-                        //    caption: "Total Net Price"
-                        //},
-                        //{
-                        //    dataField: "SaleEmployee",
-                        //    caption: "Sale Person"
-                        //},
+                        {
+                            dataField: "SalePerson",
+                            caption: "Sale Person"
+                        },
+                        {
+                            dataField: "InvDate",
+                            caption: "Invoice Date "
+                        },
+                        {
+                            dataField: "Group",
+                            caption: "Group"
+                        },
+                        {
+                            dataField: "ItemGroup",
+                            caption: "Items Group "
+                        },
+                        {
+                            dataField: "Items Code",
+                            caption: "ItemCode"
+                        },
+                        {
+                            dataField: "ItemCode",
+                            caption: "Items Code "
+                        },
+                        {
+                            dataField: "Description",
+                            caption: "Description"
+                        },
+                        {
+                            dataField: "Source",
+                            caption: "Source"
+                        },
+                        {
+                            dataField: "Category",
+                            caption: "Category"
+                        },
+                        {
+                            dataField: "SubCategory",
+                            caption: "Sub Category "
+                        },
+                        {
+                            dataField: "Movement",
+                            caption: "Movement"
+                        },
+                        {
+                            dataField: "Codition",
+                            caption: "Codition"
+                        },
+                        {
+                            dataField: "Year",
+                            caption: "Year"
+                        },
+                        {
+                            dataField: "Promotion",
+                            caption: "Promotion"
+                        },
+                        {
+                            dataField: "Warranty",
+                            caption: "Warranty"
+                        },
+                        {
+                            dataField: "Quantity",
+                            caption: "Quantity"
+                        },
+                        {
+                            dataField: "Price",
+                            caption: "Price"
+                        },
+                        {
+                            dataField: "Discount",
+                            caption: "Discount"
+                        },
+                        {
+                            dataField: "NetAmount",
+                            caption: "NetAmount"
+                        },
+                        {
+                            dataField: "TotalAmount",
+                            caption: "Total Amount"
+                        },
+                        {
+                            dataField: "TotalDiscount",
+                            caption: "Total Discount"
+                        },
+                        {
+                            dataField: "TotalNetAmount",
+                            caption: "Total NetAmount"
+                        },
+                        {
+                            dataField: "COGS",
+                            caption: "COGS"
+                        },
+                        {
+                            dataField: "GrossProfit",
+                            caption: "Gross Profit"
+                        },
+                        {
+                            dataField: "Margin",
+                            caption: "Margin"
+                        },
+                        {
+                            dataField: "SONum",
+                            caption: "SO Num"
+                        },
+                        {
+                            dataField: "Shipment",
+                            caption: "Shipment"
+                        },
+                        {
+                            dataField: "InvoiceNo",
+                            caption: "Invoice No"
+                        },
+                        {
+                            dataField: "Status",
+                            caption: "Status"
+                        },
+                        {
+                            dataField: "UoM",
+                            caption: "UoM"
+                        },
+                        {
+                            dataField: "Location",
+                            caption: "Location"
+                        },
+                        {
+                            dataField: "Warehouse",
+                            caption: "Warehouse"
+                        },
+                        {
+                            dataField: "Department",
+                            caption: "Department"
+                        },
                     ],
                 });
                 //btn_filter.removeClass("fa-spinner fa-spin");
