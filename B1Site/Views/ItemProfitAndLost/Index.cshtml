@@ -1,5 +1,5 @@
-﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
-@model B1Site.Models.PurchaseReport.MasterviwePurchaeseReport;
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
+@model B1Site.Models.ItemProfitAndLost.MasterViewItemProfitAndLostReport;
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -62,7 +62,7 @@
         min-width: 50px;
     }
 
-    .input_datefrom, .input_dateto, .input_user, .input_branch {
+    .input_datefrom, .input_dateto, .input_user, .input_combobox {
         -webkit-transition: all 0.30s ease-in-out;
         -moz-transition: all 0.30s ease-in-out;
         -o-transition: all 0.30s ease-in-out;
@@ -78,7 +78,7 @@
         border-radius: 3px;
     }
 
-    .lable_branch, .lable_datefrom, .lable_dateto, .lable_user {
+    .lable_caption, .lable_datefrom, .lable_dateto, .lable_user {
         font-family: Arial;
         font-size: 12px;
         font-weight: 700;
@@ -100,7 +100,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Pruchase Report"]</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="ItemProfitAndLost">@localizer["SaleDailyReport"]</a></li>
                     <li class="breadcrumb-item active">@localizer["Reporting"]</li>
                 </ol>
             </div><!-- /.col -->
@@ -110,140 +110,113 @@
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
         <div class="card-header">
-            @localizer["Purchase Report"]
+            @localizer["ItemProfitAndLost"]
         </div>
         <div class="card-body">
             <!--Filter-->
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["Date From"]</label>
-                    <input type="date" class="input_datefrom" id="datefrom">
+                    <label class="lable_datefrom">@localizer["DateFrom"]</label>
+                    <input type="date" class="input_datefrom" id="datefrom" />
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["Date To"]</label>
-                    <input type="date" class="input_datefrom" id="dateto">
+                    <label class="lable_dateto">@localizer["DateTo"]</label>
+                    <input type="date" class="input_datefrom" id="dateto" />
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["by SubCategory"]</label>
-                    <select type="text" class="input_branch" id="bysubcategory">
-                        <option value="0">All SubCategory</option>
+                    <label class="lable_caption">@localizer["ByItemGroup"]</label>
+                    <select typeof="text" class="input_combobox" id="byItemGroup">
+                        <option value="0">All ItemGroup</option>
                         @{
-                            foreach (var a in Model.subCategoryMasters)
+                            foreach (var a in Model.itemGroupMasters)
                             {
-                                <option value="@a.SubCategory">@a.SubCategory</option>
+                                <option value="@a.ItemGroup">@a.ItemGroup</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Category"]</label>
-                    <select type="text" class="input_branch" id="byCategory">
-                        <option value="0">All Category</option>
+                    <label class="lable_caption">@localizer["BySalePerson"]</label>
+                    <select typeof="text" class="input_combobox" id="bySaleMan">
+                        <option value="0">ALL SalePerson</option>
                         @{
-                            foreach (var a in Model.categoryMasters)
+                            foreach (var a in Model.salePerson)
+                            {
+                                <option value="@a.SlpCode">@a.SlpName</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-xs btn-kernel" id="btnRunReport">@localizer["Run"]</button>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="lable_caption">@localizer["ByCategory"]</label>
+                    <select typeof="text" class="input_combobox" id="byCategory">
+                        <option class="0">ALl Category</option>
+                        @{
+                            foreach (var a in Model.itemCategories)
                             {
                                 <option value="@a.Category">@a.Category</option>
                             }
                         }
                     </select>
                 </div>
-                <div class="col-md-4 ">
-                    <button class="btn btn-xs btn-kernel" id="btnRunReport">@localizer["Run"]</button>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Vender Name"]</label>
-                    <select type="text" class="input_branch" id="byVendername">
-                        <option value="0">All venderName</option>
+                    <label class="lable_caption">@localizer["ByInventoryUoM"]</label>
+                    <select typeof="text" class="input_combobox" id="byInventoryUoM">
+                        <option class="0">All InventoryUoM</option>
                         @{
-                            foreach (var a in Model.venderNameMasters)
+                            foreach (var a in Model.inventoryUOMs)
                             {
-                                <option value="@a.Vendercode">@a.Vendername</option>
+                                <option value="@a.UoM">@a.UoM</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Items Name"]</label>
-                    <select type="text" class="input_branch" id="byItemsname">
-                        <option value="0">All ItemsName</option>
+                    <label class="lable_caption">@localizer["ByItemCode"]</label>
+                    <select typeof="text" class="input_combobox" id="byItemCode">
+                        <option class="0">ALl Items Master Data</option>
                         @{
-                            foreach (var a in Model.itemsNameMasters)
+                            foreach (var a in Model.itemCodeMasters)
                             {
-                                <option value="@a.ItemsName">@a.ItemsName</option>
+                                <option value="@a.ItemCode">@a.ItemName</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Reciept Number"]</label>
-                    <select type="text" class="input_branch" id="byRecieptnumber">
-                        <option value="0">All RecieptNumber</option>
+                    <label class="lable_caption">@localizer["ByCardCode"]</label>
+                    <select typeof="text" class="input_combobox" id="byCardCode">
+                        <option class="0">ALL BP Master Data</option>
                         @{
-                            foreach (var a in Model.receipNumberMasters)
+                            foreach (var a in Model.bPCodeMasters)
                             {
-                                <option value="@a.ReceipNumber">@a.ReceipNumber</option>
+                                <option value="@a.BPCode">@a.BPName</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Warehouse"]</label>
-                    <select type="text" class="input_branch" id="byWarehouse">
-                        <option value="0">All Warehouse</option>
+                    <label class="lable_caption">@localizer["BySource"]</label>
+                    <select typeof="text" class="input_combobox" id="bySource">
+                        <option class="0">ALl Source</option>
                         @{
-                            foreach (var a in Model.warehouseMasters)
-                            {
-                                <option value="@a.WarehouseCode">@a.WarehouseName</option>
-                            }
-                        }
-                    </select>
-                </div>
-            </div>
-            <!--<div class="row">
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By CustomerID"]</label>
-                    <select type="text" class="input_branch" id="byCustomerID">
-                        <option value="0">All CustomerID</option>-->
-                        @*@{
-                            foreach (var a in Model.CusomterIDMasters)
-                            {
-                                <option value="@a.Code">@a.Name</option>
-                            }
-                        }*@
-                    <!--</select>
-                </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Source"]</label>
-                    <select type="text" class="input_branch" id="bySource">
-                        <option value="0">All Source</option>-->
-                        @*@{
-                            foreach (var a in Model.SourceMasters)
+                            foreach (var a in Model.itemSources)
                             {
                                 <option value="@a.Source">@a.Source</option>
                             }
-                        }*@
-                    <!--</select>
+                        }
+                    </select>
                 </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Warehouse"]</label>
-                    <select type="text" class="input_branch" id="byWarehouse">
-                        <option value="0">All Warehouse</option>-->
-                        @*@{
-                            foreach (var a in Model.WarehouseMasters)
-                            {
-                                <option value="@a.Code">@a.Name</option>
-                            }
-                        }*@
-                    <!--</select>
-                </div>
-            </div>-->
-            <!--End Filter-->
+            </div>
+            <!--End Filter Report-->
             <!--Load Panel-->
             <div class="loadpanel"></div>
             <!--End Load Panel-->
-            <!--Bind Data to Grid-->
+            <!--Bind Data To Grid-->
             <div class="container mt-3">
                 <div class="row">
                     <div class="col-12">
@@ -253,10 +226,11 @@
                     </div>
                 </div>
             </div>
-            <!--End Bind Data to Grid-->
+            <!--End Binding Data to Grid-->
         </div>
     </div>
 </div>
+
 
 <script>
     var today = new Date();
@@ -264,6 +238,7 @@
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
+ /*   alert($('#byItemGroup').val());*/
     loadReport(today, today);
     $('#btnRunReport').click(function () {
         var datefrom = $('#datefrom').val();
@@ -274,13 +249,16 @@
         if (dateto == '' || dateto == null) {
             dateto = today;
         }
-        var subcategory = $('#bysubcategory').val();
-        var category = $('#byCategory').val();
-        var vendername = $('#byVendername').val();
-        var itemsname = $('#byItemsname').val();
-        var recieptnumber = $('#byRecieptnumber').val();
-        var warehouse = $('#byWarehouse').val();
-        loadReport(datefrom, dateto,subcategory,category,vendername,itemsname,recieptnumber,warehouse);
+        var byItemGroup = ifToDo($('#byItemGroup'));
+        var bySaleEmployee = ifToDo($('#bySaleMan'));
+        var byCategory = ifToDo($('#byCategory'));
+        var byInventoryUoM = ifToDo($('#byInventoryUoM'));
+        var byItemCode = ifToDo($('#byItemCode'));
+        var byCardCode = ifToDo($('#byCardCode'));
+        var bySource = ifToDo($('#bySource'));
+        alert(byItemGroup);
+        loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
+            byInventoryUoM, byItemCode, byCardCode, bySource);        
     });
     function filterData() {
         var datefrom = $('#datefrom').val();
@@ -291,13 +269,16 @@
         if (dateto == '' || dateto == null) {
             dateto = today;
         }
-        var subcategory = $('#bysubcategory').val();
-        var category = $('#byCategory').val();
-        var vendername = $('#byVendername').val();
-        var itemsname = $('#byItemsname').val();
-        var recieptnumber = $('#byRecieptnumber').val();
-        var warehouse = $('#byWarehouse').val();
-        loadReport(datefrom, dateto,subcategory,category,vendername,itemsname,recieptnumber,warehouse);
+        var byItemGroup = ifToDo($('#byItemGroup'));
+        var bySaleEmployee = ifToDo($('#bySaleMan'));
+        var byCategory = ifToDo($('#byCategory'));
+        var byInventoryUoM = ifToDo($('#byInventoryUoM'));
+        var byItemCode = ifToDo($('#byItemCode'));
+        var byCardCode = ifToDo($('#byCardCode'));
+        var bySource = ifToDo($('#bySource'));        
+            loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
+            byInventoryUoM, byItemCode, byCardCode, bySource);        
+     
     }
     function ifToDo(condition) {
         if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
@@ -306,7 +287,8 @@
             return condition.val();
         }
     }
-    function loadReport(datefrom, dateto,subcategory,category,vendername,itemsname,recieptnumber,warhouse) {
+    function loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
+        byInventoryUoM, byItemCode, byCardCode, bySource) {
         var loadPanel = $(".loadpanel").dxLoadPanel({
             shadingColor: "rgba(0,0,0,0.4)",
             position: { of: "#gridContainer" },
@@ -317,17 +299,18 @@
             closeOnOutsideClick: false,
         }).dxLoadPanel("instance");
         $.ajax({
-            url: '@Url.Action("GetPruchaseReports", "PurchaseReport")',
+            url: '@Url.Action("GetItemProfitAndLost", "ItemProfitAndLost")',
             type: "GET",
             data: {
                 datefrom: datefrom,
                 dateto: dateto,
-                bysubcategory: subcategory,
-                byCategory: category,
-                byVendername: vendername,
-                byItemsName: itemsname,
-                byReceiptnumber: recieptnumber,
-                bywarehouse:warhouse
+                byItemGroup: byItemGroup,
+                bySaleEmployee: bySaleEmployee,
+                byCategory: byCategory,
+                byInventoryUoM: byInventoryUoM,
+                byItemCode: byItemCode,
+                byCardCode: byCardCode,
+                bySource: bySource
             },
             dataType: "JSON",
             beforeSend: function () {
@@ -335,6 +318,7 @@
             },
             success: function (data) {
                 loadPanel.hide();
+                alert("HI"+byItemGroup+"HELLO");
                 $("#gridContainer").dxDataGrid({
                     dataSource: data,
                     loadPanel: {
@@ -436,97 +420,164 @@
                     },
                     columns: [
                         {
-                            dataField: "PoNum",
-                            caption: "PO #"
+                            dataField: "No",
+                            caption: "#No"
                         },
                         {
-                            dataField: "DocNum",
-                            caption: "Good PO Num"
+                            dataField: "CardCode",
+                            caption: "Customer Code"
                         },
                         {
-                            dataField: "GoodsReceiptDate",
-                            caption: "Good Reciept Date"
+                            dataField: "CardName",
+                            caption: "Customer Name"
                         },
                         {
-                            dataField: "ItemGroup",
-                            caption: "Manufacture"
+                            dataField: "BPGroup",
+                            caption: "Customer Group"
                         },
                         {
-                            dataField: "ItemCode",
+                            dataField: "BPCategory",
+                            caption: "Customer Category"
+                        },
+                        {
+                            dataField: "Grade",
+                            caption:"Customer Grade"
+                        },
+                        {
+                            dataField: "Region",
+                            caption: "Region"
+                        },
+                        {
+                            dataField: "SalePerson",
+                            caption: "Sale Person"
+                        },
+                        {
+                            dataField: "InvDate",
+                            caption: "Invoice Date "
+                        },
+                        {
+                            dataField: "Group",
                             caption: "Group"
                         },
                         {
-                            dataField: "U_vendercode1",
-                            caption: "Vendercode"
-                        },
-                        //{
-                        //    dataField: "InvoiceDate",
-                        //    caption:"InvoiceDate",
-                        //    alignment: "right",
-                        //    dataType: "date",
-                        //    width: 120,
-                        //    calculateFilterExpression: function (value, selectedFilterOperations, target) {
-                        //        if (target === "headerFilter" && value === "weekends") {
-                        //            return [[getOrderDay, "=", 0], "or", [getOrderDay, "=", 6]];
-                        //        }
-                        //        return this.defaultCalculateFilterExpression.apply(this, arguments);
-                        //    },
-                        //    headerFilter: {
-                        //        dataSource: function (data) {
-                        //            data.dataSource.postProcess = function (results) {
-                        //                results.push({
-                        //                    text: "Weekends",
-                        //                    value: "weekends"
-                        //                });
-                        //                return results;
-                        //            };
-                        //        }
-                        //    }
-                        //},
-                        {
-                            dataField: "ItemsName",
-                            caption: "Items Name"
+                            dataField: "ItemGroup",
+                            caption: "Items Group "
                         },
                         {
-                            dataField: "CustomerRefNo",
-                            caption: "Customer Ref No"
+                            dataField: "Items Code",
+                            caption: "ItemCode"
                         },
                         {
-                            dataField: "Quality",
-                            caption: "Quality"
+                            dataField: "ItemCode",
+                            caption: "Items Code "
                         },
                         {
-                            dataField: "TotalItemsWidthCost",
-                            caption: "Total Items Width Cost"
+                            dataField: "Description",
+                            caption: "Description"
                         },
                         {
-                            dataField: "FreightInsurance",
-                            caption: "Freight Insurance",
-                            format: { minimumSignificantDigits: 3, }
+                            dataField: "Source",
+                            caption: "Source"
                         },
                         {
-                            dataField: "Custom",
-                            caption: "Customer"
+                            dataField: "Category",
+                            caption: "Category"
                         },
                         {
-                            dataField: "ClearanceTransportaion",
-                            caption: "Clearance Transportaion"
+                            dataField: "SubCategory",
+                            caption: "Sub Category "
                         },
                         {
-                            dataField: "other",
-                            caption: "Other"
+                            dataField: "Movement",
+                            caption: "Movement"
                         },
                         {
-                            dataField: "TotalCost",
-                            caption: "Total Cost"
+                            dataField: "Codition",
+                            caption: "Codition"
                         },
                         {
-                            dataField: "UnitCost",
-                            caption: "Unit Cost"
+                            dataField: "Year",
+                            caption: "Year"
                         },
                         {
-                            dataField: "WSprice",
-                            caption: "WS price"
+                            dataField: "Promotion",
+                            caption: "Promotion"
+                        },
+                        {
+                            dataField: "Warranty",
+                            caption: "Warranty"
+                        },
+                        {
+                            dataField: "Quantity",
+                            caption: "Quantity"
+                        },
+                        {
+                            dataField: "Price",
+                            caption: "Price"
+                        },
+                        {
+                            dataField: "Discount",
+                            caption: "Discount"
+                        },
+                        {
+                            dataField: "NetAmount",
+                            caption: "NetAmount"
+                        },
+                        {
+                            dataField: "TotalAmount",
+                            caption: "Total Amount"
+                        },
+                        {
+                            dataField: "TotalDiscount",
+                            caption: "Total Discount"
+                        },
+                        {
+                            dataField: "TotalNetAmount",
+                            caption: "Total NetAmount"
+                        },
+                        {
+                            dataField: "COGS",
+                            caption: "COGS"
+                        },
+                        {
+                            dataField: "GrossProfit",
+                            caption: "Gross Profit"
+                        },
+                        {
+                            dataField: "Margin",
+                            caption: "Margin"
+                        },
+                        {
+                            dataField: "SONum",
+                            caption: "SO Num"
+                        },
+                        {
+                            dataField: "Shipment",
+                            caption: "Shipment"
+                        },
+                        {
+                            dataField: "InvoiceNo",
+                            caption: "Invoice No"
+                        },
+                        {
+                            dataField: "Status",
+                            caption: "Status"
+                        },
+                        {
+                            dataField: "UoM",
+                            caption: "UoM"
+                        },
+                        {
+                            dataField: "Location",
+                            caption: "Location"
+                        },
+                        {
+                            dataField: "Warehouse",
+                            caption: "Warehouse"
+                        },
+                        {
+                            dataField: "Department",
+                            caption: "Department"
                         },
                     ],
                 });

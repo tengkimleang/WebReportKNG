@@ -148,7 +148,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 ">
-                    <button class="btn btn-xs btn-kernel" id="btnRunReport">@localizer["Filter"]</button>
+                    <button class="btn btn-xs btn-kernel" id="btnRunReport">@localizer["Run"]</button>
                 </div>
             </div>
             <div class="row">
@@ -283,6 +283,7 @@
         var byCustomerID = ifToDo($('#byCustomerID'));
         var bySource = ifToDo($('#bySource'));
         var byWarehouse = ifToDo($('#byWarehouse'));
+        alert(byItemGroup);
         loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
             byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
     });

@@ -1,9 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @model B1Site.Models.SaleDailyReport.MasterViewSaleDailyReport;
 @{
     ViewData["Title"] = "Home Page";
@@ -128,122 +123,10 @@
                     <label class="lable_datefrom">@localizer["Date To"]</label>
                     <input type="date" class="input_datefrom" id="dateto">
                 </div>
-                <!--<div class="col-md-2">
-                    <label class="lable_branch">@localizer["By ItemGroup"]</label>
-                    <select type="text" class="input_branch" id="byItemGroup">
-                        <option value="0">All ItemGroupss</option>-->
-                        @*@{
-                                foreach (var a in Model.ItemGroupMasters)
-                                {
-                                    <option value="@a.ItemGroup">@a.ItemGroup</option>
-                                }
-                            }*@
-                    <!--</select>
-                </div>-->
-                <!--<div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Category"]</label>
-                    <select type="text" class="input_branch" id="bySaleEmployee">
-                        <option value="0">All Category</option>-->
-                        @*@{
-                                foreach (var a in Model.SaleEmployeeMasters)
-                                {
-                                    <option value="@a.Code">@a.SaleEmployee</option>
-                                }
-                            }*@
-                    <!--</select>
-                </div>-->
                 <div class="col-md-4 ">
-                    <button class="btn btn-xs btn-kernel" id="btnRunReport">@localizer["Filter"]</button>
+                    <button class="btn btn-xs btn-kernel" id="btnRunReport">@localizer["Run"]</button>
                 </div>
             </div>
-            <!--<div class="row">
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By SaleEmployee"]</label>
-                    <select type="text" class="input_branch" id="byCategory">
-                        <option value="0">All SaleEmployee</option>-->
-                        @*@{
-                                foreach (var a in Model.CategoryMasters)
-                                {
-                                    <option value="@a.Category">@a.Category</option>
-                                }
-                            }*@
-                    <!--</select>
-                </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Measure"]</label>
-                    <select type="text" class="input_branch" id="byCustomerClass">
-                        <option value="0">All Measure</option>-->
-                        @*@{
-                                foreach (var a in Model.CustomerClassMasters)
-                                {
-                                    <option value="@a.Code">@a.Name</option>
-                                }
-                            }*@
-                    <!--</select>
-                </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Itemcode"]</label>
-                    <select type="text" class="input_branch" id="byLocation">
-                        <option value="0">All Itemcode</option>-->
-                        @*@{
-                                foreach (var a in Model.LocationMasters)
-                                {
-                                    <option value="@a.Code">@a.Name</option>
-                                }
-                            }*@
-                    <!--</select>
-                </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Customer ID"]</label>
-                    <select type="text" class="input_branch" id="byInventoryID">
-                        <option value="0">All Customer ID</option>-->
-                        @*@{
-                                foreach (var a in Model.InventoryIDMasters)
-                                {
-                                    <option value="@a.Code">@a.Name</option>
-                                }
-                            }*@
-                    <!--</select>
-                </div>
-            </div>-->
-            <!--<div class="row">
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["Source"]</label>
-                    <select type="text" class="input_branch" id="byCustomerID">
-                        <option value="0">All Source</option>-->
-                        @*@{
-                                foreach (var a in Model.CusomterIDMasters)
-                                {
-                                    <option value="@a.Code">@a.Name</option>
-                                }
-                            }*@
-                    <!--</select>
-                </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Source"]</label>
-                    <select type="text" class="input_branch" id="bySource">
-                        <option value="0">All Source</option>
-                <!---->@*@{
-                        foreach (var a in Model.SourceMasters)
-                        {
-                            <option value="@a.Source">@a.Source</option>
-                        }
-                    }*@<!---->
-                <!--</select>
-                </div>
-                <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Warehouse"]</label>
-                    <select type="text" class="input_branch" id="byWarehouse">
-                        <option value="0">All Warehouse</option>-->
-                @*@{
-                        foreach (var a in Model.WarehouseMasters)
-                        {
-                            <option value="@a.Code">@a.Name</option>
-                        }
-                    }*@
-                @*</select>*@
-                @*</div>
-            </div>*@
             <!--End Filter-->
             <!--Load Panel-->
             <div class="loadpanel"></div>
@@ -442,7 +325,7 @@
                         },
                         {
                             dataField: "Docnum",
-                            caption: "Docnum"
+                            caption: "Doc #"
                         },
                         {
                             dataField: "Number",
@@ -454,7 +337,7 @@
                         },
                         {
                             dataField: "ControlAcount",
-                            caption: "Control Acct"
+                            caption: "Account #"
                         },
                         //{
                         //    dataField: "InvoiceDate",
@@ -482,7 +365,7 @@
                         //},
                         {
                             dataField: "ControlAcountName",
-                            caption: "Control Acct Name"
+                            caption: "Acct Name"
                         },
                         {
                             dataField: "Description",
@@ -490,28 +373,28 @@
                         },
                         {
                             dataField: "ExternalDocument",
-                            caption: "External Document"
+                            caption: "Supplier Invoice #"
                         },
                         {
                             dataField: "InternalDocument",
-                            caption: "Internal Document"
+                            caption: "PO/AD #"
                         },
                         {
                             dataField: "CardCode",
-                            caption: "CardCode",
+                            caption: "BP Code",
                             format: { minimumSignificantDigits: 3, }
                         },
                         {
                             dataField: "GLAocuntABPCode",
-                            caption: "G/L Acct/BP Code"
+                            caption: "BP Name"
                         },
-                        {
-                            dataField: "CardName",
-                            caption: "CardName"
-                        },
+                        //{
+                        //    dataField: "CardName",
+                        //    caption: "CardName"
+                        //},
                         {
                             dataField: "Itemsgroup",
-                            caption: "Items group "
+                            caption: "Item Group"
                         },
                         {
                             dataField: "Location",

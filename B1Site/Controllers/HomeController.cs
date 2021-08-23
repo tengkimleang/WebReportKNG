@@ -46,21 +46,21 @@ namespace B1Site.Controllers
             return View(new MasterViewHome
             {
                 CompanyDatabases = await homeService.GetCompanyDatabasesAsync()
-            }); ;
+            });
         }
         public IActionResult Index()
         {
             return View();
-            //if (HttpContext.Session.GetString("UserID") != "")
-            //{
-            //    return View();
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Login", "Home");
-            //}
         }
-        public IActionResult Administrator()
+        public IActionResult AdministratorAsync()
+        {
+            return View();
+        }
+        public async Task<IActionResult> UserListAsync()
+        {
+            return View(await homeService.GetUsersAsync());
+        }
+        public IActionResult CreateUser() 
         {
             return View();
         }
@@ -97,12 +97,13 @@ namespace B1Site.Controllers
         [HttpPost]
         public async Task<IActionResult> PostReportDatabasesAsync(ReportDatabase reportDatabase)
         {
-            if (await homeService.PostReportDatabasesAsync(reportDatabase)==true)
+            if (await homeService.PostReportDatabasesAsync(reportDatabase) == true)
             {
-                return Ok("Success"); 
-            } else 
-            {  
-                return BadRequest("Failed"); 
+                return Ok("Success");
+            }
+            else
+            {
+                return BadRequest("Failed");
             }
         }
         [HttpPut]
@@ -135,8 +136,8 @@ namespace B1Site.Controllers
         {
             Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)), //culture.ToString(),
                 new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
-            var cookieSetHeader = httpContextAccessor.HttpContext.Response.GetTypedHeaders().SetCookie;
-            var setCookie = Uri.UnescapeDataString(cookieSetHeader.FirstOrDefault(x => x.Name == ".AspNetCore.Culture").Value.ToString());
+            //var cookieSetHeader = httpContextAccessor.HttpContext.Response.GetTypedHeaders().SetCookie;
+            //var setCookie = Uri.UnescapeDataString(cookieSetHeader.FirstOrDefault(x => x.Name == ".AspNetCore.Culture").Value.ToString());
             return LocalRedirect(returnUrl);
         }
         #endregion

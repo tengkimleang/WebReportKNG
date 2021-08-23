@@ -1,10 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
-@model B1Site.Models.SaleDailyReport.MasterViewSaleDailyReport;
+@model B1Site.Models.FinalSaleReport.MasterViweFanceSaleReport;
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -115,7 +111,7 @@
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
         <div class="card-header">
-            @localizer["Final SaleR eport"]
+            @localizer["Final Sale Report"]
         </div>
         <div class="card-body">
             <!--Filter-->
@@ -132,117 +128,93 @@
                     <label class="lable_branch">@localizer["By ItemGroup"]</label>
                     <select type="text" class="input_branch" id="byItemGroup">
                         <option value="0">All ItemGroupss</option>
-                        @*@{
-                            foreach (var a in Model.ItemGroupMasters)
+                        @{
+                            foreach (var a in Model.itemsGropMasters)
                             {
-                                <option value="@a.ItemGroup">@a.ItemGroup</option>
+                                <option value="@a.ItemsGroupCode">@a.ItemsGoupName</option>
                             }
-                        }*@
+                        }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Category"]</label>
-                    <select type="text" class="input_branch" id="bySaleEmployee">
-                        <option value="0">All Category</option>
-                        @*@{
-                            foreach (var a in Model.SaleEmployeeMasters)
+                    <label class="lable_branch">@localizer["By Saleemployee"]</label>
+                    <select type="text" class="input_branch" id="bySaleemployee">
+                        <option value="0">All Saleemployee</option>
+                        @{
+                            foreach (var a in Model.saleemployeeMasters)
                             {
-                                <option value="@a.Code">@a.SaleEmployee</option>
+                                <option value="@a.SaleEmployeeCode">@a.SaleeEmployeeName</option>
                             }
-                        }*@
+                        }
                     </select>
                 </div>
                 <div class="col-md-4 ">
-                    <button class="btn btn-xs btn-kernel" id="btnRunReport">@localizer["Filter"]</button>
+                    <button class="btn btn-xs btn-kernel" id="btnRunReport">@localizer["Run"]</button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By SaleEmployee"]</label>
+                    <label class="lable_branch">@localizer["By Category"]</label>
                     <select type="text" class="input_branch" id="byCategory">
-                        <option value="0">All SaleEmployee</option>
-                        @*@{
-                            foreach (var a in Model.CategoryMasters)
+                        <option value="0">All Category</option>
+                        @{
+                            foreach (var a in Model.categoryMasters)
                             {
                                 <option value="@a.Category">@a.Category</option>
                             }
-                        }*@
+                        }
                     </select>
                 </div>
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["By Measure"]</label>
-                    <select type="text" class="input_branch" id="byCustomerClass">
+                    <select type="text" class="input_branch" id="byMeasure">
                         <option value="0">All Measure</option>
-                        @*@{
-                            foreach (var a in Model.CustomerClassMasters)
+                        @{
+                            foreach (var a in Model.measureMasters)
                             {
-                                <option value="@a.Code">@a.Name</option>
+                                <option value="@a.MeasureName">@a.MeasureName</option>
                             }
-                        }*@
+                        }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Itemcode"]</label>
-                    <select type="text" class="input_branch" id="byLocation">
-                        <option value="0">All Itemcode</option>
-                        @*@{
-                            foreach (var a in Model.LocationMasters)
+                    <label class="lable_branch">@localizer["By Items Code"]</label>
+                    <select type="text" class="input_branch" id="byItemscode">
+                        <option value="0">All Measure</option>
+                        @{
+                            foreach (var a in Model.itemsCodeMasters)
                             {
-                                <option value="@a.Code">@a.Name</option>
+                                <option value="@a.Itemscode">@a.ItemsName]</option>
                             }
-                        }*@
+                        }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Customer ID"]</label>
-                    <select type="text" class="input_branch" id="byInventoryID">
+                    <label class="lable_branch">@localizer["By CustomerID"]</label>
+                    <select type="text" class="input_branch" id="bycustomerid">
                         <option value="0">All Customer ID</option>
-                        @*@{
-                            foreach (var a in Model.InventoryIDMasters)
+                        @{
+                            foreach (var a in Model.customerIDMasters)
                             {
-                                <option value="@a.Code">@a.Name</option>
+                                <option value="@a.CustomerCode">@a.CustomerName</option>
                             }
-                        }*@
+                        }
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2">
                     <label class="lable_branch">@localizer["Source"]</label>
-                    <select type="text" class="input_branch" id="byCustomerID">
+                    <select type="text" class="input_branch" id="bySource">
                         <option value="0">All Source</option>
-                        @*@{
-                            foreach (var a in Model.CusomterIDMasters)
+                        @{
+                            foreach (var a in Model.customerIDMasters)
                             {
-                                <option value="@a.Code">@a.Name</option>
+                                <option value="@a.CustomerCode">@a.CustomerName</option>
                             }
-                        }*@
+                        }
                     </select>
                 </div>
-                <!--<div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Source"]</label>
-                    <select type="text" class="input_branch" id="bySource">
-                        <option value="0">All Source</option>-->
-                        @*@{
-                            foreach (var a in Model.SourceMasters)
-                            {
-                                <option value="@a.Source">@a.Source</option>
-                            }
-                        }*@
-                    <!--</select>
-                </div>-->
-                <!--<div class="col-md-2">
-                    <label class="lable_branch">@localizer["By Warehouse"]</label>
-                    <select type="text" class="input_branch" id="byWarehouse">
-                        <option value="0">All Warehouse</option>-->
-                        @*@{
-                            foreach (var a in Model.WarehouseMasters)
-                            {
-                                <option value="@a.Code">@a.Name</option>
-                            }
-                        }*@
-                    <!--</select>
-                </div>-->
             </div>
             <!--End Filter-->
             <!--Load Panel-->
@@ -280,17 +252,15 @@
             dateto = today;
         }
         var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySaleEmployee = ifToDo($('#bySaleEmployee'));
+        var bySaleEmployee = ifToDo($('#bySaleemployee'));
         var byCategory = ifToDo($('#byCategory'));
-        var byCustomerClass = ifToDo($('#byCustomerClass'));
-        var byLocation = ifToDo($('#byLocation'));
-        var byInventoryID = ifToDo($('#byInventoryID'));
-        var byCustomerID = ifToDo($('#byCustomerID'));
+        var byInventoryID = ifToDo($('#byMeasure'));
+        var byItemscode = ifToDo($('#byItemscode'));
+        var byCustomerID = ifToDo($('#bycustomerid'));
         var bySource = ifToDo($('#bySource'));
-        var byWarehouse = ifToDo($('#byWarehouse'));
-      //  alert(datefrom);
+/*        alert(bySource);*/
         loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-            byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
+             byInventoryID,byItemscode, byCustomerID, bySource);
     });
     function filterData() {
         var datefrom = $('#datefrom').val();
@@ -302,16 +272,14 @@
             dateto = today;
         }
         var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySaleEmployee = ifToDo($('#bySaleEmployee'));
+        var bySaleEmployee = ifToDo($('#bySaleemployee'));
         var byCategory = ifToDo($('#byCategory'));
-        var byCustomerClass = ifToDo($('#byCustomerClass'));
-        var byLocation = ifToDo($('#byLocation'));
-        var byInventoryID = ifToDo($('#byInventoryID'));
-        var byCustomerID = ifToDo($('#byCustomerID'));
+        var byInventoryID = ifToDo($('#byMeasure'));
+        var byItemscode = ifToDo($('#byItemscode'));
+        var byCustomerID = ifToDo($('#bycustomerid'));
         var bySource = ifToDo($('#bySource'));
-        var byWarehouse = ifToDo($('#byWarehouse'));
         loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-            byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
+              byInventoryID,byItemscode, byCustomerID, bySource);
     }
     function ifToDo(condition) {
         if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
@@ -321,7 +289,7 @@
         }
     }
     function loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-        byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse) {
+         byInventoryID,byitemscode, byCustomerID, bySource, byWarehouse) {
         var loadPanel = $(".loadpanel").dxLoadPanel({
             shadingColor: "rgba(0,0,0,0.4)",
             position: { of: "#gridContainer" },
@@ -337,15 +305,13 @@
             data: {
                 datefrom: datefrom,
                 dateto: dateto,
-                byItemGroup: byItemGroup,
-                bySaleEmployee: bySaleEmployee,
-                byCategory: byCategory,
-                byCustomerClass: byCustomerClass,
-                byLocation: byLocation,
-                byInventoryID: byInventoryID,
-                byCustomerID: byCustomerID,
-                bySource: bySource,
-                byWarehouse: byWarehouse
+                itemgroup: byItemGroup,
+                saleemployee: bySaleEmployee,
+                categroy: byCategory,
+                Measure: byInventoryID,
+                itemcode: byitemscode,
+                customerid: byCustomerID,
+                bySource: bySource
             },
             dataType: "JSON",
             beforeSend: function () {
@@ -449,30 +415,74 @@
                                     type: "decimal",
                                     precision: 3
                                 }
+                            },
+                            {
+                                column: "DisAmount",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                                format: {
+                                    type: "decimal",
+                                    precision: 3
+                                }
+                            },
+                            {
+                                column: "Quanlity",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                            },
+                            {
+                                column: "TotalAmount",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                            },
+                            {
+                                column: "TotalDiscountAmount",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                            },
+                            {
+                                column: "NetAmount",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                            },
+                            {
+                                column: "COGSAmount",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                            },
+                            {
+                                column: "GrossProfit",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                            },
+                             {
+                                 column: "Margin",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
                             }
                         ]
                     },
                     columns: [
-                        {
-                            dataField: "Cardcode",
-                            caption: "CardCode "
-                        },
+                        //{
+                        //    dataField: "Cardcode",
+                        //    caption: "CardCode "
+                        //},
                         {
                             dataField: "CustomerCode",
                             caption: "Customer Code"
                         },
-                        {
-                            dataField: "CarName",
-                            caption: "CardName"
-                        },
-                        {
-                            dataField: "CustomerGroup",
-                            caption: "Customer Group"
-                        },
-                        {
-                            dataField: "CustomerGrade",
-                            caption: "Customer Grade"
-                        },
+                        //{
+                        //    dataField: "CarName",
+                        //    caption: "CardName"
+                        //},
+                        //{
+                        //    dataField: "CustomerGroup",
+                        //    caption: "Customer Group"
+                        //},
+                        //{
+                        //    dataField: "CustomerGrade",
+                        //    caption: "Customer Grade"
+                        //},
                         {
                             dataField: "Stae",
                             caption: "Stae"
@@ -503,36 +513,36 @@
                         //},
                         {
                             dataField: "Saler",
-                            caption: "Saler"
+                            caption: "Sale Employee"
                         },
                         {
                             dataField: "SONo",
-                            caption: "SONo"
+                            caption: "Invoice #"
                         },
-                        {
-                            dataField: "DONo",
-                            caption: "DONo"
-                        },
-                        {
-                            dataField: "InvNo",
-                            caption: "InvNo"
-                        },
-                        {
-                            dataField: "InvDate ",
-                            caption: "Inv Date ",
-                            format: { minimumSignificantDigits: 3, }
-                        },
+                        //{
+                        //    dataField: "DONo",
+                        //    caption: "DONo"
+                        //},
+                        //{
+                        //    dataField: "InvNo",
+                        //    caption: "InvNo"
+                        //},
+                        //{
+                        //    dataField: "InvDate ",
+                        //    caption: "Inv Date ",
+                        //    format: { minimumSignificantDigits: 3, }
+                        //},
                         {
                             dataField: "Status",
                             caption: "Status"
                         },
                         {
                             dataField: "Group",
-                            caption: "Group"
+                            caption: "Manufacture"
                         },
                         {
                             dataField: "Product",
-                            caption: "Product"
+                            caption: "Item Group"
                         },
                         {
                             dataField: "InventeryId",
@@ -544,35 +554,35 @@
                         },
                         {
                             dataField: "ItemsName",
-                            caption: "Items Name"
+                            caption: "Decription"
                         },
                         {
                             dataField: "U_Source",
-                            caption: "U_Source "
+                            caption: "Source"
                         },
                         {
                             dataField: "SubCategory",
-                            caption: "Sub Category"
+                            caption: "Category"
                         },
                         {
                             dataField: "U_SubCategory",
-                            caption: "U_Sub Category"
+                            caption: "Sub-Category"
                         },
                         {
                             dataField: "U_Movement",
-                            caption: "U_Movement"
+                            caption: "Movement"
                         },
                         {
                             dataField: "U_Condition",
-                            caption: "U_Condition"
+                            caption: "Condition"
                         },
                         {
                             dataField: "U_Model",
-                            caption: "U_Model"
+                            caption: "Model"
                         },
                         {
                             dataField: "U_Year",
-                            caption: "U_Year"
+                            caption: "Year"
                         },
                         {
                             dataField: "Location",
@@ -580,7 +590,7 @@
                         },
                         {
                             dataField: "Deparment",
-                            caption: "Deparment"
+                            caption: "Department"
                         },
                         {
                             dataField: "Promotion",
@@ -588,11 +598,11 @@
                         },
                         {
                             dataField: "Warranly",
-                            caption: "Warranly"
+                            caption: "Warranty"
                         },
                         {
                             dataField: "whs",
-                            caption: "whs"
+                            caption: "Unit Price"
                         },
                         {
                             dataField: "Price",
@@ -600,11 +610,11 @@
                         },
                         {
                             dataField: "DisAmount",
-                            caption: "Dis Amount"
+                            caption: "Dis.Price"
                         },
                         {
                             dataField: "Quanlity",
-                            caption: "Quanlity"
+                            caption: "Q'ty"
                         },
                         {
                             dataField: "TotalAmount",
@@ -612,7 +622,7 @@
                         },
                         {
                             dataField: "TotalDiscountAmount",
-                            caption: "Total DiscountAmount"
+                            caption: "Total Dis. Amount"
                         },
                         {
                             dataField: "NetAmount",
@@ -620,7 +630,7 @@
                         },
                         {
                             dataField: "COGSAmount",
-                            caption: "COGS Amount"
+                            caption: "COGS"
                         },
                         {
                             dataField: "GrossProfit",
@@ -628,16 +638,16 @@
                         },
                         {
                             dataField: "Margin",
-                            caption: "Margin"
+                            caption: "Margin(%)"
                         },
-                        {
-                            dataField: "InvntryUom",
-                            caption: "Invntry Uom"
-                        },
-                        {
-                            dataField: "ItemsGroupforSV",
-                            caption: "Items GroupforSV"
-                        },
+                        //{
+                        //    dataField: "InvntryUom",
+                        //    caption: "Invntry Uom"
+                        //},
+                        //{
+                        //    dataField: "ItemsGroupforSV",
+                        //    caption: "Items GroupforSV"
+                        //},
                     ],
                 });
                 //btn_filter.removeClass("fa-spinner fa-spin");

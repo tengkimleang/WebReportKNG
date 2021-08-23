@@ -100,7 +100,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["ApReportCashout"]</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Ap Report Cash out"]</a></li>
                     <li class="breadcrumb-item active">@localizer["Reporting"]</li>
                 </ol>
             </div><!-- /.col -->
@@ -109,23 +109,18 @@
 </div>
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
-<<<<<<< HEAD
         <div class="card-header" style="background-color:#0000001A;">
             @localizer["Ap Report Cash out"]
-=======
-        <div class="card-header">
-            @localizer["ApReportCashout"]
->>>>>>> parent of 959fa47 (changcolor)
         </div>
         <div class="card-body">
             <!--Filter-->
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateFrom"]</label>
+                    <label class="lable_datefrom">@localizer["Date From"]</label>
                     <input type="date" class="input_datefrom" id="datefromapcashout">
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateTo"]</label>
+                    <label class="lable_datefrom">@localizer["Date To"]</label>
                     <input type="date" class="input_datefrom" id="datetoapcashout">
                 </div>
                 <!--<div class="col-md-2">
@@ -149,7 +144,7 @@
                         </select>
                     </div>*@
                 <div class="col-md-4 ">
-                    <button class="btn btn-xs btn-kernel" id="btnRunReportapcashout">@localizer["Filter"]</button>
+                    <button class="btn btn-xs btn-kernel" id="btnRunReportapcashout">@localizer["Run"]</button>
                 </div>
             </div>
             <!--<div class="row">
@@ -348,27 +343,27 @@
                     columns: [
                         {
                             dataField: "Apdocnum",
-                            caption: "Apdocnum"
+                            caption: "AP #"
                         },
                         {
                             dataField: "AocumentDate",
-                            caption: "DocumentDate"
+                            caption: "AP Date"
                         },
                         {
                             dataField: "PaymentDoc",
-                            caption: "PaymentDoc"
+                            caption: "Payment #"
                         },
                         {
                             dataField: "PaidDate",
-                            caption: "PaidDate"
+                            caption: "Paid Date"
                         },
                         {
                             dataField: "VendorName",
-                            caption: "VendorName"
+                            caption: "Vendor Name"
                         },
                         {
                             dataField: "NameVendorissueCheck",
-                            caption: "NameVendorissueCheck"
+                            caption: "Name Vendor issue on check"
                         },
                         //{
                         //    dataField: "invoiceDate",
@@ -396,23 +391,23 @@
                         //},
                         {
                             dataField: "InternalDocument",
-                            caption: "InternalDocument"
+                            caption: "Internal Document"
                         },
                         {
                             dataField: "ExternalDocument",
-                            caption: "ExternalDocument"
+                            caption: "PO/AD #"
                         },
                         {
                             dataField: "Glaccount",
-                            caption: "Glaccount"
+                            caption: "Supplier Invoice #"
                         },
                         {
                             dataField: "GlaccountName",
-                            caption: "GlaccountName"
+                            caption: "Account #"
                         },
                         {
                             dataField: "Decription",
-                            caption: "Decription"
+                            caption: "DESCRIPTION"
                         },
                         {
                             dataField: "Department",
@@ -420,23 +415,23 @@
                         },
                         {
                             dataField: "Branch",
-                            caption: "Branch"
+                            caption: "Location"
                         },
                         {
                             dataField: "ProductName",
-                            caption: "roductName"
+                            caption: "Item Group"
                         },
                         {
                             dataField: "PaymentMethod",
-                            caption: "PaymentMethod"
+                            caption: "Payment Method"
                         },
                         {
                             dataField: "CheckNo",
-                            caption: "CheckNo"
+                            caption: "Check No"
                         },
                         {
                             dataField: "BankName",
-                            caption: "BankName"
+                            caption: "Bank Name"
                         },
                         {
                             dataField: "Cash",

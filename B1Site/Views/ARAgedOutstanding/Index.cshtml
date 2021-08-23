@@ -112,7 +112,7 @@
 </div>
 <div class="container-fluid" style="padding: 15px;">
     <div class="card">
-        <div class="card-header" style="background-color:antiquewhite;">
+        <div class="card-header" style="background-color: #0000001A;">
             <h2>@localizer["AR Aged Outstanding"]</h2>
         </div>
         <div class="card-body" style="background-color:lightblue;">
@@ -126,30 +126,30 @@
                         </div>
                     </div>
                     @*<div class="row">*@
-                <div class="mb-4 row">
-                    <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 customerName font">@localizer["CustomerName :"]</label>
-                    <div class="col-sm-12 col-md-6 col-lg-6">
-                        <select type="text" class="input_branch" id="byCustomerID">
-                            <option value="0">All CustomerID</option>
-                            @{
-                                foreach (var a in Model.customerNameMasters)
-                                {
-                                    <option value="@a.CustomerNameCode">@a.CustomerNameName</option>
+                    <div class="mb-4 row">
+                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 customerName font">@localizer["CustomerName :"]</label>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <select type="text" class="input_branch" id="byCustomerID">
+                                <option value="0">All CustomerID</option>
+                                @{
+                                    foreach (var a in Model.customerNameMasters)
+                                    {
+                                        <option value="@a.CustomerNameCode">@a.CustomerNameName</option>
+                                    }
                                 }
-                            }
-                        </select>
-                        @*<select type="text" class="input_branch" id="customernamearAged1">
-                            <option value="0">All Customer Name</option>
-                            @{
-                                foreach (var a in Model.customerNameMasters)
-                                {
-                                    <option value="@a.CustomerNameCode">@a.CustomerNameName</option>
+                            </select>
+                            @*<select type="text" class="input_branch" id="customernamearAged1">
+                                    <option value="0">All Customer Name</option>
+                                    @{
+                                        foreach (var a in Model.customerNameMasters)
+                                        {
+                                            <option value="@a.CustomerNameCode">@a.CustomerNameName</option>
 
-                                }
-                            }
-                        </select>*@
+                                        }
+                                    }
+                                </select>*@
+                        </div>
                     </div>
-                </div>
                     <div class="mb-4 row">
                         <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 creditControl font">@localizer["Credit Control :"]</label>
                         <div class="col-sm-12 col-md-6 col-lg-6">
@@ -188,7 +188,8 @@
                                 @{
                                     foreach (var a in Model.saleEmployeeMasters)
                                     {
-                                        <option value="@a.SaleEmployeeCode">@a.SaleEmployeeName</option>                         
+                                        <option value="@a.SaleEmployeeCode">@a.SaleEmployeeName</option>
+
                                     }
                                 }
                             </select>
@@ -215,7 +216,7 @@
                             </div>*@
                     </div>
                     <div class="mr-2">
-                        <button class="btn btn-xs btn-kernel" id="btnRunReportARAged" style="float:right;margin-right:20%">@localizer["Filter"]</button>
+                        <button class="btn btn-xs btn-kernel" id="btnRunReportARAged" style="float:right;margin-right:20%">@localizer["Run"]</button>
                     </div>
                 </div>
 
@@ -241,10 +242,10 @@
                     </div>
                 </div>
             </div>
-            <!--End Bind Data to Grid-->
         </div>
     </div>
 </div>
+    <!--End Bind Data to Grid-->
 
 <script>
     var today = new Date();

@@ -1,5 +1,5 @@
 ﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
-@model B1Site.Models.DailyCashCollection.MasterVeiwDailyCashCollection;
+@model B1Site.Models.CustomerStatement.MasterViewCustomerStatement;
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -18,7 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
-    <link href="~/css/DailyCashCollection.css" rel="stylesheet" />
+    <link href="~/css/CustomerStatement.css" rel="stylesheet" />
 </head>
 <style>
     .widget-loadscreen {
@@ -44,13 +44,12 @@
         background-color: #f2e8c5;
         border: 0px;
         color: black;
-        
     }
 
     .btn-kernel, .btn-primary {
         margin-top: 32px;
-        margin-right: 9%;
-        float:right;
+        margin-right: 15%;
+        float: right;
     }
 
     .btn {
@@ -103,7 +102,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Daily Cash Collection"]</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Customer Statement"]</a></li>
                     <li class="breadcrumb-item active">@localizer["Reporting"]</li>
                 </ol>
             </div><!-- /.col -->
@@ -112,135 +111,56 @@
 </div>
 <div class="container-fluid" style="padding: 15px;">
     <div class="card">
-        <div class="card-header" style="background-color:#0000001A;">
-            <h2>@localizer["Daily Cash Collection"]</h2>
+        <div class="card-header" style="background-color: #0000001A;">
+            <h2>@localizer["Customer Statement"]</h2>
         </div>
         <div class="card-body" style="background-color:lightblue;">
             <!--Filter-->
             <div class="row">
                 <div class="col-6">
                     <div class="mb-4 row">
-                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 dateFrom font" style="margin-left:10%">@localizer["DateFrom :"]</label>
+                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 agingDate font" style="margin-left:10%">@localizer["Aging Date :"]</label>
                         <div class="col-sm-12 col-md-6 col-lg-6">
-                            <input type="date" class="input_datefrom" id="datefromdailycash">
+                            <input type="date" class="input_datefrom" id="agingdatecustomersatement">
                         </div>
                     </div>
-                    @*<div class="row">*@
+                    @*<div class="row">*@                  
+                </div>
+                <div class="col-6">
                     <div class="mb-4 row">
-                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 customerID" style="margin-left:10%">@localizer["CustomerID :"]</label>
+                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 Customer font" style="margin-left:10%">@localizer["Customer :"]</label>
                         <div class="col-sm-12 col-md-6 col-lg-6">
-                            <select type="" class="input_branch" id="Customerdailycash">
+                            <select type="" class="input_branch" id="customercusstatment">
                                 <option value="0">All Customer</option>
                                 @{
-                                    foreach (var a in Model.customerIDMasters)
+                                    foreach (var a in Model.CustomerMasters)
                                     {
-                                        <option value="@a.CardCode">@a.CustomerID</option>
+                                        <option value="@a.CardCode">@a.Customer</option>
                                     }
                                 }
                             </select>
                         </div>
                     </div>
-                </div>
-                <div class="col-6">
-                    <div class="mb-4 row">
-                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 dateTo font">@localizer["DateTo :"]</label>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <input type="date" class="input_datefrom" id="datetodailycash">
-                        </div>
-                    </div>
-                    <div class="mr-2" >
-                        <button class="btn btn-xs btn-kernel" id="btnRunReportDailyCash" style="float:right;margin-right:33%">@localizer["Run"]</button>
-                    </div>
-                </div>
-              
-                <!--<div class="col-md-2">
-    <label class="lable_branch">@localizer["ByItemGroup"]</label>
-    <select type="text" class="input_branch" id="byItemGroup">
-        <option value="0">All ItemGroup</option>-->
-                @*@{
-            foreach (var a in Model.ItemGroupMasters)
-            {
-                <option value="@a.ItemGroup">@a.ItemGroup</option>
-            }
-        }*@
-                <!--</select>
-    </div>
-    <div class="col-md-2">
-        <label class="lable_branch">@localizer["By SaleEmployee"]</label>
-        <select type="text" class="input_branch" id="bySaleEmployee">
-            <option value="0">All Branch</option>
-            <option value="1">KHMER EDI</option>
-            <option value="2">Branch2</option>
-        </select>
-    </div>-->
-                @*<div class="row">
-            <div class="col-md-2">
-                <label class="lable_branch">@localizer["By Category"]</label>
-                <select type="text" class="input_branch" id="byCategory">
-                    <option value="0">All Branch</option>
-                    <option value="1">KHMER EDI</option>
-                    <option value="2">Branch2</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label class="lable_branch">@localizer["By CustomerClass"]</label>
-                <select type="text" class="input_branch" id="byCustomerClass">
-                    <option value="0">All Branch</option>
-                    <option value="1">KHMER EDI</option>
-                    <option value="2">Branch2</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label class="lable_branch">@localizer["By Location"]</label>
-                <select type="text" class="input_branch" id="byLocation">
-                    <option value="0">All Branch</option>
-                    <option value="1">KHMER EDI</option>
-                    <option value="2">Branch2</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label class="lable_branch">@localizer["By InventoryID"]</label>
-                <select type="text" class="input_branch" id="byInventoryID">
-                    <option value="0">All Branch</option>
-                    <option value="1">KHMER EDI</option>
-                    <option value="2">Branch2</option>
-                </select>
-            </div>
-        </div>*@
-
-                @*<div class="col-md-2">
-            <label class="lable_branch">@localizer["By Source"]</label>
-            <select type="text" class="input_branch" id="bySource">
-                <option value="0">All Branch</option>
-                <option value="1">KHMER EDI</option>
-                <option value="2">Branch2</option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <label class="lable_branch">@localizer["By Warehouse"]</label>
-            <select type="text" class="input_branch" id="byWarehouse">
-                <option value="0">All Branch</option>
-                <option value="1">KHMER EDI</option>
-                <option value="2">Branch2</option>
-            </select>
-        </div>*@
-            </div>
-            <!--End Filter-->
-            <!--Bind Data to Grid-->
-            <div class="container mt-3">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="demo-container">
-                            <div id="gridContainer"></div>
-                        </div>
+                    <div class="mr-2">
+                        <button class="btn btn-xs btn-kernel" id="btnRunReportcustomerstaement"float:right;margin-right:30%">@localizer["Run"]</button>
                     </div>
                 </div>
             </div>
-            <!--End Bind Data to Grid-->
         </div>
     </div>
 </div>
-
+        <!--End Filter-->
+            <!--Bind Data to Grid-->
+            <div class="container mt-3">
+                <div class="row">
+                     <div class="col-12">
+                            <div class="demo-container">
+                                  <div id="gridContainer"></div>
+                            </div>
+                      </div>
+                </div>
+            </div>
+                <!--End Bind Data to Grid-->
 <script>
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -249,30 +169,37 @@
 
     today = mm + '/' + dd + '/' + yyyy;
     loadReport(today, today);
-    $('#btnRunReportDailyCash').click(function () {
-        var datefrom = $('#datefromdailycash').val();
-        var dateto = $('#datetodailycash').val();
-        var CustomerID = $('#Customerdailycash').val();
-        loadReport(datefrom, dateto, CustomerID);
+    filterData();
+    $('#btnRunReportcustomerstaement').click(function () {
+        var agingdate = ifToDo($('#agingdatecustomersatement')).val();
+        var customer = ifToDo($('#customercusstatment')).val();
+        loadReport(agingdate,customer);
     });
-    function filterData(button) {
-        var datefrom = $('#datefromdailycash').val();
-        var dateto = $('#datetodailycash').val();
-        var CustomerID = $('CustomerID').val();
-        if (datefrom == '' || datefrom==null) {
-            datefrom = today;
-        }
-        if (dateto == '' || dateto == null) {
-            dateto = today;
-        }
-        loadReport(datefrom, dateto, CustomerID);
+    function filterData() {
+        var agingdate = today;
+        var customer = ifToDo($('#customercusstatment')).val();
+        //if (datefrom == '' || datefrom==null) {
+        //    datefrom = today;
+        ////}
+        //if (dateto == '' || dateto == null) {
+        //    dateto = today;
+        //}
+        loadReport(agingdate,customer);
     }
-    function loadReport(datefrom, dateto, CustomerID) {
+    function ifToDo(condition) {
+        if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
+            return "";
+        } else {
+            return condition.val();
+        }
+    }
+    function loadReport(agingdate, customer) {
+        console.log(customer);
         //let btn_filter = $(button).children("i.fa-search");
         $.ajax({
-            url: '@Url.Action("GetDailyCashCollection", "DailyCashCollection")',
+            url: '@Url.Action("GetCustomerStatement", "CustomerStatement")',
             type: "GET",
-            data: { datefrom: datefrom, dateto: dateto, customerID: CustomerID },
+            data: { customer : customer, agingdate :agingdate},
             dataType: "JSON",
             beforeSend: function () {
                 //btn_filter.addClass("fa-spinner fa-spin");
@@ -298,7 +225,7 @@
                     },
                     onExporting: function (e) {
                         var workbook = new ExcelJS.Workbook();
-                        var worksheet = workbook.addWorksheet('DailyCahCollection');
+                        var worksheet = workbook.addWorksheet('CustomerSatement');
 
                         DevExpress.excelExporter.exportDataGrid({
                             component: e.component,
@@ -306,7 +233,7 @@
                             autoFilterEnabled: true
                         }).then(function () {
                             workbook.xlsx.writeBuffer().then(function (buffer) {
-                                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Daily Cash Collection.xlsx');
+                                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Customer Statement.xlsx');
                             });
                         });
                         e.cancel = true;
@@ -354,13 +281,46 @@
                         ]
                     },
                     columns: [
-                        {
-                            dataField: "Receipt",
-                            caption: "Receipt#"
-                        },
-                        {
-                            dataField: "ReceivedDate",
-                            caption:"ReceivedDate",
+                            {
+                                dataField: "CardCode",
+                                caption: "CardCode"
+                            },
+                            {
+                                dataField: "CardName",
+                                caption: "CardName"
+                            },
+
+                            {
+                                dataField: "Region",
+                                caption: "Region"
+                            },
+                            {
+                                dataField: "DocType",
+                                caption: "DocType"
+                            },
+                            {
+                                dataField: "GroupName",
+                                caption: "GroupName"
+                            },
+                            {
+                                dataField: "SLPName",
+                                caption: "SLPName"
+                            },
+                            {
+                                dataField: "SysInvoice",
+                                caption: "SysInvoice
+                            },
+                            {
+                                dataField: "DO",
+                                caption: "DO"
+                            },
+                            {
+                                dataField: "Invoice",
+                                caption: "Invoice"
+                            },
+                              {
+                            dataField: "InvDate",
+                            caption:"InvDate",
                             //alignment: "right",
                             dataType: "date",
                             //width: 120,
@@ -386,70 +346,53 @@
 
                             },
                             {
-                                dataField: "CustomerReceived",
-                                caption: "Customer Ref"
-                            },
-                        
-                            {
-                                dataField: "SysInvoice",
-                                caption: "Invoice #"
-                            },
-                            //{
-                            //    dataField: "CustomerRef",
-                            //    caption: "Customer Ref"
-                            //},
-                            {
-                                dataField: "Type",
-                                caption: "Type"
+                                dataField: "Term",
+                                caption: "Term"
                             },
                             {
-                                dataField: "Status",
-                                caption: "Status"
+                                dataField: " Age",
+                                caption: " Age"
                             },
                             {
-                                dataField: "CustomerID",
-                                caption: "Customer ID"
+                                dataField: "Total",
+                                caption: "Total"
                             },
                             {
-                                dataField: "CustomerName",
-                                caption: "Customer Name"
+                                dataField: "Current",
+                                caption: "Current"
                             },
                             {
-                                dataField: "location",
-                                caption: "Location"
+                                dataField: "ThirtyFirst_To_Sixty_Days",
+                                caption: "ThirtyFirst_To_Sixty_Days"
                             },
                             {
-                                dataField: "CustomerClass",
-                                caption: "Customer Class"
+                                dataField: "SixtyFirst_To_Ninety_Days",
+                                caption: "SixtyFirst_To_Ninety_Days"
                             },
                             {
-                                dataField: "Region",
-                                caption: "Region"
-                            },
-                            {
-                                dataField: "PaymentMethod",
-                                caption: "Payment Method"
-                            },
-                            {
-                                dataField: "CashAccountDescription",
-                                caption: "Cash Account Description"
-                            },
-                            {
-                                dataField: "CollectedAmount",
-                                caption: "CollectedAmount"
-                            },
-                            {
-                                dataField: "ServiceCharge",
-                                caption: "Service Charge"
-                            },
-                            {
-                                dataField: "TotalAmount",
-                                caption: "Total Amount"
-                            },
-                            {
-                                dataField: "Product",
-                                caption: "Product"
-                            },
+                                dataField: "NinetyFirst_To_OneHundredTwenty_Days",
+                                caption: "NinetyFirst_To_OneHundredTwenty_Days"
+                        },
+                        {
+                            dataField: "OneHundredTwentyOne_Untill_Days",
+                            caption: "OneHundredTwentyOne_Untill_Days"
+                        },
+                        {
+                            dataField: "ItemGroup",
+                            caption: "ItemGroup"
+                        },
+                        {
+                            dataField: "Model",
+                            caption: "Model"
+                        },
+                        {
+                            dataField: "DocNum",
+                            caption: "DocNum"
+                        },
+                        {
+                            dataField: "Type",
+                            caption: "Type"
+                        },
                     ],
 
                 });

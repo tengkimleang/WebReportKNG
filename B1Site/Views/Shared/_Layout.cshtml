@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 ﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @inject Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> locOptions
+=======
+﻿@inject Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> locOptions
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+>>>>>>> 3e30a4b9235f84c3b14875e827b04842c57db201
 @{
     var culture = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>();
     var cultureList = locOptions.Value.SupportedUICultures.Select(x => new SelectListItem { Value = x.Name, Text = x.Name }).ToList();
@@ -48,9 +53,9 @@
     <div class="wrapper">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center" style="background-color: #E8F0FE">
+        <!--<div class="preloader flex-column justify-content-center align-items-center" style="background-color: #E8F0FE">
             <img class="animation__shake" src="~/image/SAPlogo.png" alt="AdminLTELogo" width="70px">
-        </div>
+        </div>-->
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -163,7 +168,7 @@
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
                 @*<img src="~/image/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">*@
-                <span class="brand-text font-weight-bold" style="font-size: 16px;">@localizer["Kong Noung Group Co.,Ltd"]</span>
+                <span class="brand-text font-weight-bold" style="font-size: 16px;">@localizer["Kong Noun Group Co.,Ltd"]</span>
             </a>
 
             <!-- Sidebar -->
@@ -182,11 +187,13 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a asp-action="Administrator" asp-controller="Home" class="nav-link active">
+                        <li class="nav-item menu-title">
+                            <a href="#" class="nav-link active">
+                                @*asp-action="Administrator" asp-controller="Home"*@
                                 <i class="fas fa-users-cog"></i>
                                 <p>
                                     <B>@localizer["Administration"]</B>
+<<<<<<< HEAD
                                 </p>
                             </a>
                         </li>
@@ -195,12 +202,15 @@
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     <B>@localizer["Reporting"]</B>
+=======
+>>>>>>> 3e30a4b9235f84c3b14875e827b04842c57db201
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <partial name="Navbar" />
                             @*<ul class="nav nav-treeview">
                                 <li class="nav-item" style="background-color:#E8F0FE;border-radius: 4px;">
+<<<<<<< HEAD
                                     <a asp-action="Index" asp-controller="SaleDialyReport" class="nav-link active">
                                         <i class="fas fa-chart-area"></i>&nbsp;
                                         <p style="color: black; font-family:'Roboto';">
@@ -292,42 +302,47 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
                                     <a asp-action="Index" asp-controller="FinaceSaelReport" class="nav-link">
+=======
+                                    <a asp-action="Administrator" asp-controller="Home" class="nav-link">
+>>>>>>> 3e30a4b9235f84c3b14875e827b04842c57db201
                                         <i class="fas fa-chart-area"></i>&nbsp;
                                         <p style="color: black; font-family:'Roboto';">
-                                            <B>@localizer["Finance Sale Report"]</B>
+                                            <B>@localizer["Administrator"]</B>
                                         </p>
-
                                     </a>
                                 </li>
                             </ul>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item" style="background-color:#E8F0FE; border-radius: 4px; ">
-                                    <a asp-action="Index" asp-controller="ExpsentReport" class="nav-link">
+                                <li class="nav-item" style="background-color:#E8F0FE;border-radius: 4px;">
+                                    <a asp-action="UserList" asp-controller="Home" class="nav-link">
                                         <i class="fas fa-chart-area"></i>&nbsp;
                                         <p style="color: black; font-family:'Roboto';">
-                                            <B>@localizer["Expense Report"]</B>
+                                            <B>@localizer["Add User"]</B>
                                         </p>
-
                                     </a>
                                 </li>
                             </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a asp-action="Index" asp-controller="FinanceInventoryReport" class="nav-link">
-                                        @*<i class="far fa-circle nav-icon"></i>*@
-                                        <p>@localizer["Finance Inventory Report"]</p>
 
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link active">
-                                <i class="nav-icon fas fa-th"></i>
+                        <li class="nav-item menu-title">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    <B>@localizer["Permission"]</B>
+                                    <B>@localizer["Reporting"]</B>
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            <partial name="Navbar" />
+                            @*<ul class="nav nav-treeview">
+                                    <li class="nav-item" style="background-color:#E8F0FE;border-radius: 4px;">
+                                        <a asp-action="Index" asp-controller="SaleDialyReport" class="nav-link active">
+                                            <i class="fas fa-chart-area"></i>&nbsp;
+                                            <p style="color: black; font-family:'Roboto';">
+                                                <B>@localizer["SaleReport"]</B>
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>*@
                         </li>
                         <li class="nav-item">
                             <ul class="nav nav-treeview">
