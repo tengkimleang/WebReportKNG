@@ -29,10 +29,14 @@ namespace B1Site.Controllers
                 CustomerMasters = await customerStatementServices.GetCustomerstatementsAsync(),
             });
         }
+        public IActionResult CustomerStatement()
+        {
+            return View();
+        }
         #endregion
         #region Bind data to report
         [HttpGet]
-        public async Task<string> GetDailyCashCollection(DateTime agingdate, string customer)
+        public async Task<string> GetCustomerstatement(DateTime agingdate, string customer)
         {
             return await customerStatementServices.GetCustomerstatementsAsync(agingdate, customer);
         }

@@ -41,26 +41,36 @@ namespace B1Site.Service
             {
                 dailyCashCollectionList.Add(new DailyCashCollection
                 {
-                    Receipt = a[0].ToString(),
-                    ReceivedDate = Convert.ToDateTime(a[1].ToString()).ToString("yyyy-MM-dd"),
-                    CustomerReceived = a[2].ToString(),
-                    SysInvoice = a[3].ToString(),
-                    CustomerRef = a[4].ToString(),
+                    Row = a[0].ToString(),
+                    Receipt = a[1].ToString(),
+                    ReceivedDate = Convert.ToDateTime(a[2].ToString()).ToString("yyyy-MM-dd"),
+                    CustomerReceived = a[3].ToString(),
+                    SysInvoice = a[4].ToString(),
                     Type = a[5].ToString(),
                     Status = a[6].ToString(),
-                    CustomerID = a[7].ToString(),
-                    CustomerName = a[8].ToString(),
-                    Location = a[9].ToString(),
-                    CustomerClass = a[10].ToString(),
-                    Region = a[11].ToString(),
-                    PaymentMethod = a[12].ToString(),
-                    CashAccountDescription = a[13].ToString(),
-                    CollectedAmount = a[14].ToString(),
-                    ServiceCharge = a[15].ToString(),
-                    TotalAmount = a[16].ToString(),
-                    Product = a[17].ToString(),
+                    CustomerName = a[7].ToString(),
+                    Location = a[8].ToString(),
+                    CustomerClass = a[9].ToString(),
+                    Region = a[10].ToString(),
+                    PaymentMethod = a[11].ToString(),
+                    Remark = a[12].ToString(),
+                    Manufacture = a[13].ToString(),
+                    ItemGroup = a[14].ToString(),
+                    Source = a[15].ToString(),
+                    Category = a[16].ToString(),
+                    Movement = a[17].ToString(),
+                    Model = a[18].ToString(),
+                    Year = a[19].ToString(),
+                    VenderCode = a[20].ToString(),
+                    ItemCode = a[21].ToString(),
+                    Description = a[22].ToString(),
+                    CollectedAmount = a[23].ToString(),
+                    ServiceCharge = a[24].ToString(),
+                    TotalAmount = a[25].ToString(),
 
-                });
+
+
+                }); ;
             }
             return Task.FromResult(Utf8Json.JsonSerializer.ToJsonString(dailyCashCollectionList));
         }

@@ -47,7 +47,5 @@ namespace B1Site.Controllers
                                                                              saleemployee, region);                                                  
         }
         #endregion
-        #region Method Post Data From Ajax
-        #endregion
     }
 }

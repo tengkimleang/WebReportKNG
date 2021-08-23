@@ -120,7 +120,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="mb-4 row">
-                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 dateFrom font" style="margin-left:10%">@localizer["DateFrom :"]</label>
+                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 dateFrom font" style="margin-left:10%">@localizer["Date From :"]</label>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <input type="date" class="input_datefrom" id="datefromdailycash">
                         </div>
@@ -143,87 +143,15 @@
                 </div>
                 <div class="col-6">
                     <div class="mb-4 row">
-                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 dateTo font">@localizer["DateTo :"]</label>
+                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 dateTo font">@localizer["Date To :"]</label>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <input type="date" class="input_datefrom" id="datetodailycash">
                         </div>
                     </div>
                     <div class="mr-2" >
-                        <button class="btn btn-xs btn-kernel" id="btnRunReportDailyCash" style="float:right;margin-right:33%">@localizer["Filter"]</button>
+                        <button class="btn btn-xs btn-kernel" id="btnRunReportDailyCash" style="float:right;margin-right:33%">@localizer["Run"]</button>
                     </div>
                 </div>
-              
-                <!--<div class="col-md-2">
-    <label class="lable_branch">@localizer["ByItemGroup"]</label>
-    <select type="text" class="input_branch" id="byItemGroup">
-        <option value="0">All ItemGroup</option>-->
-                @*@{
-            foreach (var a in Model.ItemGroupMasters)
-            {
-                <option value="@a.ItemGroup">@a.ItemGroup</option>
-            }
-        }*@
-                <!--</select>
-    </div>
-    <div class="col-md-2">
-        <label class="lable_branch">@localizer["By SaleEmployee"]</label>
-        <select type="text" class="input_branch" id="bySaleEmployee">
-            <option value="0">All Branch</option>
-            <option value="1">KHMER EDI</option>
-            <option value="2">Branch2</option>
-        </select>
-    </div>-->
-                @*<div class="row">
-            <div class="col-md-2">
-                <label class="lable_branch">@localizer["By Category"]</label>
-                <select type="text" class="input_branch" id="byCategory">
-                    <option value="0">All Branch</option>
-                    <option value="1">KHMER EDI</option>
-                    <option value="2">Branch2</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label class="lable_branch">@localizer["By CustomerClass"]</label>
-                <select type="text" class="input_branch" id="byCustomerClass">
-                    <option value="0">All Branch</option>
-                    <option value="1">KHMER EDI</option>
-                    <option value="2">Branch2</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label class="lable_branch">@localizer["By Location"]</label>
-                <select type="text" class="input_branch" id="byLocation">
-                    <option value="0">All Branch</option>
-                    <option value="1">KHMER EDI</option>
-                    <option value="2">Branch2</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label class="lable_branch">@localizer["By InventoryID"]</label>
-                <select type="text" class="input_branch" id="byInventoryID">
-                    <option value="0">All Branch</option>
-                    <option value="1">KHMER EDI</option>
-                    <option value="2">Branch2</option>
-                </select>
-            </div>
-        </div>*@
-
-                @*<div class="col-md-2">
-            <label class="lable_branch">@localizer["By Source"]</label>
-            <select type="text" class="input_branch" id="bySource">
-                <option value="0">All Branch</option>
-                <option value="1">KHMER EDI</option>
-                <option value="2">Branch2</option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <label class="lable_branch">@localizer["By Warehouse"]</label>
-            <select type="text" class="input_branch" id="byWarehouse">
-                <option value="0">All Branch</option>
-                <option value="1">KHMER EDI</option>
-                <option value="2">Branch2</option>
-            </select>
-        </div>*@
             </div>
             <!--End Filter-->
             <!--Bind Data to Grid-->
@@ -355,12 +283,16 @@
                     },
                     columns: [
                         {
+                            dataField: "Row",
+                            caption: "No"
+                        },
+                        {
                             dataField: "Receipt",
-                            caption: "Receipt"
+                            caption: "Receipt #"
                         },
                         {
                             dataField: "ReceivedDate",
-                            caption:"ReceivedDate",
+                            caption:"Received Date",
                             //alignment: "right",
                             dataType: "date",
                             //width: 120,
@@ -387,16 +319,12 @@
                             },
                             {
                                 dataField: "CustomerReceived",
-                                caption: "Customer Received"
+                                caption: "Customer Ref"
                             },
                         
                             {
                                 dataField: "SysInvoice",
-                                caption: "Sys Invoice"
-                            },
-                            {
-                                dataField: "CustomerRef",
-                                caption: "Customer Ref"
+                                caption: "Invoice #"
                             },
                             {
                                 dataField: "Type",
@@ -407,15 +335,11 @@
                                 caption: "Status"
                             },
                             {
-                                dataField: "CustomerID",
-                                caption: "Customer ID"
-                            },
-                            {
                                 dataField: "CustomerName",
-                                caption: "CustomerName"
+                                caption: "Customer Name"
                             },
                             {
-                                dataField: "location",
+                                dataField: "Location",
                                 caption: "Location"
                             },
                             {
@@ -431,25 +355,66 @@
                                 caption: "Payment Method"
                             },
                             {
-                                dataField: "CashAccountDescription",
+                                dataField: "Remark",
                                 caption: "Cash Account Description"
                             },
                             {
+                                dataField: "Manufacture",
+                                caption: "Manufacture"
+                            },
+                            {
+                                dataField: "ItemGroup",
+                                caption: "ItemGroup"
+                            },
+                            {
+                                dataField: "Source",
+                                caption: "Source"
+                            },
+                            {
+                                dataField: "Category",
+                                caption: "Category"
+                            },
+                            {
+                                dataField: "Movement",
+                                caption: "Movement"
+                            },
+                            {
+                                dataField: "Condition",
+                                caption: "Condition"
+                            },
+                            {
+                                dataField: "Model",
+                                caption: "Model"
+                            },
+                            {
+                                dataField: "Year",
+                                caption: "Year"
+                            },
+                            {
+                                dataField: "VenderCode",
+                                caption: "VenderCode"
+                            },
+                            {
+                                dataField: "ItemCode",
+                                caption: "Item Code"
+                            },
+                            {
+                                dataField: "Description",
+                                caption: "Description"
+                            },
+                            {
                                 dataField: "CollectedAmount",
-                                caption: "CollectedAmount"
+                                caption: "Net Amount"
                             },
                             {
                                 dataField: "ServiceCharge",
-                                caption: "Service Charge"
+                                caption: "Transfer Fee"
                             },
                             {
                                 dataField: "TotalAmount",
-                                caption: "Total Amount"
+                                caption: "Total"
                             },
-                            {
-                                dataField: "Product",
-                                caption: "Product"
-                            },
+                            
                     ],
 
                 });

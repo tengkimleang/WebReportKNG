@@ -18,7 +18,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
-    <!--End Dev-->
     <link href="~/css/ARAgedOutstanding.css" rel="stylesheet" />
 </head>
 <style>
@@ -127,10 +126,10 @@
                     </div>
                     @*<div class="row">*@
                     <div class="mb-4 row">
-                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 customerName font">@localizer["CustomerName :"]</label>
+                        <label for="lable_customerid" class="col-sm-12 col-md-4 col-lg-4 customerName font">@localizer["Customer Name :"]</label>
                         <div class="col-sm-12 col-md-6 col-lg-6">
-                            <select type="text" class="input_branch" id="byCustomerID">
-                                <option value="0">All CustomerID</option>
+                            <select type="text" class="input_branch" id="customernamearaged">
+                                <option value="0">All Customer Name</option>
                                 @{
                                     foreach (var a in Model.customerNameMasters)
                                     {
@@ -138,16 +137,6 @@
                                     }
                                 }
                             </select>
-                            @*<select type="text" class="input_branch" id="customernamearAged1">
-                                    <option value="0">All Customer Name</option>
-                                    @{
-                                        foreach (var a in Model.customerNameMasters)
-                                        {
-                                            <option value="@a.CustomerNameCode">@a.CustomerNameName</option>
-
-                                        }
-                                    }
-                                </select>*@
                         </div>
                     </div>
                     <div class="mb-4 row">
@@ -210,26 +199,11 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        @*<label for="lable_datefrom" class="col-sm-2">@localizer["DateTo"]</label>
-                            <div class="col-sm-6">
-                                <input type="date" class="input_datefrom" id="datetodailycash">
-                            </div>*@
                     </div>
                     <div class="mr-2">
-                        <button class="btn btn-xs btn-kernel" id="btnRunReportARAged" style="float:right;margin-right:20%">@localizer["Filter"]</button>
+                        <button class="btn btn-xs btn-kernel" id="btnRunReportARAged" style="float:right;margin-right:9%">@localizer["Run"]</button>
                     </div>
                 </div>
-
-                <!--<div class="col-md-2">
-                <label class="lable_branch">@localizer["ByItemGroup"]</label>
-                <select type="text" class="input_branch" id="byItemGroup">
-                    <option value="0">All ItemGroup</option>-->
-                @*@{
-                        foreach (var a in Model.ItemGroupMasters)
-                        {
-                            <option value="@a.ItemGroup">@a.ItemGroup</option>
-                        }
-                    }*@
             </div>
             <!--End Filter-->
             <!--Bind Data to Grid-->
@@ -257,7 +231,7 @@
     filterData();
     $('#btnRunReportARAged').click(function () {
         var agingdate = $('#agingdate').val();
-        var customername = ifToDo($('#byCustomerID'));
+        var customername = ifToDo($('#customernamearaged'));
         var creditcontrol = ifToDo($('#creditconrolaraged'));
         var customerclass = ifToDo($('#customerclassaraged'));
         var saleemployee = ifToDo($('#saleemployeearaged'));
@@ -266,7 +240,7 @@
     });
     function filterData() {
         var agingdate = today;
-        var customername = ifToDo($('#byCustomerID'));
+        var customername = ifToDo($('#customernamearaged'));
         var creditcontrol = ifToDo($('#creditconrolaraged'));
         var customerclass = ifToDo($('#customerclassaraged'));
         var saleemployee = ifToDo($('#saleemployeearaged'));
@@ -369,39 +343,40 @@
                         ]
                     },
                     columns: [
-                        {
-                            dataField: "Row",
-                            caption: "Row"
-                        },
+                        //{
+                        //    dataField: "Row",
+                        //    caption: "Row"
+                        //},
 
-                        {
-                             dataField: "CardCode",
-                                caption: "CardCode"
-                        },
+                            {
+                                 dataField: "CardCode",
+                                    caption: "Customer Code"
+                            },
 
                             {
                                 dataField: "CardName",
-                                caption: "CardName"
+                                caption: "Customer Name"
+                            },
+                            {
+                                dataField: "GroupName",
+                                caption: "Customer Class"
                             },
                             {
                                 dataField: "Region",
                                 caption: "Region"
                             },
-                            {
-                                dataField: "GroupName",
-                                caption: "GroupName"
-                            },
+                            
                             {
                                 dataField: "Doc",
                                 caption: "Doc"
                             },
                             {
                                 dataField: "SalePerson",
-                                caption: "SalePerson"
+                                caption: "Sale Person"
                             },
                             {
                                 dataField: "SysInvoice",
-                                caption: "SysInvoice"
+                                caption: "Invoice Ref"
                             },
                             {
                                 dataField: "DO",
@@ -409,11 +384,11 @@
                             },
                             {
                                 dataField: "Invoice",
-                                caption: "Invoice"
+                                caption: "Invoice #"
                             },
                             {
                             dataField: "INVDATE",
-                            caption:"INVDATE",
+                            caption:"Invoice Date",
                             //alignment: "right",
                             dataType: "date",
                             //width: 120,
@@ -448,7 +423,7 @@
                             },
                             {
                                 dataField: "Balance",
-                                caption: "Balance"
+                                caption: "Total"
                             },
                             {
                                 dataField: "Current",
@@ -456,44 +431,25 @@
                             },
                             {
                                 dataField: "ThirtyFirst_To_Sixty",
-                                caption: "ThirtyFirst_To_Sixty"
+                                caption: "30-60"
                             },
                             {
                                 dataField: "SixtyFirst_To_Ninety",
-                                caption: "SixtyFirst_To_Ninety"
+                                caption: "61-90"
                             },
                             {
                                 dataField: "NinetyFirst_To_OneHundredTwenty",
-                                caption: "NinetyFirst_To_OneHundredTwenty"
+                                caption: "91-120"
                             },
                             {
                                 dataField: "OneHundred_TwentyFirst_Till",
-                                caption: "OneHundred_TwentyFirst_Till"
+                                caption: "Over 120"
                             },
                             {
                                 dataField: "ItemGroup",
-                                caption: "ItemGroup"
+                                caption: "Item Group"
                             },
-                            {
-                                dataField: "Model",
-                                caption: "Model"
-                            },
-                            {
-                                dataField: "DocTotal",
-                                caption: "DocTotal"
-                            },
-                            {
-                                dataField: "GroupCode",
-                                caption: "GroupCode"
-                            },
-                            {
-                                dataField: "SlpCode",
-                                caption: "SlpCode"
-                            },
-                            {
-                                dataField: "Reconsum",
-                                caption: "Reconsum"
-                            },
+                           
                     ],
 
                 });
