@@ -7,22 +7,15 @@
       "sslPort": 0
     },
     "iisExpress": {
-      "applicationUrl": "http://localhost:25592/",
-      "sslPort": 0
+      "applicationUrl": "http://localhost:1034/",
+      "sslPort": 44329
     }
   },
   "profiles": {
     "Start": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "ErrorString": "Invalid property identifier character: <. Path 'profiles.Start.launchBrowser', line 14, position 0."
-    },
-    "tengkimleang": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 10, position 0."
     }
   }
 }

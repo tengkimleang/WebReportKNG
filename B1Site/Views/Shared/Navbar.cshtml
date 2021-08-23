@@ -25,7 +25,7 @@
             setCookie = "en";
         }
         B1Site.Connection.ClsCRUD clsCRUD = new B1Site.Connection.ClsCRUD();
-        var dt = clsCRUD.GetdataWebDb("SELECT * FROM Tb_Report WHERE Active=1 AND LanguageType='"+setCookie+"'", "WebDb");
+        var dt = clsCRUD.GetdataWebDb("SELECT * FROM Tb_Report WHERE Active=1 AND LanguageType='" + setCookie + "'", "WebDb");
         foreach (System.Data.DataRow a in dt.Rows)
         {
             try
@@ -33,8 +33,8 @@
                 menus.Add(new B1Site.Models.Share.Menu
                 {
                     Name = a[3].ToString(),
-                    Action=a[1].ToString(),
-                    Controller=a[2].ToString()
+                    Action = a[1].ToString(),
+                    Controller = a[2].ToString()
                 });
             }
             catch (Exception ex)
