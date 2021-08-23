@@ -137,58 +137,6 @@
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
-    loadReport(today, today);
-    $('#btnRunReport').click(function () {
-        var datefrom = $('#datefrom').val();
-        var dateto = $('#dateto').val();
-        if (datefrom == '' || datefrom == null) {
-            datefrom = today;
-        }
-        if (dateto == '' || dateto == null) {
-            dateto = today;
-        }
-        var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySaleEmployee = ifToDo($('#bySaleEmployee'));
-        var byCategory = ifToDo($('#byCategory'));
-        var byCustomerClass = ifToDo($('#byCustomerClass'));
-        var byLocation = ifToDo($('#byLocation'));
-        var byInventoryID = ifToDo($('#byInventoryID'));
-        var byCustomerID = ifToDo($('#byCustomerID'));
-        var bySource = ifToDo($('#bySource'));
-        var byWarehouse = ifToDo($('#byWarehouse'));
-        loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-            byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
-    });
-    function filterData() {
-        var datefrom = $('#datefrom').val();
-        var dateto = $('#dateto').val();
-        if (datefrom == '' || datefrom==null) {
-            datefrom = today;
-        }
-        if (dateto == '' || dateto == null) {
-            dateto = today;
-        }
-        var byItemGroup = ifToDo($('#byItemGroup'));
-        var bySaleEmployee = ifToDo($('#bySaleEmployee'));
-        var byCategory = ifToDo($('#byCategory'));
-        var byCustomerClass = ifToDo($('#byCustomerClass'));
-        var byLocation = ifToDo($('#byLocation'));
-        var byInventoryID = ifToDo($('#byInventoryID'));
-        var byCustomerID = ifToDo($('#byCustomerID'));
-        var bySource = ifToDo($('#bySource'));
-        var byWarehouse = ifToDo($('#byWarehouse'));
-        loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-            byCustomerClass, byLocation, byInventoryID, byCustomerID, bySource, byWarehouse);
-    }
-    function ifToDo(condition) {
-        if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
-            return "";
-        } else {
-            return condition.val();
-        }
-    }
-
-    var URL = "https://js.devexpress.com/Demos/Mvc/api/DataGridWebApi/Orders";
 
     var ordersStore = new DevExpress.data.CustomStore({
         key: "id",
@@ -233,30 +181,6 @@
         }),
         sort: "name"
     }
-    @*function loadData() {
-        $.ajax({
-            url: '@Url.Action("GetLanguageTypeDatabases", "Home")',
-            type: "GET",
-            dataType: "JSON",
-            beforeSend: function () {
-               // loadPanel.show();
-            },
-            success: function (data) {
-                console.log(data);
-                return data;
-                //languageType = [];
-                //var aa1 = {};
-                //for (var i = 0; i < data.length; i++)
-                //{
-                //    aa1.id = data[i].id;
-                //    aa1.name = data[i].name;
-                //    languageType.push(aa1);
-                //}
-                //console.log(languageType);
-            }
-        });
-
-    }*@
     loadReport();
     function loadReport() {
         var loadPanel = $(".loadpanel").dxLoadPanel({

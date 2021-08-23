@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace B1Site.wwwroot.css
+namespace B1Site.Models.Share
 {
-    public class ARAgedOustanding
+    public class Menu
     {
+        public string Name { get; set; }
     }
 }
