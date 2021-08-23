@@ -149,7 +149,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 ">
-                    <button class="btn btn-xs btn-kernel" id="btnRunReport">@localizer["Filter"]</button>
+                    <button class="btn btn-xs btn-kernel" id="btnRunReport">@localizer["Run"]</button>
                 </div>
             </div>
             <div class="row">
@@ -258,7 +258,7 @@
         var byItemscode = ifToDo($('#byItemscode'));
         var byCustomerID = ifToDo($('#bycustomerid'));
         var bySource = ifToDo($('#bySource'));
-        alert(bySource);
+/*        alert(bySource);*/
         loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
              byInventoryID,byItemscode, byCustomerID, bySource);
     });
@@ -415,30 +415,74 @@
                                     type: "decimal",
                                     precision: 3
                                 }
+                            },
+                            {
+                                column: "DisAmount",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                                format: {
+                                    type: "decimal",
+                                    precision: 3
+                                }
+                            },
+                            {
+                                column: "Quanlity",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                            },
+                            {
+                                column: "TotalAmount",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                            },
+                            {
+                                column: "TotalDiscountAmount",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                            },
+                            {
+                                column: "NetAmount",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                            },
+                            {
+                                column: "COGSAmount",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                            },
+                            {
+                                column: "GrossProfit",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
+                            },
+                             {
+                                 column: "Margin",
+                                displayFormat: "{0}$",
+                                summaryType: "sum",
                             }
                         ]
                     },
                     columns: [
-                        {
-                            dataField: "Cardcode",
-                            caption: "CardCode "
-                        },
+                        //{
+                        //    dataField: "Cardcode",
+                        //    caption: "CardCode "
+                        //},
                         {
                             dataField: "CustomerCode",
                             caption: "Customer Code"
                         },
-                        {
-                            dataField: "CarName",
-                            caption: "CardName"
-                        },
-                        {
-                            dataField: "CustomerGroup",
-                            caption: "Customer Group"
-                        },
-                        {
-                            dataField: "CustomerGrade",
-                            caption: "Customer Grade"
-                        },
+                        //{
+                        //    dataField: "CarName",
+                        //    caption: "CardName"
+                        //},
+                        //{
+                        //    dataField: "CustomerGroup",
+                        //    caption: "Customer Group"
+                        //},
+                        //{
+                        //    dataField: "CustomerGrade",
+                        //    caption: "Customer Grade"
+                        //},
                         {
                             dataField: "Stae",
                             caption: "Stae"
@@ -469,36 +513,36 @@
                         //},
                         {
                             dataField: "Saler",
-                            caption: "Saler"
+                            caption: "Sale Employee"
                         },
                         {
                             dataField: "SONo",
-                            caption: "SONo"
+                            caption: "Invoice #"
                         },
-                        {
-                            dataField: "DONo",
-                            caption: "DONo"
-                        },
-                        {
-                            dataField: "InvNo",
-                            caption: "InvNo"
-                        },
-                        {
-                            dataField: "InvDate ",
-                            caption: "Inv Date ",
-                            format: { minimumSignificantDigits: 3, }
-                        },
+                        //{
+                        //    dataField: "DONo",
+                        //    caption: "DONo"
+                        //},
+                        //{
+                        //    dataField: "InvNo",
+                        //    caption: "InvNo"
+                        //},
+                        //{
+                        //    dataField: "InvDate ",
+                        //    caption: "Inv Date ",
+                        //    format: { minimumSignificantDigits: 3, }
+                        //},
                         {
                             dataField: "Status",
                             caption: "Status"
                         },
                         {
                             dataField: "Group",
-                            caption: "Group"
+                            caption: "Manufacture"
                         },
                         {
                             dataField: "Product",
-                            caption: "Product"
+                            caption: "Item Group"
                         },
                         {
                             dataField: "InventeryId",
@@ -510,35 +554,35 @@
                         },
                         {
                             dataField: "ItemsName",
-                            caption: "Items Name"
+                            caption: "Decription"
                         },
                         {
                             dataField: "U_Source",
-                            caption: "U_Source "
+                            caption: "Source"
                         },
                         {
                             dataField: "SubCategory",
-                            caption: "Sub Category"
+                            caption: "Category"
                         },
                         {
                             dataField: "U_SubCategory",
-                            caption: "U_Sub Category"
+                            caption: "Sub-Category"
                         },
                         {
                             dataField: "U_Movement",
-                            caption: "U_Movement"
+                            caption: "Movement"
                         },
                         {
                             dataField: "U_Condition",
-                            caption: "U_Condition"
+                            caption: "Condition"
                         },
                         {
                             dataField: "U_Model",
-                            caption: "U_Model"
+                            caption: "Model"
                         },
                         {
                             dataField: "U_Year",
-                            caption: "U_Year"
+                            caption: "Year"
                         },
                         {
                             dataField: "Location",
@@ -546,7 +590,7 @@
                         },
                         {
                             dataField: "Deparment",
-                            caption: "Deparment"
+                            caption: "Department"
                         },
                         {
                             dataField: "Promotion",
@@ -554,11 +598,11 @@
                         },
                         {
                             dataField: "Warranly",
-                            caption: "Warranly"
+                            caption: "Warranty"
                         },
                         {
                             dataField: "whs",
-                            caption: "whs"
+                            caption: "Unit Price"
                         },
                         {
                             dataField: "Price",
@@ -566,11 +610,11 @@
                         },
                         {
                             dataField: "DisAmount",
-                            caption: "Dis Amount"
+                            caption: "Dis.Price"
                         },
                         {
                             dataField: "Quanlity",
-                            caption: "Quanlity"
+                            caption: "Q'ty"
                         },
                         {
                             dataField: "TotalAmount",
@@ -578,7 +622,7 @@
                         },
                         {
                             dataField: "TotalDiscountAmount",
-                            caption: "Total DiscountAmount"
+                            caption: "Total Dis. Amount"
                         },
                         {
                             dataField: "NetAmount",
@@ -586,7 +630,7 @@
                         },
                         {
                             dataField: "COGSAmount",
-                            caption: "COGS Amount"
+                            caption: "COGS"
                         },
                         {
                             dataField: "GrossProfit",
@@ -594,16 +638,16 @@
                         },
                         {
                             dataField: "Margin",
-                            caption: "Margin"
+                            caption: "Margin(%)"
                         },
-                        {
-                            dataField: "InvntryUom",
-                            caption: "Invntry Uom"
-                        },
-                        {
-                            dataField: "ItemsGroupforSV",
-                            caption: "Items GroupforSV"
-                        },
+                        //{
+                        //    dataField: "InvntryUom",
+                        //    caption: "Invntry Uom"
+                        //},
+                        //{
+                        //    dataField: "ItemsGroupforSV",
+                        //    caption: "Items GroupforSV"
+                        //},
                     ],
                 });
                 //btn_filter.removeClass("fa-spinner fa-spin");
