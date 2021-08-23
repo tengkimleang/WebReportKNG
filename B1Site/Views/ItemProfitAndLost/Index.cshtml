@@ -123,7 +123,7 @@
                     <label class="lable_dateto">@localizer["DateTo"]</label>
                     <input type="date" class="input_datefrom" id="dateto" />
                 </div>
-                <div class="col-md-2">
+                @*<div class="col-md-2">
                     <label class="lable_caption">@localizer["ByItemGroup"]</label>
                     <select typeof="text" class="input_combobox" id="byItemGroup">
                         <option value="0">All ItemGroup</option>
@@ -134,8 +134,8 @@
                             }
                         }
                     </select>
-                </div>
-                <div class="col-md-2">
+                </div>*@
+                @*<div class="col-md-2">
                     <label class="lable_caption">@localizer["BySalePerson"]</label>
                     <select typeof="text" class="input_combobox" id="bySaleMan">
                         <option value="0">ALL SalePerson</option>
@@ -146,12 +146,12 @@
                             }
                         }
                     </select>
-                </div>
+                </div>*@
                 <div class="col-md-4">
                     <button class="btn btn-xs btn-kernel" id="btnRunReport">@localizer["Run"]</button>
                 </div>
 
-                <div class="col-md-2">
+                @*<div class="col-md-2">
                     <label class="lable_caption">@localizer["ByCategory"]</label>
                     <select typeof="text" class="input_combobox" id="byCategory">
                         <option class="0">ALl Category</option>
@@ -162,8 +162,8 @@
                             }
                         }
                     </select>
-                </div>
-                <div class="col-md-2">
+                </div>*@
+                @*<div class="col-md-2">
                     <label class="lable_caption">@localizer["ByInventoryUoM"]</label>
                     <select typeof="text" class="input_combobox" id="byInventoryUoM">
                         <option class="0">All InventoryUoM</option>
@@ -174,8 +174,8 @@
                             }
                         }
                     </select>
-                </div>
-                <div class="col-md-2">
+                </div>*@
+                @*<div class="col-md-2">
                     <label class="lable_caption">@localizer["ByItemCode"]</label>
                     <select typeof="text" class="input_combobox" id="byItemCode">
                         <option class="0">ALl Items Master Data</option>
@@ -186,8 +186,8 @@
                             }
                         }
                     </select>
-                </div>
-                <div class="col-md-2">
+                </div>*@
+                @*<div class="col-md-2">
                     <label class="lable_caption">@localizer["ByCardCode"]</label>
                     <select typeof="text" class="input_combobox" id="byCardCode">
                         <option class="0">ALL BP Master Data</option>
@@ -198,8 +198,8 @@
                             }
                         }
                     </select>
-                </div>
-                <div class="col-md-2">
+                </div>*@
+                @*<div class="col-md-2">
                     <label class="lable_caption">@localizer["BySource"]</label>
                     <select typeof="text" class="input_combobox" id="bySource">
                         <option class="0">ALl Source</option>
@@ -210,7 +210,7 @@
                             }
                         }
                     </select>
-                </div>
+                </div>*@
             </div>
             <!--End Filter Report-->
             <!--Load Panel-->
@@ -256,7 +256,6 @@
         var byItemCode = ifToDo($('#byItemCode'));
         var byCardCode = ifToDo($('#byCardCode'));
         var bySource = ifToDo($('#bySource'));
-        alert(byItemGroup);
         loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
             byInventoryUoM, byItemCode, byCardCode, bySource);        
     });
@@ -318,7 +317,6 @@
             },
             success: function (data) {
                 loadPanel.hide();
-                alert("HI"+byItemGroup+"HELLO");
                 $("#gridContainer").dxDataGrid({
                     dataSource: data,
                     loadPanel: {

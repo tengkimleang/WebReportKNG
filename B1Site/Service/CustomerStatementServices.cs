@@ -35,7 +35,7 @@ namespace B1Site.Service
             {
                 customer = "";
             }
-            var dt = clsCRUD.Getdata("EXEC [CUSTOMER_AGING_DETIAL_PAYMENT_CUSTOMERSTATEMENT] '" + agingdate.ToString("yyyy-MM-dd") + "','" + customer + "'");
+            var dt = clsCRUD.Getdata("EXEC [CUSTOMER_AGING_DETIAL_PAYMENT_CUSTOMERSTATEMENT_WebReport] '" + agingdate.ToString("yyyy-MM-dd") + "','" + customer + "'");
             List<CustomerStatement> customerStatementsList = new List<CustomerStatement>();
             foreach (DataRow a in dt.Rows)
             {
