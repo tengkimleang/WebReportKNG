@@ -82,6 +82,7 @@ namespace B1Site
             services.AddScoped<IFinaceSaleReportService, FanaceSaleReportService>();
             services.AddScoped<IExspenReportService, ExspenReprotService>();
             services.AddScoped<IFinanceInventoryReportService, FinanceInventoryReportService>();
+            services.AddScoped<IItemProfitAndLostService, ItemProfitAndLostService>();
             #endregion
         }
 

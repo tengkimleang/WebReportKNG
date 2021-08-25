@@ -25,8 +25,8 @@ namespace B1Site.Controllers
         }
         #endregion
         #region Get Data From ajax
-
-        public async Task<string> GetItemProfitAndLostAsync(DateTime datefrom,DateTime dateto)
+        [HttpGet]
+        public async Task<string> GetItemProfitAndLostsAsync(DateTime datefrom,DateTime dateto)
         {
             return await itemProfitAndLostService.GetItemProfitAndLostAsync(datefrom, dateto);
         }

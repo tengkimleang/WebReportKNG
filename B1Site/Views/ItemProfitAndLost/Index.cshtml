@@ -110,17 +110,17 @@
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
         <div class="card-header">
-            @localizer["ItemProfitAndLost"]
+            @localizer["Item Profit And Lost"]
         </div>
         <div class="card-body">
             <!--Filter-->
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateFrom"]</label>
+                    <label class="lable_datefrom">@localizer["Date From"]</label>
                     <input type="date" class="input_datefrom" id="datefrom" />
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_dateto">@localizer["DateTo"]</label>
+                    <label class="lable_dateto">@localizer["Date To"]</label>
                     <input type="date" class="input_datefrom" id="dateto" />
                 </div>
                 @*<div class="col-md-2">
@@ -256,8 +256,8 @@
         var byItemCode = ifToDo($('#byItemCode'));
         var byCardCode = ifToDo($('#byCardCode'));
         var bySource = ifToDo($('#bySource'));
-        loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-            byInventoryUoM, byItemCode, byCardCode, bySource);        
+       // alert(datefrom);
+        loadReport(datefrom, dateto);        
     });
     function filterData() {
         var datefrom = $('#datefrom').val();
@@ -275,8 +275,7 @@
         var byItemCode = ifToDo($('#byItemCode'));
         var byCardCode = ifToDo($('#byCardCode'));
         var bySource = ifToDo($('#bySource'));        
-            loadReport(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory,
-            byInventoryUoM, byItemCode, byCardCode, bySource);        
+            loadReport(datefrom, dateto);        
      
     }
     function ifToDo(condition) {
@@ -298,7 +297,7 @@
             closeOnOutsideClick: false,
         }).dxLoadPanel("instance");
         $.ajax({
-            url: '@Url.Action("GetItemProfitAndLost", "ItemProfitAndLost")',
+            url: '@Url.Action("GetItemProfitAndLosts", "ItemProfitAndLost")',
             type: "GET",
             data: {
                 datefrom: datefrom,
@@ -419,10 +418,10 @@
                     columns: [
                         {
                             dataField: "No",
-                            caption: "#No"
+                            caption: "No"
                         },
                         {
-                            dataField: "CardCode",
+                            dataField: "CarCode",
                             caption: "Customer Code"
                         },
                         {
@@ -430,72 +429,96 @@
                             caption: "Customer Name"
                         },
                         {
-                            dataField: "BPGroup",
+                            dataField: "CustomerGroup",
                             caption: "Customer Group"
                         },
                         {
-                            dataField: "BPCategory",
+                            dataField: "CustomerGrade",
                             caption: "Customer Category"
                         },
                         {
-                            dataField: "Grade",
-                            caption:"Customer Grade"
-                        },
-                        {
-                            dataField: "Region",
+                            dataField: "State",
                             caption: "Region"
                         },
                         {
-                            dataField: "SalePerson",
-                            caption: "Sale Person"
+                            dataField: "Saler",
+                            caption: "Sale Employee"
+                        },
+                        {
+                            dataField: "SONo",
+                            caption: "SO #"
+                        },
+                        {
+                            dataField: "DONo",
+                            caption: "Doc #"
+                        },
+                        {
+                            dataField: "InvNo",
+                            caption: "Invoice #"
                         },
                         {
                             dataField: "InvDate",
-                            caption: "Invoice Date "
+                            caption: "Invoice Date"
+                        },
+                        {
+                            dataField: "Status",
+                            caption: "Status"
                         },
                         {
                             dataField: "Group",
                             caption: "Group"
                         },
                         {
-                            dataField: "ItemGroup",
-                            caption: "Items Group "
+                            dataField: "Product",
+                            caption: "Product"
                         },
                         {
-                            dataField: "Items Code",
-                            caption: "ItemCode"
+                            dataField: "InventeryID",
+                            caption: "Inventery ID"
                         },
                         {
-                            dataField: "ItemCode",
-                            caption: "Items Code "
+                            dataField: "VendorCode",
+                            caption: "Vendor Code"
                         },
                         {
-                            dataField: "Description",
-                            caption: "Description"
+                            dataField: "ItemsName",
+                            caption: "Items Name"
                         },
                         {
-                            dataField: "Source",
+                            dataField: "U_Source",
                             caption: "Source"
                         },
                         {
-                            dataField: "Category",
+                            dataField: "SubCategory",
                             caption: "Category"
                         },
                         {
-                            dataField: "SubCategory",
-                            caption: "Sub Category "
+                            dataField: "U_SubCategory",
+                            caption: " Sub-Category"
                         },
                         {
-                            dataField: "Movement",
+                            dataField: "U_Movement",
                             caption: "Movement"
                         },
                         {
-                            dataField: "Codition",
-                            caption: "Codition"
+                            dataField: "U_Condition",
+                            caption: "Condition"
                         },
                         {
-                            dataField: "Year",
+                            dataField: "U_Model",
+                            caption: "Model"
+                        },
+                        {
+                            dataField: "U_Year",
                             caption: "Year"
+                        },
+                        {
+                            dataField: "Location",
+                            caption: "Location"
+                        },
+                        {
+                            dataField: "Department",
+                            caption: "Department"
                         },
                         {
                             dataField: "Promotion",
@@ -506,35 +529,35 @@
                             caption: "Warranty"
                         },
                         {
-                            dataField: "Quantity",
-                            caption: "Quantity"
+                            dataField: "Whs",
+                            caption: "warehouse"
                         },
                         {
                             dataField: "Price",
                             caption: "Price"
                         },
                         {
-                            dataField: "Discount",
-                            caption: "Discount"
+                            dataField: "DisAmount",
+                            caption: "Dis Amount"
                         },
                         {
-                            dataField: "NetAmount",
-                            caption: "NetAmount"
+                            dataField: "Quality",
+                            caption: "Quality"
                         },
                         {
                             dataField: "TotalAmount",
                             caption: "Total Amount"
                         },
                         {
-                            dataField: "TotalDiscount",
-                            caption: "Total Discount"
+                            dataField: "TotalDiscountAmount",
+                            caption: "Total Discount Amount"
                         },
                         {
-                            dataField: "TotalNetAmount",
-                            caption: "Total NetAmount"
+                            dataField: "NetAmount",
+                            caption: "Net Amount"
                         },
                         {
-                            dataField: "COGS",
+                            dataField: "COGSAmount",
                             caption: "COGS"
                         },
                         {
@@ -543,39 +566,23 @@
                         },
                         {
                             dataField: "Margin",
-                            caption: "Margin"
+                            caption: "Margin (%)"
                         },
                         {
-                            dataField: "SONum",
-                            caption: "SO Num"
+                            dataField: "InvntryUom",
+                            caption: "Invntry Uom"
                         },
                         {
-                            dataField: "Shipment",
-                            caption: "Shipment"
+                            dataField: "ItemsGroupforSV",
+                            caption: "Items Group for SV"
                         },
                         {
-                            dataField: "InvoiceNo",
-                            caption: "Invoice No"
+                            dataField: "Name",
+                            caption: "Name"
                         },
                         {
-                            dataField: "Status",
-                            caption: "Status"
-                        },
-                        {
-                            dataField: "UoM",
-                            caption: "UoM"
-                        },
-                        {
-                            dataField: "Location",
-                            caption: "Location"
-                        },
-                        {
-                            dataField: "Warehouse",
-                            caption: "Warehouse"
-                        },
-                        {
-                            dataField: "Department",
-                            caption: "Department"
+                            dataField: "BPCategory",
+                            caption: "BP Category"
                         },
                     ],
                 });
