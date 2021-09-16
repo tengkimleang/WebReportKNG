@@ -1,0 +1,104 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
+    ViewData["Title"] = "CreateUser";
+}
+
+<div class="content-header" style="padding-bottom:0px;">
+    <div class="widget-loadscreen" style="display: none;">
+        <img src="~/image/loading.gif">
+    </div>
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@localizer["User"]</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-action="CreateUser" asp-controller="Home">@localizer["Create User"]</a></li>
+                    <li class="breadcrumb-item"><a asp-action="UserList" asp-controller="Home">@localizer["List User"]</a></li>
+                    <li class="breadcrumb-item active">@localizer["User"]</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col-12">
+                            <img src="~/image/SAPlogo.png" class="img-fluid img-circle">
+                        </div>
+                        <div class="col-12" style="margin-top:10px">
+                            <center>
+                                <button type="button" class="btn btn-primary">Image Upload</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="row">
+                        <div class="col">
+                            First Name
+                            <input type="text" class="form-control" placeholder="First name" aria-label="First name"><br />
+                            Date Of Birth
+                            <input type="date" class="form-control"><br />
+                            Place Of Birth
+                            <textarea class="form-control" placeholder="Place Of Birth" id="floatingTextarea"></textarea><br />
+                            Position
+                            <input type="text" class="form-control" placeholder="First name" aria-label="First name"><br />
+                            Email
+                            <input type="text" class="form-control" placeholder="Email" aria-label="First name">
+                        </div>
+                        <div class="col">
+                            Last Name
+                            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"><br />
+                            Tel
+                            <input type="text" class="form-control" placeholder="Tel" aria-label="First name"><br />
+                            Address
+                            <textarea class="form-control" placeholder="Address" id="floatingTextarea"></textarea><br />
+                            Department
+                            <select class="form-control">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select><br /><br />
+                            <button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#modalPermission">Permission</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="float-right">
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal-->
+<!-- Modal -->
+<div class="modal fade" id="modalPermission" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Permission</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal-->

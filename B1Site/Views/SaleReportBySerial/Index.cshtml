@@ -100,7 +100,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["SaleDailyReportbySerailNumber"]</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SaleDialyReport">@localizer["Sale Report by SerialNumber"]</a></li>
                     <li class="breadcrumb-item active">@localizer["Reporting"]</li>
                 </ol>
             </div><!-- /.col -->
@@ -110,21 +110,21 @@
 <div class="container" style="padding: 15px;padding-top:0px;">
     <div class="card">
         <div class="card-header">
-            @localizer["SalesReportbySerialNumber"]
+            @localizer["Sale Report by SerialNumber"]
         </div>
         <div class="card-body">
             <!--Filter-->
             <div class="row">
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateFrom"]</label>
+                    <label class="lable_datefrom">@localizer["Date From"]</label>
                     <input type="date" class="input_datefrom" id="datefrom1">
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_datefrom">@localizer["DateTo"]</label>
+                    <label class="lable_datefrom">@localizer["Date To"]</label>
                     <input type="date" class="input_datefrom" id="dateto1">
                 </div>
                 <div class="col-md-2">
-                    <label class="lable_branch">@localizer["ByItemGroup"]</label>
+                    <label class="lable_branch">@localizer["By ItemGroup"]</label>
                     <select type="text" class="input_branch" id="byItemGroup">
                         <option value="0">All ItemGroup</option>
                         @{
@@ -148,7 +148,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 ">
-                    <button class="btn btn-xs btn-kernel" id="btnRunReport1">@localizer["RUN"]</button>
+                    <button class="btn btn-xs btn-kernel" id="btnRunReport1">@localizer["Run"]</button>
                 </div>
             </div>
             <div class="row">
@@ -411,7 +411,7 @@
                                 summaryType: "sum"
                             },
                             {
-                                column: "qulity",
+                                column: "Qulity",
                                 summaryType: "sum"
                             }
                         ]
@@ -419,7 +419,7 @@
                     columns: [
                         {
                             dataField: "InvoiceDate",
-                            caption: "InvoiceDate",
+                            caption: "Invoice Date",
                             alignment: "right",
                             dataType: "date",
                             width: 120,
@@ -441,63 +441,63 @@
                                 }
                             }
                         },
-                        {
-                            dataField: "SysiNvoice",
-                            caption: "SysiNvoice"
-                        },
+                        //{
+                        //    dataField: "SysiNvoice",
+                        //    caption: "Sys Invoice"
+                        //},
                         {
                             dataField: "Invoice",
-                            caption: "Invoice"
+                            caption: "Invoice #"
                         },
                         {
                             dataField: "Cardcode",
-                            caption: "Cardcode"
+                            caption: "Customer Code"
                         },
                         {
                             dataField: "CardName",
-                            caption: "CardName"
+                            caption: "Customer Name"
                         },
                         {
                             dataField: "GroupName",
-                            caption: "GroupName"
+                            caption: "Customer Group"
                         },
-                        {
-                            dataField: "ItmsGroup",
-                            caption: "ItmsGroup"
-                        },
+                        //{
+                        //    dataField: "ItmsGroup",
+                        //    caption: "Itms Group"
+                        //},
                         {
                             dataField: "Vendorcode",
-                            caption: "Vendorcode"
+                            caption: "Vendor Code"
                         },
                         {
                             dataField: "Decritions",
-                            caption: "Decritions"
+                            caption: "Description"
                         },
 
-                        {
-                            dataField: "OrcName",
-                            caption: "OrcName"
-                        },
-                        {
-                            dataField: "U_Color",
-                            caption: "U_Color"
-                        },
+                        //{
+                        //    dataField: "OrcName",
+                        //    caption: "Location"
+                        //},
+                        //{
+                        //    dataField: "U_Color",
+                        //    caption: "U_Color"
+                        //},
                         {
                             dataField: "Qulity",
-                            caption: "Qulity"
+                            caption: "Q'ty"
                         },
                         {
                             dataField: "Intrserail",
-                            caption: "Intrserail"
+                            caption: "Serial No."
                         },
-                        {
-                            dataField: "Price",
-                            caption: "Price"
-                        },
-                        {
-                            dataField: "Saleemployee",
-                            caption: "Saleemployee"
-                        },
+                        //{
+                        //    dataField: "Price",
+                        //    caption: "Price"
+                        //},
+                        //{
+                        //    dataField: "Saleemployee",
+                        //    caption: "Sale employee"
+                        //},
                     ],
                 });
                 //btn_filter.removeClass("fa-spinner fa-spin");

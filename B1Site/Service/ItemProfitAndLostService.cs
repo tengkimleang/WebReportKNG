@@ -125,6 +125,13 @@ namespace B1Site.Service
         public Task<string> GetItemProfitAndLostAsync(DateTime datefrom, DateTime dateto, string byitemgroup, string bysaleperson, string bycategory, string byUom, string byitemcode, string bycardcode, string bysource)
         {
             ClsCRUD clsCRUD = new ClsCRUD();
+            byitemgroup = ((string.IsNullOrEmpty(byitemgroup) || byitemgroup == "0") ? "" : byitemgroup);
+            bysaleperson =((string.IsNullOrEmpty(bysaleperson) || bysaleperson=="0") ? "" : bysaleperson);
+            bycategory =((string.IsNullOrEmpty(bycategory)||bycategory=="0") ? "" : bycategory);
+            byUom = ((string.IsNullOrEmpty(byUom)||byUom=="") ? "" : byUom);
+            byitemcode = ((string.IsNullOrEmpty(byitemcode) || byitemcode == "") ? "" : byitemcode);
+            bycardcode =((string.IsNullOrEmpty(bycardcode) || bycardcode =="") ? "" : bycardcode);
+            bycardcode = ((string.IsNullOrEmpty(bycardcode)|| bycardcode=="") ? "" : bycardcode);
             var dt = clsCRUD.Getdata("EXEC [dbo].[USP_Item_Profit_And_Lost_NEW_V1_Web] '" + datefrom.ToString("yyyy-MM-dd") + "','" + dateto.ToString("yyyy-MM-dd")
                 + "','" + byitemcode + "'" +
                 ",'" + bysaleperson + "'" +

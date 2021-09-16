@@ -46,28 +46,23 @@ namespace B1Site.Controllers
             return View(new MasterViewHome
             {
                 CompanyDatabases = await homeService.GetCompanyDatabasesAsync()
-            }); ;
-        }
-        public IActionResult UserList()
-        {
-
-            return View();
+            });
         }
         public IActionResult Index()
         {
             return View();
-            //if (HttpContext.Session.GetString("UserID") != "")
-            //{
-            //    return View();
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Login", "Home");
-            //}
         }
-        public async Task<IActionResult> AdministratorAsync()
+        public IActionResult AdministratorAsync()
+        {
+            return View();
+        }
+        public async Task<IActionResult> UserListAsync()
         {
             return View(await homeService.GetUsersAsync());
+        }
+        public IActionResult CreateUser() 
+        {
+            return View();
         }
         #endregion
         #region Ajax Post and Get

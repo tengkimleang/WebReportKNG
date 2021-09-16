@@ -3,102 +3,125 @@
     ViewData["Title"] = "Login";
     Layout = null;
 }
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#000000">
-    <title>@ViewData["Title"]</title>
-    <!-- <link rel="stylesheet" href="admin.css"> -->
-    <link rel="stylesheet" href="~/css/app-dark.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <style type="text/css">
-        .overflow-y-scroll {
-            overflow-y: scroll !important;
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link type="text/css" href="~/css/css.css" rel="Stylesheet" />
+    <title>SAP BusinessOne</title>
+    <script type="text/javascript">
+        if (self != top) {
+            top.location = self.location;
         }
-    </style>
+    </script>
 </head>
+<body>
+    <div id="login">
+        <div class="floater login_floater"></div>
+        <div class="clear center_box login_box_border">
+            <div class="login_box">
+                <div class="login_box_header">
+                    <div class="login_box_header_logo"></div>
+                    <div class="login_box_header_title"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="login_split"></div>
+                <div class="login_box_body">
+                    <div class="login_pic"></div>
+                    <div class="login_form">
+                        <div class="login_table">
+                            <div style="height: 20px"></div>
+                            <table class="domain_layer" style="display: none">
+                                <tr>
+                                    <td width="30%">Domain User</td>
+                                    <td width="70%"><input type="text" id="domain_user" value="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Password</td>
+                                    <td><input type="password" id="domain_password" /></td>
+                                </tr>
+                            </table>
 
-<body data-topbar="dark" data-layout="horizontal" data-sidebar-size="" data-layout-size="fluid" data-layout-scrollable="false" style="background-color:#E8F0FE;">
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">
-        <!-- <div class="home-btn d-none d-sm-block"><a class="text-dark" href="/">asdasd</a></div> -->
-        <div class="account-pages my-3 pt-sm-3">
-            <div class="container">
-                <div class="justify-content-center row">
-                    <div class="col-md-8 col-lg-6 col-xl-5">
-                        <div class="overflow-hidden card">
-                            <div class="bg-soft-primary">
-                                <div class="row">
-                                    <div class="col-7 col">
-                                        <div class="text-primary p-4">
-                                            <h5 class="text-primary">Welcome Back !</h5>
-                                            <p>Sign in to continue to.</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-5 align-self-end col"><img src="~/image/login1.png" alt="" class="img-fluid"></div>
+                            <table class="sbo_layer">
+                                <tr>
+                                    <td width="30%">Server</td>
+                                    <td width="70%"><select id="sbo_dbserver"><option>SAPB1</option></select></td>
+                                </tr>
+                                <tr>
+                                    <td>Company</td>
+                                    <td>
+
+                                        <input value="Refresh" id="refresh_company" type="button" style="width:66px" />
+                                        <select id="databaseSAP" style="width:63%">
+                                            @foreach (var a in Model.CompanyDatabases)
+                                            {
+                                                <option value="@a.DataBaseName">@a.DataBaseName</option>
+                                            }
+                                        </select>
+                                        <input type="text" id="sbo_custom_company" style="display:none" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>User ID</td>
+                                    <td><input type="text" id="Username" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Password</td>
+                                    <td><input type="password" id="Password" /></td>
+                                </tr>
+
+                            </table>
+                            <div style="height: 20px;margin-top: 10px">
+                                <input style="float:left" id="logon_by_domain" type="CHECKBOX" />
+                                <div style="float: left;margin-top:5px">Log on with Windows Domain User</div>
+                                <div style="float: right; width: 70px;">
+                                    <input id="logon_sbo_btn" type="button" value="Log On" />
                                 </div>
-                            </div>
-                            <div class="pt-0 card-body">
-                                <div>
-                                    <a href="/">
-                                        <div class="avatar-md profile-user-wid mb-4"><img src="~/image/SaplogoLogin.png" alt="" height="60%" width="100%" style="border: 0px solid rgba(85, 110, 230, .25);"></div>
-                                    </a>
-                                </div>
-                                <div class="p-2">
-                                    <form class="form-horizontal av-valid needs-validation" novalidate style="color: #a6b0cf;">
-                                        <div class="form-group">
-                                            <div class="form-group">
-                                                <label for="email" class="">Username</label>
-                                                <input required placeholder="Enter Username" id="Username" type="text" class="form-control is-untouched is-pristine av-valid form-control">
-                                                <div class="invalid-feedback">Require Username</div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="form-group">
-                                                <label for="password" class="">Password</label>
-                                                <input required placeholder="Enter Password" id="Password" type="password" class="is-untouched is-pristine av-valid form-control">
-                                                <div class="invalid-feedback">Require Password</div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="form-group">
-                                                <label for="password" class="">Select Company</label>
-                                                <select type="text" class="is-untouched is-pristine av-valid form-control" id="databaseSAP">
-                                                    @{
-                                                        foreach (var a in Model.CompanyDatabases)
-                                                        {
-                                                            <option value="@a.DataBaseName">@a.DataBaseName</option>
-                                                        }
-                                                    }
-                                                </select>
-                                                <div class="invalid-feedback">Require Password</div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-3">
-                                            <button class="btn btn-primary btn-block waves-effect waves-light" type="submit" style="background:rgb(6, 52, 83);border:1px solid rgb(6, 52, 83);">Log In</button>
-                                        </div>
-                                    </form>
-                                </div>
+                                <div class="clear"></div>
                             </div>
                         </div>
-                        <div class="mt-1 mt-sm-4 text-center" style="color: white;">
-                            <p>© 2021 Copy Right<i class="mdi mdi-heart text-danger"></i> by Kong Noung Group.,Co Ltd</p>
+                        <div>
+                            <div class="login_copyright" id="login_copyright"></div>
+                            <div class="sap_logo"></div>
+                            <div class="clear"></div>
                         </div>
                     </div>
+                    <div class="clear"></div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="fb-root" class=" fb_reset">
-        <div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
-            <div></div>
+
+    <div class="overlay" style="display: none"></div>
+    <div class="dialog_wrap" id="messagebox" style="display: none">
+        <div class="floater"></div>
+        <div class="clear center_box dialog">
+            <div class="dialog_title">
+                <div class="dialog_title_text">System Information</div>
+                <div class="dialog_title_close"></div>
+                <div class="clear"></div>
+            </div>
+            <div class="dialog_content" style="padding: 15px;"></div>
+            <div class="dialog_footer">
+                <div style="float: right;">
+                    <input type="button" value="OK" />
+                </div>
+            </div>
         </div>
     </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script>
-        var form = document.getElementsByClassName('needs-validation');
+
+    <div class="tooltip" id="tooltip" style="display: none"></div>
+    <div class="waiting_overlay" style="display: none">
+        <div class="floater"></div>
+        <div class="clear center_box waiting_log"></div>
+    </div>
+</body>
+<script type="text/javascript">
+    document.getElementById("login_copyright").innerHTML = "Copyright &copy; " + new Date().getFullYear() + " SAP SE. All rights reserved.";
+</script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+        @*var form = document.getElementsByClassName('needs-validation');
         var Validation = Array.prototype.filter.call(form, function (forms) {
         forms.addEventListener('submit', function (event) {
             if (forms.checkValidity() === false) {
@@ -106,28 +129,37 @@
             } else {
                 event.preventDefault();
                 $.ajax({
-                        url: '@Url.Action("GetLoginAdmin", "Home")',
+                    url: '@Url.Action("GetLoginAdmin", "Home")',
                     type: 'GET',
                     dataType: 'JSON',
                     data: { userName: $('#Username').val(), password: $('#Password').val(), databaseSAP: $('#databaseSAP').val()},
                     success: function (data) {
+                        console.log(data);
                         if (data.id != 0) {
                             window.location.href = '@Url.Action("Index", "Home")';
                         } else {
                             alert("login failed");
                         }
                     }
-                    });
+                });
             }
             forms.classList.add('was-validated');
-        }, false)
-        });
-        if (event.altKey == true && event.keyCode == 0) { alert("ALT + F4 being pressed"); }
-        function handleWindowClose() {
-            if ((window.event.clientX < 0) || (window.event.clientY < 0)) {
-                event.returnValue = "If you have made any changes to the fields without clicking the Save button, your changes will be lost.";
-            }
-        }
-    </script>
-</body>
+        }, false)*@
+            $('#logon_sbo_btn').click(function () {
+                 $.ajax({
+                    url: '@Url.Action("GetLoginAdmin", "Home")',
+                    type: 'GET',
+                    dataType: 'JSON',
+                    data: { userName: $('#Username').val(), password: $('#Password').val(), databaseSAP: $('#databaseSAP').val()},
+                    success: function (data) {
+                        console.log(data);
+                        if (data.id != 0) {
+                            window.location.href = '@Url.Action("Index", "Home")';
+                        } else {
+                            alert("login failed");
+                        }
+                    }
+                });
+            });
+</script>
 </html>

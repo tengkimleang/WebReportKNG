@@ -149,9 +149,81 @@
                         </div>
                     </div>
                     <div class="mr-2" >
-                        <button class="btn btn-xs btn-kernel" id="btnRunReportDailyCash" style="float:right;margin-right:33%">@localizer["Run"]</button>
+                        <button class="btn btn-xs btn-kernel" id="btnRunReportDailyCash" style="float:right;margin-right:33%">@localizer["Filter"]</button>
                     </div>
                 </div>
+              
+                <!--<div class="col-md-2">
+    <label class="lable_branch">@localizer["ByItemGroup"]</label>
+    <select type="text" class="input_branch" id="byItemGroup">
+        <option value="0">All ItemGroup</option>-->
+                @*@{
+            foreach (var a in Model.ItemGroupMasters)
+            {
+                <option value="@a.ItemGroup">@a.ItemGroup</option>
+            }
+        }*@
+                <!--</select>
+    </div>
+    <div class="col-md-2">
+        <label class="lable_branch">@localizer["By SaleEmployee"]</label>
+        <select type="text" class="input_branch" id="bySaleEmployee">
+            <option value="0">All Branch</option>
+            <option value="1">KHMER EDI</option>
+            <option value="2">Branch2</option>
+        </select>
+    </div>-->
+                @*<div class="row">
+            <div class="col-md-2">
+                <label class="lable_branch">@localizer["By Category"]</label>
+                <select type="text" class="input_branch" id="byCategory">
+                    <option value="0">All Branch</option>
+                    <option value="1">KHMER EDI</option>
+                    <option value="2">Branch2</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="lable_branch">@localizer["By CustomerClass"]</label>
+                <select type="text" class="input_branch" id="byCustomerClass">
+                    <option value="0">All Branch</option>
+                    <option value="1">KHMER EDI</option>
+                    <option value="2">Branch2</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="lable_branch">@localizer["By Location"]</label>
+                <select type="text" class="input_branch" id="byLocation">
+                    <option value="0">All Branch</option>
+                    <option value="1">KHMER EDI</option>
+                    <option value="2">Branch2</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="lable_branch">@localizer["By InventoryID"]</label>
+                <select type="text" class="input_branch" id="byInventoryID">
+                    <option value="0">All Branch</option>
+                    <option value="1">KHMER EDI</option>
+                    <option value="2">Branch2</option>
+                </select>
+            </div>
+        </div>*@
+
+                @*<div class="col-md-2">
+            <label class="lable_branch">@localizer["By Source"]</label>
+            <select type="text" class="input_branch" id="bySource">
+                <option value="0">All Branch</option>
+                <option value="1">KHMER EDI</option>
+                <option value="2">Branch2</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label class="lable_branch">@localizer["By Warehouse"]</label>
+            <select type="text" class="input_branch" id="byWarehouse">
+                <option value="0">All Branch</option>
+                <option value="1">KHMER EDI</option>
+                <option value="2">Branch2</option>
+            </select>
+        </div>*@
             </div>
             <!--End Filter-->
             <!--Bind Data to Grid-->
