@@ -21,7 +21,7 @@ namespace B1Site.Models.ARAgedOutstanding
         public string Aged { get; set; }
         public string Balance { get; set; }
         public string Current { get; set; }
-        public string ThirtyFirst_To_Sixty { get; set; }
+        public string Thirdty_To_Sixty { get; set; }
         public string SixtyFirst_To_Ninety { get; set; }
         public string NinetyFirst_To_OneHundredTwenty { get; set; }
         public string OneHundred_TwentyFirst_Till { get; set; }

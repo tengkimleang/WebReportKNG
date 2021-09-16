@@ -28,45 +28,73 @@ namespace B1Site.Service
         }
         #endregion
         #region Bind Data to report
-        public Task<string> GetCustomerstatementsAsync(DateTime agingdate, string customer)
+        public Task<List<CustomerStatement>> GetCustomerstatementsAsync(DateTime agingdate, string customer)
         {
             ClsCRUD clsCRUD = new ClsCRUD();
             if (customer == "0")
             {
                 customer = "";
             }
-            var dt = clsCRUD.Getdata("EXEC [CUSTOMER_AGING_DETIAL_PAYMENT_CUSTOMERSTATEMENT] '" + agingdate.ToString("yyyy-MM-dd") + "','" + customer + "'");
+            var dt = clsCRUD.Getdata("EXEC [USP_KNG_CUSTOMERSTATEMENT_Crystal_R1_WebReport] '" + customer + "','" + agingdate.ToString("yyyy-MM-dd") + "'");
             List<CustomerStatement> customerStatementsList = new List<CustomerStatement>();
+
             foreach (DataRow a in dt.Rows)
             {
                 customerStatementsList.Add(new CustomerStatement
                 {
                     CardCode = a[0].ToString(),
                     CardName = a[1].ToString(),
-                    Region = a[2].ToString(),
-                    DocType = a[3].ToString(),
-                    GroupName = a[4].ToString(),
-                    SLPName = a[5].ToString(),
+                    CardFName = a[2].ToString(),
+                    BPAddress = a[3].ToString(),
+                    BPPhone = a[4].ToString(),
+                    INVDATE = a[5].ToString(),
                     SysInvoice = a[6].ToString(),
-                    DO = a[7].ToString(),
-                    Invoice = a[8].ToString(),
-                    InvDate = Convert.ToDateTime(a[9].ToString()).ToString("yyyy-MM-dd"),
-                    Term = a[10].ToString(),
-                    Age = a[11].ToString(),
-                    Total = a[12].ToString(),
-                    Current = a[13].ToString(),
-                    ThirtyFirst_To_Sixty_Days = a[14].ToString(),
-                    SixtyFirst_To_Ninety_Days = a[15].ToString(),
-                    NinetyFirst_To_OneHundredTwenty_Days = a[16].ToString(),
-                    OneHundredTwentyOne_Untill_Days = a[17].ToString(),
-                    ItemGroup = a[18].ToString(),
-                    Model = a[19].ToString(),
-                    DocNum = a[19].ToString(),
-                    Type = a[20].ToString()
+                    Doc = a[7].ToString(),
+                    ItemGroup = a[8].ToString(),
+                    Aged = a[9].ToString(),
+                    Balance = a[10].ToString(),
+                    KEY1 = a[11].ToString(),
+                    System1Invoice = a[12].ToString(),
+                    TT2 = a[13].ToString(),
+                    TT4 = a[14].ToString(),
                 });
             }
-            return Task.FromResult(Utf8Json.JsonSerializer.ToJsonString(customer));
+            return Task.FromResult(customerStatementsList);
         }
         #endregion
+        Task<List<TestViewModel>> ICustomerStatementService.GetTestViewModelAsync(DateTime agingdate, string customer)
+        {
+            ClsCRUD clsCRUD = new ClsCRUD();
+            if (customer == "0")
+            {
+                customer = "";
+            }
+            var dt = clsCRUD.Getdata("EXEC [USP_KNG_CUSTOMERSTATEMENT_Crystal_R1_WebReport] '" + customer + "','" + agingdate.ToString("yyyy-MM-dd") + "'");
+            List<TestViewModel> testViewModelsList = new List<TestViewModel>();
+
+            foreach (DataRow a in dt.Rows)
+            {
+                testViewModelsList.Add(new TestViewModel
+                {
+                    CardCode = a[0].ToString(),
+                    CardName = a[1].ToString(),
+                    CardFName = a[2].ToString(),
+                    BPAddress = a[3].ToString(),
+                    BPPhone = a[4].ToString(),
+                    INVDATE = a[5].ToString(),
+                    SysInvoice = a[6].ToString(),
+                    Doc = a[7].ToString(),
+                    ItemGroup = a[8].ToString(),
+                    Aged = a[9].ToString(),
+                    Balance = a[10].ToString(),
+                    KEY1 = a[11].ToString(),
+                    System1Invoice = a[12].ToString(),
+                    TT2 = a[13].ToString(),
+                    TT4 = a[14].ToString(),
+                });
+            }
+            return Task.FromResult(testViewModelsList);
+        }
     }
 }
+

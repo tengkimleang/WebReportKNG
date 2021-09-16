@@ -9,6 +9,7 @@ namespace B1Site.Service
     public interface ICustomerStatementService
     {
          Task<List<CustomerMaster>> GetCustomerstatementsAsync();
-         Task<string> GetCustomerstatementsAsync(DateTime agingdate, string customer);
+         Task<List<CustomerStatement>> GetCustomerstatementsAsync(DateTime agingdate, string customer);
+         Task<List<TestViewModel>> GetTestViewModelAsync(DateTime agingdate, string customer);
     }
 }

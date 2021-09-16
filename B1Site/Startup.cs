@@ -7,13 +7,14 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+//using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Rotativa.AspNetCore;
 
 namespace B1Site
 {
@@ -83,10 +84,11 @@ namespace B1Site
             services.AddScoped<IExspenReportService, ExspenReprotService>();
             services.AddScoped<IFinanceInventoryReportService, FinanceInventoryReportService>();
             #endregion
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)//IHostingEnvironment
         {
             if (env.IsDevelopment())
             {
@@ -120,6 +122,7 @@ namespace B1Site
                                , Configuration.GetSection("ConnectionStrings:UserName").Value.ToString()
                                , Configuration.GetSection("ConnectionStrings:Password").Value.ToString());
             #endregion
+            RotativaConfiguration.Setup(env);
         }
     }
 }

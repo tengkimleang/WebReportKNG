@@ -1,8 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model List<B1Site.Models.CustomerStatement.CustomerStatement>
+@*@model B1Site.Models.CustomerStatement.CustomerStatement*@
+@{ Layout = null;}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,269 +23,350 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
+<style>
+    .widget-loadscreen {
+        position: absolute;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        z-index: 99;
+        background: rgba(0,0,0,0.15);
+    }
 
+    .btn.btn-kernel {
+        font-size: 12px;
+        font-family: Arial;
+        background-color: #f2e8c5;
+        border: 0px;
+        color: black;
+    }
+
+    .btn-kernel, .btn-primary {
+        margin-top: 32px;
+        margin-right: 15%;
+        float: right;
+    }
+
+    .btn {
+        display: inline-block;
+        height: auto;
+        padding: 0 0px;
+        min-height: 25px;
+    }
+
+    .btn {
+        padding: 7px;
+        min-width: 50px;
+    }
+
+    .input_datefrom, .input_dateto, .input_user, .input_branch {
+        -webkit-transition: all 0.30s ease-in-out;
+        -moz-transition: all 0.30s ease-in-out;
+        -o-transition: all 0.30s ease-in-out;
+        outline: none;
+        padding: 3px 0px 3px 3px;
+        margin: 5px 1px 3px 0px;
+        border: 1px solid #DDDDDD;
+        width: 100%;
+        min-width: 100%;
+        height: 34px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        border-radius: 3px;
+    }
+    
+    .lable_branch, .lable_datefrom, .lable_dateto, .lable_user {
+        font-family: Arial;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    label {
+        margin-bottom: 0px;
+        line-height: 20px;
+    }
+</style>
 <body>
-    <!-- <h1 style="text-align:center;margin-bottom: 60px;">របាយការណ៍សម្រាប់ផ្ទៀងផ្ទាត់</h1>
-    <div style="float: left;margin-left: 20px;">ជូនចំពោះ ៖</div>
-    <div style="float: left;margin-left: 70px;">Ly Ut Ny </div>
-    <br>
-    <div style="float:left;margin-left: 70px;margin-top: 20px;">លី អ៊ុតនី</div>
-    <div style="float: left;margin-left: 20px;">អាស័យដ្ឋាន ៖</div>
-    <div style="float: left;margin-left: 70px;">dsafegfgs</div> -->
-    <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12">
-                        <center style="font-family: 'Moul', cursive;font-size:25px;margin-bottom: 20px;">
-                            របាយការណ៍សម្រាប់ផ្ទៀងផ្ទាត់
-                        </center>
-                    </div>
+    @*<div class="container-fluid">*@
+        @*<div class="card">
+                <div style="padding:10px;margin-left:10px;margin-bottom:40px;" class="card-body">
+            <div class="card-header" style="background-color:white;">
+                <div class="ml-1">
+                    <a class="btn btn-xs btn-kernel" style="float: left; margin-right: 10%;margin-top:0px;" asp-action="Index" asp-controller="CustomerStatement">Back</a>
                 </div>
-                <div class="row">
-                    <div class="col-2">
-                        ជូនចំពោះ
-                    </div>
+                <div class="ml-1">
+                    <a class="btn btn-xs btn-kernel" style="float: right; margin-right: 5%;margin-top:0px;background-color:lightseagreen;" asp-action="TestViewWithModel" asp-controller="CustomerStatement" target="_blank" id="btnPDF"><i class="fas fa-file-pdf fa-2x" style="color:white;"></i></a>
                 </div>
-            <br>
-                    <div class="col-10">
-                        : &nbsp;Ly Ut Ny
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2">
-                    </div>
-                    <div class="col-10">
-                        &nbsp;&nbsp;&nbsp;លី អ៊ុតនី
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2">
-                        អាស័យដ្ឋាន
-                    </div>
-                    <div class="col-10">
-                        : &nbsp;hjhjh
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2">
-                        ទូរស័ព្ទលេខ
-                    </div>
-                    <div class="col-10">
-                        : &nbsp;123456
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        សូមលោក-លោក ស្រី មេត្តាធ្វើកាពិនិត្យ -
-                        ផ្ទៀងផ្ទាត់របាយការណ៍គណនេយ្យនេះដើម្បីបញ្ជៀសនូវភាពមិនត្រឹមត្រូវដែលអាចនិងកើតមានឡើងដោយអចេតនា។
-                    </div>
-                </div>
-                <br>
-                <div class="row" style="margin-bottom: 40px;">
-                    <div class="col-12">
-                        <table class="table table-bordered table-responsive" style="border:1px;">
-                            <thead>
-                                <tr>
-                                    <th scope="col">
-                                        ថ្ងៃ.ខែ.ឆ្នាំ
-                                    </th>
-                                    <th scope="col">
-                                        យោងសក្ដីបត្រ
-                                    </th>
-                                    <th scope="col">
-                                        ប្រតិបត្តិការ
-                                    </th>
-                                    <th scope="col">
-                                        ផលិតផល
-                                    </th>
-                                    <th scope="col">
-                                        អាយុ(ថ្ងៃ)
-                                    </th>
-                                    <th scope="col">
-                                        ទឹកប្រាក់ជំពាក់ដើមគ្រា
-                                    </th>
-                                    <th scope="col">
-                                        ទឹកប្រាក់ជំពាក់នៅសល់
-                                    </th>
-                                    <th scope="col">
-                                        កំណត់សំគាល់
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        10/12/2020
-                                    </td>
-                                    <td>
-                                        201210196
-                                    </td>
-                                    <td>
-                                        Invoice
-                                    </td>
-                                    <td>
-                                        ត្រាក់ទ័រ
-                                    </td>
-                                    <td>
-                                        13
-                                    </td>
-                                    <td>
-                                        $29,000.00
-                                    </td>
-                                    <td>
-                                        $29,000.00
-                                    </td>
-                                    <td>
+            </div>*@
+        <div class="row">
+            <div class="col-12">
+                <center style="font-family: 'Moul', cursive;font-size:20px;margin:auto;margin-bottom: 15px;margin-top:10px;">
+                    របាយការណ៍សម្រាប់ផ្ទៀងផ្ទាត់
+                </center>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-1" style="font-size: 10px;margin-left:10px;">
+                ជូនចំពោះ
+            </div>
+            <div class="col-10" id="cardname" style="font-size: 10px;">
+                : &nbsp;@Model[0].CardName
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1" style="font-size: 10px;margin-left:10px;">
+            </div>
+            <div class="col-10" id="cardfname" style="font-size: 10px; ">
+                &nbsp;&nbsp;&nbsp;@Model[0].CardFName
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1" style="font-size: 10px; margin-left: 10px;">
+                អាស័យដ្ឋាន
+            </div>
+            <div class="col-10" id="bpaddress" style="font-size: 10px;">
+                : &nbsp;@Model[0].BPAddress
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1" style="font-size: 10px; margin-left: 10px;">
+                ទូរស័ព្ទលេខ
+            </div>
+            <div class="col-10" id="bpphone" style="font-size: 10px;">
+                : &nbsp;@Model[0].BPPhone
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" style="font-size: 10px; margin-left: 10px;">
+                សូមលោក-លោក ស្រី មេត្តាធ្វើការពិនិត្យ -
+                ផ្ទៀងផ្ទាត់របាយការណ៍គណនេយ្យនេះដើម្បីបញ្ជៀសនូវភាពមិនត្រឹមត្រូវដែលអាចនិងកើតមានឡើងដោយអចេតនា។
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered table-responsive" style="border:thin;">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th scope="col" style="font-size: 10px;">
+                                ថ្ងៃ.ខែ.ឆ្នាំ
+                            </th>
+                            <th scope="col" style="font-size: 10px;">
+                                យោងសក្ដីបត្រ
+                            </th>
+                            <th scope="col" style="font-size: 10px;">
+                                ប្រតិបត្តិការ
+                            </th>
+                            <th scope="col" style="font-size: 10px;">
+                                ផលិតផល
+                            </th>
+                            <th scope="col" style="font-size: 10px;">
+                                អាយុ(ថ្ងៃ)
+                            </th>
+                            <th scope="col" style="font-size: 10px;">
+                                ទឹកប្រាក់ជំពាក់ដើមគ្រា
+                            </th>
+                            <th scope="col" style="font-size: 10px;">
+                                ទឹកប្រាក់ជំពាក់នៅសល់
+                            </th>
+                            <th scope="col" style="font-size: 10px;">
+                                កំណត់សំគាល់
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{double Balance = 0;}
+                        @{double PaymentTotal = 0;}
+                        @foreach (var a in Model)
+                        {
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        15/12/2020
-                                    </td>
-                                    <td>
-                                        20120269
-                                    </td>
-                                    <td>
-                                        Payment
-                                    </td>
-                                    <td>
-                                        ត្រាក់ទ័រ
-                                    </td>
-                                    <td>
-                                        8
-                                    </td>
-                                    <td>
-                                        $-
-                                    </td>
-                                    <td>
-                                        $(3,000.00)
-                                    </td>
-                                    <td>
+                            if (a.Doc == "Invoice")
+                            {
+                                Balance = Balance + Convert.ToDouble(a.Balance);
+                            }
+                            else if (a.Doc == "Payment")
+                            {
+                                PaymentTotal = PaymentTotal + Convert.ToDouble(a.Balance);
+                            }
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        ទឹកប្រាក់ជំពាក់ចុងគ្រា
-                                    </td>
-                                    <td>
+                            <tr>
+                                <td id="invdate" style="font-size: 10px;">
+                                    @a.INVDATE
+                                </td>
+                                <td id="sysinvoice" style="font-size: 10px;">
+                                    @if (a.SysInvoice == "0")
+                                    {
+                                        a.SysInvoice = " ";
+                                    }
+                                    else
+                                    {
+                                        @a.SysInvoice
+                                    }
+                                </td>
+                                <td id="doc" style="font-size: 10px;">
+                                    @a.Doc
+                                </td>
+                                <td id="itemgroup" style="font-size: 10px;">
+                                    @a.ItemGroup
+                                </td>
+                                <td id="aged" style="font-size: 10px;">
+                                    @if (a.Aged == "0")
+                                    {
+                                        a.Aged = " ";
+                                    }
+                                    else
+                                    {
+                                        @a.Aged
+                                    }
+                                </td>
+                                <td id="tt4" style="font-size: 10px;">
+                                    $   @a.TT4
+                                </td>
+                                <td id="total" style="font-size: 10px;">
+                                    @if (a.Doc == "Invoice")
+                                    {
+                                        <div>
+                                            $   @a.TT4.ToString()
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div>
+                                            $   @a.Balance.ToString()
+                                        </div>
 
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-                                        $26,000.00
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        09/12/2020
-                                    </td>
-                                    <td>
-                                        20120167
-                                    </td>
-                                    <td>
-                                        DownPayment
-                                    </td>
-                                    <td>
-                                        ត្រាក់ទ័រ
-                                    </td>
-                                    <td>
-                                        14
-                                    </td>
-                                    <td>
-                                        $-
-                                    </td>
-                                    <td>
-                                        $(12,000.00)
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5">
-                                        សរុបទឹកប្រាក់ជំពាក់ៈ
-                                    </td>
-                                    <td>
-                                        $29,000.00
-                                    </td>
-                                    <td>
-                                        $14,000.00
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        សេចក្ដីបញ្ជាក់់ៈ
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            ១-របាយការណ៍នេះមិនមែនជាលិខិតទារប្រាក់ទេ។
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                ២-ក្រុមហ៊ុនចែកជូនក្នុង១ខែម្ដង និងទូរស័ព្ទសួរពីលទ្ធផលនៃការផ្ទៀងផ្ទាត់នៅថ្ងៃបន្ទាប់។
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    ៣-ប្រសិនបើទិន្ន័យក្នុងរបាយការណ៍មានភាពមិនត្រឹមត្រូវ សូមទូរស័ព្ទទាក់ទងមកលេខ 092 555
-                                    832 ។
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div style="float:right;">
-                                        ធ្វើនៅភ្នំពេញថ្ងៃទី .............. ខែ............... ឆ្នាំ ................
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div style="float:right;margin-right:20px;">
-                                        ប្រធានផ្នែកគណនេយ្យ
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div style="float:right;margin-right:50px;">
-                                        ហត្ថលេខា
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div style="float:right;margin-right:20px;">
-                                        ………………………………
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                    }
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td colspan="5" style="font-size: 10px;">
+                                <b>សរុបទឹកប្រាក់ជំពាក់ៈ</b>
+                            </td>
+                            <td id="balance" style="font-size: 10px;">
+                                $   @Balance
+                            </td>
+                            <td id="paymenttotal" style="font-size: 10px;">
+                                $   @{var aa1 = Balance - PaymentTotal;}
+                                @aa1
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" style="font-size: 10px; margin-left: 10px; margin-top: 20px; ">
+                <b>សេចក្ដីបញ្ជាក់់ៈ</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" style="font-size: 10px; margin-left: 10px;">
+                ១-របាយការណ៍នេះមិនមែនជាលិខិតទារប្រាក់ទេ។
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" style="font-size: 10px; margin-left: 10px;">
+                ២-ក្រុមហ៊ុនចែកជូនក្នុង១ខែម្ដង និងទូរស័ព្ទសួរពីលទ្ធផលនៃការផ្ទៀងផ្ទាត់នៅថ្ងៃបន្ទាប់។
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" style="font-size: 10px; margin-left: 10px;">
+                ៣-ប្រសិនបើទិន្ន័យក្នុងរបាយការណ៍មានភាពមិនត្រឹមត្រូវ សូមទូរស័ព្ទទាក់ទងមកលេខ 092 555 832 ។
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <div style="float: right; margin-right: 30px;font-size: 10px;">
+                    ធ្វើនៅភ្នំពេញថ្ងៃទី .............. ខែ............... ឆ្នាំ ................
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <div style="float: right; margin-right: 50px; font-size: 10px;"> 
+                    ប្រធានផ្នែកគណនេយ្យ
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div style="float: right; margin-right: 80px; font-size: 10px;">   
+                    ហត្ថលេខា
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <br>
+                <div style="float: right; margin-bottom: 10px; margin-right: 40px; font-size: 10px;">
+                    ………………………………
+                </div>
+            </div>
+        </div>
+    @*</div>*@
+    @*</div>
+        </div>*@
+    <!--Bind Data to Grid-->
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                <div class="demo-container">
+                    <div id="gridContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Bind Data to Grid-->
+    <script>
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
+        @*loadReport(today, today);
+        $('#btnPDF').click(function () {
+            var cardname = $('#cardname').val();
+            //var dateto = $('#datetodailycash').val();
+            //var CustomerID = $('#Customerdailycash').val();
+            loadReport(cardname);
+        });
+        function loadReport(cardname) {
+        //let btn_filter = $(button).children("i.fa-search");
+        $.ajax({
+            url: '@Url.Action("GetCustomerStatment", "CustomerStatement")',
+            type: "GET",
+            data: { cardname=cardname},
+            dataType: "JSON",
+            beforeSend: function () {
+                //btn_filter.addClass("fa-spinner fa-spin");
+            },*@
 
+        @*$('#btnPDF').click(function () {
+            $('#btnPDF').attr("href", '@Url.Action("TestViewModel", "CustomerStatement")');
+            var url = $('#btnPDF').attr("href");
+            url = url + "?customer=" + $('#customercusstatment').val() + "&agingdate=" + $('#agingdatecustomersatement').val();
+
+            $('#btnPDF').attr("href", url);
+        });*@
+    </script>
 </body>
 
 </html>
