@@ -105,7 +105,7 @@
 </style>
 <body>
     <div class="container-sm-md-lg-xl">
-        <div class="card">
+        @*<div class="card">*
             <div style="padding:15px;margin-left:5px;margin-bottom:40px;" class="card-body">
                 @*<div class="card-header" style="background-color:white;">
                     <div class="ml-1">
@@ -347,33 +347,8 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-    @*<script>
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-        today = mm + '/' + dd + '/' + yyyy;
-        loadReport(today, today);
-        $('#btnPDF').click(function () {
-            var cardname = $('.cardname').val();
-            //var dateto = $('#datetodailycash').val();
-            //var CustomerID = $('#Customerdailycash').val();
-            loadReport(cardname);
-        });
-        function loadReport(cardname) {
-        //let btn_filter = $(button).children("i.fa-search");
-        $.ajax({
-            url: '@Url.Action("GetCustomerStatment", "CustomerStatement")',
-            type: "GET",
-            data: { cardname=cardname},
-            dataType: "JSON",
-            beforeSend: function () {
-                //btn_filter.addClass("fa-spinner fa-spin");
-            },
-    </script>*@
-
+    @*</div>
+</di*@v>
 </body>
 
 </html>
