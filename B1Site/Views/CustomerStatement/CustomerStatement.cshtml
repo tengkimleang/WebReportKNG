@@ -24,7 +24,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Siemreap&display=swap" rel="stylesheet">
 </head>
 <style>
     .widget-loadscreen {
@@ -118,38 +120,38 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-1" style="font-size: 10px;margin-left:10px;">
+            <div class="col-1" style="font-size: 15px;margin-left:10px;">
                 ជូនចំពោះ
             </div>
-            <div class="col-10" id="cardname" style="font-size: 10px;">
+            <div class="col-10" id="cardname" style="font-size: 15px;">
                 : &nbsp;@Model[0].CardName
             </div>
         </div>
         <div class="row">
-            <div class="col-1" style="font-size: 10px;margin-left:10px;">
+            <div class="col-1" style="font-size: 15px;margin-left:10px;">
             </div>
-            <div class="col-10" id="cardfname" style="font-size: 10px; ">
+            <div class="col-10" id="cardfname" style="font-size: 15px; ">
                 &nbsp;&nbsp;&nbsp;@Model[0].CardFName
             </div>
         </div>
         <div class="row">
-            <div class="col-1" style="font-size: 10px; margin-left: 10px;">
+            <div class="col-1" style="font-size: 15px; margin-left: 10px;">
                 អាស័យដ្ឋាន
             </div>
-            <div class="col-10" id="bpaddress" style="font-size: 10px;">
+            <div class="col-10" id="bpaddress" style="font-size: 15px; ">
                 : &nbsp;@Model[0].BPAddress
             </div>
         </div>
         <div class="row">
-            <div class="col-1" style="font-size: 10px; margin-left: 10px;">
+            <div class="col-1" style="font-size: 15px; margin-left: 10px;">
                 ទូរស័ព្ទលេខ
             </div>
-            <div class="col-10" id="bpphone" style="font-size: 10px;">
+            <div class="col-10" id="bpphone" style="font-size: 15px; ">
                 : &nbsp;@Model[0].BPPhone
             </div>
         </div>
         <div class="row">
-            <div class="col-12" style="font-size: 10px; margin-left: 10px;">
+            <div class="col-12" style="font-size: 15px; margin-left: 10px;">
                 សូមលោក-លោក ស្រី មេត្តាធ្វើការពិនិត្យ -
                 ផ្ទៀងផ្ទាត់របាយការណ៍គណនេយ្យនេះដើម្បីបញ្ជៀសនូវភាពមិនត្រឹមត្រូវដែលអាចនិងកើតមានឡើងដោយអចេតនា។
             </div>
@@ -160,28 +162,28 @@
                 <table class="table table-bordered table-responsive" style="border:thin;">
                     <thead>
                         <tr style="text-align: center;">
-                            <th scope="col" style="font-size: 10px;">
+                            <th scope="col" style="font-size: 13px;">
                                 ថ្ងៃ.ខែ.ឆ្នាំ
                             </th>
-                            <th scope="col" style="font-size: 10px;">
+                            <th scope="col" style="font-size: 13px;">
                                 យោងសក្ដីបត្រ
                             </th>
-                            <th scope="col" style="font-size: 10px;">
+                            <th scope="col" style="font-size: 13px;">
                                 ប្រតិបត្តិការ
                             </th>
-                            <th scope="col" style="font-size: 10px;">
+                            <th scope="col" style="font-size: 13px;">
                                 ផលិតផល
                             </th>
-                            <th scope="col" style="font-size: 10px;">
+                            <th scope="col" style="font-size: 13px;">
                                 អាយុ(ថ្ងៃ)
                             </th>
-                            <th scope="col" style="font-size: 10px;">
+                            <th scope="col" style="font-size: 13px;">
                                 ទឹកប្រាក់ជំពាក់ដើមគ្រា
                             </th>
-                            <th scope="col" style="font-size: 10px;">
+                            <th scope="col" style="font-size: 13px;">
                                 ទឹកប្រាក់ជំពាក់នៅសល់
                             </th>
-                            <th scope="col" style="font-size: 10px;">
+                            <th scope="col" style="font-size: 13px;">
                                 កំណត់សំគាល់
                             </th>
                         </tr>
@@ -202,10 +204,10 @@
                             }
 
                             <tr>
-                                <td id="invdate" style="font-size: 10px;">
+                                <td id="invdate" style="font-size: 12px; text-align: center;">
                                     @a.INVDATE
                                 </td>
-                                <td id="sysinvoice" style="font-size: 10px;">
+                                <td id="sysinvoice" style="font-size: 12px; text-align: center;">
                                     @if (a.SysInvoice == "0")
                                     {
                                         a.SysInvoice = " ";
@@ -215,13 +217,13 @@
                                         @a.SysInvoice
                                     }
                                 </td>
-                                <td id="doc" style="font-size: 10px;">
+                                <td id="doc" style="font-size: 12px; text-align: center;">
                                     @a.Doc
                                 </td>
-                                <td id="itemgroup" style="font-size: 10px;">
+                                <td id="itemgroup" style="font-size: 12px; text-align: center;">
                                     @a.ItemGroup
                                 </td>
-                                <td id="aged" style="font-size: 10px;">
+                                <td id="aged" style="font-size: 12px; text-align: center;">
                                     @if (a.Aged == "0")
                                     {
                                         a.Aged = " ";
@@ -231,10 +233,10 @@
                                         @a.Aged
                                     }
                                 </td>
-                                <td id="tt4" style="font-size: 10px;">
+                                <td id="tt4" style="font-size: 12px; text-align: right;">
                                     $   @a.TT4
                                 </td>
-                                <td id="total" style="font-size: 10px;">
+                                <td id="total" style="font-size: 12px; text-align: right;">
                                     @if (a.Doc == "Invoice")
                                     {
                                         <div>
@@ -254,15 +256,15 @@
                             </tr>
                         }
                         <tr>
-                            <td colspan="5" style="font-size: 10px;">
+                            <td colspan="5" style="font-size: 12px;">
                                 <b>សរុបទឹកប្រាក់ជំពាក់ៈ</b>
                             </td>
-                            <td id="balance" style="font-size: 10px;">
-                                $   @Balance
+                            <td id="balance" style="font-size: 12px; text-align: right;">
+                                <b> $   @Balance</b>
                             </td>
-                            <td id="paymenttotal" style="font-size: 10px;">
+                            <td id="paymenttotal" style="font-size: 12px; text-align: right;">
                                 $   @{var aa1 = Balance - PaymentTotal;}
-                                @aa1
+                                <b> @aa1</b>
                             </td>
                             <td>
                             </td>
@@ -272,43 +274,43 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12" style="font-size: 10px; margin-left: 10px; margin-top: 20px; ">
+            <div class="col-12" style="font-size: 15px; margin-left: 10px; margin-top: 20px; ">
                 <b>សេចក្ដីបញ្ជាក់់ៈ</b>
             </div>
         </div>
         <div class="row">
-            <div class="col-12" style="font-size: 10px; margin-left: 10px;">
+            <div class="col-12" style="font-size: 15px; margin-left: 10px; ">
                 ១-របាយការណ៍នេះមិនមែនជាលិខិតទារប្រាក់ទេ។
             </div>
         </div>
         <div class="row">
-            <div class="col-12" style="font-size: 10px; margin-left: 10px;">
+            <div class="col-12" style="font-size: 15px; margin-left: 10px; ">
                 ២-ក្រុមហ៊ុនចែកជូនក្នុង១ខែម្ដង និងទូរស័ព្ទសួរពីលទ្ធផលនៃការផ្ទៀងផ្ទាត់នៅថ្ងៃបន្ទាប់។
             </div>
         </div>
         <div class="row">
-            <div class="col-12" style="font-size: 10px; margin-left: 10px;">
+            <div class="col-12" style="font-size: 15px; margin-left: 10px; ">
                 ៣-ប្រសិនបើទិន្ន័យក្នុងរបាយការណ៍មានភាពមិនត្រឹមត្រូវ សូមទូរស័ព្ទទាក់ទងមកលេខ 092 555 832 ។
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-12">
-                <div style="float: right; margin-right: 30px;font-size: 10px;">
+                <div style="float: right; margin-right: 30px;font-size: 15px;">
                     ធ្វើនៅភ្នំពេញថ្ងៃទី .............. ខែ............... ឆ្នាំ ................
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <div style="float: right; margin-right: 50px; font-size: 10px;"> 
+                <div style="float: right; margin-right: 50px; font-size: 15px;"> 
                     ប្រធានផ្នែកគណនេយ្យ
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <div style="float: right; margin-right: 80px; font-size: 10px;">   
+                <div style="float: right; margin-right: 80px; font-size: 15px;">   
                     ហត្ថលេខា
                 </div>
             </div>
@@ -316,7 +318,7 @@
         <div class="row">
             <div class="col-12">
                 <br>
-                <div style="float: right; margin-bottom: 10px; margin-right: 40px; font-size: 10px;">
+                <div style="float: right; margin-bottom: 10px; margin-right: 40px; font-size: 15px;">
                     ………………………………
                 </div>
             </div>
