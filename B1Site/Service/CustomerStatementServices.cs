@@ -24,6 +24,7 @@ namespace B1Site.Service
                     Customer = a[1].ToString()
                 });
             }
+
             return Task.FromResult(customer);
         }
         #endregion
@@ -31,6 +32,7 @@ namespace B1Site.Service
         public Task<List<CustomerStatement>> GetCustomerstatementsAsync(DateTime agingdate, string customer)
         {
             ClsCRUD clsCRUD = new ClsCRUD();
+            int row;
             if (customer == "0")
             {
                 customer = "";
@@ -57,6 +59,29 @@ namespace B1Site.Service
                     System1Invoice = a[12].ToString(),
                     TT2 = a[13].ToString(),
                     TT4 = a[14].ToString(),
+                });
+            }
+            
+            row = customerStatementsList.Count();
+            if (row == 0)
+            {
+                customerStatementsList.Add(new CustomerStatement
+                {
+                    CardCode = "",
+                    CardName = "",
+                    CardFName = "",
+                    BPAddress = "",
+                    BPPhone = "",
+                    INVDATE = "",
+                    SysInvoice = "",
+                    Doc = "",
+                    ItemGroup = "",
+                    Aged = "",
+                    Balance = "",
+                    KEY1 = "",
+                    System1Invoice = "",
+                    TT2 = "",
+                    TT4 = ""
                 });
             }
             return Task.FromResult(customerStatementsList);

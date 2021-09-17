@@ -182,7 +182,7 @@
                 </div>
             </div>
                 <!--End Bind Data to Grid-->
-<script>
+            <script>
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -201,8 +201,16 @@
             url = url + "?customer=" + $('#customercusstatment').val() + "&agingdate=" + $('#agingdatecustomersatement').val()
         }
 
-         $('#btnRUN').attr("href", url);
-            
+        $('#btnRUN').attr("href", url);
+     @*$('#btnRUN').click(function ()
+        {
+         if ($('#customercusstatment').val() == "") {
+             alert('No Data.')
+             $('#btnRUN').attr("href", '@Url.Action("Index", "CustomerStatement")');
+         }
+         else {
+             $('#btnRUN').attr("href", url);
+         }*@
      });
 
-</script>
+            </script>
