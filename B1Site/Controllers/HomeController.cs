@@ -5,6 +5,7 @@ using B1Site.Models.Share;
 using B1Site.Service;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -25,15 +27,18 @@ namespace B1Site.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IHomeService homeService;
         private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly IHostingEnvironment hostEnvironment;
+
         [System.ComponentModel.Browsable(false)]
         public event System.ComponentModel.CancelEventHandler Closing;
         #endregion
         #region Init Constructor of HomeController
-        public HomeController(ILogger<HomeController> logger, IHomeService homeService, IHttpContextAccessor httpContextAccessor)
+        public HomeController(ILogger<HomeController> logger, IHomeService homeService, IHttpContextAccessor httpContextAccessor, IHostingEnvironment hostEnvironment)
         {
             _logger = logger;
             this.homeService = homeService;
             this.httpContextAccessor = httpContextAccessor;
+            this.hostEnvironment = hostEnvironment;
         }
         #endregion
         #region View
@@ -60,7 +65,14 @@ namespace B1Site.Controllers
         {
             return View(await homeService.GetUsersAsync());
         }
-        public IActionResult CreateUser() 
+        public async Task<IActionResult> CreateUserAsync() 
+        {
+            MasterViewCreateUser masterViewCreateUser = new MasterViewCreateUser();
+            masterViewCreateUser.Departments = await homeService.GetDepartmentsAsync();
+            masterViewCreateUser.ReportPermissions = await homeService.GetReportPermissionsAsync();
+            return View(masterViewCreateUser);
+        }
+        public IActionResult EditUser(string id)
         {
             return View();
         }
@@ -70,20 +82,21 @@ namespace B1Site.Controllers
         {
             ConnectionString.constr = $"Data Source={ConnectionString.DataSource};Initial Catalog={databaseSAP};User Id={ConnectionString.UserName};Password={ConnectionString.PassWord}";
             #region ClaimsPrincipal
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, userName),
-	            //...more claims if needed
-            };
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(identity);
-            var properties = new AuthenticationProperties
-            {
-                IsPersistent = false,
-                ExpiresUtc = DateTime.UtcNow.AddDays(1)
-            };
-            await HttpContext.SignInAsync(principal, properties);
+            //List<Claim> claims = new List<Claim>
+            //{
+            //    new Claim(ClaimTypes.Name, userName),
+	           // //...more claims if needed
+            //};
+            //var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            //var principal = new ClaimsPrincipal(identity);
+            //var properties = new AuthenticationProperties
+            //{
+            //    IsPersistent = false,
+            //    ExpiresUtc = DateTime.UtcNow.AddDays(1)
+            //};
+            //await HttpContext.SignInAsync(principal, properties);
             #endregion
+
             return Ok(await homeService.GetLoginsAsync(userName, passWord));
         }
         public async Task<IActionResult> GetReportDatabaseAsync()
@@ -130,6 +143,44 @@ namespace B1Site.Controllers
                 return BadRequest("Failed");
             }
         }
+        [HttpPost]
+        public async Task<IActionResult> PostDepartmentAsync(string department)
+        {
+            return Ok(await homeService.PostDepartmentAsync(department));
+        }
+        [HttpPost]
+        public IActionResult CreateUserImage(IFormFile SliderName)
+        {
+            if (SliderName != null)
+            {
+                return Ok(UploadImg(SliderName));
+            }
+            else
+            {
+                return Ok("");
+            }
+            
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateUserAsync(User users)
+        {
+            return Ok(await homeService.PostUsersAsync(users));
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteUserAsync(string id)
+        {
+            return Ok(await homeService.DeleteUserAsync(id));
+        }
+        #endregion
+        #region Add Function
+        private string UploadImg(IFormFile ifile)
+        {
+            string imageText = Path.GetExtension(ifile.FileName);
+            var saveing = Path.Combine(hostEnvironment.WebRootPath, "image", ifile.FileName);
+            var stream = new FileStream(saveing, FileMode.Create);
+            ifile.CopyTo(stream);
+            return ifile.FileName;
+        }
         #endregion
         #region Add Language
         public IActionResult CultureManagment(string culture,string returnUrl)
@@ -150,3 +201,4 @@ namespace B1Site.Controllers
         #endregion
     }
 }
+

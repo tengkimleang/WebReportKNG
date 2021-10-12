@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,9 @@ namespace B1Site.Models.Home
         public string Image { get; set; }
         public string Position { get; set; }
         public string Department { get; set; }
+        public List<string> Permissions { get; set; }
         public string Email { get; set; }
         public string Active { get; set; }
+         
     }
 }

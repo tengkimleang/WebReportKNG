@@ -101,7 +101,46 @@
                     groupPanel: {
                         visible: false
                     },
+                    editing: {
+                        allowUpdating: true,
+                        allowDeleting: true
+                    },
                     columns: [
+                        {
+                            type: "buttons",
+                            buttons: [{
+                                text: "Edit",
+                                hint: "Edit User",
+                                onClick: function (e) {
+                                    // Execute your command here
+                                    window.Location.href = '@Url.Action("UserList", "Home")?id='+e.row.data.userID;
+                                }
+                            }, {
+                                text: "Delete",
+                                hint: "Delete User",
+                                onClick: function (e) {
+                                    console.log(e.row.data.userID);
+                                    // Execute your command here
+                                    if (confirm("Are you Sure to Delete")) {
+                                         $.ajax({
+                                            url: '@Url.Action("DeleteUser", "Home")',
+                                            type: 'DELETE',
+                                            dataType: 'JSON',
+                                             data: { id: e.row.data.userID },
+                                            success: function (data) {
+                                                if (data == true) {
+                                                    alert("Success");
+                                                    window.location.href = '@Url.Action("UserList", "Home")';
+                                                } else {
+                                                    alert("create failed");
+                                                }
+                                            }
+                                        });
+                                    }
+
+                                }
+                            }]
+                        },
                         {
                             dataField: "userID",
                             caption: "User ID"
@@ -119,13 +158,13 @@
                             caption: "Last Name"
                         },
                         {
-                    dataField: "department",
-                    caption: "Department"
-                },
-                {
-                    dataField: "phone",
-                    caption: "Phone"
-                },
+                            dataField: "department",
+                            caption: "Department"
+                        },
+                        {
+                            dataField: "phone",
+                            caption: "Phone"
+                        }
             ],
             onToolbarPreparing: function (e) {
                 var dataGrid = e.component;

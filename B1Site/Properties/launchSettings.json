@@ -7,8 +7,8 @@
       "sslPort": 0
     },
     "iisExpress": {
-      "applicationUrl": "http://localhost:1034/",
-      "sslPort": 44329
+      "applicationUrl": "http://localhost:1040/",
+      "sslPort": 0
     }
   },
   "profiles": {
@@ -16,6 +16,13 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "ErrorString": "Invalid property identifier character: <. Path 'iisSettings.iisExpress', line 10, position 0."
+    },
+    "TEST1": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }

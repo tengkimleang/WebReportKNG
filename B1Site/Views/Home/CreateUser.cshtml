@@ -1,6 +1,8 @@
 ﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model B1Site.Models.Home.MasterViewCreateUser;
 @{
     ViewData["Title"] = "CreateUser";
+    int x = 0;
 }
 
 <div class="content-header" style="padding-bottom:0px;">
@@ -29,11 +31,14 @@
                 <div class="col-3">
                     <div class="row">
                         <div class="col-12">
-                            <img src="~/image/SAPlogo.png" class="img-fluid img-circle">
+                            @*<img src="~/image/SAPlogo.png" class="img-fluid img-circle">*@
+                            <img src="~/image/placeimagePersion.png" class="img-fluid img-circle" id="imgtag" name="image1" runat="server" />
                         </div>
                         <div class="col-12" style="margin-top:10px">
                             <center>
-                                <button type="button" class="btn btn-primary">Image Upload</button>
+                                @*<button type="button" class="btn btn-primary">Image Upload</button>*@
+                                <input type="file" id="btnfile" name="FileUpload" style="visibility: hidden" accept="image/*" onchange="readImage(this)" />
+                                <input type="button" id="Button3" class="btn btn-success" value="Upload Picture" onclick="GetPicUpload()" />
                             </center>
                         </div>
                     </div>
@@ -42,30 +47,36 @@
                     <div class="row">
                         <div class="col">
                             First Name
-                            <input type="text" class="form-control" placeholder="First name" aria-label="First name"><br />
+                            <input type="text" class="form-control" id="txtFirstName" placeholder="First name" aria-label="First name"><br />
                             Date Of Birth
-                            <input type="date" class="form-control"><br />
+                            <input type="date" class="form-control" id="dtpDOB"><br />
                             Place Of Birth
-                            <textarea class="form-control" placeholder="Place Of Birth" id="floatingTextarea"></textarea><br />
+                            <textarea class="form-control" placeholder="Place Of Birth" id="rtxtPOB"></textarea><br />
                             Position
-                            <input type="text" class="form-control" placeholder="First name" aria-label="First name"><br />
+                            <input type="text" class="form-control" id="txtPosition" placeholder="Position" aria-label="Position"><br />
+                            UserName
+                            <input type="text" class="form-control" id="txtUserName" placeholder="UserName" aria-label="UserName"><br />
                             Email
-                            <input type="text" class="form-control" placeholder="Email" aria-label="First name">
+                            <input type="text" class="form-control" id="txtEmail" placeholder="Email" aria-label="Email">
                         </div>
                         <div class="col">
                             Last Name
-                            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"><br />
+                            <input type="text" class="form-control" id="txtLastName" placeholder="Last name" aria-label="Last name"><br />
                             Tel
-                            <input type="text" class="form-control" placeholder="Tel" aria-label="First name"><br />
+                            <input type="text" class="form-control" id="txtTel" placeholder="Tel" aria-label="Tel"><br />
                             Address
-                            <textarea class="form-control" placeholder="Address" id="floatingTextarea"></textarea><br />
+                            <textarea class="form-control" id="rtxtAddress" placeholder="Address" id="floatingTextarea"></textarea><br />
                             Department
-                            <select class="form-control">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select><br /><br />
+                            <select class="form-control" id="Department">
+                                <option value=""></option>
+                                @foreach (var a in Model.Departments)
+                                {
+                                    <option value="@a.ID">@a.Name</option>
+                                }
+                                <option value="Define">Define New</option>
+                            </select><br />
+                            Password
+                            <input type="text" class="form-control" id="txtPassword" placeholder="Password" aria-label="Password"><br /><br />
                             <button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#modalPermission">Permission</button>
                         </div>
                     </div>
@@ -74,15 +85,15 @@
         </div>
         <div class="card-footer">
             <div class="float-right">
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-primary" id="btnSave">Save</button>
             </div>
         </div>
     </div>
 </div>
 
 <!--Modal-->
-<!-- Modal -->
-<div class="modal fade" id="modalPermission" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
+<!-- Modal Permission-->
+<div class="modal fade" id="modalPermission" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -92,13 +103,184 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <div class="container">
+                    <div class="row">
+                        @foreach (var a in Model.ReportPermissions)
+                        {
+                            if (x == 0)
+                            {
+                                x = 1;
+                                <div class="col-6">
+                                    <input type="checkbox" id="P-@a.ID" name="@a.ID" value="@a.ID" onchange="checkBoxOrNot('@a.ID',this)">
+                                    <label for="@a.ID">@a.Name</label><br />
+                                </div>
+                            }
+                            else
+                            {
+                                x=0;
+                                <div class="col-6">
+                                    <input type="checkbox" id="P-@a.ID" name="@a.ID" value="@a.Name" onchange="checkBoxOrNot('@a.ID',this)">
+                                    <label for="@a.ID">@a.Name</label><br />
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
 </div>
-<!--End Modal-->
+<!--End Modal Permission-->
+<!-- Modal Department-->
+<div class="modal fade" id="modalDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Department</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Department
+                <input type="text" class="form-control" placeholder="Department Name" id="txtdepartment">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnSaveDepartment">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal Department-->
+<script>
+    //$('#Department').change(function () {
+    //    alert('hello');
+    //});
+    var arr = [];
+    function checkBoxOrNot(id,action1) {
+        if (action1.checked == true) {
+            arr.push(id);
+        } else {
+            var newArray = arr.filter(e => e !== id);
+            arr = newArray;
+        }
+    }
+    $("#Department").change(function () {
+        if ($("#Department").val() == "Define") {
+            var options = {
+                "backdrop": "static"
+            }
+            $("#modalDepartment").modal(options);
+            $("#Department").val("");
+        }
+    });
+    function GetPicUpload() {
+        document.getElementById("btnfile").click();
+        return false;
+    }
+    function readImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            //if ($("#btnSubmit").text() == "Submit") {
+            //    $('#btnclose').removeAttr('hidden');
+            //}
+            reader.onload = function (e) {
+                $('#imgtag').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+            a = 2;
+        }
+    }
+    $("#btnSaveDepartment").click(function () {
+        if ($("#txtdepartment").val() == "") {
+            alert("Empty Name");
+        } else {
+            if (confirm("Are you sure to Add Department")) {
+                $.ajax({
+                    url: '@Url.Action("PostDepartment", "Home")',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: { department: $('#txtdepartment').val()},
+                    success: function (data) {
+                        if (data == true) {
+                            alert("Success");
+                            window.location.href = '@Url.Action("CreateUser", "Home")';
+                        } else {
+                            alert("create failed");
+                        }
+                    }
+                });
+            }
+        }
+    });
+    $("#btnSave").click(function () {
+        var aar1 = {};
+        var formData = new FormData();
+        formData.append('sliderName', $('#btnfile')[0].files[0]);
+        $.ajax({
+            url: '@Url.Action("CreateUserImage", "Home")',
+            type: 'POST',
+            contentType: false,
+            cache: false,
+            //dataType: "JSON",
+            processData: false,
+            data: formData,
+            success: function (data) {
+                aar1.firstName = $("#txtFirstName").val();
+                aar1.lastName = $("#txtLastName").val();
+                aar1.dateOfBirth = $("#dtpDOB").val();
+                aar1.phone = $("#txtTel").val();
+                aar1.placeOfBirth = $("#rtxtPOB").val();
+                aar1.address = $("#rtxtAddress").val();
+                aar1.position = $("#txtPosition").val();
+                aar1.department = $("#Department").val();
+                aar1.userName = $("#txtUserName").val();
+                aar1.passWord = $("#txtPassword").val();
+                aar1.email = $("#txtEmail").val();
+                aar1.permissions = arr;
+                aar1.image = data;
+                $.ajax({
+                    url: '@Url.Action("CreateUser", "Home")',
+                    type: "POST",
+                    data: {
+                        users: aar1,
+                    },
+                    dataType: "JSON",
+                    success: function (data) {
+                        console.log(data);
+                        if (data == true) {
+                            alert("Add Success")
+                            window.location.href = '@Url.Action("CreateUser", "Home")';
+                        } else {
+                            alert("Failed");
+                        }
+                    }
+                });
+                //if (data == 1) {
+                //    alert("Success");
+                //    clearSliderform();
+                //} else if (data == 404) {
+                //    alert("Failed");
+                //    clearSliderform();
+                //} else if (data == 404) {
+                //    alert("Empty Image");
+                //}
+            },
+            error: function (xhr, status, error) {
+                /*var err = eval("(" + xhr.responseText + ")");*/
+                //alert(err.Message);
+            }
+        });
+    });
+    function clearSliderform() {
+        $("#sliderID").val("");
+        $("#order").val("");
+        $("#imgtag").attr("src", '#');
+        $('#btnclose').attr('hidden', true);
+        $("#btnSubmit").text("Submit");
+    }
+</script>

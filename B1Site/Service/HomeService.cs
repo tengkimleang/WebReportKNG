@@ -45,6 +45,7 @@ namespace B1Site.Service
 
         public Task<Login> GetLoginsAsync(string user, string password)
         {
+
             if (user == "admin" && password == "admin")
             {
                 return Task.FromResult(new Login
@@ -189,6 +190,119 @@ namespace B1Site.Service
                 }
             }
             return Task.FromResult(users);
+        }
+
+        public Task<bool> PostDepartmentAsync(string department)
+        {
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.GetdataWebDb("INSERT INTO tb_Department(Name,Active) VALUES('"+department+"',1)SELECT SCOPE_IDENTITY();", "WebDb");
+            if (dt != null)
+            {
+                return Task.FromResult(true);
+            }
+            else
+            {
+                return Task.FromResult(false);
+            }
+        }
+
+        public Task<List<Department>> GetDepartmentsAsync()
+        {
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.GetdataWebDb("SELECT * FROM tb_Department WHERE active=1", "WebDb");
+            List<Department> departments = new List<Department>();
+            foreach (DataRow a in dt.Rows)
+            {
+                try
+                {
+                    departments.Add(new Department
+                    {
+                        ID = Convert.ToInt32(a[0].ToString()),
+                        Name = a[1].ToString(),
+                        Active = true
+                    });
+                }
+                catch (Exception ex)
+                {
+                    var e1 = ex.Message;
+                }
+            }
+            return Task.FromResult(departments);
+        }
+
+        public Task<List<ReportPermission>> GetReportPermissionsAsync()
+        {
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.GetdataWebDb("SELECT Controller,Language FROM Tb_Report WHERE active=1 AND LanguageType='en'", "WebDb");
+            List<ReportPermission> reportPermission = new List<ReportPermission>();
+            foreach (DataRow a in dt.Rows)
+            {
+                try
+                {
+                    reportPermission.Add(new ReportPermission
+                    {
+                        ID = a[0].ToString(),
+                        Name = a[1].ToString(),
+                    });
+                }
+                catch (Exception ex)
+                {
+                    var e1 = ex.Message;
+                }
+            }
+            return Task.FromResult(reportPermission);
+        }
+
+        public Task<bool> PostUsersAsync(User user)
+        {
+            try
+            {
+                ClsCRUD clsCRUD = new ClsCRUD();
+                var dt = clsCRUD.GetdataWebDb("INSERT INTO Tb_User(UserName,Password,Defualt,FirstName,LastName,DateOfBirth,PlaceOfBirth,Address,Phone,Image,Position,Department,Email,Active) VALUES('"
+                                            + user.UserName + "','" + user.PassWord + "',1,'" + user.FirstName + "','" + user.LastName + "','" + Convert.ToDateTime(user.DateOfBirth).ToString("yyyy-MM-dd") + "','" + user.PlaceOfBirth + "','" + user.Address + "','" + user.Phone + "','" +
+                                            user.Image + "','" + user.Position + "','" + user.Department + "','" + user.Email + "',1) SELECT SCOPE_IDENTITY();", "WebDb");
+                if (dt != null)
+                {
+                    string UserID = dt.Rows[0][0].ToString();
+                    foreach(var a in user.Permissions)
+                    {
+                        try
+                        {
+                            dt = new DataTable();
+                            dt = clsCRUD.GetdataWebDb("INSERT INTO Tb_Permission(UserID,Permission,Active) VALUES('" + UserID + "','" + a + "',1)", "WebDb");
+                        }
+                        catch(Exception ex)
+                        {
+                            return Task.FromResult(false);
+                        }
+                    }
+                    
+                    return Task.FromResult(true);
+                }
+                else
+                {
+                    return Task.FromResult(false);
+                }
+            }
+            catch(Exception ex)
+            {
+                return Task.FromResult(false);
+            }
+            
+        }
+
+        public Task<bool> DeleteUserAsync(string id)
+        {
+            ClsCRUD clsCRUD = new ClsCRUD();
+            var dt = clsCRUD.GetdataWebDb("UPDATE Tb_User SET Active=0 WHERE ID='"+id+"'", "WebDb");
+            if (dt != null)
+            {
+                return Task.FromResult(true);
+            }
+            else
+            {
+                return Task.FromResult(false);
+            }
         }
     }
 }

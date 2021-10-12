@@ -16,5 +16,10 @@ namespace B1Site.Service
         Task<bool> PutReportDatabasesAsync(ReportDatabase reportDatabase);
         Task<bool> DeleteReportDatabasesAsync(string id);
         Task<List<User>> GetUsersAsync();
+        Task<List<Department>> GetDepartmentsAsync();
+        Task<List<ReportPermission>> GetReportPermissionsAsync();
+        Task<bool> PostDepartmentAsync(string department);
+        Task<bool> PostUsersAsync(User user);
+        Task<bool> DeleteUserAsync(string id);
     }
 }
