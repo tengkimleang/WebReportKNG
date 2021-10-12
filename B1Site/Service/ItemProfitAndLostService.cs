@@ -32,7 +32,7 @@ namespace B1Site.Service
         public Task<List<InventoryUOM>> GetInventoryUOMAsync()
         {
             ClsCRUD clsCRUD = new ClsCRUD();
-            var dt = clsCRUD.Getdata("SELECT DISTINCT InvntryUOM FROM OITM WHERE InvntryUOM IS NOT NULL ORDER BY InvntryUOM ");
+            var dt = clsCRUD.Getdata("SELECT DISTINCT InvntryUOM FROM OITM WHERE InvntryUOM IS NOT NULL ORDER BY InvntryUOM");
             List<InventoryUOM> inventoryUOMs = new List<InventoryUOM>();
             foreach (DataRow row in dt.Rows)
             {
@@ -122,69 +122,119 @@ namespace B1Site.Service
         #endregion
         #region Display Data Report
 
-        public Task<string> GetItemProfitAndLostAsync(DateTime datefrom, DateTime dateto, string byitemgroup, string bysaleperson, string bycategory, string byUom, string byitemcode, string bycardcode, string bysource)
+        //public Task<string> GetItemProfitAndLostAsync(DateTime datefrom, DateTime dateto, string byitemgroup, string bysaleperson, string bycategory, string byUom, string byitemcode, string bycardcode, string bysource)
+        //{
+        //    ClsCRUD clsCRUD = new ClsCRUD();
+        //    byitemgroup = ((string.IsNullOrEmpty(byitemgroup) || byitemgroup == "0") ? "" : byitemgroup);
+        //    bysaleperson = ((string.IsNullOrEmpty(bysaleperson) || bysaleperson == "0") ? "" : bysaleperson);
+        //    bycategory = ((string.IsNullOrEmpty(bycategory) || bycategory == "0") ? "" : bycategory);
+        //    byUom = ((string.IsNullOrEmpty(byUom) || byUom == "") ? "" : byUom);
+        //    byitemcode = ((string.IsNullOrEmpty(byitemcode) || byitemcode == "") ? "" : byitemcode);
+        //    bycardcode = ((string.IsNullOrEmpty(bycardcode) || bycardcode == "") ? "" : bycardcode);
+        //    bycardcode = ((string.IsNullOrEmpty(bycardcode) || bycardcode == "") ? "" : bycardcode);
+        //    var dt = clsCRUD.Getdata("EXEC [dbo].[USP_Item_Profit_And_Lost_NEW_V1_Web] '"+datefrom.ToString("yyyy-MM-dd")+"','"+dateto.ToString("yyyy-MM-dd")+"','','','','','','','','customers'");
+        //    List<ItemProfitAndLostReport> ItemProfitAndLostReports = new List<ItemProfitAndLostReport>();
+        //    foreach (DataRow row in dt.Rows)
+        //    {
+        //        ItemProfitAndLostReports.Add(new ItemProfitAndLostReport
+        //        {
+        //            No = row[0].ToString(),
+        //            CardCode = row[1].ToString(),
+        //            CardName = row[2].ToString(),
+        //            BPGroup = row[3].ToString(),
+        //            BPCategory = row[4].ToString(),
+        //            Grade = row[5].ToString(),
+        //            Region = row[6].ToString(),
+        //            SalePerson = row[7].ToString(),
+        //            InvDate = Convert.ToDateTime(row[8].ToString()).ToString("MMM"),
+        //            Group = row[9].ToString(),
+        //            ItemGroup = row[10].ToString(),
+        //            ItemCode = row[10].ToString(),
+        //            Description = row[11].ToString(),
+        //            Source = row[12].ToString(),
+        //            Category = row[13].ToString(),
+        //            SubCategory = row[14].ToString(),
+        //            Movement = row[14].ToString(),
+        //            Codition = row[15].ToString(),
+        //            Year = row[16].ToString(),
+        //            Promotion = row[17].ToString(),
+        //            Warranty = row[18].ToString(),
+        //            Quantity = Convert.ToInt32(row[19].ToString()),
+        //            Price = Convert.ToDouble(row[20].ToString()),
+        //            Discount = Convert.ToDouble(row[21].ToString()),
+        //            NetAmount = Convert.ToDouble(row[22].ToString()),
+        //            TotalAmount = Convert.ToDouble(row[23].ToString()),
+        //            TotalDiscount = Convert.ToDouble(row[24].ToString()),
+        //            TotalNetAmount = Convert.ToDouble(row[25].ToString()),
+        //            COGS = row[26].ToString(),
+        //            GrossProfit = Convert.ToDouble(row[27].ToString()),
+        //            Margin = row[28].ToString(),
+        //            SONum = row[29].ToString(),
+        //            Shipment = row[30].ToString(),
+        //            InvoiceNo = row[31].ToString(),
+        //            Status = row[32].ToString(),
+        //            UoM = row[33].ToString(),
+        //            Location = row[34].ToString(),
+        //            Warehouse = row[35].ToString(),
+        //            Department = row[36].ToString()
+
+        //        });
+        //    }
+
+        //    return Task.FromResult(Utf8Json.JsonSerializer.ToJsonString(ItemProfitAndLostReports));
+        //}
+
+        public Task<string> GetItemProfitAndLostAsync(DateTime datefrom, DateTime dateto)
         {
             ClsCRUD clsCRUD = new ClsCRUD();
-            byitemgroup = ((string.IsNullOrEmpty(byitemgroup) || byitemgroup == "0") ? "" : byitemgroup);
-            bysaleperson =((string.IsNullOrEmpty(bysaleperson) || bysaleperson=="0") ? "" : bysaleperson);
-            bycategory =((string.IsNullOrEmpty(bycategory)||bycategory=="0") ? "" : bycategory);
-            byUom = ((string.IsNullOrEmpty(byUom)||byUom=="") ? "" : byUom);
-            byitemcode = ((string.IsNullOrEmpty(byitemcode) || byitemcode == "") ? "" : byitemcode);
-            bycardcode =((string.IsNullOrEmpty(bycardcode) || bycardcode =="") ? "" : bycardcode);
-            bycardcode = ((string.IsNullOrEmpty(bycardcode)|| bycardcode=="") ? "" : bycardcode);
-            var dt = clsCRUD.Getdata("EXEC [dbo].[USP_Item_Profit_And_Lost_NEW_V1_Web] '" + datefrom.ToString("yyyy-MM-dd") + "','" + dateto.ToString("yyyy-MM-dd")
-                + "','" + byitemcode + "'" +
-                ",'" + bysaleperson + "'" +
-                ",'" + bycategory + "'" +
-                ",'" + byUom + "'" +
-                ",'" + byitemcode + "'" +
-                ",'" + bycategory + "'" +
-                ",'" + bysource + "','Customer' ");
+            var dt = clsCRUD.Getdata("EXEC [dbo].[USP_Item_Profit_And_Lost_NEW_V1_Web] '" + datefrom.ToString("yyyy-MM-dd") + "','" + dateto.ToString("yyyy-MM-dd") + "','','','','','','','','customers'");
             List<ItemProfitAndLostReport> ItemProfitAndLostReports = new List<ItemProfitAndLostReport>();
             foreach (DataRow row in dt.Rows)
             {
                 ItemProfitAndLostReports.Add(new ItemProfitAndLostReport
                 {
-                    No = row[0].ToString(),
-                    CardCode = row[1].ToString(),
+                    No = Convert.ToInt32(row[0].ToString()),
+                    CarCode = row[1].ToString(),
                     CardName = row[2].ToString(),
-                    BPGroup = row[3].ToString(),
-                    BPCategory = row[4].ToString(),
-                    Grade = row[5].ToString(),
-                    Region = row[6].ToString(),
-                    SalePerson = row[7].ToString(),
-                    InvDate = Convert.ToDateTime(row[8].ToString()).ToString("MMM"),
-                    Group = row[9].ToString(),
-                    ItemGroup = row[10].ToString(),
-                    ItemCode = row[10].ToString(),
-                    Description = row[11].ToString(),
-                    Source = row[12].ToString(),
-                    Category = row[13].ToString(),
-                    SubCategory = row[14].ToString(),
-                    Movement = row[14].ToString(),
-                    Codition = row[15].ToString(),
-                    Year = row[16].ToString(),
-                    Promotion = row[17].ToString(),
-                    Warranty = row[18].ToString(),
-                    Quantity = Convert.ToInt32(row[19].ToString()),
-                    Price = Convert.ToDouble(row[20].ToString()),
-                    Discount = Convert.ToDouble(row[21].ToString()),
-                    NetAmount = Convert.ToDouble(row[22].ToString()),
-                    TotalAmount = Convert.ToDouble(row[23].ToString()),
-                    TotalDiscount = Convert.ToDouble(row[24].ToString()),
-                    TotalNetAmount = Convert.ToDouble(row[25].ToString()),
-                    COGS = row[26].ToString(),
-                    GrossProfit = Convert.ToDouble(row[27].ToString()),
-                    Margin = row[28].ToString(),
-                    SONum = row[29].ToString(),
-                    Shipment = row[30].ToString(),
-                    InvoiceNo = row[31].ToString(),
-                    Status = row[32].ToString(),
-                    UoM = row[33].ToString(),
-                    Location = row[34].ToString(),
-                    Warehouse = row[35].ToString(),
-                    Department = row[36].ToString()
-
+                    CustomerGroup = row[3].ToString(),
+                    CustomerGrade = row[4].ToString(),
+                    State = row[5].ToString(),
+                    Saler=row[6].ToString(),
+                    SONo = row[7].ToString(),
+                    DONo = row[8].ToString(),
+                    InvNo = row[9].ToString(),
+                    InvDate = row[10].ToString(),
+                    Status = row[11].ToString(),
+                    Group = row[12].ToString(),
+                    Product = row[13].ToString(),
+                    InventeryID = row[14].ToString(),
+                    VendorCode = row[15].ToString(),
+                    ItemsName = row[16].ToString(),
+                    U_Source = row[17].ToString(),
+                    SubCategory = row[18].ToString(),
+                    U_SubCategory = row[19].ToString(),
+                    U_Movement = row[20].ToString(),
+                    U_Condition= row[21].ToString(),
+                    U_Model =  row[22].ToString(),
+                    U_Year = row[23].ToString(),
+                    Location = row[24].ToString(),
+                    Department = row[25].ToString(),
+                    Promotion = row[26].ToString(),
+                    Warranty = row[27].ToString(),
+                    Whs = row[28].ToString(),
+                    Price = Convert.ToDouble(row[29].ToString()),
+                    DisAmount = Convert.ToDouble(row[30].ToString()),
+                    Quality = Convert.ToInt32(row[31]),
+                    TotalAmount = Convert.ToDouble(row[32].ToString()),
+                    TotalDiscountAmount = Convert.ToDouble(row[33].ToString()),
+                    NetAmount = Convert.ToDouble(row[34].ToString()),
+                    COGSAmount = Convert.ToDouble(row[35].ToString()),
+                    GrossProfit = Convert.ToDouble(row[36].ToString()),
+                    Margin = Convert.ToDouble(row[37].ToString()),
+                    InvntryUom = row[38].ToString(),
+                    ItemsGroupforSV = row[39].ToString(),
+                    Name = row[40].ToString(),
+                    BPCategory = row[41].ToString()
                 });
             }
 

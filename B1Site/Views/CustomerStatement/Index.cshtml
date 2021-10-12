@@ -4,11 +4,11 @@
     ViewData["Title"] = "Home Page";
 }
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />-->
     <!--Dev-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/event.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/supplemental.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/unresolved.min.js"></script>
@@ -18,7 +18,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
-    <link href="~/css/CustomerStatement.css" rel="stylesheet" />
+    <link href="~/css/CustomerStatement.css" rel="stylesheet" />-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.3/dist/umd/popper.min.js"
+            integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+            integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+            crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <style>
     .widget-loadscreen {
@@ -39,7 +58,7 @@
     }
 
     .btn.btn-kernel {
-        font-size: 12px;
+        font-size: 17px;
         font-family: Arial;
         background-color: #f2e8c5;
         border: 0px;
@@ -123,8 +142,7 @@
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <input type="date" class="input_datefrom" id="agingdatecustomersatement">
                         </div>
-                    </div>
-                    @*<div class="row">*@                  
+                    </div>               
                 </div>
                 <div class="col-6">
                     <div class="mb-4 row">
@@ -142,7 +160,10 @@
                         </div>
                     </div>
                     <div class="mr-2">
-                        <button class="btn btn-xs btn-kernel" id="btnRunReportcustomerstaement"float:right;margin-right:30%">@localizer["Run"]</button>
+                        <a class="btn btn-xs btn-kernel " id="btnRUN" style="float: right; margin-right: 6%" asp-action="CustomerStatement" asp-controller="CustomerStatement">@localizer["Run"]</a>
+                        @*<a class="btn btn-xs btn-kernel" style="float: left; margin-right: 10%;margin-top:0px;" asp-action="Index" asp-controller="CustomerStatement">Back</a>*@
+                        @*<a class="btn btn-xs btn-kernel" asp-action="CustomerStatement" asp-controller="CustomerStatement" id="btnRunReportcustomerstaement" float:right;margin-right:30%">@localizer["Run"]</a>*@
+
                     </div>
                 </div>
             </div>
@@ -161,243 +182,35 @@
                 </div>
             </div>
                 <!--End Bind Data to Grid-->
-<script>
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
+            <script>
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
 
-    today = mm + '/' + dd + '/' + yyyy;
-    loadReport(today, today);
-    filterData();
-    $('#btnRunReportcustomerstaement').click(function () {
-        var agingdate = ifToDo($('#agingdatecustomersatement')).val();
-        var customer = ifToDo($('#customercusstatment')).val();
-        loadReport(agingdate,customer);
-    });
-    function filterData() {
-        var agingdate = today;
-        var customer = ifToDo($('#customercusstatment')).val();
-        //if (datefrom == '' || datefrom==null) {
-        //    datefrom = today;
-        ////}
-        //if (dateto == '' || dateto == null) {
-        //    dateto = today;
-        //}
-        loadReport(agingdate,customer);
-    }
-    function ifToDo(condition) {
-        if (condition.val() == '' || condition.val() == 0 || condition.val() == undefined || condition.val() == null) {
-            return "";
-        } else {
-            return condition.val();
+    $('#btnRUN').click(function ()
+    {
+        if ($('#customercusstatment').val() == "0" || $('#agingdatecustomersatement').val() == " ")
+        {
+            alert('Please Select Customer and AgingDate.')
+            $('#btnRUN').attr("href", '@Url.Action("Index", "CustomerStatement")');
         }
-    }
-    function loadReport(agingdate, customer) {
-        console.log(customer);
-        //let btn_filter = $(button).children("i.fa-search");
-        $.ajax({
-            url: '@Url.Action("GetCustomerStatement", "CustomerStatement")',
-            type: "GET",
-            data: { customer : customer, agingdate :agingdate},
-            dataType: "JSON",
-            beforeSend: function () {
-                //btn_filter.addClass("fa-spinner fa-spin");
-            },
-            success: function (data) {
-                console.log(data)
-                $("#gridContainer").dxDataGrid({
-                    dataSource: data,
-                    columnAutoWidth: true,
-                    filterRow: {
-                        visible: true,
-                        applyFilter: "auto"
-                    },
-                    headerFilter: {
-                        visible: true
-                    },
-                    showBorders: true,
-                    scrolling: {
-                        columnRenderingMode: "virtual"
-                    },
-                    export: {
-                        enabled: true,
-                    },
-                    onExporting: function (e) {
-                        var workbook = new ExcelJS.Workbook();
-                        var worksheet = workbook.addWorksheet('CustomerSatement');
+        else {
+            var url = $('#btnRUN').attr("href");
+            url = url + "?customer=" + $('#customercusstatment').val() + "&agingdate=" + $('#agingdatecustomersatement').val()
+        }
 
-                        DevExpress.excelExporter.exportDataGrid({
-                            component: e.component,
-                            worksheet: worksheet,
-                            autoFilterEnabled: true
-                        }).then(function () {
-                            workbook.xlsx.writeBuffer().then(function (buffer) {
-                                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Customer Statement.xlsx');
-                            });
-                        });
-                        e.cancel = true;
-                    },
-                    onToolbarPreparing: function (e) {
-                        var dataGrid = e.component;
-                        e.toolbarOptions.items.unshift({
-                            location: "before",
-                            template: function () {
-                                return
-                            }
-                        },
-                            {
-                                location: "after",
-                                widget: "dxButton",
-                                options: {
-                                    icon: "refresh",
-                                    onClick: function () {
-                                        dataGrid.refresh();
-                                        filterData();
-                                    }
-                                }
-                            },
-                            {
-                                location: "after",
-                                widget: "dxButton",
-                                options: {
-                                    icon: "fas fa-file-pdf",
-                                    onClick: function () {
-                                        printPdf();
-                                    }
-                                },
-                                title: 'Export to PDF'
-                            }
-                        );
-                    },
-                    summary: {
-                        totalItems: [{
-                            column: "CardCode",
-                            summaryType: "count"
-                        }, {
-                            column: "Price",
-                            summaryType: "sum"
-                        }
-                        ]
-                    },
-                    columns: [
-                            {
-                                dataField: "CardCode",
-                                caption: "CardCode"
-                            },
-                            {
-                                dataField: "CardName",
-                                caption: "CardName"
-                            },
+        $('#btnRUN').attr("href", url);
+     @*$('#btnRUN').click(function ()
+        {
+         if ($('#customercusstatment').val() == "") {
+             alert('No Data.')
+             $('#btnRUN').attr("href", '@Url.Action("Index", "CustomerStatement")');
+         }
+         else {
+             $('#btnRUN').attr("href", url);
+         }*@
+     });
 
-                            {
-                                dataField: "Region",
-                                caption: "Region"
-                            },
-                            {
-                                dataField: "DocType",
-                                caption: "DocType"
-                            },
-                            {
-                                dataField: "GroupName",
-                                caption: "GroupName"
-                            },
-                            {
-                                dataField: "SLPName",
-                                caption: "SLPName"
-                            },
-                            {
-                                dataField: "SysInvoice",
-                                caption: "SysInvoice
-                            },
-                            {
-                                dataField: "DO",
-                                caption: "DO"
-                            },
-                            {
-                                dataField: "Invoice",
-                                caption: "Invoice"
-                            },
-                              {
-                            dataField: "InvDate",
-                            caption:"InvDate",
-                            //alignment: "right",
-                            dataType: "date",
-                            //width: 120,
-                            calculateFilterExpression: function (value, selectedFilterOperations, target) {
-                                if (target === "headerFilter" && value === "weekends") {
-                                    return [[getOrderDay, "=", 0], "or", [getOrderDay, "=", 6]];
-                                }
-                                return this.defaultCalculateFilterExpression.apply(this, arguments);
-                            },
-
-                            headerFilter: {
-                                dataSource: function (data) {
-                                    data.dataSource.postProcess = function (results) {
-                                        results.push({
-                                            text: "Weekends",
-                                            value: "weekends"
-                                        });
-                                        return results;
-                                    };
-
-                                }
-                            }
-
-                            },
-                            {
-                                dataField: "Term",
-                                caption: "Term"
-                            },
-                            {
-                                dataField: " Age",
-                                caption: " Age"
-                            },
-                            {
-                                dataField: "Total",
-                                caption: "Total"
-                            },
-                            {
-                                dataField: "Current",
-                                caption: "Current"
-                            },
-                            {
-                                dataField: "ThirtyFirst_To_Sixty_Days",
-                                caption: "ThirtyFirst_To_Sixty_Days"
-                            },
-                            {
-                                dataField: "SixtyFirst_To_Ninety_Days",
-                                caption: "SixtyFirst_To_Ninety_Days"
-                            },
-                            {
-                                dataField: "NinetyFirst_To_OneHundredTwenty_Days",
-                                caption: "NinetyFirst_To_OneHundredTwenty_Days"
-                        },
-                        {
-                            dataField: "OneHundredTwentyOne_Untill_Days",
-                            caption: "OneHundredTwentyOne_Untill_Days"
-                        },
-                        {
-                            dataField: "ItemGroup",
-                            caption: "ItemGroup"
-                        },
-                        {
-                            dataField: "Model",
-                            caption: "Model"
-                        },
-                        {
-                            dataField: "DocNum",
-                            caption: "DocNum"
-                        },
-                        {
-                            dataField: "Type",
-                            caption: "Type"
-                        },
-                    ],
-
-                });
-                //btn_filter.removeClass("fa-spinner fa-spin");
-            }
-        });
-    }
-</script>
+            </script>

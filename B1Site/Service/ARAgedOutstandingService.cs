@@ -103,11 +103,10 @@ namespace B1Site.Service
                 {
                     aRAgedOutstandings.Add(new ARAgedOutstanding
                     {
-                        Row = a[0].ToString(),
                         CardCode = a[1].ToString(),
                         CardName = a[2].ToString(),
-                        Region = a[3].ToString(),
-                        GroupName = a[4].ToString(),
+                        GroupName = a[3].ToString(),
+                        Region = a[4].ToString(),
                         Doc = a[5].ToString(),
                         SalePerson = a[6].ToString(),
                         SysInvoice = a[7].ToString(),
@@ -118,16 +117,11 @@ namespace B1Site.Service
                         Aged = a[12].ToString(),
                         Balance = a[13].ToString(),
                         Current = a[14].ToString(),
-                        ThirtyFirst_To_Sixty = a[15].ToString(),
+                        Thirdty_To_Sixty = a[15].ToString(),
                         SixtyFirst_To_Ninety = a[16].ToString(),
                         NinetyFirst_To_OneHundredTwenty = a[17].ToString(),
                         OneHundred_TwentyFirst_Till = a[18].ToString(),
                         ItemGroup = a[19].ToString(),
-                        Model = a[20].ToString(),
-                        DocTotal = a[21].ToString(),
-                        GroupCode = a[22].ToString(),
-                        SlpCode = a[23].ToString(),
-                        Reconsum = a[24].ToString(),
                     });
                 }
                 catch (Exception ex)

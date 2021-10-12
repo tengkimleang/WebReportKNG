@@ -36,7 +36,7 @@ namespace B1Site.Service
                 measures = ((string.IsNullOrEmpty(measures) || measures == "0") ? "" : measures);
                 warehouses = ((string.IsNullOrEmpty(warehouses) || warehouses == "0") ? "" : warehouses);
                 ClsCRUD clsCRUD = new ClsCRUD();
-                var dt = clsCRUD.Getdata("EXEC [USP_InventoryCost_Report] '" + datefrominv.ToString("yyyy-MM-dd") + "','" + datetoinv.ToString("yyyy-MM-dd") + "','" + subcategorys + "','" + itemGroups + "','','" + mainGroups + "','" + categorys + "','" + sources + "','" + measures + "','" + warehouses + "'");
+                var dt = clsCRUD.Getdata("EXEC [USP_InventoryCost_Report_WebReport] '" + datefrominv.ToString("yyyy-MM-dd") + "','" + datetoinv.ToString("yyyy-MM-dd") + "','" + subcategorys + "','" + itemGroups + "','','" + mainGroups + "','" + categorys + "','" + sources + "','" + measures + "','" + warehouses + "'");
                 List<FinanceInventoryReport> InventoryReportlist = new List<FinanceInventoryReport>();
                 foreach (DataRow a in dt.Rows)
                 {

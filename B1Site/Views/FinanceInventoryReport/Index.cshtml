@@ -301,7 +301,7 @@
             $.ajax({
                 url: '@Url.Action("GetFinanceInventoryReport", "FinanceInventoryReport")',
                 type: "GET",
-                data: { datefrom: datefrom, dateto: dateto, itemGroup: itemGroup, mainGroups: mainGroup, categorys: category, subcategorys: subCategory, sources: source, measures: measure, warehouses:warehouse},
+                data: { datefrom: datefrom, dateto: dateto, itemcode: itemGroup, mainGroups: mainGroup, categorys: category, subcategorys: subCategory, sources: source, measures: measure, warehouses:warehouse},
                 dataType: "JSON",
                 beforeSend: function () {
                     //btn_filter.addClass("fa-spinner fa-spin");
@@ -397,7 +397,7 @@
                             },
                             {
                                 dataField: "vendorCode1",
-                                caption: "Vendor Code"
+                                caption: "Vendor Code1"
                             },
                             {
                                 dataField: "Group",
@@ -438,7 +438,7 @@
                             },
                             {
                                 dataField: "QTY",
-                                caption: "Total Quantity"
+                                caption: "Q'ty"
                             },
                             {
                                 dataField: "Cost",

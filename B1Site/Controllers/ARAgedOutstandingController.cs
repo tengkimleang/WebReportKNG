@@ -26,12 +26,12 @@ namespace B1Site.Controllers
         public async Task<IActionResult> Index()
         {
             return View( new MasterVeiwARAgedOutstanding
-                {
-                    customerClassMasters = await aRAgedOutstandingService.GetCustomerClassMastersAsync(),
-                    customerNameMasters = await aRAgedOutstandingService.GetCustomerNameMastersAsync(), 
-                    creditControlMasters = await aRAgedOutstandingService.GetCreditControlMastersAsync(),
-                    regionMasters = await aRAgedOutstandingService.GetRegionMastersAsync(),
-                    saleEmployeeMasters = await aRAgedOutstandingService.GetSaleEmployeeMastersAsync()
+            {
+                customerClassMasters = await aRAgedOutstandingService.GetCustomerClassMastersAsync(),
+                customerNameMasters = await aRAgedOutstandingService.GetCustomerNameMastersAsync(),
+                creditControlMasters = await aRAgedOutstandingService.GetCreditControlMastersAsync(),
+                regionMasters = await aRAgedOutstandingService.GetRegionMastersAsync(),
+                saleEmployeeMasters = await aRAgedOutstandingService.GetSaleEmployeeMastersAsync()
             }
         );
         }
@@ -44,10 +44,8 @@ namespace B1Site.Controllers
         {
             return await aRAgedOutstandingService.GetARAgedOutstandingsAsync(agingdate, customerclass,
                                                                              creditcontrol, customername,
-                                                                             saleemployee, region);                                                  
+                                                                             saleemployee, region);
         }
-        #endregion
-        #region Method Post Data From Ajax
         #endregion
     }
 }

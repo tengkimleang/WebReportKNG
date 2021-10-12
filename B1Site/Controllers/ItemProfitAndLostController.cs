@@ -21,31 +21,14 @@ namespace B1Site.Controllers
         #region Return View
         public async Task<IActionResult> Index()
         {
-            return View(new MasterViewItemProfitAndLostReport
-            {
-                itemGroupMasters =await itemProfitAndLostService.GetItemGroupMasterAsync(),
-                salePerson=await itemProfitAndLostService.GetSalePersonAsync(),
-                itemCategories=await itemProfitAndLostService.GetItemCategoryAsync(),
-                inventoryUOMs=await itemProfitAndLostService.GetInventoryUOMAsync(),
-                itemCodeMasters=await itemProfitAndLostService.GetItemCodeMasterAsync(),
-                bPCodeMasters=await itemProfitAndLostService.GetBPCodeMasterAsync(),
-                itemSources=await itemProfitAndLostService.GetItemSourceAsync()
-            }
-            ) ;
+            return View() ;
         }
         #endregion
         #region Get Data From ajax
-
-        public async Task<string> GetItemProfitAndLostAsync(DateTime datefrom,DateTime dateto
-                                                               ,string byItemGroup
-                                                               , string bySaleEmployee
-                                                               , string byCategory
-                                                               , string byInventoryUoM
-                                                               , string byItemCode
-                                                               , string byCardCode
-                                                               , string bySource)
+        [HttpGet]
+        public async Task<string> GetItemProfitAndLostsAsync(DateTime datefrom,DateTime dateto)
         {
-            return await itemProfitAndLostService.GetItemProfitAndLostAsync(datefrom, dateto, byItemGroup, bySaleEmployee, byCategory, byInventoryUoM, byItemCode, byCardCode, bySource);
+            return await itemProfitAndLostService.GetItemProfitAndLostAsync(datefrom, dateto);
         }
         #endregion 
     }

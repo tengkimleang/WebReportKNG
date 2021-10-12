@@ -120,7 +120,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="mb-4 row">
-                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 dateFrom font" style="margin-left:10%">@localizer["DateFrom :"]</label>
+                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 dateFrom font" style="margin-left:10%">@localizer["Date From :"]</label>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <input type="date" class="input_datefrom" id="datefromdailycash">
                         </div>
@@ -143,13 +143,13 @@
                 </div>
                 <div class="col-6">
                     <div class="mb-4 row">
-                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 dateTo font">@localizer["DateTo :"]</label>
+                        <label for="lable_datefrom" class="col-sm-12 col-md-4 col-lg-4 dateTo font">@localizer["Date To :"]</label>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <input type="date" class="input_datefrom" id="datetodailycash">
                         </div>
                     </div>
                     <div class="mr-2" >
-                        <button class="btn btn-xs btn-kernel" id="btnRunReportDailyCash" style="float:right;margin-right:33%">@localizer["Run"]</button>
+                        <button class="btn btn-xs btn-kernel" id="btnRunReportDailyCash" style="float:right;margin-right:33%">@localizer["RUN"]</button>
                     </div>
                 </div>
               
@@ -355,12 +355,16 @@
                     },
                     columns: [
                         {
+                            dataField: "Row",
+                            caption: "No"
+                        },
+                        {
                             dataField: "Receipt",
-                            caption: "Receipt#"
+                            caption: "Receipt #"
                         },
                         {
                             dataField: "ReceivedDate",
-                            caption:"ReceivedDate",
+                            caption:"Received Date",
                             //alignment: "right",
                             dataType: "date",
                             //width: 120,
@@ -394,10 +398,6 @@
                                 dataField: "SysInvoice",
                                 caption: "Invoice #"
                             },
-                            //{
-                            //    dataField: "CustomerRef",
-                            //    caption: "Customer Ref"
-                            //},
                             {
                                 dataField: "Type",
                                 caption: "Type"
@@ -407,15 +407,11 @@
                                 caption: "Status"
                             },
                             {
-                                dataField: "CustomerID",
-                                caption: "Customer ID"
-                            },
-                            {
                                 dataField: "CustomerName",
                                 caption: "Customer Name"
                             },
                             {
-                                dataField: "location",
+                                dataField: "Location",
                                 caption: "Location"
                             },
                             {
@@ -431,25 +427,66 @@
                                 caption: "Payment Method"
                             },
                             {
-                                dataField: "CashAccountDescription",
+                                dataField: "Remark",
                                 caption: "Cash Account Description"
                             },
                             {
+                                dataField: "Manufacture",
+                                caption: "Manufacture"
+                            },
+                            {
+                                dataField: "ItemGroup",
+                                caption: "ItemGroup"
+                            },
+                            {
+                                dataField: "Source",
+                                caption: "Source"
+                            },
+                            {
+                                dataField: "Category",
+                                caption: "Category"
+                            },
+                            {
+                                dataField: "Movement",
+                                caption: "Movement"
+                            },
+                            {
+                                dataField: "Condition",
+                                caption: "Condition"
+                            },
+                            {
+                                dataField: "Model",
+                                caption: "Model"
+                            },
+                            {
+                                dataField: "Year",
+                                caption: "Year"
+                            },
+                            {
+                                dataField: "VenderCode",
+                                caption: "VenderCode"
+                            },
+                            {
+                                dataField: "ItemCode",
+                                caption: "Item Code"
+                            },
+                            {
+                                dataField: "Description",
+                                caption: "Description"
+                            },
+                            {
                                 dataField: "CollectedAmount",
-                                caption: "CollectedAmount"
+                                caption: "Net Amount"
                             },
                             {
                                 dataField: "ServiceCharge",
-                                caption: "Service Charge"
+                                caption: "Transfer Fee"
                             },
                             {
                                 dataField: "TotalAmount",
-                                caption: "Total Amount"
+                                caption: "Total"
                             },
-                            {
-                                dataField: "Product",
-                                caption: "Product"
-                            },
+                            
                     ],
 
                 });
